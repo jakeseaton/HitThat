@@ -196,6 +196,7 @@ struct SnatchParseAPI {
         
     }
     func storeASnatchOrFight(post:PFObject, fight:Bool){
+        // first, store that the user wants to get snatch or fight
         if let originOfPost = post.objectForKey("origin") as AnyObject as? String{
             let objectToStore = fight ? PFObject(className: "Fights") : PFObject(className: "Snatches")
             objectToStore["origin"] = PFUser.currentUser().username
@@ -221,8 +222,24 @@ struct SnatchParseAPI {
                 }
                 
             }
+            // send push notifications to the origin of that post
+            let userQuery = PFUser.query()
+            userQuery.whereKey("username", equalTo:originOfPost)
+            
+            // Find devices associated with these users
+            let pushQuery = PFInstallation.query()
+            pushQuery.whereKey("user", matchesQuery: userQuery)
+            
+            // Send push notification to query
+            let push = PFPush()
+            push.setQuery(pushQuery) // Set our Installation query
+            let pushMessage = fight ? "someone wants to beat you up" : "someone wants to date you"
+            push.setMessage(pushMessage)
+            push.sendPushInBackground()
 
         }
+        // then, increment the user's seen posts
+        PFUser.currentUser().addObject(post.objectId, forKey: "seenPosts")
+        PFUser.currentUser().saveInBackground()
     }
-
 }

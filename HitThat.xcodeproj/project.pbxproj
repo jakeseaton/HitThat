@@ -210,10 +210,10 @@
 				3DB6DF111AC994930020497B /* Frameworks */,
 				3DB6DEE51AC993620020497B /* AppDelegate.swift */,
 				3DB6DEE91AC993620020497B /* Main.storyboard */,
+				3DB6DF861AC9AF840020497B /* Swipe */,
 				3DB6DF891AC9B0200020497B /* Main */,
 				3DB6DF841AC9AF690020497B /* Profiles */,
 				3DB6DF851AC9AF7E0020497B /* GangBang */,
-				3DB6DF861AC9AF840020497B /* Swipe */,
 				3DB6DF871AC9AFBF0020497B /* Accounts */,
 				3DB6DF8B1AC9B0B60020497B /* Tables */,
 				3DB6DF881AC9AFCE0020497B /* Map */,
@@ -746,6 +746,7 @@
 				3DB6DF011AC993620020497B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3DB6DF021AC993620020497B /* Build configuration list for PBXNativeTarget "HitThatTests" */ = {
 			isa = XCConfigurationList;
@@ -754,6 +755,7 @@
 				3DB6DF041AC993620020497B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

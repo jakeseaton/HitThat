@@ -23,17 +23,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         Parse.setApplicationId("ToYMaUSeinWiDsnA5GDW8UhqwGkSwSV7ztvbDRje", clientKey:"s5Wp5niEL9OosYrTwLCk5Ixhg5li7QReiiCoV2kS")
         
         PFFacebookUtils.initializeFacebook()
-        var settings = UIApplication.sharedApplication().currentUserNotificationSettings()
-        println(settings)
-        let alerts = UIUserNotificationSettings(forTypes: (.Alert | .Badge | .Sound), categories: nil)
+        let settings = UIUserNotificationSettings(forTypes: (.Alert | .Badge | .Sound), categories: nil)
         //        let badges = UIUserNotificationSettings(forTypes: .Badge, categories: nil)
         //        let sounds = UIUserNotificationSettings(forTypes: .Sound, categories: nil)
-        application.registerUserNotificationSettings(alerts)
+        application.registerUserNotificationSettings(settings)
         //        UIApplication.sharedApplication().registerUserNotificationSettings(badges)
         //        UIApplication.sharedApplication().registerUserNotificationSettings(sounds)
         application.registerForRemoteNotifications()
-        settings = UIApplication.sharedApplication().currentUserNotificationSettings()
-        println(settings)
         // Override point for customization after application launch.
         return true
     }

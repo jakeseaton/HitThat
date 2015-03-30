@@ -24,6 +24,8 @@ class facebookLogIn: UIViewController  {
                 NSLog("The user cancelled the Facebook login.")
             }
             else if user.isNew {
+                // Associate the device with a user
+                self.associateInstallationWithUser()
                 var emptyArray:[PFObject] = []
                 PFUser.currentUser().setObject(emptyArray, forKey:"seenPosts")
                 FBRequestConnection.startForMeWithCompletionHandler(){
@@ -42,6 +44,7 @@ class facebookLogIn: UIViewController  {
                 self.performSegueWithIdentifier(Constants.ReigsterUserSegue, sender: self)
             }
             else {
+                self.associateInstallationWithUser()
                 FBRequestConnection.startForMeWithCompletionHandler(){
                     (connection, result, error) in
                     if error == nil {
@@ -94,6 +97,12 @@ class facebookLogIn: UIViewController  {
         // After logging in with Facebook
         
 
+    }
+    private func associateInstallationWithUser(){
+        // Associate the device with a user
+        let installation = PFInstallation.currentInstallation()
+        installation["user"] = PFUser.currentUser()
+        installation.saveInBackground()
     }
    
     func loadData(){

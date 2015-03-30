@@ -87,8 +87,6 @@ class SwipeViewController: UIViewController, ZLSwipeableViewDataSource, ZLSwipea
             if let post = cardView.object{
                 let API = SnatchParseAPI()
                 API.storeASnatchOrFight(post, fight: true)
-                PFUser.currentUser().addObject(post.objectId, forKey: "seenPosts")
-                PFUser.currentUser().saveInBackground()
             }
         }
         println("swiped left")
@@ -110,7 +108,7 @@ class SwipeViewController: UIViewController, ZLSwipeableViewDataSource, ZLSwipea
                 query.whereKey("location", nearGeoPoint: PFGeoPoint(latitude: queryLoc.latitude, longitude: queryLoc.longitude), withinMiles: 10)
             }
             // if there is a user, make sure there are things they haven't seen yet.
-//            let result = query.getFirstObject()
+            let result = query.getFirstObject()
 //            PFUser.currentUser().addObject(result.objectId, forKey: "seenPosts")
 //            PFUser.currentUser().saveInBackground()
 //            if result != nil{
@@ -120,15 +118,14 @@ class SwipeViewController: UIViewController, ZLSwipeableViewDataSource, ZLSwipea
 //                return nil
 //            }
             var view = CardView(frame: swipeableView.bounds)
-            view.object = nil//result
-            // view.object = object
+            view.object = result
             var textView = UITextView(frame: view.bounds)
             textView.backgroundColor = UIColor.clearColor()
             textView.font = UIFont.systemFontOfSize(24)
             textView.editable = false
             textView.selectable = false
             // Change this to something silly when you clear the user table
-            textView.text = "derp"//result.objectForKey("text") as AnyObject as String
+            textView.text = result.objectForKey("text") as AnyObject as String
             if derpColor == 0 {
                 view.backgroundColor = UIColor.orangeColor()
                 derpColor = 1
