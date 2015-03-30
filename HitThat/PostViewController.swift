@@ -55,6 +55,8 @@ class PostViewController: UIViewController, UITextViewDelegate {
         // get rid of the keyboard
         
         self.postView.resignFirstResponder()
+        println("this was pressed")
+
         PFGeoPoint.geoPointForCurrentLocationInBackground(){
             (geoPoint, error) in
                 if error != nil{
@@ -62,6 +64,7 @@ class PostViewController: UIViewController, UITextViewDelegate {
                     self.alert()
                 }
                 else{
+                    println("this was called")
                     let object = PFObject(className:"Posts")
                     PFUser.currentUser().setObject(geoPoint, forKey: "location")
                     PFUser.currentUser().saveInBackground()

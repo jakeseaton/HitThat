@@ -11,13 +11,12 @@ import CoreMotion
 
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
 
     var window: UIWindow?
     struct Motion{
         static let Manager = CMMotionManager()
     }
-    
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -43,7 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return wasHandled
     }
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
-        println("failed to register for push notifications")
+        println(error)
     }
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
         PFPush.storeDeviceToken(deviceToken)
