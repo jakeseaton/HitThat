@@ -6,4 +6,5 @@
 #import <ParseUI/ParseUI.h>
 #import <FacebookSDK/FacebookSDK.h>
 #import <ParseFacebookUtils/PFFacebookUtils.h>
+#import "ZLSwipeableView.h"
 

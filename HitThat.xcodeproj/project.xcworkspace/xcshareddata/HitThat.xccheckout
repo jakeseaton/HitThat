@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>C86FB8F0-7AB1-4F83-BB2E-DDBBB7D0F4A2</string>
+	<key>IDESourceControlProjectName</key>
+	<string>HitThat</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>C344DEC82E69D2A759A0011B5137CE51C0A6D085</key>
+		<string>https://github.com/jakeseaton/HitThat.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>HitThat.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>C344DEC82E69D2A759A0011B5137CE51C0A6D085</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/jakeseaton/HitThat.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>C344DEC82E69D2A759A0011B5137CE51C0A6D085</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>C344DEC82E69D2A759A0011B5137CE51C0A6D085</string>
+			<key>IDESourceControlWCCName</key>
+			<string>HitThat</string>
+		</dict>
+	</array>
+</dict>
+</plist>

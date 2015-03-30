@@ -30,6 +30,44 @@
 		3DB6DF231AC995550020497B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DB6DF221AC995550020497B /* CoreGraphics.framework */; };
 		3DB6DF251AC995610020497B /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DB6DF241AC995610020497B /* CFNetwork.framework */; };
 		3DB6DF271AC9956A0020497B /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DB6DF261AC9956A0020497B /* AudioToolbox.framework */; };
+		3DB6DF531AC9AEDA0020497B /* AnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6DF2B1AC9AED90020497B /* AnnotationView.swift */; };
+		3DB6DF541AC9AEDA0020497B /* BezierPathsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6DF2C1AC9AED90020497B /* BezierPathsView.swift */; };
+		3DB6DF551AC9AEDA0020497B /* BouncerBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6DF2D1AC9AED90020497B /* BouncerBehavior.swift */; };
+		3DB6DF561AC9AEDA0020497B /* BouncerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6DF2E1AC9AED90020497B /* BouncerViewController.swift */; };
+		3DB6DF571AC9AEDA0020497B /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6DF2F1AC9AED90020497B /* CardView.swift */; };
+		3DB6DF581AC9AEDA0020497B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6DF301AC9AED90020497B /* Constants.swift */; };
+		3DB6DF591AC9AEDA0020497B /* DataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6DF311AC9AED90020497B /* DataViewController.swift */; };
+		3DB6DF5A1AC9AEDA0020497B /* DropitBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6DF321AC9AED90020497B /* DropitBehavior.swift */; };
+		3DB6DF5B1AC9AEDA0020497B /* DropitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6DF331AC9AED90020497B /* DropitViewController.swift */; };
+		3DB6DF5C1AC9AEDA0020497B /* facebookLogIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6DF341AC9AED90020497B /* facebookLogIn.swift */; };
+		3DB6DF5D1AC9AEDA0020497B /* FightsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6DF351AC9AED90020497B /* FightsTableViewCell.swift */; };
+		3DB6DF5E1AC9AEDA0020497B /* FightsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6DF361AC9AED90020497B /* FightsTableViewController.swift */; };
+		3DB6DF601AC9AEDA0020497B /* GangBangBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6DF381AC9AED90020497B /* GangBangBehavior.swift */; };
+		3DB6DF611AC9AEDA0020497B /* GangBangViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6DF391AC9AED90020497B /* GangBangViewController.swift */; };
+		3DB6DF621AC9AEDA0020497B /* GenericProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6DF3A1AC9AED90020497B /* GenericProfileViewController.swift */; };
+		3DB6DF651AC9AEDA0020497B /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6DF3D1AC9AED90020497B /* MainNavigationController.swift */; };
+		3DB6DF661AC9AEDA0020497B /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6DF3E1AC9AED90020497B /* MainTableViewCell.swift */; };
+		3DB6DF671AC9AEDA0020497B /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6DF3F1AC9AED90020497B /* MainTableViewController.swift */; };
+		3DB6DF691AC9AEDA0020497B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6DF411AC9AED90020497B /* MainViewController.swift */; };
+		3DB6DF6A1AC9AEDA0020497B /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6DF421AC9AED90020497B /* MapViewController.swift */; };
+		3DB6DF6B1AC9AEDA0020497B /* MKUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6DF431AC9AED90020497B /* MKUser.swift */; };
+		3DB6DF6C1AC9AEDA0020497B /* ModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6DF441AC9AED90020497B /* ModelController.swift */; };
+		3DB6DF6D1AC9AEDA0020497B /* MyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6DF451AC9AED90020497B /* MyProfileViewController.swift */; };
+		3DB6DF6E1AC9AEDA0020497B /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6DF461AC9AED90020497B /* PostViewController.swift */; };
+		3DB6DF6F1AC9AEDA0020497B /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6DF471AC9AED90020497B /* RegisterViewController.swift */; };
+		3DB6DF701AC9AEDA0020497B /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6DF481AC9AED90020497B /* RootViewController.swift */; };
+		3DB6DF711AC9AEDA0020497B /* ScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6DF491AC9AED90020497B /* ScoreViewController.swift */; };
+		3DB6DF721AC9AEDA0020497B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6DF4A1AC9AED90020497B /* SettingsViewController.swift */; };
+		3DB6DF731AC9AEDA0020497B /* SinglePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6DF4B1AC9AED90020497B /* SinglePostViewController.swift */; };
+		3DB6DF741AC9AEDA0020497B /* SnatchedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6DF4C1AC9AED90020497B /* SnatchedViewController.swift */; };
+		3DB6DF751AC9AEDA0020497B /* SnatchesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6DF4D1AC9AED90020497B /* SnatchesTableViewCell.swift */; };
+		3DB6DF761AC9AEDA0020497B /* SnatchesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6DF4E1AC9AED90020497B /* SnatchesTableViewController.swift */; };
+		3DB6DF771AC9AEDA0020497B /* SnatchLocationAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6DF4F1AC9AED90020497B /* SnatchLocationAPI.swift */; };
+		3DB6DF781AC9AEDA0020497B /* SnatchParseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6DF501AC9AED90020497B /* SnatchParseAPI.swift */; };
+		3DB6DF791AC9AEDA0020497B /* SwipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6DF511AC9AED90020497B /* SwipeViewController.swift */; };
+		3DB6DF7A1AC9AEDA0020497B /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6DF521AC9AED90020497B /* TabBarController.swift */; };
+		3DB6DF801AC9AEF40020497B /* ZLPanGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6DF7D1AC9AEF40020497B /* ZLPanGestureRecognizer.m */; };
+		3DB6DF811AC9AEF40020497B /* ZLSwipeableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6DF7F1AC9AEF40020497B /* ZLSwipeableView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +109,46 @@
 		3DB6DF241AC995610020497B /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		3DB6DF261AC9956A0020497B /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		3DB6DF281AC995960020497B /* HitThat-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HitThat-Bridging-Header.h"; sourceTree = "<group>"; };
+		3DB6DF2B1AC9AED90020497B /* AnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotationView.swift; sourceTree = "<group>"; };
+		3DB6DF2C1AC9AED90020497B /* BezierPathsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BezierPathsView.swift; sourceTree = "<group>"; };
+		3DB6DF2D1AC9AED90020497B /* BouncerBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BouncerBehavior.swift; sourceTree = "<group>"; };
+		3DB6DF2E1AC9AED90020497B /* BouncerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BouncerViewController.swift; sourceTree = "<group>"; };
+		3DB6DF2F1AC9AED90020497B /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		3DB6DF301AC9AED90020497B /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		3DB6DF311AC9AED90020497B /* DataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataViewController.swift; sourceTree = "<group>"; };
+		3DB6DF321AC9AED90020497B /* DropitBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropitBehavior.swift; sourceTree = "<group>"; };
+		3DB6DF331AC9AED90020497B /* DropitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropitViewController.swift; sourceTree = "<group>"; };
+		3DB6DF341AC9AED90020497B /* facebookLogIn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = facebookLogIn.swift; sourceTree = "<group>"; };
+		3DB6DF351AC9AED90020497B /* FightsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FightsTableViewCell.swift; sourceTree = "<group>"; };
+		3DB6DF361AC9AED90020497B /* FightsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FightsTableViewController.swift; sourceTree = "<group>"; };
+		3DB6DF381AC9AED90020497B /* GangBangBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GangBangBehavior.swift; sourceTree = "<group>"; };
+		3DB6DF391AC9AED90020497B /* GangBangViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GangBangViewController.swift; sourceTree = "<group>"; };
+		3DB6DF3A1AC9AED90020497B /* GenericProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericProfileViewController.swift; sourceTree = "<group>"; };
+		3DB6DF3D1AC9AED90020497B /* MainNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
+		3DB6DF3E1AC9AED90020497B /* MainTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
+		3DB6DF3F1AC9AED90020497B /* MainTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
+		3DB6DF411AC9AED90020497B /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		3DB6DF421AC9AED90020497B /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		3DB6DF431AC9AED90020497B /* MKUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKUser.swift; sourceTree = "<group>"; };
+		3DB6DF441AC9AED90020497B /* ModelController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelController.swift; sourceTree = "<group>"; };
+		3DB6DF451AC9AED90020497B /* MyProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyProfileViewController.swift; sourceTree = "<group>"; };
+		3DB6DF461AC9AED90020497B /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
+		3DB6DF471AC9AED90020497B /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		3DB6DF481AC9AED90020497B /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		3DB6DF491AC9AED90020497B /* ScoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreViewController.swift; sourceTree = "<group>"; };
+		3DB6DF4A1AC9AED90020497B /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		3DB6DF4B1AC9AED90020497B /* SinglePostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SinglePostViewController.swift; sourceTree = "<group>"; };
+		3DB6DF4C1AC9AED90020497B /* SnatchedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnatchedViewController.swift; sourceTree = "<group>"; };
+		3DB6DF4D1AC9AED90020497B /* SnatchesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnatchesTableViewCell.swift; sourceTree = "<group>"; };
+		3DB6DF4E1AC9AED90020497B /* SnatchesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnatchesTableViewController.swift; sourceTree = "<group>"; };
+		3DB6DF4F1AC9AED90020497B /* SnatchLocationAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnatchLocationAPI.swift; sourceTree = "<group>"; };
+		3DB6DF501AC9AED90020497B /* SnatchParseAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnatchParseAPI.swift; sourceTree = "<group>"; };
+		3DB6DF511AC9AED90020497B /* SwipeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeViewController.swift; sourceTree = "<group>"; };
+		3DB6DF521AC9AED90020497B /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		3DB6DF7C1AC9AEF40020497B /* ZLPanGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPanGestureRecognizer.h; sourceTree = "<group>"; };
+		3DB6DF7D1AC9AEF40020497B /* ZLPanGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPanGestureRecognizer.m; sourceTree = "<group>"; };
+		3DB6DF7E1AC9AEF40020497B /* ZLSwipeableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLSwipeableView.h; sourceTree = "<group>"; };
+		3DB6DF7F1AC9AEF40020497B /* ZLSwipeableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLSwipeableView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,12 +209,19 @@
 			children = (
 				3DB6DF111AC994930020497B /* Frameworks */,
 				3DB6DEE51AC993620020497B /* AppDelegate.swift */,
-				3DB6DEE71AC993620020497B /* ViewController.swift */,
 				3DB6DEE91AC993620020497B /* Main.storyboard */,
-				3DB6DEEC1AC993620020497B /* Images.xcassets */,
-				3DB6DEEE1AC993620020497B /* LaunchScreen.xib */,
+				3DB6DF891AC9B0200020497B /* Main */,
+				3DB6DF841AC9AF690020497B /* Profiles */,
+				3DB6DF851AC9AF7E0020497B /* GangBang */,
+				3DB6DF861AC9AF840020497B /* Swipe */,
+				3DB6DF871AC9AFBF0020497B /* Accounts */,
+				3DB6DF8B1AC9B0B60020497B /* Tables */,
+				3DB6DF881AC9AFCE0020497B /* Map */,
+				3DB6DF8A1AC9B0A50020497B /* Post */,
+				3DB6DF831AC9AF2B0020497B /* API */,
+				3DB6DF821AC9AF1F0020497B /* Unused */,
+				3DB6DF7B1AC9AEF40020497B /* ZLSwipeableView */,
 				3DB6DEE31AC993620020497B /* Supporting Files */,
-				3DB6DF281AC995960020497B /* HitThat-Bridging-Header.h */,
 			);
 			path = HitThat;
 			sourceTree = "<group>";
@@ -144,6 +229,10 @@
 		3DB6DEE31AC993620020497B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3DB6DEE71AC993620020497B /* ViewController.swift */,
+				3DB6DEEE1AC993620020497B /* LaunchScreen.xib */,
+				3DB6DEEC1AC993620020497B /* Images.xcassets */,
+				3DB6DF281AC995960020497B /* HitThat-Bridging-Header.h */,
 				3DB6DEE41AC993620020497B /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -188,6 +277,123 @@
 				3DB6DF0A1AC994880020497B /* ParseUI.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3DB6DF7B1AC9AEF40020497B /* ZLSwipeableView */ = {
+			isa = PBXGroup;
+			children = (
+				3DB6DF7C1AC9AEF40020497B /* ZLPanGestureRecognizer.h */,
+				3DB6DF7D1AC9AEF40020497B /* ZLPanGestureRecognizer.m */,
+				3DB6DF7E1AC9AEF40020497B /* ZLSwipeableView.h */,
+				3DB6DF7F1AC9AEF40020497B /* ZLSwipeableView.m */,
+			);
+			path = ZLSwipeableView;
+			sourceTree = "<group>";
+		};
+		3DB6DF821AC9AF1F0020497B /* Unused */ = {
+			isa = PBXGroup;
+			children = (
+				3DB6DF411AC9AED90020497B /* MainViewController.swift */,
+				3DB6DF3F1AC9AED90020497B /* MainTableViewController.swift */,
+				3DB6DF441AC9AED90020497B /* ModelController.swift */,
+				3DB6DF3E1AC9AED90020497B /* MainTableViewCell.swift */,
+				3DB6DF311AC9AED90020497B /* DataViewController.swift */,
+				3DB6DF481AC9AED90020497B /* RootViewController.swift */,
+				3DB6DF4A1AC9AED90020497B /* SettingsViewController.swift */,
+				3DB6DF4C1AC9AED90020497B /* SnatchedViewController.swift */,
+				3DB6DF521AC9AED90020497B /* TabBarController.swift */,
+			);
+			name = Unused;
+			sourceTree = "<group>";
+		};
+		3DB6DF831AC9AF2B0020497B /* API */ = {
+			isa = PBXGroup;
+			children = (
+				3DB6DF301AC9AED90020497B /* Constants.swift */,
+				3DB6DF4F1AC9AED90020497B /* SnatchLocationAPI.swift */,
+				3DB6DF501AC9AED90020497B /* SnatchParseAPI.swift */,
+			);
+			name = API;
+			sourceTree = "<group>";
+		};
+		3DB6DF841AC9AF690020497B /* Profiles */ = {
+			isa = PBXGroup;
+			children = (
+				3DB6DF3A1AC9AED90020497B /* GenericProfileViewController.swift */,
+				3DB6DF491AC9AED90020497B /* ScoreViewController.swift */,
+				3DB6DF451AC9AED90020497B /* MyProfileViewController.swift */,
+			);
+			name = Profiles;
+			sourceTree = "<group>";
+		};
+		3DB6DF851AC9AF7E0020497B /* GangBang */ = {
+			isa = PBXGroup;
+			children = (
+				3DB6DF2C1AC9AED90020497B /* BezierPathsView.swift */,
+				3DB6DF2E1AC9AED90020497B /* BouncerViewController.swift */,
+				3DB6DF2D1AC9AED90020497B /* BouncerBehavior.swift */,
+				3DB6DF331AC9AED90020497B /* DropitViewController.swift */,
+				3DB6DF391AC9AED90020497B /* GangBangViewController.swift */,
+				3DB6DF381AC9AED90020497B /* GangBangBehavior.swift */,
+				3DB6DF321AC9AED90020497B /* DropitBehavior.swift */,
+			);
+			name = GangBang;
+			sourceTree = "<group>";
+		};
+		3DB6DF861AC9AF840020497B /* Swipe */ = {
+			isa = PBXGroup;
+			children = (
+				3DB6DF511AC9AED90020497B /* SwipeViewController.swift */,
+				3DB6DF2F1AC9AED90020497B /* CardView.swift */,
+			);
+			name = Swipe;
+			sourceTree = "<group>";
+		};
+		3DB6DF871AC9AFBF0020497B /* Accounts */ = {
+			isa = PBXGroup;
+			children = (
+				3DB6DF471AC9AED90020497B /* RegisterViewController.swift */,
+				3DB6DF341AC9AED90020497B /* facebookLogIn.swift */,
+			);
+			name = Accounts;
+			sourceTree = "<group>";
+		};
+		3DB6DF881AC9AFCE0020497B /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				3DB6DF2B1AC9AED90020497B /* AnnotationView.swift */,
+				3DB6DF421AC9AED90020497B /* MapViewController.swift */,
+				3DB6DF431AC9AED90020497B /* MKUser.swift */,
+			);
+			name = Map;
+			sourceTree = "<group>";
+		};
+		3DB6DF891AC9B0200020497B /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				3DB6DF3D1AC9AED90020497B /* MainNavigationController.swift */,
+			);
+			name = Main;
+			sourceTree = "<group>";
+		};
+		3DB6DF8A1AC9B0A50020497B /* Post */ = {
+			isa = PBXGroup;
+			children = (
+				3DB6DF4B1AC9AED90020497B /* SinglePostViewController.swift */,
+				3DB6DF461AC9AED90020497B /* PostViewController.swift */,
+			);
+			name = Post;
+			sourceTree = "<group>";
+		};
+		3DB6DF8B1AC9B0B60020497B /* Tables */ = {
+			isa = PBXGroup;
+			children = (
+				3DB6DF361AC9AED90020497B /* FightsTableViewController.swift */,
+				3DB6DF351AC9AED90020497B /* FightsTableViewCell.swift */,
+				3DB6DF4D1AC9AED90020497B /* SnatchesTableViewCell.swift */,
+				3DB6DF4E1AC9AED90020497B /* SnatchesTableViewController.swift */,
+			);
+			name = Tables;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -290,8 +496,46 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3DB6DF661AC9AEDA0020497B /* MainTableViewCell.swift in Sources */,
+				3DB6DF771AC9AEDA0020497B /* SnatchLocationAPI.swift in Sources */,
+				3DB6DF5B1AC9AEDA0020497B /* DropitViewController.swift in Sources */,
+				3DB6DF6B1AC9AEDA0020497B /* MKUser.swift in Sources */,
+				3DB6DF811AC9AEF40020497B /* ZLSwipeableView.m in Sources */,
+				3DB6DF741AC9AEDA0020497B /* SnatchedViewController.swift in Sources */,
+				3DB6DF5C1AC9AEDA0020497B /* facebookLogIn.swift in Sources */,
+				3DB6DF6C1AC9AEDA0020497B /* ModelController.swift in Sources */,
+				3DB6DF571AC9AEDA0020497B /* CardView.swift in Sources */,
+				3DB6DF671AC9AEDA0020497B /* MainTableViewController.swift in Sources */,
+				3DB6DF5A1AC9AEDA0020497B /* DropitBehavior.swift in Sources */,
+				3DB6DF5E1AC9AEDA0020497B /* FightsTableViewController.swift in Sources */,
+				3DB6DF601AC9AEDA0020497B /* GangBangBehavior.swift in Sources */,
+				3DB6DF591AC9AEDA0020497B /* DataViewController.swift in Sources */,
+				3DB6DF751AC9AEDA0020497B /* SnatchesTableViewCell.swift in Sources */,
+				3DB6DF611AC9AEDA0020497B /* GangBangViewController.swift in Sources */,
+				3DB6DF541AC9AEDA0020497B /* BezierPathsView.swift in Sources */,
+				3DB6DF6D1AC9AEDA0020497B /* MyProfileViewController.swift in Sources */,
+				3DB6DF691AC9AEDA0020497B /* MainViewController.swift in Sources */,
+				3DB6DF5D1AC9AEDA0020497B /* FightsTableViewCell.swift in Sources */,
 				3DB6DEE81AC993620020497B /* ViewController.swift in Sources */,
+				3DB6DF791AC9AEDA0020497B /* SwipeViewController.swift in Sources */,
+				3DB6DF731AC9AEDA0020497B /* SinglePostViewController.swift in Sources */,
+				3DB6DF551AC9AEDA0020497B /* BouncerBehavior.swift in Sources */,
+				3DB6DF6F1AC9AEDA0020497B /* RegisterViewController.swift in Sources */,
+				3DB6DF701AC9AEDA0020497B /* RootViewController.swift in Sources */,
+				3DB6DF711AC9AEDA0020497B /* ScoreViewController.swift in Sources */,
+				3DB6DF561AC9AEDA0020497B /* BouncerViewController.swift in Sources */,
+				3DB6DF781AC9AEDA0020497B /* SnatchParseAPI.swift in Sources */,
+				3DB6DF6A1AC9AEDA0020497B /* MapViewController.swift in Sources */,
+				3DB6DF531AC9AEDA0020497B /* AnnotationView.swift in Sources */,
+				3DB6DF6E1AC9AEDA0020497B /* PostViewController.swift in Sources */,
+				3DB6DF721AC9AEDA0020497B /* SettingsViewController.swift in Sources */,
 				3DB6DEE61AC993620020497B /* AppDelegate.swift in Sources */,
+				3DB6DF651AC9AEDA0020497B /* MainNavigationController.swift in Sources */,
+				3DB6DF801AC9AEF40020497B /* ZLPanGestureRecognizer.m in Sources */,
+				3DB6DF621AC9AEDA0020497B /* GenericProfileViewController.swift in Sources */,
+				3DB6DF7A1AC9AEDA0020497B /* TabBarController.swift in Sources */,
+				3DB6DF761AC9AEDA0020497B /* SnatchesTableViewController.swift in Sources */,
+				3DB6DF581AC9AEDA0020497B /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
