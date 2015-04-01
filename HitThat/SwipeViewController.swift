@@ -12,9 +12,7 @@ class SwipeViewController: UIViewController, ZLSwipeableViewDataSource, ZLSwipea
     var currLocation : PFGeoPoint?
     let colors = Colors.ColorsArray
 //    var ParseAPI = SnatchParseAPI()
-    @IBAction func goHome(segue:UIStoryboardSegue){
-        println("someone unwound back to me!")
-    }
+    @IBAction func goHome(segue:UIStoryboardSegue){}
 
     @IBOutlet weak var progressBar: YLProgressBar!
     

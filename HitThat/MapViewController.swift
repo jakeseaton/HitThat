@@ -39,11 +39,12 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     @IBOutlet weak var mapView: MKMapView!{
         didSet{
             mapView.setUserTrackingMode(.FollowWithHeading, animated: true)
+            mapView.showsUserLocation = true
             mapView.pitchEnabled = true
             mapView.scrollEnabled = true
             mapView.zoomEnabled = true
             mapView.rotateEnabled = false
-            mapView.mapType = .Hybrid //.Standard
+            mapView.mapType = .Standard
             // or .Hybrid, etc
             mapView.delegate = self
         }
@@ -97,11 +98,21 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     private func showRoute(response: MKDirectionsResponse){
         for route in response.routes as [MKRoute] {
+            println(route)
+//            self.mapView.region = route.polyline.boundingMapRect
+
             self.mapView.addOverlay(route.polyline,
-                level: MKOverlayLevel.AboveRoads)
+                level: .AboveRoads)
         }
     }
-    
+    func mapView(mapView: MKMapView!, rendererForOverlay
+        overlay: MKOverlay!) -> MKOverlayRenderer! {
+            let renderer = MKPolylineRenderer(overlay: overlay)
+            
+            renderer.strokeColor = Colors.color1
+            renderer.lineWidth = 5.0
+            return renderer
+    }
     private func clearAnnotations(){
         if mapView?.annotations != nil{
             mapView.removeAnnotations(mapView.annotations as [MKAnnotation])
