@@ -13,7 +13,7 @@
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HitThat" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="kId-c2-rCX">
                     <rect key="frame" x="20" y="257" width="441" height="43"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Post so singles near you can hit that!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IZ6-LD-6jt">
@@ -22,26 +22,33 @@
                         <constraint firstAttribute="height" constant="21" id="g24-vp-Oe6"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="slapBlank" translatesAutoresizingMaskIntoConstraints="NO" id="W0V-av-BcY">
-                    <rect key="frame" x="191" y="151" width="98" height="98"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="98" id="8Bg-5n-1NI"/>
-                        <constraint firstAttribute="width" constant="98" id="e2S-fV-RiZ"/>
-                    </constraints>
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="fist" translatesAutoresizingMaskIntoConstraints="NO" id="178-0d-Y1h">
+                    <rect key="frame" x="226" y="220" width="29" height="29"/>
                 </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The dating app where you're the punchline" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AHb-rz-BnZ">
+                    <rect key="frame" x="77" y="337" width="327" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="Igo-cC-RIG"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="IZ6-LD-6jt" firstAttribute="top" secondItem="kId-c2-rCX" secondAttribute="bottom" constant="8" symbolic="YES" id="1e4-6F-syo"/>
                 <constraint firstItem="kId-c2-rCX" firstAttribute="centerX" secondItem="IZ6-LD-6jt" secondAttribute="centerX" id="89E-bl-awh"/>
-                <constraint firstItem="kId-c2-rCX" firstAttribute="centerX" secondItem="W0V-av-BcY" secondAttribute="centerX" id="Cgr-ji-Lbc"/>
-                <constraint firstItem="W0V-av-BcY" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="151" id="NKa-Dl-u6S"/>
+                <constraint firstItem="AHb-rz-BnZ" firstAttribute="top" secondItem="IZ6-LD-6jt" secondAttribute="bottom" constant="8" symbolic="YES" id="JiU-Yw-Czc"/>
+                <constraint firstItem="178-0d-Y1h" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="220" id="Lvy-Jf-4mv"/>
                 <constraint firstItem="kId-c2-rCX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="QGZ-in-pjh"/>
+                <constraint firstItem="kId-c2-rCX" firstAttribute="top" secondItem="178-0d-Y1h" secondAttribute="bottom" constant="8" symbolic="YES" id="WmR-cn-zrs"/>
+                <constraint firstItem="AHb-rz-BnZ" firstAttribute="centerX" secondItem="IZ6-LD-6jt" secondAttribute="centerX" id="Zqr-Xg-r5j"/>
+                <constraint firstItem="178-0d-Y1h" firstAttribute="centerX" secondItem="kId-c2-rCX" secondAttribute="centerX" id="nTZ-V1-sez"/>
                 <constraint firstItem="IZ6-LD-6jt" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="uJA-SU-gdv"/>
-                <constraint firstItem="kId-c2-rCX" firstAttribute="top" secondItem="W0V-av-BcY" secondAttribute="bottom" constant="8" symbolic="YES" id="xH7-D5-dG6"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -49,6 +56,6 @@
         </view>
     </objects>
     <resources>
-        <image name="slapBlank" width="80" height="80"/>
+        <image name="fist" width="29" height="29"/>
     </resources>
 </document>

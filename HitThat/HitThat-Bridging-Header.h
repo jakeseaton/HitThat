@@ -7,4 +7,5 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import <ParseFacebookUtils/PFFacebookUtils.h>
 #import "ZLSwipeableView.h"
-
+#import "FXBlurView.h"
+#import "YLProgressBar.h"

@@ -29,7 +29,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         didSet{
 //            clearAnnotations()
             if let curr = userToLocate{
-                handleAnnotations([curr])
+//                handleAnnotations([curr])
+                let API = SnatchParseAPI()
+                API.notifyTrackedUser(curr)
             }
         }
     }
@@ -41,7 +43,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             mapView.scrollEnabled = true
             mapView.zoomEnabled = true
             mapView.rotateEnabled = false
-            mapView.mapType = .Standard
+            mapView.mapType = .Hybrid //.Standard
             // or .Hybrid, etc
             mapView.delegate = self
         }
@@ -68,9 +70,37 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         let annotations = usersToAnnontate as [MKAnnotation]
 //        println("annotation coordinate: \(annotation.coordinate)")
         mapView?.addAnnotations(annotations)
+        mapView?.showAnnotations(annotations, animated: true)
+        drawRouteToAnnotation(annotations[0])
 //        mapView.showAnnotations([userToAnnontate], animated: true)
     }
-    
+    private func drawRouteToAnnotation(annotation: MKAnnotation){
+//        let c1 = annotation.coordinate
+//        let c2 = mapView.userLocation.coordinate
+//        let coordinates = [c1, c2]
+        
+        let destinationPlacemark = MKPlacemark(coordinate: annotation.coordinate, addressDictionary: nil)
+        let destinationMapItem = MKMapItem(placemark: destinationPlacemark)
+        let request = MKDirectionsRequest()
+        request.setSource(MKMapItem.mapItemForCurrentLocation())
+        request.setDestination(destinationMapItem)
+        let directions = MKDirections(request: request)
+        directions.calculateDirectionsWithCompletionHandler(){
+            (response,error) in
+            
+            if error != nil {
+                println(error)
+            } else {
+                self.showRoute(response)
+            }
+        }
+    }
+    private func showRoute(response: MKDirectionsResponse){
+        for route in response.routes as [MKRoute] {
+            self.mapView.addOverlay(route.polyline,
+                level: MKOverlayLevel.AboveRoads)
+        }
+    }
     
     private func clearAnnotations(){
         if mapView?.annotations != nil{

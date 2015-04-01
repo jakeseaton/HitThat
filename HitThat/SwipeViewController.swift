@@ -10,10 +10,13 @@ import UIKit
 
 class SwipeViewController: UIViewController, ZLSwipeableViewDataSource, ZLSwipeableViewDelegate {
     var currLocation : PFGeoPoint?
+    let colors = Colors.ColorsArray
 //    var ParseAPI = SnatchParseAPI()
     @IBAction func goHome(segue:UIStoryboardSegue){
         println("someone unwound back to me!")
     }
+
+    @IBOutlet weak var progressBar: YLProgressBar!
     
     @IBAction func hitThatPressed(sender: AnyObject) {
         self.swipeableView.swipeTopViewToRight()
@@ -24,30 +27,11 @@ class SwipeViewController: UIViewController, ZLSwipeableViewDataSource, ZLSwipea
     @IBOutlet weak var swipeableView: ZLSwipeableView!
     var allPosts = [PFObject]()
     var loadCardFromXIB:Bool = false
-    var derpColor = 0
-    var colors = [
-        "Turquoise",
-        "Green Sea",
-        "Emerald",
-        "Nephritis",
-        "Peter River",
-        "Belize Hole",
-        "Amethyst",
-        "Wisteria",
-        "Wet Asphalt",
-        "Midnight Blue",
-        "Sun Flower",
-        "Orange",
-        "Carrot",
-        "Pumpkin",
-        "Alizarin",
-        "Pomegranate",
-        "Clouds",
-        "Silver",
-        "Concrete",
-        "Asbestos"
-    ];
     var colorIndex = 0
+    private func updateProgressBar(){
+        var newPercentage = CGFloat(Float(arc4random()) / Float(UINT32_MAX))
+        self.progressBar.setProgress(newPercentage, animated: true)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,6 +45,20 @@ class SwipeViewController: UIViewController, ZLSwipeableViewDataSource, ZLSwipea
                 self.currLocation = geopoint
             }
         }
+//        self.progressBar.type = .Flat
+        self.progressBar.hideStripes = true
+        self.progressBar.hideTrack = true
+        self.progressBar.indicatorTextLabel.font = UIFont(name: "Arial-BoldMT", size: 20)
+        self.progressBar.progressTintColors = [Colors.color1, Colors.color2]//self.colors
+        self.progressBar.indicatorTextDisplayMode = YLProgressBarIndicatorTextDisplayMode.Progress
+        self.progressBar.setProgress(1, animated: true)
+//        self.progressBar.backgroundColor = UIColor.clearColor()
+//        self.progressBar.trackTintColor = UIColor.clearColor()
+//        _progressBar.type                     = YLProgressBarTypeFlat;
+//        _progressBar.hideStripes              = YES;
+//        _progressBar.indicatorTextDisplayMode = YLProgressBarIndicatorTextDisplayModeProgress;
+//        _progressBar.progressTintColors       = rainbowColors;
+        
     }
     
     override func viewDidLayoutSubviews() {
@@ -121,22 +119,24 @@ class SwipeViewController: UIViewController, ZLSwipeableViewDataSource, ZLSwipea
             view.object = result
             var textView = UITextView(frame: view.bounds)
             textView.backgroundColor = UIColor.clearColor()
+            textView.textColor = UIColor.whiteColor()
             textView.font = UIFont.systemFontOfSize(24)
             textView.editable = false
             textView.selectable = false
             // Change this to something silly when you clear the user table
             textView.text = result.objectForKey("text") as AnyObject as String
-            if derpColor == 0 {
-                view.backgroundColor = UIColor.orangeColor()
-                derpColor = 1
-            }
-            else{
-                derpColor = 0
-                view.backgroundColor = UIColor.yellowColor()
-            }
-
+            view.backgroundColor = colors[colorIndex]
+            let gradient: CAGradientLayer = CAGradientLayer()
+//            gradient.colors = [Colors.PomegranateColor.CGColor, Colors.AlizarinColor.CGColor]
+            gradient.colors = [Colors.color1.CGColor, Colors.color2.CGColor]
+            gradient.locations = [0.0 , 1.0]
+//            gradient.startPoint = CGPoint(x: 0.0, y: 1.0)
+//            gradient.endPoint = CGPoint(x: 1.0, y: 1.0)
+            gradient.frame = CGRect(x: 0.0, y: 0.0, width: view.frame.size.width, height: view.frame.size.height)
+            // THIS DOES THE GRADIENTS
+//            view.layer.insertSublayer(gradient, atIndex: 0)
+            colorIndex = (colorIndex + 1) % colors.count
 //            view.backgroundColor = self.colorForName(colors[colorIndex])
-//            colorIndex += 1
             // I really don't want to do this
 //            if (loadCardFromXIB){
 //                println("lol")
@@ -177,7 +177,7 @@ class SwipeViewController: UIViewController, ZLSwipeableViewDataSource, ZLSwipea
     }
     override func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent) {
         if (motion == UIEventSubtype.MotionShake){
-            println("user shook the device")
+            updateProgressBar()
             self.swipeableView.swipeTopViewToLeft()
         }
     }

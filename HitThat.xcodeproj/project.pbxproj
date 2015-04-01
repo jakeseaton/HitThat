@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D8482AC1ACB2FAB00D663DF /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8482AB1ACB2FAB00D663DF /* Colors.swift */; };
+		3D8482BE1ACB74F300D663DF /* AvatarImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8482B81ACB74F300D663DF /* AvatarImageView.swift */; };
+		3D8482BF1ACB74F300D663DF /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8482BA1ACB74F300D663DF /* FXBlurView.m */; };
+		3D8482C01ACB74F300D663DF /* ProfileBlurViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8482BB1ACB74F300D663DF /* ProfileBlurViewController.swift */; };
+		3D8482C11ACB74F300D663DF /* TWTButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8482BD1ACB74F300D663DF /* TWTButton.swift */; };
+		3D8482C31ACB790D00D663DF /* LocateButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8482C21ACB790D00D663DF /* LocateButton.swift */; };
+		3D8482C71ACC2D7D00D663DF /* YLProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8482C61ACC2D7D00D663DF /* YLProgressBar.m */; };
 		3DB6DEE61AC993620020497B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6DEE51AC993620020497B /* AppDelegate.swift */; };
 		3DB6DEE81AC993620020497B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6DEE71AC993620020497B /* ViewController.swift */; };
 		3DB6DEEB1AC993620020497B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DB6DEE91AC993620020497B /* Main.storyboard */; };
@@ -81,6 +88,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3D8482AB1ACB2FAB00D663DF /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		3D8482B81ACB74F300D663DF /* AvatarImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarImageView.swift; sourceTree = "<group>"; };
+		3D8482B91ACB74F300D663DF /* FXBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXBlurView.h; sourceTree = "<group>"; };
+		3D8482BA1ACB74F300D663DF /* FXBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXBlurView.m; sourceTree = "<group>"; };
+		3D8482BB1ACB74F300D663DF /* ProfileBlurViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileBlurViewController.swift; sourceTree = "<group>"; };
+		3D8482BC1ACB74F300D663DF /* TB_TwitterHeader-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TB_TwitterHeader-Bridging-Header.h"; sourceTree = "<group>"; };
+		3D8482BD1ACB74F300D663DF /* TWTButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TWTButton.swift; sourceTree = "<group>"; };
+		3D8482C21ACB790D00D663DF /* LocateButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocateButton.swift; sourceTree = "<group>"; };
+		3D8482C51ACC2D7D00D663DF /* YLProgressBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLProgressBar.h; sourceTree = "<group>"; };
+		3D8482C61ACC2D7D00D663DF /* YLProgressBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLProgressBar.m; sourceTree = "<group>"; };
 		3DB6DEE01AC993620020497B /* HitThat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HitThat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DB6DEE41AC993620020497B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3DB6DEE51AC993620020497B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -186,6 +203,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3D8482B71ACB74F300D663DF /* New Profiles */ = {
+			isa = PBXGroup;
+			children = (
+				3D8482B81ACB74F300D663DF /* AvatarImageView.swift */,
+				3D8482B91ACB74F300D663DF /* FXBlurView.h */,
+				3D8482BA1ACB74F300D663DF /* FXBlurView.m */,
+				3D8482BB1ACB74F300D663DF /* ProfileBlurViewController.swift */,
+				3D8482BC1ACB74F300D663DF /* TB_TwitterHeader-Bridging-Header.h */,
+				3D8482BD1ACB74F300D663DF /* TWTButton.swift */,
+			);
+			name = "New Profiles";
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		3D8482C41ACC2D7D00D663DF /* YLProgressBar */ = {
+			isa = PBXGroup;
+			children = (
+				3D8482C51ACC2D7D00D663DF /* YLProgressBar.h */,
+				3D8482C61ACC2D7D00D663DF /* YLProgressBar.m */,
+			);
+			path = YLProgressBar;
+			sourceTree = "<group>";
+		};
 		3DB6DED71AC993620020497B = {
 			isa = PBXGroup;
 			children = (
@@ -208,8 +248,11 @@
 			isa = PBXGroup;
 			children = (
 				3DB6DF111AC994930020497B /* Frameworks */,
-				3DB6DEE51AC993620020497B /* AppDelegate.swift */,
 				3DB6DEE91AC993620020497B /* Main.storyboard */,
+				3D8482C21ACB790D00D663DF /* LocateButton.swift */,
+				3DB6DEE51AC993620020497B /* AppDelegate.swift */,
+				3D8482C41ACC2D7D00D663DF /* YLProgressBar */,
+				3D8482B71ACB74F300D663DF /* New Profiles */,
 				3DB6DF861AC9AF840020497B /* Swipe */,
 				3DB6DF891AC9B0200020497B /* Main */,
 				3DB6DF841AC9AF690020497B /* Profiles */,
@@ -309,6 +352,7 @@
 		3DB6DF831AC9AF2B0020497B /* API */ = {
 			isa = PBXGroup;
 			children = (
+				3D8482AB1ACB2FAB00D663DF /* Colors.swift */,
 				3DB6DF301AC9AED90020497B /* Constants.swift */,
 				3DB6DF4F1AC9AED90020497B /* SnatchLocationAPI.swift */,
 				3DB6DF501AC9AED90020497B /* SnatchParseAPI.swift */,
@@ -501,6 +545,7 @@
 				3DB6DF5B1AC9AEDA0020497B /* DropitViewController.swift in Sources */,
 				3DB6DF6B1AC9AEDA0020497B /* MKUser.swift in Sources */,
 				3DB6DF811AC9AEF40020497B /* ZLSwipeableView.m in Sources */,
+				3D8482C31ACB790D00D663DF /* LocateButton.swift in Sources */,
 				3DB6DF741AC9AEDA0020497B /* SnatchedViewController.swift in Sources */,
 				3DB6DF5C1AC9AEDA0020497B /* facebookLogIn.swift in Sources */,
 				3DB6DF6C1AC9AEDA0020497B /* ModelController.swift in Sources */,
@@ -512,6 +557,7 @@
 				3DB6DF591AC9AEDA0020497B /* DataViewController.swift in Sources */,
 				3DB6DF751AC9AEDA0020497B /* SnatchesTableViewCell.swift in Sources */,
 				3DB6DF611AC9AEDA0020497B /* GangBangViewController.swift in Sources */,
+				3D8482C71ACC2D7D00D663DF /* YLProgressBar.m in Sources */,
 				3DB6DF541AC9AEDA0020497B /* BezierPathsView.swift in Sources */,
 				3DB6DF6D1AC9AEDA0020497B /* MyProfileViewController.swift in Sources */,
 				3DB6DF691AC9AEDA0020497B /* MainViewController.swift in Sources */,
@@ -520,14 +566,18 @@
 				3DB6DF791AC9AEDA0020497B /* SwipeViewController.swift in Sources */,
 				3DB6DF731AC9AEDA0020497B /* SinglePostViewController.swift in Sources */,
 				3DB6DF551AC9AEDA0020497B /* BouncerBehavior.swift in Sources */,
+				3D8482AC1ACB2FAB00D663DF /* Colors.swift in Sources */,
 				3DB6DF6F1AC9AEDA0020497B /* RegisterViewController.swift in Sources */,
 				3DB6DF701AC9AEDA0020497B /* RootViewController.swift in Sources */,
+				3D8482C11ACB74F300D663DF /* TWTButton.swift in Sources */,
+				3D8482BE1ACB74F300D663DF /* AvatarImageView.swift in Sources */,
 				3DB6DF711AC9AEDA0020497B /* ScoreViewController.swift in Sources */,
 				3DB6DF561AC9AEDA0020497B /* BouncerViewController.swift in Sources */,
 				3DB6DF781AC9AEDA0020497B /* SnatchParseAPI.swift in Sources */,
 				3DB6DF6A1AC9AEDA0020497B /* MapViewController.swift in Sources */,
 				3DB6DF531AC9AEDA0020497B /* AnnotationView.swift in Sources */,
 				3DB6DF6E1AC9AEDA0020497B /* PostViewController.swift in Sources */,
+				3D8482BF1ACB74F300D663DF /* FXBlurView.m in Sources */,
 				3DB6DF721AC9AEDA0020497B /* SettingsViewController.swift in Sources */,
 				3DB6DEE61AC993620020497B /* AppDelegate.swift in Sources */,
 				3DB6DF651AC9AEDA0020497B /* MainNavigationController.swift in Sources */,
@@ -536,6 +586,7 @@
 				3DB6DF7A1AC9AEDA0020497B /* TabBarController.swift in Sources */,
 				3DB6DF761AC9AEDA0020497B /* SnatchesTableViewController.swift in Sources */,
 				3DB6DF581AC9AEDA0020497B /* Constants.swift in Sources */,
+				3D8482C01ACB74F300D663DF /* ProfileBlurViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

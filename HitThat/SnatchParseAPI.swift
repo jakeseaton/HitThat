@@ -202,8 +202,7 @@ struct SnatchParseAPI {
             objectToStore["origin"] = PFUser.currentUser().username
             objectToStore["recipient"] = originOfPost
             objectToStore["post"] = post
-            let query = PFQuery(className: "_User")
-            println("origin of post\(originOfPost)")
+            let query = PFUser.query()
             query.whereKey("username", equalTo:originOfPost)
             query.findObjectsInBackgroundWithBlock(){
                     (objects, error) in
@@ -221,25 +220,54 @@ struct SnatchParseAPI {
                     }
                 }
                 
+                
             }
-            // send push notifications to the origin of that post
-            let userQuery = PFUser.query()
-            userQuery.whereKey("username", equalTo:originOfPost)
-            
-            // Find devices associated with these users
+            // Find devices associated with that user
             let pushQuery = PFInstallation.query()
-            pushQuery.whereKey("user", matchesQuery: userQuery)
+            pushQuery.whereKey("user", matchesQuery: query)
             
             // Send push notification to query
             let push = PFPush()
             push.setQuery(pushQuery) // Set our Installation query
-            let pushMessage = fight ? "someone wants to beat you up" : "someone wants to date you"
+            let fullName = PFUser.currentUser().objectForKey("fullName") as AnyObject as String
+            let pushMessage = fight ? "\(fullName) wants to hit you." : "\(fullName) wants to hit that!"
             push.setMessage(pushMessage)
             push.sendPushInBackground()
-
+            /* Could do badges like this
+            let data = [
+            "alert" : "The Mets scored! The game is now tied 1-1!",
+            "badge" : "Increment",
+            "sounds" : "cheering.caf"
+            ]
+            let push = PFPush()
+            push.setChannels(["Mets"])
+            push.setData(data)
+            push.sendPushInBackground()
+            */
         }
         // then, increment the user's seen posts
         PFUser.currentUser().addObject(post.objectId, forKey: "seenPosts")
         PFUser.currentUser().saveInBackground()
+    }
+    
+    func resetBadges(){
+        let currentInstallation = PFInstallation.currentInstallation()
+        if currentInstallation.badge != 0 {
+            currentInstallation.badge = 0
+            currentInstallation.saveEventually()
+        }
+    }
+    func notifyTrackedUser(user: PFUser){
+        let userQuery = PFUser.query()
+        userQuery.whereKey("username", equalTo: user.username)
+        let pushQuery = PFInstallation.query()
+        pushQuery.whereKey("user", matchesQuery: userQuery)
+        // Send push notification to query
+        let push = PFPush()
+        push.setQuery(pushQuery) // Set our Installation query
+        let fullName = PFUser.currentUser().objectForKey("fullName") as AnyObject as String
+        let pushMessage = "\(fullName) is tracking your location!"
+        push.setMessage(pushMessage)
+        push.sendPushInBackground()
     }
 }

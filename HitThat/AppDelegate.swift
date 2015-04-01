@@ -31,6 +31,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         //        UIApplication.sharedApplication().registerUserNotificationSettings(sounds)
         application.registerForRemoteNotifications()
         // Override point for customization after application launch.
+//        let navbar = UINavigationBar.appearance()
+//        navbar.barTintColor = Colors.navBarTintColor
+        application.statusBarStyle = UIStatusBarStyle.LightContent
+
+        
         return true
     }
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: NSString?, annotation: AnyObject) -> Bool {
@@ -71,6 +76,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     func applicationDidBecomeActive(application: UIApplication) {
         FBAppEvents.activateApp()
         FBAppCall.handleDidBecomeActiveWithSession(PFFacebookUtils.session())
+        let API = SnatchParseAPI()
+        API.resetBadges()
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     }
     

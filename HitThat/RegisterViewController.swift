@@ -11,6 +11,7 @@ import UIKit
 class RegisterViewController: UIViewController, ZLSwipeableViewDataSource, ZLSwipeableViewDelegate {
     var questionIndex = 0
     var colorIndex = 0
+    var colors = Colors.ColorsArray
     @IBOutlet weak var swipeableView:ZLSwipeableView!
     var questions = ["Welcome, please answer these questions to the best of your ability, so that we can find the best matches for you. (Swipe or punch left or right)", "Do you hit with your right or your left?", "Float like a butterfly or sting like a bee?", "Are you allergic to anything?", "What about bees?", "Do you believe in reincarnation?", "Then how do you explain butterflies?","Are you ready to start hitting people? Take a swint to answer yes!","",""]
     override func viewDidLoad(){
@@ -47,14 +48,7 @@ class RegisterViewController: UIViewController, ZLSwipeableViewDataSource, ZLSwi
             var view = CardView(frame: swipeableView.bounds)
             var textView = UITextView(frame: view.bounds)
             textView.text = self.questions[questionIndex]
-            if colorIndex == 0 {
-                view.backgroundColor = UIColor.orangeColor()
-                colorIndex = 1
-            }
-            else{
-                colorIndex = 0
-                view.backgroundColor = UIColor.yellowColor()
-            }
+            view.backgroundColor = colors[colorIndex]
             
             //            view.backgroundColor = self.colorForName(colors[colorIndex])
             //            colorIndex += 1
@@ -69,7 +63,10 @@ class RegisterViewController: UIViewController, ZLSwipeableViewDataSource, ZLSwi
             textView.selectable = false
             view.addSubview(textView)
             self.questionIndex += 1
+            colorIndex = (colorIndex + 1) % colors.count
+
             return view
+
         }
         else{
 //            self.dismissViewControllerAnimated(true){}
