@@ -99,12 +99,15 @@ class SwipeViewController: UIViewController, ZLSwipeableViewDataSource, ZLSwipea
 //            let userSeenPosts = PFUser.currentUser().objectForKey("seenPosts") as AnyObject as [String]
             // ADD THIS LINE TO MAKE SURE THEY NEVER SEE THE SAME POST TWICE
             // query.whereKey("objectId", notContainedIn: userSeenPosts)
-        
-            if let queryLoc = currLocation{
-                query.whereKey("location", nearGeoPoint: PFGeoPoint(latitude: queryLoc.latitude, longitude: queryLoc.longitude), withinMiles: 10)
-            }
+            
+            // Add these lines to enforce location based fights.
+//            if let queryLoc = currLocation{
+//                query.whereKey("location", nearGeoPoint: PFGeoPoint(latitude: queryLoc.latitude, longitude: queryLoc.longitude), withinMiles: 10)
+//            }
             // if there is a user, make sure there are things they haven't seen yet.
             let result = query.getFirstObject()
+            println(result)
+
 //            PFUser.currentUser().addObject(result.objectId, forKey: "seenPosts")
 //            PFUser.currentUser().saveInBackground()
 //            if result != nil{

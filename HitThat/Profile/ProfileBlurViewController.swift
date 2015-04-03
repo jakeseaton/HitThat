@@ -29,7 +29,7 @@ class ProfileBlurViewController: UIViewController, UIScrollViewDelegate {
         }
     }
     private func updateUI(){
-        self.headerLabel.text = userToDisplay!.objectForKey("fullName") as AnyObject as? String
+        self.headerLabel.text = "VERSUS" // userToDisplay!.objectForKey("fullName") as AnyObject as? String
         self.displayName.text = userToDisplay!.objectForKey("fullName") as AnyObject as? String
     }
     
@@ -61,7 +61,7 @@ class ProfileBlurViewController: UIViewController, UIScrollViewDelegate {
                     }
                     else{
                         self.headerImageView?.image = UIImage(data:imageData)
-                        self.avatarImage.image = UIImage(data:imageData)
+//                        self.avatarImage.image = UIImage(data:imageData)
                     }
                 }
             }

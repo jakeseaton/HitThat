@@ -9,3 +9,4 @@
 #import "ZLSwipeableView.h"
 #import "FXBlurView.h"
 #import "YLProgressBar.h"
+#import "FXForms.h"
