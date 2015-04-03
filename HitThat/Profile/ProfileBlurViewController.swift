@@ -14,6 +14,7 @@ let distance_W_LabelHeader:CGFloat = 35.0 // The distance between the bottom of 
 
 class ProfileBlurViewController: UIViewController, UIScrollViewDelegate {
 
+    @IBOutlet weak var backgroundView: UIView!
     @IBOutlet var scrollView:UIScrollView!
     @IBOutlet var avatarImage:UIImageView!
     @IBOutlet var header:UIView!
@@ -22,20 +23,50 @@ class ProfileBlurViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet var headerBlurImageView:UIImageView!
     var blurredHeaderImageView:UIImageView?
     
+    // To Set
+    @IBOutlet weak var bio: UILabel!
+    @IBOutlet weak var wins: UILabel!
+    @IBOutlet weak var weight: UILabel!
+    @IBOutlet weak var height: UILabel!
     @IBOutlet weak var displayName: UILabel!
+    @IBOutlet weak var hitsWith: UILabel!
+    @IBOutlet weak var jailTime: UILabel!
+    @IBOutlet weak var fightingSince: UILabel!
     var userToDisplay:PFUser?{
         didSet{
             updateUI()
         }
     }
     private func updateUI(){
-        self.headerLabel.text = "VERSUS" // userToDisplay!.objectForKey("fullName") as AnyObject as? String
-        self.displayName.text = userToDisplay!.objectForKey("fullName") as AnyObject as? String
+        self.headerLabel.text = "PUNCH TO FIGHT!" // userToDisplay!.objectForKey("fullName") as AnyObject as? String
+        self.displayName.text = userToDisplay!.objectForKey("alias") as AnyObject as? String
+        // change this to bio...you just forgot to save it.
+        self.bio.text = "Bio: " + (userToDisplay!.objectForKey("fullName") as AnyObject as? String)!
+        let winsInt = userToDisplay?.objectForKey("wins") as Int
+        let jailTimeInt = userToDisplay?.objectForKey("jailtime") as Int
+        self.wins.text = "Wins: \(winsInt)"
+        self.jailTime.text = "Jail Time: \(jailTimeInt) year(s)"
+        self.weight.text = "Weight: " + (userToDisplay?.objectForKey("weight") as String)
+        self.height.text = "Height: " + (userToDisplay?.objectForKey("height") as String)
+        self.hitsWith.text = "Hits With: " + (userToDisplay?.objectForKey("hitsWith") as String)
+        let date = userToDisplay?.objectForKey("fightingSince") as NSDate
+        self.fightingSince.text = "Fighting Since: " + date.description
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         scrollView.delegate = self
+        backgroundView.backgroundColor = UIColor.clearColor()
+        let gradient: CAGradientLayer = CAGradientLayer()
+        //            gradient.colors = [Colors.PomegranateColor.CGColor, Colors.AlizarinColor.CGColor]
+        gradient.colors = [Colors.color1.CGColor, Colors.color2.CGColor]
+        gradient.locations = [0.0 , 1.0]
+        //            gradient.startPoint = CGPoint(x: 0.0, y: 1.0)
+        //            gradient.endPoint = CGPoint(x: 1.0, y: 1.0)
+        gradient.frame = CGRect(x: 0.0, y: 0.0, width: view.frame.size.width, height: view.frame.size.height)
+        // THIS DOES THE GRADIENTS
+        view.layer.insertSublayer(gradient, atIndex: 0)
         if let user = PFUser.currentUser(){
             userToDisplay = user
         }

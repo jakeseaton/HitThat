@@ -125,7 +125,7 @@ class SwipeViewController: UIViewController, ZLSwipeableViewDataSource, ZLSwipea
             textView.editable = false
             textView.selectable = false
             // Change this to something silly when you clear the user table
-            textView.text = result.objectForKey("text") as AnyObject as String
+            textView.text = "Derp"//result.objectForKey("text") as AnyObject as String
             view.backgroundColor = colors[colorIndex]
             let gradient: CAGradientLayer = CAGradientLayer()
 //            gradient.colors = [Colors.PomegranateColor.CGColor, Colors.AlizarinColor.CGColor]
