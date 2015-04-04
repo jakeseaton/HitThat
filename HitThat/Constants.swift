@@ -36,4 +36,6 @@ struct Constants{
     static let BlockSize = CGSize(width: 40, height: 40)
     static let DoneRegisteringSegue = "Done Registering"
     static let ReigsterUserSegue = "Register New User"
+    static let GenericProfileSegue = "Generic Profile Segue"
+    static let KeepPlayingSegue = "Keep Playing Segue"
 }

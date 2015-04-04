@@ -13,9 +13,15 @@ class GenericProfileViewController: UIViewController {
     @IBOutlet weak var profilePicture: UIImageView!
     @IBOutlet weak var fullName: UILabel!
     // need outlets for the table of posts, the picture, etc
+    @IBAction func keepPlayingPressed(sender: AnyObject) {
+        println("derp")
+        self.performSegueWithIdentifier(Constants.KeepPlayingSegue, sender: self)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        println("didLoad")
+        Colors().gradient(self)
         if let userObject = userToDisplay{
             println("\(userObject)")
             fullName.text = userObject.objectForKey("fullName") as AnyObject as? String

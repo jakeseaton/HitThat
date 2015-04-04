@@ -25,6 +25,7 @@ class facebookLogIn: UIViewController  {
             }
             else if user.isNew {
                 // Associate the device with a user
+                self.updateLocation()
                 self.associateInstallationWithUser()
                 var emptyArray:[PFObject] = []
                 PFUser.currentUser().setObject(emptyArray, forKey:"seenPosts")
@@ -44,6 +45,7 @@ class facebookLogIn: UIViewController  {
                 self.performSegueWithIdentifier(Constants.ReigsterUserSegue, sender: self)
             }
             else {
+                self.updateLocation()
                 self.associateInstallationWithUser()
                 FBRequestConnection.startForMeWithCompletionHandler(){
                     (connection, result, error) in
@@ -103,6 +105,13 @@ class facebookLogIn: UIViewController  {
         let installation = PFInstallation.currentInstallation()
         installation["user"] = PFUser.currentUser()
         installation.saveInBackground()
+    }
+    private func updateLocation(){
+        PFGeoPoint.geoPointForCurrentLocationInBackground(){
+            (geopoint, error) in
+            PFUser.currentUser()["location"] = geopoint
+            PFUser.currentUser().saveEventually()
+        }
     }
    
     func loadData(){

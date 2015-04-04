@@ -12,7 +12,7 @@ let offset_HeaderStop:CGFloat = 40.0 // At this offset the Header stops its tran
 let offset_B_LabelHeader:CGFloat = 95.0 // At this offset the Black label reaches the Header
 let distance_W_LabelHeader:CGFloat = 35.0 // The distance between the bottom of the Header and the top of the White Label
 
-class ProfileBlurViewController: UIViewController, UIScrollViewDelegate {
+class ProfileBlurViewController: UIViewController, UIScrollViewDelegate, UITableViewDelegate {
 
     @IBOutlet weak var backgroundView: UIView!
     @IBOutlet var scrollView:UIScrollView!
@@ -22,69 +22,55 @@ class ProfileBlurViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet var headerImageView:UIImageView!
     @IBOutlet var headerBlurImageView:UIImageView!
     var blurredHeaderImageView:UIImageView?
-    
+    @IBOutlet weak var containerView: UIView!
+    @IBAction func keepPlaying(segue:UIStoryboardSegue){}
     // To Set
-    @IBOutlet weak var bio: UILabel!
-    @IBOutlet weak var wins: UILabel!
-    @IBOutlet weak var weight: UILabel!
-    @IBOutlet weak var height: UILabel!
     @IBOutlet weak var displayName: UILabel!
-    @IBOutlet weak var hitsWith: UILabel!
-    @IBOutlet weak var jailTime: UILabel!
-    @IBOutlet weak var fightingSince: UILabel!
     var userToDisplay:PFUser?{
         didSet{
             updateUI()
         }
     }
     private func updateUI(){
-        self.headerLabel.text = "PUNCH TO FIGHT!" // userToDisplay!.objectForKey("fullName") as AnyObject as? String
+         // userToDisplay!.objectForKey("fullName") as AnyObject as? String
         self.displayName.text = userToDisplay!.objectForKey("alias") as AnyObject as? String
-        // change this to bio...you just forgot to save it.
-        self.bio.text = "Bio: " + (userToDisplay!.objectForKey("fullName") as AnyObject as? String)!
-        let winsInt = userToDisplay?.objectForKey("wins") as Int
-        let jailTimeInt = userToDisplay?.objectForKey("jailtime") as Int
-        self.wins.text = "Wins: \(winsInt)"
-        self.jailTime.text = "Jail Time: \(jailTimeInt) year(s)"
-        self.weight.text = "Weight: " + (userToDisplay?.objectForKey("weight") as String)
-        self.height.text = "Height: " + (userToDisplay?.objectForKey("height") as String)
-        self.hitsWith.text = "Hits With: " + (userToDisplay?.objectForKey("hitsWith") as String)
-        let date = userToDisplay?.objectForKey("fightingSince") as NSDate
-        self.fightingSince.text = "Fighting Since: " + date.description
-        
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        scrollView.delegate = self
-        backgroundView.backgroundColor = UIColor.clearColor()
-        let gradient: CAGradientLayer = CAGradientLayer()
-        //            gradient.colors = [Colors.PomegranateColor.CGColor, Colors.AlizarinColor.CGColor]
-        gradient.colors = [Colors.color1.CGColor, Colors.color2.CGColor]
-        gradient.locations = [0.0 , 1.0]
-        //            gradient.startPoint = CGPoint(x: 0.0, y: 1.0)
-        //            gradient.endPoint = CGPoint(x: 1.0, y: 1.0)
-        gradient.frame = CGRect(x: 0.0, y: 0.0, width: view.frame.size.width, height: view.frame.size.height)
-        // THIS DOES THE GRADIENTS
-        view.layer.insertSublayer(gradient, atIndex: 0)
-        if let user = PFUser.currentUser(){
-            userToDisplay = user
+        if let table = self.childViewControllers.last as? VersusTableViewController{
+            table.userToDisplay = self.userToDisplay!
         }
         
     }
     
+    @IBAction func dateThemPressed(sender: AnyObject) {
+        self.performSegueWithIdentifier(Constants.GenericProfileSegue, sender: self)
+        
+    }
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == Constants.GenericProfileSegue{
+            if let next = segue.destinationViewController as? GenericProfileViewController{
+                next.userToDisplay = sender?.userToDisplay
+            }
+        }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.headerLabel.text = "PUNCH TO FIGHT!"
+        self.headerLabel.textColor = Colors.color2
+        println("view did load")
+        scrollView.delegate = self
+    }
+    
     @IBAction func locatePressed(sender: AnyObject) {
     }
-    override func viewDidAppear(animated: Bool) {
-        
-        // Header - Image
-        
+    override func viewWillAppear(animated: Bool) {
+        println("view will appear")
+        backgroundView.backgroundColor = UIColor.clearColor()
         headerImageView = UIImageView(frame: header.bounds)
-//        headerImageView?.image = UIImage(named: "header_bg")
+        //        headerImageView?.image = UIImage(named: "header_bg")
         if let userObject = PFUser.currentUser(){
-//            println("\(userObject)")
+            //            println("\(userObject)")
             
-            if let img = userObject["profilePicture"] as AnyObject as? PFFile {
+            if let img = userObject["profilePhoto"] as AnyObject as? PFFile {
                 img.getDataInBackgroundWithBlock {
                     (imageData, error) -> Void in
                     if error != nil {
@@ -92,7 +78,7 @@ class ProfileBlurViewController: UIViewController, UIScrollViewDelegate {
                     }
                     else{
                         self.headerImageView?.image = UIImage(data:imageData)
-//                        self.avatarImage.image = UIImage(data:imageData)
+                        //                        self.avatarImage.image = UIImage(data:imageData)
                     }
                 }
             }
@@ -107,14 +93,35 @@ class ProfileBlurViewController: UIViewController, UIScrollViewDelegate {
         headerBlurImageView?.contentMode = UIViewContentMode.ScaleAspectFill
         headerBlurImageView?.alpha = 0.0
         header.insertSubview(headerBlurImageView, belowSubview: headerLabel)
-    
+        
         header.clipsToBounds = true
+        Colors().gradient(self)
+        if let user = PFUser.currentUser(){
+            userToDisplay = user
+        }
+        // get a random user here!
+        
     }
+    override func viewDidAppear(animated: Bool) {
+        println("view did appear")
+        self.becomeFirstResponder()
+        
+        // Header - Image
 
+    }
+    override func viewWillDisappear(animated: Bool) {
+//        AppDelegate.Motion.Manager.stopAccelerometerUpdates()
+    }
+    override func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent) {
+        if (motion == UIEventSubtype.MotionShake){
+            self.performSegueWithIdentifier(Constants.GenericProfileSegue, sender: self)
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
+
     func scrollViewDidScroll(scrollView: UIScrollView) {
         
         var offset = scrollView.contentOffset.y

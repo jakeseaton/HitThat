@@ -25,6 +25,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     // MKShape, MKPolyline, then user their renderers
     
     // public API--set a user, and will show you where they are
+    @IBAction func backButtonPressed(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion:nil)
+    }
     var userToLocate: PFUser?{
         didSet{
 //            clearAnnotations()
