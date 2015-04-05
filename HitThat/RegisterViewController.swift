@@ -70,7 +70,7 @@ class RegisterViewController: UIViewController, ZLSwipeableViewDataSource, ZLSwi
         }
         else{
 //            self.dismissViewControllerAnimated(true){}
-            self.performSegueWithIdentifier(Constants.DoneRegisteringSegue, sender: self)
+            self.performSegueWithIdentifier(Constants.RegisterFormSegue, sender: self)
             return nil
         }
     }

@@ -23,7 +23,7 @@
 		3D8482CA1ACDDA6600D663DF /* VersusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8482C91ACDDA6600D663DF /* VersusViewController.swift */; };
 		3DB6DEE61AC993620020497B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6DEE51AC993620020497B /* AppDelegate.swift */; };
 		3DB6DEE81AC993620020497B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6DEE71AC993620020497B /* ViewController.swift */; };
-		3DB6DEEB1AC993620020497B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DB6DEE91AC993620020497B /* Main.storyboard */; };
+		3DB6DEEB1AC993620020497B /* Old.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DB6DEE91AC993620020497B /* Old.storyboard */; };
 		3DB6DEED1AC993620020497B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DB6DEEC1AC993620020497B /* Images.xcassets */; };
 		3DB6DEF01AC993620020497B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DB6DEEE1AC993620020497B /* LaunchScreen.xib */; };
 		3DB6DEFC1AC993620020497B /* HitThatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6DEFB1AC993620020497B /* HitThatTests.swift */; };
@@ -83,6 +83,8 @@
 		3DB6DF801AC9AEF40020497B /* ZLPanGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6DF7D1AC9AEF40020497B /* ZLPanGestureRecognizer.m */; };
 		3DB6DF811AC9AEF40020497B /* ZLSwipeableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6DF7F1AC9AEF40020497B /* ZLSwipeableView.m */; };
 		3DED5BE11AD04AD000F1DE5F /* VersusTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DED5BE01AD04AD000F1DE5F /* VersusTableViewController.swift */; };
+		3DED5BE31AD0773A00F1DE5F /* MainTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DED5BE21AD0773A00F1DE5F /* MainTabController.swift */; };
+		3DED5BE51AD077BA00F1DE5F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DED5BE41AD077BA00F1DE5F /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,7 +109,7 @@
 		3D8482B81ACB74F300D663DF /* AvatarImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarImageView.swift; sourceTree = "<group>"; };
 		3D8482B91ACB74F300D663DF /* FXBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXBlurView.h; sourceTree = "<group>"; };
 		3D8482BA1ACB74F300D663DF /* FXBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXBlurView.m; sourceTree = "<group>"; };
-		3D8482BB1ACB74F300D663DF /* ProfileBlurViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileBlurViewController.swift; sourceTree = "<group>"; };
+		3D8482BB1ACB74F300D663DF /* ProfileBlurViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileBlurViewController.swift; path = Profile/ProfileBlurViewController.swift; sourceTree = "<group>"; };
 		3D8482BD1ACB74F300D663DF /* TWTButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TWTButton.swift; sourceTree = "<group>"; };
 		3D8482C21ACB790D00D663DF /* LocateButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocateButton.swift; sourceTree = "<group>"; };
 		3D8482C51ACC2D7D00D663DF /* YLProgressBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLProgressBar.h; sourceTree = "<group>"; };
@@ -117,7 +119,7 @@
 		3DB6DEE41AC993620020497B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3DB6DEE51AC993620020497B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3DB6DEE71AC993620020497B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		3DB6DEEA1AC993620020497B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3DB6DEEA1AC993620020497B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Old.storyboard; sourceTree = "<group>"; };
 		3DB6DEEC1AC993620020497B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		3DB6DEEF1AC993620020497B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		3DB6DEF51AC993620020497B /* HitThatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HitThatTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -182,6 +184,8 @@
 		3DB6DF7E1AC9AEF40020497B /* ZLSwipeableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLSwipeableView.h; sourceTree = "<group>"; };
 		3DB6DF7F1AC9AEF40020497B /* ZLSwipeableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLSwipeableView.m; sourceTree = "<group>"; };
 		3DED5BE01AD04AD000F1DE5F /* VersusTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VersusTableViewController.swift; sourceTree = "<group>"; };
+		3DED5BE21AD0773A00F1DE5F /* MainTabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabController.swift; sourceTree = "<group>"; };
+		3DED5BE41AD077BA00F1DE5F /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -237,7 +241,6 @@
 				3D8482B81ACB74F300D663DF /* AvatarImageView.swift */,
 				3D8482B91ACB74F300D663DF /* FXBlurView.h */,
 				3D8482BA1ACB74F300D663DF /* FXBlurView.m */,
-				3D8482BB1ACB74F300D663DF /* ProfileBlurViewController.swift */,
 				3D8482BD1ACB74F300D663DF /* TWTButton.swift */,
 			);
 			name = "New Profiles";
@@ -285,7 +288,8 @@
 			isa = PBXGroup;
 			children = (
 				3DB6DF111AC994930020497B /* Frameworks */,
-				3DB6DEE91AC993620020497B /* Main.storyboard */,
+				3DB6DEE91AC993620020497B /* Old.storyboard */,
+				3DED5BE41AD077BA00F1DE5F /* Main.storyboard */,
 				3DED5BE01AD04AD000F1DE5F /* VersusTableViewController.swift */,
 				3D8482C91ACDDA6600D663DF /* VersusViewController.swift */,
 				3D8482C21ACB790D00D663DF /* LocateButton.swift */,
@@ -294,7 +298,6 @@
 				3DB6DF861AC9AF840020497B /* Swipe */,
 				3DB6DF891AC9B0200020497B /* Main */,
 				3DB6DF841AC9AF690020497B /* Profiles */,
-				3DB6DF851AC9AF7E0020497B /* GangBang */,
 				3DB6DF871AC9AFBF0020497B /* Accounts */,
 				3DB6DF8B1AC9B0B60020497B /* Tables */,
 				3DB6DF881AC9AFCE0020497B /* Map */,
@@ -374,6 +377,7 @@
 		3DB6DF821AC9AF1F0020497B /* Unused */ = {
 			isa = PBXGroup;
 			children = (
+				3DB6DF851AC9AF7E0020497B /* GangBang */,
 				3DB6DF411AC9AED90020497B /* MainViewController.swift */,
 				3DB6DF3F1AC9AED90020497B /* MainTableViewController.swift */,
 				3DB6DF441AC9AED90020497B /* ModelController.swift */,
@@ -455,6 +459,8 @@
 		3DB6DF891AC9B0200020497B /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				3D8482BB1ACB74F300D663DF /* ProfileBlurViewController.swift */,
+				3DED5BE21AD0773A00F1DE5F /* MainTabController.swift */,
 				3DB6DF3D1AC9AED90020497B /* MainNavigationController.swift */,
 			);
 			name = Main;
@@ -560,7 +566,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3DB6DEEB1AC993620020497B /* Main.storyboard in Resources */,
+				3DB6DEEB1AC993620020497B /* Old.storyboard in Resources */,
+				3DED5BE51AD077BA00F1DE5F /* Main.storyboard in Resources */,
 				3DB6DEF01AC993620020497B /* LaunchScreen.xib in Resources */,
 				3DB6DEED1AC993620020497B /* Images.xcassets in Resources */,
 			);
@@ -582,6 +589,7 @@
 			files = (
 				3DED5BE11AD04AD000F1DE5F /* VersusTableViewController.swift in Sources */,
 				3DB6DF661AC9AEDA0020497B /* MainTableViewCell.swift in Sources */,
+				3DED5BE31AD0773A00F1DE5F /* MainTabController.swift in Sources */,
 				3DB6DF771AC9AEDA0020497B /* SnatchLocationAPI.swift in Sources */,
 				3DB6DF5B1AC9AEDA0020497B /* DropitViewController.swift in Sources */,
 				3DB6DF6B1AC9AEDA0020497B /* MKUser.swift in Sources */,
@@ -657,12 +665,12 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		3DB6DEE91AC993620020497B /* Main.storyboard */ = {
+		3DB6DEE91AC993620020497B /* Old.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				3DB6DEEA1AC993620020497B /* Base */,
 			);
-			name = Main.storyboard;
+			name = Old.storyboard;
 			sourceTree = "<group>";
 		};
 		3DB6DEEE1AC993620020497B /* LaunchScreen.xib */ = {

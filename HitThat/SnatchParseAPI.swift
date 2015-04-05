@@ -270,4 +270,26 @@ struct SnatchParseAPI {
         push.setMessage(pushMessage)
         push.sendPushInBackground()
     }
+    func storeAFightFromVersusScreen(recipient:PFUser){
+        if let originUser = PFUser.currentUser(){
+            let object = PFObject(className: "Fights")
+            object["origin"] = originUser
+            object["recipient"] = recipient
+            object.saveInBackground()
+        }
+    }
+    func getAUsersProfilePicture(user:PFUser) -> UIImage {
+        let img = user["profilePicture"] as AnyObject as? PFFile
+        let data = img?.getData()
+        return UIImage(data: data!)!
+    }
+//    func getAUsersProfilePhoto(user:PFUser) -> UIImage{
+//        if let img = user["profilePhoto"] as AnyObject as? PFFile{
+//            let task = img.getDataInBackground()
+//            return task
+//        }
+//        else{
+//            return nil
+//        }
+//    }
 }

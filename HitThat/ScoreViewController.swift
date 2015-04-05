@@ -26,21 +26,15 @@ class ScoreViewController: UIViewController {
         var fights = 0
         if let curr = PFUser.currentUser(){
             if let img = curr["profilePicture"] as AnyObject as? PFFile {
-                println("got their profile picture from the object")
                 img.getDataInBackgroundWithBlock {
                     (imageData, error) -> Void in
-                    println("fired the block in the background")
                     if error != nil {
                         println("ERROR RETRIEVING IMAGE")
                     }
                     else{
-                        print("set profile picture image")
                         self.profilePicture.image = UIImage(data:imageData)
                     }
                 }
-            }
-            else{
-                println("this didn't work")
             }
             if let currentUserName = curr.username{
                 let snatchesQuery = PFQuery(className:"Snatches")
@@ -73,6 +67,7 @@ class ScoreViewController: UIViewController {
     
     override func viewDidLoad() {
      super.viewDidLoad()
+    Colors().gradient(self)
         updateUI()
     }
 }

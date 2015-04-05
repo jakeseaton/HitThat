@@ -357,10 +357,10 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="myC-Eo-wdh">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="myC-Eo-wdh">
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aqL-ky-Nj6" customClass="LocateButton" customModule="HitThat" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aqL-ky-Nj6" customClass="LocateButton" customModule="HitThat" customModuleProvider="target">
                                 <rect key="frame" x="283" y="64" width="35" height="30"/>
                                 <state key="normal" title="Back">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -515,7 +515,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="slapBlank" translatesAutoresizingMaskIntoConstraints="NO" id="eWt-6Z-4W0">
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="fistIconWhite" translatesAutoresizingMaskIntoConstraints="NO" id="eWt-6Z-4W0">
                                 <rect key="frame" x="251" y="141" width="98" height="89"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="98" id="Qkj-i7-5Od"/>
@@ -988,7 +988,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Il-zi-gRT" customClass="BezierPathsView" customModule="HitThat" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Il-zi-gRT" customClass="BezierPathsView" customModule="HitThat" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
@@ -1097,7 +1097,7 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YNW-dJ-uZ1" userLabel="Scrollview">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="751"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dFt-QE-38b" userLabel="Sizer">
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dFt-QE-38b" userLabel="Sizer">
                                         <rect key="frame" x="0.0" y="418" width="600" height="13"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="i3o-BH-EYw">
@@ -1384,10 +1384,10 @@
             </objects>
             <point key="canvasLocation" x="1911" y="1047.5"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Main Tab Controller-->
         <scene sceneID="2oL-it-8ud">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="Hp2-ZW-CMw" sceneMemberID="viewController">
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="Hp2-ZW-CMw" customClass="MainTabController" customModule="HitThat" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="pEY-dc-E6Y">
@@ -1404,36 +1404,19 @@
             </objects>
             <point key="canvasLocation" x="486" y="916"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="S27-Xe-mne">
-            <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="GJ8-sl-BZP" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="xbG-AO-LBv"/>
-                        <viewControllerLayoutGuide type="bottom" id="xhX-bQ-3o2"/>
-                    </layoutGuides>
-                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="e9q-Qa-jKO">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <toolbarItems/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="KbT-Wu-QMt" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-        </scene>
     </scenes>
     <resources>
         <image name="facebookLogin" width="416" height="101"/>
+        <image name="fistIconWhite" width="80" height="80"/>
         <image name="hitThatSmall" width="80" height="80"/>
         <image name="slapBlank" width="80" height="80"/>
         <image name="userMale" width="30" height="30"/>
         <image name="versusLogo" width="288" height="288"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="AkQ-J7-EXO"/>
         <segue reference="lcJ-rK-7Kw"/>
-        <segue reference="dnu-Gc-2O7"/>
+        <segue reference="J7m-5f-zfT"/>
+        <segue reference="wvW-Gg-Vyg"/>
         <segue reference="wAy-H1-Wmi"/>
     </inferredMetricsTieBreakers>
 </document>

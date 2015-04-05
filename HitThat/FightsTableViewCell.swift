@@ -10,7 +10,7 @@ import UIKit
 
 class FightsTableViewCell: PFTableViewCell {
     @IBOutlet weak var postText: UILabel!
-    
+    @IBOutlet weak var userImage: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

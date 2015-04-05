@@ -1,10 +1,4 @@
-//
-//  ViewController.swift
-//  TB_TwitterHeader
-//
-//  Created by Yari D'areglia on 17/01/15.
-//  Copyright (c) 2015 Yari D'areglia. All rights reserved.
-//
+// This is a customized pod. I wrote most of it.
 
 import UIKit
 
@@ -14,6 +8,9 @@ let distance_W_LabelHeader:CGFloat = 35.0 // The distance between the bottom of 
 
 class ProfileBlurViewController: UIViewController, UIScrollViewDelegate, UITableViewDelegate {
 
+    @IBAction func versusTapped(sender: AnyObject) {
+        self.next()
+    }
     @IBOutlet weak var backgroundView: UIView!
     @IBOutlet var scrollView:UIScrollView!
     @IBOutlet var avatarImage:UIImageView!
@@ -54,8 +51,9 @@ class ProfileBlurViewController: UIViewController, UIScrollViewDelegate, UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.indicator.hidden = true
         self.headerLabel.text = "PUNCH TO FIGHT!"
-        self.headerLabel.textColor = Colors.color2
+        self.headerLabel.textColor = UIColor.redColor() //Colors.color2
         println("view did load")
         scrollView.delegate = self
     }
@@ -114,6 +112,7 @@ class ProfileBlurViewController: UIViewController, UIScrollViewDelegate, UITable
     }
     override func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent) {
         if (motion == UIEventSubtype.MotionShake){
+            SnatchParseAPI().storeAFightFromVersusScreen(userToDisplay!)
             self.performSegueWithIdentifier(Constants.GenericProfileSegue, sender: self)
         }
     }
@@ -181,5 +180,24 @@ class ProfileBlurViewController: UIViewController, UIScrollViewDelegate, UITable
         
         header.layer.transform = headerTransform
         avatarImage.layer.transform = avatarTransform
+    }
+    @IBOutlet weak var indicator: UIActivityIndicatorView!
+    func next(){
+        if !indicator.isAnimating(){
+            indicator.hidden = false
+            indicator.startAnimating()
+            let query = PFUser.query()
+            // specify what user we want.
+            println("starting query")
+            query.getFirstObjectInBackgroundWithBlock(){
+                (object, error) in
+                if error == nil{
+                    self.userToDisplay = object as? PFUser
+                    self.indicator.stopAnimating()
+                    self.indicator.hidden = true
+                    println("refreshed--new user")
+                }
+            }
+        }
     }
 }

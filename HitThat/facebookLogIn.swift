@@ -42,7 +42,7 @@ class facebookLogIn: UIViewController  {
                 NSLog("User signed up and logged in through Facebook!")
                 self.loadData()
 //                self.dismissViewControllerAnimated(true, completion: nil)
-                self.performSegueWithIdentifier(Constants.ReigsterUserSegue, sender: self)
+                self.performSegueWithIdentifier(Constants.NewUserSegue, sender: self)
             }
             else {
                 self.updateLocation()

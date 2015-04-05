@@ -22,15 +22,22 @@ class FightsTableViewController: PFQueryTableViewController {
         }
     override func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!, object: PFObject!) -> FightsTableViewCell! {
         let cell = tableView.dequeueReusableCellWithIdentifier(Constants.CellReuseIdentifier, forIndexPath: indexPath) as FightsTableViewCell
-        let post:AnyObject = object.objectForKey("post") as AnyObject
-        let query = PFQuery(className: "Posts")
-        if let fullPost = query.getObjectWithId(post.objectId){
-            cell.postText.text = fullPost["text"] as AnyObject as? String//object.objectForKey("recipientName") as? String
-        }
+        let fight:AnyObject = object.objectForKey("recipient") as AnyObject
+        let userToFight = PFUser.query().getObjectWithId(fight.objectId) as PFUser
+//        cell.userImage.image = SnatchParseAPI().getAUsersProfilePicture(userToFight)
+        cell.postText.text = userToFight["fullName"] as AnyObject as? String
+//        let post:AnyObject = object.objectForKey("post") as AnyObject
+//        let query = PFQuery(className: "Posts")
+//        if let fullPost = query.getObjectWithId(post.objectId){
+//            cell.postText.text = fullPost["text"] as AnyObject as? String//object.objectForKey("recipientName") as? String
+//        }
+        cell.backgroundColor = UIColor.clearColor()
         return cell
     }
         override func viewDidLoad() {
             super.viewDidLoad()
+            Colors().gradient(self)
+            self.tableView.backgroundColor = Colors.color1
             self.tableView.estimatedRowHeight = 60
             self.tableView.rowHeight = UITableViewAutomaticDimension
             
@@ -53,7 +60,7 @@ class FightsTableViewController: PFQueryTableViewController {
         override func viewDidAppear(animated: Bool) {
             super.viewDidAppear(animated)
             // this is apparently causing the cells to lose all of their formatting...why?
-            self.loadObjects()
+//            self.loadObjects()
             
         }
         
@@ -79,11 +86,14 @@ class FightsTableViewController: PFQueryTableViewController {
             //                }
             //
             //            }
-            if let currentUserName = SnatchParseAPI.currentUserName{
-                query.whereKey("origin", equalTo: currentUserName)
-                query.limit = 200;
-                query.orderByDescending("createdAt")
+            if let user = PFUser.currentUser(){
+                query.whereKey("origin", equalTo: user)
             }
+//            if let currentUserName = SnatchParseAPI.currentUserName{
+//                query.whereKey("origin", equalTo: currentUserName)
+//                query.limit = 200;
+//                query.orderByDescending("createdAt")
+//            }
             return query
         }
         
@@ -100,18 +110,21 @@ class FightsTableViewController: PFQueryTableViewController {
         //        postText = (tableView.cellForRowAtIndexPath(indexPath) as? PFTableViewCell)?.textLabel?.text!
         //        println("Post Text:\(postText)")
         if let object:PFObject =  self.objectAtIndexPath(indexPath){
-            let recipientUserName = object.objectForKey("recipient") as AnyObject as String
-            let query = PFUser.query()
-            query.whereKey("username", equalTo: recipientUserName)
-            query.getFirstObjectInBackgroundWithBlock(){
-                (target, error) in
-                if error != nil{
-                    println(error)
-                }
-                else{
-                    self.performSegueWithIdentifier(Constants.ShowFightDetailsSegue, sender: target as AnyObject)
-                }
-            }
+            let recipientUser = object["recipient"] as AnyObject
+//            let recipientUserName = object.objectForKey("recipient") as AnyObject as String
+            let target = PFUser.query().getObjectWithId(recipientUser.objectId)
+            self.performSegueWithIdentifier(Constants.ShowFightDetailsSegue, sender: target)
+//            let query = PFUser.query()
+//            query.whereKey("username", equalTo: recipientUserName)
+//            query.getFirstObjectInBackgroundWithBlock(){
+//                (target, error) in
+//                if error != nil{
+//                    println(error)
+//                }
+//                else{
+//                    self.performSegueWithIdentifier(Constants.ShowFightDetailsSegue, sender: target as AnyObject)
+//                }
+//            }
         }
     }
     // IS THERE A BETTER FUCKING WAY OF DOING THIS

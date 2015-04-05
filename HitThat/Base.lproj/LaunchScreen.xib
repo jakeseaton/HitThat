@@ -10,13 +10,13 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="HitThat" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="kId-c2-rCX">
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HitThat" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="kId-c2-rCX">
                     <rect key="frame" x="20" y="257" width="441" height="43"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Find singles near you to fight" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kWO-Af-qLk">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Find singles near you to fight" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kWO-Af-qLk">
                     <rect key="frame" x="129" y="308" width="222" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="8Fq-LE-QpF"/>
@@ -26,7 +26,7 @@
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Post so singles near you can hit that!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IZ6-LD-6jt">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Post so singles near you can hit that!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IZ6-LD-6jt">
                     <rect key="frame" x="99" y="337" width="283" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="UMQ-Rt-OT6"/>
@@ -35,7 +35,7 @@
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="fistIconWhite" translatesAutoresizingMaskIntoConstraints="NO" id="Gsk-Ol-Jj6">
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="fistIconWhite" translatesAutoresizingMaskIntoConstraints="NO" id="Gsk-Ol-Jj6">
                     <rect key="frame" x="200" y="169" width="80" height="80"/>
                 </imageView>
             </subviews>
@@ -44,8 +44,11 @@
                 <constraint firstItem="kId-c2-rCX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="QGZ-in-pjh"/>
                 <constraint firstItem="kWO-Af-qLk" firstAttribute="top" secondItem="kId-c2-rCX" secondAttribute="bottom" constant="8" symbolic="YES" id="Z9i-Mr-BIz"/>
                 <constraint firstItem="kWO-Af-qLk" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="fuQ-iW-Cdu"/>
+                <constraint firstItem="Gsk-Ol-Jj6" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="169" id="gLM-XJ-NuQ"/>
                 <constraint firstItem="IZ6-LD-6jt" firstAttribute="top" secondItem="kWO-Af-qLk" secondAttribute="bottom" constant="8" symbolic="YES" id="kSC-3A-zWh"/>
                 <constraint firstItem="kWO-Af-qLk" firstAttribute="centerX" secondItem="IZ6-LD-6jt" secondAttribute="centerX" id="qYQ-pb-UFU"/>
+                <constraint firstItem="Gsk-Ol-Jj6" firstAttribute="centerX" secondItem="kId-c2-rCX" secondAttribute="centerX" id="wTe-Vz-UfO"/>
+                <constraint firstItem="kId-c2-rCX" firstAttribute="top" secondItem="Gsk-Ol-Jj6" secondAttribute="bottom" constant="8" symbolic="YES" id="wnf-Tr-Uoe"/>
                 <constraint firstItem="kWO-Af-qLk" firstAttribute="centerX" secondItem="kId-c2-rCX" secondAttribute="centerX" id="zgH-oM-9eH"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>

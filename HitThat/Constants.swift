@@ -38,4 +38,7 @@ struct Constants{
     static let ReigsterUserSegue = "Register New User"
     static let GenericProfileSegue = "Generic Profile Segue"
     static let KeepPlayingSegue = "Keep Playing Segue"
+    static let NoUserSegue = "No User"
+    static let NewUserSegue = "New User"
+    static let RegisterFormSegue = "Register Form Segue"
 }
