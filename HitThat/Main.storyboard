@@ -226,14 +226,17 @@
                                     <action selector="login:" destination="si3-vJ-bTp" eventType="touchUpInside" id="D3d-oA-b9Q"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BUy-gC-rgV">
-                                <rect key="frame" x="272" y="488" width="57" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BUy-gC-rgV">
+                                <rect key="frame" x="276" y="487" width="48" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="IK3-qU-fBo"/>
                                 </constraints>
-                                <state key="normal" title="Register">
+                                <state key="normal" title="Cancel">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="cancelPressed:" destination="si3-vJ-bTp" eventType="touchUpInside" id="Iyk-Ec-5dr"/>
+                                </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hit That" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="BrJ-pu-4Gq">
                                 <rect key="frame" x="132" y="238" width="336" height="43"/>
@@ -280,7 +283,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EUu-FF-PH4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="161" y="-584"/>
+            <point key="canvasLocation" x="1145" y="-552"/>
         </scene>
         <!--Bouncer View Controller-->
         <scene sceneID="5uh-dh-Tiv">
@@ -300,7 +303,7 @@
             </objects>
             <point key="canvasLocation" x="3825" y="2504"/>
         </scene>
-        <!--Hit That!-->
+        <!--Want To Fight You-->
         <scene sceneID="KXC-j5-JEc">
             <objects>
                 <tableViewController id="wpz-Kh-r1j" customClass="SnatchesTableViewController" customModule="HitThat" customModuleProvider="target" sceneMemberID="viewController">
@@ -332,7 +335,7 @@
                             <outlet property="delegate" destination="wpz-Kh-r1j" id="gCz-xA-1tO"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Hit That!" id="CHl-o4-Til"/>
+                    <navigationItem key="navigationItem" title="Want To Fight You" id="CHl-o4-Til"/>
                     <connections>
                         <segue destination="7s3-Sx-OdP" kind="show" identifier="Show Snatch Details" id="7He-OH-e6d"/>
                     </connections>
@@ -341,7 +344,7 @@
             </objects>
             <point key="canvasLocation" x="4511" y="186"/>
         </scene>
-        <!--Hit Them-->
+        <!--My Fights-->
         <scene sceneID="1aI-0s-8Iu">
             <objects>
                 <tableViewController id="Pbj-GR-z7v" customClass="FightsTableViewController" customModule="HitThat" customModuleProvider="target" sceneMemberID="viewController">
@@ -380,7 +383,7 @@
                             <outlet property="delegate" destination="Pbj-GR-z7v" id="vmc-a6-kc4"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Hit Them" id="lq8-IJ-atM"/>
+                    <navigationItem key="navigationItem" title="My Fights" id="lq8-IJ-atM"/>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="ZjE-3N-OF6">
                         <autoresizingMask key="autoresizingMask"/>
                     </refreshControl>
@@ -410,10 +413,11 @@
             </objects>
             <point key="canvasLocation" x="2982" y="964"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Want to Fight U-->
         <scene sceneID="ldT-QA-Aig">
             <objects>
                 <navigationController id="92J-zg-YpY" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Want to Fight U" id="swo-TX-YSa"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="UAF-Cm-JeR">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -547,7 +551,7 @@
         <!--V.S.-->
         <scene sceneID="s1y-Yp-uno">
             <objects>
-                <viewController id="tHu-hU-RTd" customClass="ProfileBlurViewController" customModule="HitThat" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="tHu-hU-RTd" customClass="VersusViewController" customModule="HitThat" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cde-8Z-hje"/>
                         <viewControllerLayoutGuide type="bottom" id="6Jr-ow-2rA"/>
@@ -603,9 +607,10 @@
                                                 </connections>
                                             </containerView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(PUNCH TO FIGHT)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y8K-YJ-OE0">
-                                                <rect key="frame" x="224" y="45" width="152" height="21"/>
+                                                <rect key="frame" x="224" y="60" width="152" height="21"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="152" id="hfB-EC-dGY"/>
+                                                    <constraint firstAttribute="width" constant="152" id="1Vi-Hp-PrA"/>
+                                                    <constraint firstAttribute="height" constant="21" id="KZc-iP-LJs"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -615,16 +620,15 @@
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="RK0-p0-Qb6" secondAttribute="trailing" constant="1" id="EgP-Ee-8bD"/>
-                                            <constraint firstItem="RK0-p0-Qb6" firstAttribute="top" secondItem="y8K-YJ-OE0" secondAttribute="bottom" constant="8" symbolic="YES" id="M0L-xS-yYa"/>
+                                            <constraint firstItem="y8K-YJ-OE0" firstAttribute="centerX" secondItem="gbO-XR-qUc" secondAttribute="centerX" id="KRS-TS-c3W"/>
+                                            <constraint firstItem="y8K-YJ-OE0" firstAttribute="top" secondItem="9FC-5X-fqs" secondAttribute="bottom" constant="8" symbolic="YES" id="MwV-Qe-qkH"/>
                                             <constraint firstItem="9FC-5X-fqs" firstAttribute="centerX" secondItem="RK0-p0-Qb6" secondAttribute="centerX" id="SgZ-yU-RyH"/>
-                                            <constraint firstItem="y8K-YJ-OE0" firstAttribute="top" secondItem="gbO-XR-qUc" secondAttribute="top" constant="45" id="X2v-P3-oHA"/>
                                             <constraint firstAttribute="bottom" secondItem="RK0-p0-Qb6" secondAttribute="bottom" constant="56" id="arg-k0-mvC"/>
                                             <constraint firstItem="RK0-p0-Qb6" firstAttribute="top" secondItem="gbO-XR-qUc" secondAttribute="top" constant="74" id="dIi-Y7-ZA0"/>
                                             <constraint firstItem="9FC-5X-fqs" firstAttribute="leading" secondItem="gbO-XR-qUc" secondAttribute="leadingMargin" id="e3b-UP-xRf"/>
                                             <constraint firstItem="RK0-p0-Qb6" firstAttribute="leading" secondItem="gbO-XR-qUc" secondAttribute="leading" constant="-1" id="fEw-cb-FmS"/>
                                             <constraint firstAttribute="height" constant="647" id="lIR-aF-H3h"/>
                                             <constraint firstItem="RK0-p0-Qb6" firstAttribute="top" secondItem="9FC-5X-fqs" secondAttribute="bottom" constant="22" id="vUK-R0-gfy"/>
-                                            <constraint firstItem="y8K-YJ-OE0" firstAttribute="centerX" secondItem="gbO-XR-qUc" secondAttribute="centerX" id="xlF-R2-3Hn"/>
                                             <constraint firstItem="9FC-5X-fqs" firstAttribute="top" secondItem="gbO-XR-qUc" secondAttribute="top" constant="30" id="yqX-10-DyO"/>
                                         </constraints>
                                     </view>
@@ -961,6 +965,7 @@
                         <segue destination="VMg-IQ-09Y" kind="relationship" relationship="viewControllers" id="0P2-Du-fYq"/>
                         <segue destination="si3-vJ-bTp" kind="presentation" identifier="No User" id="P6O-wv-HT5"/>
                         <segue destination="YLR-jG-mff" kind="relationship" relationship="viewControllers" id="PzF-RX-MBd"/>
+                        <segue destination="92J-zg-YpY" kind="relationship" relationship="viewControllers" id="AmQ-vs-QfG"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="llU-JX-VCE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -974,6 +979,6 @@
         <image name="versusLogo" width="288" height="288"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="0ur-Ty-kwm"/>
+        <segue reference="7He-OH-e6d"/>
     </inferredMetricsTieBreakers>
 </document>

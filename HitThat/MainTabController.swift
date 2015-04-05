@@ -9,13 +9,17 @@
 import UIKit
 
 class MainTabController: UITabBarController {
+    var userSawLoginScreen = false
     override func viewDidAppear(animated: Bool) {
         if let currUserName = PFUser.currentUser(){
             super.viewDidAppear(true)
         }
         else{
             super.viewDidAppear(true)
-            performSegueWithIdentifier(Constants.NoUserSegue, sender: self)
+            if !self.userSawLoginScreen{
+                performSegueWithIdentifier(Constants.NoUserSegue, sender: self)
+                self.userSawLoginScreen = true
+            }
         }
     }
 }

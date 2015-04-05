@@ -54,7 +54,7 @@ class SnatchesTableViewController: PFQueryTableViewController {
         override func viewDidAppear(animated: Bool) {
             super.viewDidAppear(animated)
             // this is apparently causing the cells to lose all of their formatting...why?
-            self.loadObjects()
+//            self.loadObjects()
             
         }
         
@@ -63,7 +63,8 @@ class SnatchesTableViewController: PFQueryTableViewController {
             // Dispose of any resources that can be recreated.
         }
         override func queryForTable() -> PFQuery!{
-            let query = PFQuery(className:"Snatches")
+            let query = PFQuery(className: "Fights")
+            //            let query = PFQuery(className:"Snatches")
             
             //            PFGeoPoint.geoPointForCurrentLocationInBackground(){
             //                (geoPoint, error) in
@@ -80,11 +81,13 @@ class SnatchesTableViewController: PFQueryTableViewController {
             //                }
             //
             //            }
-            if let currentUserName = SnatchParseAPI.currentUserName{
-                query.whereKey("origin", equalTo: currentUserName)
-                query.limit = 200;
-                query.orderByDescending("createdAt")
+            if let user = PFUser.currentUser(){
+                query.whereKey("recipient", equalTo: user)
             }
+//                       if let currentUserName = SnatchParseAPI.currentUserName{
+//                query.whereKey("origin", equalTo: currentUserName)
+            query.limit = 200;
+            query.orderByDescending("createdAt")
             return query
         }
         
@@ -104,11 +107,15 @@ class SnatchesTableViewController: PFQueryTableViewController {
 //            
 //        }
         // better way to do this
-        let query = PFQuery(className: "Posts")
-        let post:AnyObject = object.objectForKey("post")
-        if let postObject = query.getObjectWithId(post.objectId){
-            cell.postText.text = postObject["text"] as AnyObject as? String
-        }
+        let fight:AnyObject = object.objectForKey("origin") as AnyObject
+        let userToFight = PFUser.query().getObjectWithId(fight.objectId) as PFUser
+        //        cell.userImage.image = SnatchParseAPI().getAUsersProfilePicture(userToFight)
+        cell.postText.text = userToFight["fullName"] as AnyObject as? String
+//        let query = PFQuery(className: "Posts")
+//        let post:AnyObject = object.objectForKey("post")
+//        if let postObject = query.getObjectWithId(post.objectId){
+//            cell.postText.text = postObject["text"] as AnyObject as? String
+//        }
 //        cell.postText.text = // object["recipientName"] as AnyObject as? String
         
         

@@ -15,6 +15,9 @@ import UIKit
 
 class facebookLogIn: UIViewController  {
     
+    @IBAction func cancelPressed(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
     @IBAction func login(sender: AnyObject) {
         let permissions = ["public_profile", "email", "user_friends", "user_location"]
 

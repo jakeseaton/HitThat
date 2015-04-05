@@ -16,11 +16,10 @@
 		3D8482AC1ACB2FAB00D663DF /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8482AB1ACB2FAB00D663DF /* Colors.swift */; };
 		3D8482BE1ACB74F300D663DF /* AvatarImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8482B81ACB74F300D663DF /* AvatarImageView.swift */; };
 		3D8482BF1ACB74F300D663DF /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8482BA1ACB74F300D663DF /* FXBlurView.m */; };
-		3D8482C01ACB74F300D663DF /* ProfileBlurViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8482BB1ACB74F300D663DF /* ProfileBlurViewController.swift */; };
+		3D8482C01ACB74F300D663DF /* VersusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8482BB1ACB74F300D663DF /* VersusViewController.swift */; };
 		3D8482C11ACB74F300D663DF /* TWTButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8482BD1ACB74F300D663DF /* TWTButton.swift */; };
 		3D8482C31ACB790D00D663DF /* LocateButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8482C21ACB790D00D663DF /* LocateButton.swift */; };
 		3D8482C71ACC2D7D00D663DF /* YLProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8482C61ACC2D7D00D663DF /* YLProgressBar.m */; };
-		3D8482CA1ACDDA6600D663DF /* VersusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8482C91ACDDA6600D663DF /* VersusViewController.swift */; };
 		3DB6DEE61AC993620020497B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6DEE51AC993620020497B /* AppDelegate.swift */; };
 		3DB6DEE81AC993620020497B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6DEE71AC993620020497B /* ViewController.swift */; };
 		3DB6DEEB1AC993620020497B /* Old.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DB6DEE91AC993620020497B /* Old.storyboard */; };
@@ -109,12 +108,11 @@
 		3D8482B81ACB74F300D663DF /* AvatarImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarImageView.swift; sourceTree = "<group>"; };
 		3D8482B91ACB74F300D663DF /* FXBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXBlurView.h; sourceTree = "<group>"; };
 		3D8482BA1ACB74F300D663DF /* FXBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXBlurView.m; sourceTree = "<group>"; };
-		3D8482BB1ACB74F300D663DF /* ProfileBlurViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileBlurViewController.swift; path = Profile/ProfileBlurViewController.swift; sourceTree = "<group>"; };
+		3D8482BB1ACB74F300D663DF /* VersusViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VersusViewController.swift; path = Profile/VersusViewController.swift; sourceTree = "<group>"; };
 		3D8482BD1ACB74F300D663DF /* TWTButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TWTButton.swift; sourceTree = "<group>"; };
 		3D8482C21ACB790D00D663DF /* LocateButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocateButton.swift; sourceTree = "<group>"; };
 		3D8482C51ACC2D7D00D663DF /* YLProgressBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLProgressBar.h; sourceTree = "<group>"; };
 		3D8482C61ACC2D7D00D663DF /* YLProgressBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLProgressBar.m; sourceTree = "<group>"; };
-		3D8482C91ACDDA6600D663DF /* VersusViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VersusViewController.swift; sourceTree = "<group>"; };
 		3DB6DEE01AC993620020497B /* HitThat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HitThat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DB6DEE41AC993620020497B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3DB6DEE51AC993620020497B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -259,6 +257,7 @@
 		3D8482C81ACDD9E400D663DF /* Things I Didnt Write */ = {
 			isa = PBXGroup;
 			children = (
+				3D8482B71ACB74F300D663DF /* New Profiles */,
 				3D56CAD91ACE0B21004759ED /* FXForms */,
 				3D8482C41ACC2D7D00D663DF /* YLProgressBar */,
 				3DB6DF7B1AC9AEF40020497B /* ZLSwipeableView */,
@@ -291,15 +290,13 @@
 				3DB6DEE91AC993620020497B /* Old.storyboard */,
 				3DED5BE41AD077BA00F1DE5F /* Main.storyboard */,
 				3DED5BE01AD04AD000F1DE5F /* VersusTableViewController.swift */,
-				3D8482C91ACDDA6600D663DF /* VersusViewController.swift */,
 				3D8482C21ACB790D00D663DF /* LocateButton.swift */,
 				3DB6DEE51AC993620020497B /* AppDelegate.swift */,
-				3D8482B71ACB74F300D663DF /* New Profiles */,
-				3DB6DF861AC9AF840020497B /* Swipe */,
 				3DB6DF891AC9B0200020497B /* Main */,
 				3DB6DF841AC9AF690020497B /* Profiles */,
 				3DB6DF871AC9AFBF0020497B /* Accounts */,
 				3DB6DF8B1AC9B0B60020497B /* Tables */,
+				3DB6DF861AC9AF840020497B /* Swipe */,
 				3DB6DF881AC9AFCE0020497B /* Map */,
 				3DB6DF8A1AC9B0A50020497B /* Post */,
 				3DB6DF831AC9AF2B0020497B /* API */,
@@ -459,7 +456,7 @@
 		3DB6DF891AC9B0200020497B /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				3D8482BB1ACB74F300D663DF /* ProfileBlurViewController.swift */,
+				3D8482BB1ACB74F300D663DF /* VersusViewController.swift */,
 				3DED5BE21AD0773A00F1DE5F /* MainTabController.swift */,
 				3DB6DF3D1AC9AED90020497B /* MainNavigationController.swift */,
 			);
@@ -602,7 +599,6 @@
 				3DB6DF571AC9AEDA0020497B /* CardView.swift in Sources */,
 				3DB6DF671AC9AEDA0020497B /* MainTableViewController.swift in Sources */,
 				3DB6DF5A1AC9AEDA0020497B /* DropitBehavior.swift in Sources */,
-				3D8482CA1ACDDA6600D663DF /* VersusViewController.swift in Sources */,
 				3DB6DF5E1AC9AEDA0020497B /* FightsTableViewController.swift in Sources */,
 				3DB6DF601AC9AEDA0020497B /* GangBangBehavior.swift in Sources */,
 				3DB6DF591AC9AEDA0020497B /* DataViewController.swift in Sources */,
@@ -642,7 +638,7 @@
 				3D56CAE61ACE0CE0004759ED /* RegisterForm.swift in Sources */,
 				3DB6DF761AC9AEDA0020497B /* SnatchesTableViewController.swift in Sources */,
 				3DB6DF581AC9AEDA0020497B /* Constants.swift in Sources */,
-				3D8482C01ACB74F300D663DF /* ProfileBlurViewController.swift in Sources */,
+				3D8482C01ACB74F300D663DF /* VersusViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

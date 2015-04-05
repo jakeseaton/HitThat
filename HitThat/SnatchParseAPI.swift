@@ -9,28 +9,6 @@
 import Foundation
 
 struct SnatchParseAPI {
-//    static var currentUserPicture:UIImage?{
-//        if let curr = PFUser.currentUser(){
-//            if let img = curr["profilePicture"] as AnyObject as? PFFile {
-//                img.getDataInBackgroundWithBlock {
-//                (imageData: NSData!, error: NSError!) -> Void in
-//                if !error {
-//                    let image = UIImage(data:imageData)
-//                    return image
-//                }
-//            }
-//            {
-//                return img
-//            }
-//            else{
-//                return nil
-//            }
-//        }
-//        else{
-//            return nil
-//        }
-//    }
-//    
     static var currentUserFullName:String?{
         if let curr = PFUser.currentUser(){
             return curr["fullName"] as AnyObject as? String
@@ -277,6 +255,16 @@ struct SnatchParseAPI {
             object["recipient"] = recipient
             object.saveInBackground()
         }
+        // Find devices associated with that user
+        let pushQuery = PFInstallation.query()
+        pushQuery.whereKey("user", equalTo: recipient)
+        // Send push notification to query
+        let push = PFPush()
+        push.setQuery(pushQuery) // Set our Installation query
+        let alias = PFUser.currentUser().objectForKey("alias") as AnyObject as String
+        let pushMessage = "\(alias) wants to fight you."
+        push.setMessage(pushMessage)
+        push.sendPushInBackground()
     }
     func getAUsersProfilePicture(user:PFUser) -> UIImage {
         let img = user["profilePicture"] as AnyObject as? PFFile

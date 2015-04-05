@@ -1,4 +1,4 @@
-// This is a customized pod. I wrote most of it.
+// This is a customized pod. I wrote the functionality, but some of the animation stuff is not mine.
 
 import UIKit
 
@@ -6,7 +6,7 @@ let offset_HeaderStop:CGFloat = 40.0 // At this offset the Header stops its tran
 let offset_B_LabelHeader:CGFloat = 95.0 // At this offset the Black label reaches the Header
 let distance_W_LabelHeader:CGFloat = 35.0 // The distance between the bottom of the Header and the top of the White Label
 
-class ProfileBlurViewController: UIViewController, UIScrollViewDelegate, UITableViewDelegate {
+class VersusViewController: UIViewController, UIScrollViewDelegate, UITableViewDelegate {
 
     @IBAction func versusTapped(sender: AnyObject) {
         self.next()
@@ -31,10 +31,16 @@ class ProfileBlurViewController: UIViewController, UIScrollViewDelegate, UITable
     private func updateUI(){
          // userToDisplay!.objectForKey("fullName") as AnyObject as? String
         self.displayName.text = userToDisplay!.objectForKey("alias") as AnyObject as? String
+        if let img = userToDisplay!.objectForKey("profilePhoto") as AnyObject as? PFFile{
+            img.getDataInBackgroundWithBlock(){
+                data, error in
+                self.headerImageView.image = UIImage(data: data)
+                self.headerBlurImageView?.image = self.headerImageView?.image?.blurredImageWithRadius(10, iterations: 20, tintColor: UIColor.clearColor())
+            }
+        }
         if let table = self.childViewControllers.last as? VersusTableViewController{
             table.userToDisplay = self.userToDisplay!
         }
-        
     }
     
     @IBAction func dateThemPressed(sender: AnyObject) {
@@ -51,6 +57,7 @@ class ProfileBlurViewController: UIViewController, UIScrollViewDelegate, UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.next()
         self.indicator.hidden = true
         self.headerLabel.text = "PUNCH TO FIGHT!"
         self.headerLabel.textColor = UIColor.redColor() //Colors.color2
@@ -64,23 +71,38 @@ class ProfileBlurViewController: UIViewController, UIScrollViewDelegate, UITable
         println("view will appear")
         backgroundView.backgroundColor = UIColor.clearColor()
         headerImageView = UIImageView(frame: header.bounds)
-        //        headerImageView?.image = UIImage(named: "header_bg")
-        if let userObject = PFUser.currentUser(){
-            //            println("\(userObject)")
-            
-            if let img = userObject["profilePhoto"] as AnyObject as? PFFile {
-                img.getDataInBackgroundWithBlock {
-                    (imageData, error) -> Void in
-                    if error != nil {
-                        println("ERROR RETRIEVING IMAGE")
-                    }
-                    else{
-                        self.headerImageView?.image = UIImage(data:imageData)
-                        //                        self.avatarImage.image = UIImage(data:imageData)
-                    }
-                }
-            }
-        }
+//        if let img = userToDisplay?["profilePhoto"] as? PFFile{
+//            img.getDataInBackgroundWithBlock {
+//                (imageData, error) -> Void in
+//                if error != nil {
+//                    println("ERROR RETRIEVING IMAGE")
+//                }
+//                else{
+//                    self.headerImageView?.image = UIImage(data:imageData)
+//                    //                        self.avatarImage.image = UIImage(data:imageData)
+//                }
+//            }
+//        }
+//        else{
+//            self.headerImageView?.image = UIImage(named: "backgroundGradient")
+//        }
+        // this gets the current user's profile photo
+//        if let userObject = PFUser.currentUser(){
+//            //            println("\(userObject)")
+//            
+//            if let img = userObject["profilePhoto"] as AnyObject as? PFFile {
+//                img.getDataInBackgroundWithBlock {
+//                    (imageData, error) -> Void in
+//                    if error != nil {
+//                        println("ERROR RETRIEVING IMAGE")
+//                    }
+//                    else{
+//                        self.headerImageView?.image = UIImage(data:imageData)
+//                        //                        self.avatarImage.image = UIImage(data:imageData)
+//                    }
+//                }
+//            }
+//        }
         headerImageView?.contentMode = UIViewContentMode.ScaleAspectFill
         header.insertSubview(headerImageView, belowSubview: headerLabel)
         
@@ -94,9 +116,9 @@ class ProfileBlurViewController: UIViewController, UIScrollViewDelegate, UITable
         
         header.clipsToBounds = true
         Colors().gradient(self)
-        if let user = PFUser.currentUser(){
-            userToDisplay = user
-        }
+//        if let user = PFUser.currentUser(){
+//            userToDisplay = user
+//        }
         // get a random user here!
         
     }
