@@ -11,7 +11,7 @@ import CoreMotion
 
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate, MSDynamicsDrawerViewControllerDelegate {
 
     var window: UIWindow?
     struct Motion{
