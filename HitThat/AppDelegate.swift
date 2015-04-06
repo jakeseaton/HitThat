@@ -14,6 +14,7 @@ import CoreMotion
 class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate, MSDynamicsDrawerViewControllerDelegate {
 
     var window: UIWindow?
+    var centerContainer:MMDrawerController?
     struct Motion{
         static let Manager = CMMotionManager()
     }
@@ -32,6 +33,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 //        let navbar = UINavigationBar.appearance()
 //        navbar.barTintColor = Colors.navBarTintColor
         application.statusBarStyle = UIStatusBarStyle.LightContent
+        
+        var rootViewController = self.window!.rootViewController
+        let mainStoryBoard:UIStoryboard = UIStoryboard(name:"Main", bundle:nil)
+        let centerViewController = mainStoryBoard.instantiateViewControllerWithIdentifier(Constants.CenterViewControllerIdentifier) as VersusViewController
+        let leftViewController = mainStoryBoard.instantiateViewControllerWithIdentifier(Constants.LeftViewControllerIdentifier) as MenuViewController
+        let rightViewController = mainStoryBoard.instantiateViewControllerWithIdentifier(Constants.RightViewControllerIdentifier) as FightsViewController
+        let leftNav = UINavigationController(rootViewController: leftViewController)
+        let centerNav = UINavigationController(rootViewController: centerViewController)
+        let rightNav = UINavigationController(rootViewController: rightViewController)
+        centerContainer = MMDrawerController(centerViewController: centerViewController, leftDrawerViewController: leftViewController, rightDrawerViewController:rightViewController)
+        centerContainer!.openDrawerGestureModeMask = MMOpenDrawerGestureMode.PanningCenterView
+        centerContainer!.closeDrawerGestureModeMask = MMCloseDrawerGestureMode.PanningCenterView
+        
+        window!.rootViewController = centerContainer
+        window!.makeKeyAndVisible()
 
         
         return true
@@ -84,7 +100,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
 
 }
 

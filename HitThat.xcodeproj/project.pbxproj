@@ -83,9 +83,21 @@
 		3DB6DF7A1AC9AEDA0020497B /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6DF521AC9AED90020497B /* TabBarController.swift */; };
 		3DB6DF801AC9AEF40020497B /* ZLPanGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6DF7D1AC9AEF40020497B /* ZLPanGestureRecognizer.m */; };
 		3DB6DF811AC9AEF40020497B /* ZLSwipeableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6DF7F1AC9AEF40020497B /* ZLSwipeableView.m */; };
+		3DC463DE1AD2A4A70034C34F /* MMDrawerBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC463D61AD2A4A70034C34F /* MMDrawerBarButtonItem.m */; };
+		3DC463DF1AD2A4A70034C34F /* MMDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC463D91AD2A4A70034C34F /* MMDrawerController.m */; };
+		3DC463E01AD2A4A70034C34F /* MMDrawerVisualState.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC463DB1AD2A4A70034C34F /* MMDrawerVisualState.m */; };
+		3DC463E11AD2A4A70034C34F /* UIViewController+MMDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC463DD1AD2A4A70034C34F /* UIViewController+MMDrawerController.m */; };
+		3DC463E31AD2A60F0034C34F /* FightsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC463E21AD2A60F0034C34F /* FightsViewController.swift */; };
+		3DC463E51AD2A65B0034C34F /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC463E41AD2A65B0034C34F /* MenuViewController.swift */; };
 		3DED5BE11AD04AD000F1DE5F /* VersusTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DED5BE01AD04AD000F1DE5F /* VersusTableViewController.swift */; };
 		3DED5BE31AD0773A00F1DE5F /* MainTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DED5BE21AD0773A00F1DE5F /* MainTabController.swift */; };
 		3DED5BE51AD077BA00F1DE5F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DED5BE41AD077BA00F1DE5F /* Main.storyboard */; };
+		3DF04FEA1AD2AF65008B0260 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF04FE91AD2AF65008B0260 /* MenuCell.swift */; };
+		3DF04FEE1AD2BA87008B0260 /* FightCellOrigin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF04FED1AD2BA87008B0260 /* FightCellOrigin.swift */; };
+		3DF04FF01AD2BAA8008B0260 /* FightCellRecipient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF04FEF1AD2BAA8008B0260 /* FightCellRecipient.swift */; };
+		3DF04FF31AD2C927008B0260 /* FightOpenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF04FF21AD2C927008B0260 /* FightOpenViewController.swift */; };
+		3DF04FF81AD318C6008B0260 /* EditProfileForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF04FF71AD318C6008B0260 /* EditProfileForm.swift */; };
+		3DF04FFA1AD318DD008B0260 /* EditProfileFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF04FF91AD318DD008B0260 /* EditProfileFormViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -188,9 +200,26 @@
 		3DB6DF7D1AC9AEF40020497B /* ZLPanGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPanGestureRecognizer.m; sourceTree = "<group>"; };
 		3DB6DF7E1AC9AEF40020497B /* ZLSwipeableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLSwipeableView.h; sourceTree = "<group>"; };
 		3DB6DF7F1AC9AEF40020497B /* ZLSwipeableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLSwipeableView.m; sourceTree = "<group>"; };
+		3DC463D51AD2A4A70034C34F /* MMDrawerBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMDrawerBarButtonItem.h; sourceTree = "<group>"; };
+		3DC463D61AD2A4A70034C34F /* MMDrawerBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMDrawerBarButtonItem.m; sourceTree = "<group>"; };
+		3DC463D71AD2A4A70034C34F /* MMDrawerController+Subclass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MMDrawerController+Subclass.h"; sourceTree = "<group>"; };
+		3DC463D81AD2A4A70034C34F /* MMDrawerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMDrawerController.h; sourceTree = "<group>"; };
+		3DC463D91AD2A4A70034C34F /* MMDrawerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMDrawerController.m; sourceTree = "<group>"; };
+		3DC463DA1AD2A4A70034C34F /* MMDrawerVisualState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMDrawerVisualState.h; sourceTree = "<group>"; };
+		3DC463DB1AD2A4A70034C34F /* MMDrawerVisualState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMDrawerVisualState.m; sourceTree = "<group>"; };
+		3DC463DC1AD2A4A70034C34F /* UIViewController+MMDrawerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+MMDrawerController.h"; sourceTree = "<group>"; };
+		3DC463DD1AD2A4A70034C34F /* UIViewController+MMDrawerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+MMDrawerController.m"; sourceTree = "<group>"; };
+		3DC463E21AD2A60F0034C34F /* FightsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FightsViewController.swift; sourceTree = "<group>"; };
+		3DC463E41AD2A65B0034C34F /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		3DED5BE01AD04AD000F1DE5F /* VersusTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VersusTableViewController.swift; sourceTree = "<group>"; };
 		3DED5BE21AD0773A00F1DE5F /* MainTabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabController.swift; sourceTree = "<group>"; };
 		3DED5BE41AD077BA00F1DE5F /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		3DF04FE91AD2AF65008B0260 /* MenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
+		3DF04FED1AD2BA87008B0260 /* FightCellOrigin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FightCellOrigin.swift; sourceTree = "<group>"; };
+		3DF04FEF1AD2BAA8008B0260 /* FightCellRecipient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FightCellRecipient.swift; sourceTree = "<group>"; };
+		3DF04FF21AD2C927008B0260 /* FightOpenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FightOpenViewController.swift; sourceTree = "<group>"; };
+		3DF04FF71AD318C6008B0260 /* EditProfileForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileForm.swift; sourceTree = "<group>"; };
+		3DF04FF91AD318DD008B0260 /* EditProfileFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileFormViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -264,6 +293,7 @@
 		3D8482C81ACDD9E400D663DF /* Things I Didnt Write */ = {
 			isa = PBXGroup;
 			children = (
+				3DC463D41AD2A4A70034C34F /* MMDrawerController */,
 				3DB690741AD1B297007EFCEF /* MSDynamicsDrawerViewController */,
 				3D8482B71ACB74F300D663DF /* New Profiles */,
 				3D56CAD91ACE0B21004759ED /* FXForms */,
@@ -309,9 +339,9 @@
 				3DB6DF111AC994930020497B /* Frameworks */,
 				3DB6DEE91AC993620020497B /* Old.storyboard */,
 				3DED5BE41AD077BA00F1DE5F /* Main.storyboard */,
-				3DED5BE01AD04AD000F1DE5F /* VersusTableViewController.swift */,
 				3D8482C21ACB790D00D663DF /* LocateButton.swift */,
 				3DB6DEE51AC993620020497B /* AppDelegate.swift */,
+				3DF04FF11AD2BABB008B0260 /* Fights Table */,
 				3DB6DF891AC9B0200020497B /* Main */,
 				3DB6DF841AC9AF690020497B /* Profiles */,
 				3DB6DF871AC9AFBF0020497B /* Accounts */,
@@ -423,6 +453,8 @@
 			isa = PBXGroup;
 			children = (
 				3DB6DF3A1AC9AED90020497B /* GenericProfileViewController.swift */,
+				3DF04FF91AD318DD008B0260 /* EditProfileFormViewController.swift */,
+				3DF04FF71AD318C6008B0260 /* EditProfileForm.swift */,
 				3DB6DF491AC9AED90020497B /* ScoreViewController.swift */,
 				3DB6DF451AC9AED90020497B /* MyProfileViewController.swift */,
 			);
@@ -477,6 +509,9 @@
 			isa = PBXGroup;
 			children = (
 				3D8482BB1ACB74F300D663DF /* VersusViewController.swift */,
+				3DED5BE01AD04AD000F1DE5F /* VersusTableViewController.swift */,
+				3DC463E41AD2A65B0034C34F /* MenuViewController.swift */,
+				3DF04FE91AD2AF65008B0260 /* MenuCell.swift */,
 				3DED5BE21AD0773A00F1DE5F /* MainTabController.swift */,
 				3DB6DF3D1AC9AED90020497B /* MainNavigationController.swift */,
 			);
@@ -501,6 +536,33 @@
 				3DB6DF4E1AC9AED90020497B /* SnatchesTableViewController.swift */,
 			);
 			name = Tables;
+			sourceTree = "<group>";
+		};
+		3DC463D41AD2A4A70034C34F /* MMDrawerController */ = {
+			isa = PBXGroup;
+			children = (
+				3DC463D51AD2A4A70034C34F /* MMDrawerBarButtonItem.h */,
+				3DC463D61AD2A4A70034C34F /* MMDrawerBarButtonItem.m */,
+				3DC463D71AD2A4A70034C34F /* MMDrawerController+Subclass.h */,
+				3DC463D81AD2A4A70034C34F /* MMDrawerController.h */,
+				3DC463D91AD2A4A70034C34F /* MMDrawerController.m */,
+				3DC463DA1AD2A4A70034C34F /* MMDrawerVisualState.h */,
+				3DC463DB1AD2A4A70034C34F /* MMDrawerVisualState.m */,
+				3DC463DC1AD2A4A70034C34F /* UIViewController+MMDrawerController.h */,
+				3DC463DD1AD2A4A70034C34F /* UIViewController+MMDrawerController.m */,
+			);
+			path = MMDrawerController;
+			sourceTree = "<group>";
+		};
+		3DF04FF11AD2BABB008B0260 /* Fights Table */ = {
+			isa = PBXGroup;
+			children = (
+				3DC463E21AD2A60F0034C34F /* FightsViewController.swift */,
+				3DF04FF21AD2C927008B0260 /* FightOpenViewController.swift */,
+				3DF04FED1AD2BA87008B0260 /* FightCellOrigin.swift */,
+				3DF04FEF1AD2BAA8008B0260 /* FightCellRecipient.swift */,
+			);
+			name = "Fights Table";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -604,11 +666,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3DC463E01AD2A4A70034C34F /* MMDrawerVisualState.m in Sources */,
 				3DED5BE11AD04AD000F1DE5F /* VersusTableViewController.swift in Sources */,
 				3DB6907B1AD1B297007EFCEF /* MSDynamicsDrawerViewController.m in Sources */,
 				3DB6DF661AC9AEDA0020497B /* MainTableViewCell.swift in Sources */,
+				3DC463E31AD2A60F0034C34F /* FightsViewController.swift in Sources */,
 				3DED5BE31AD0773A00F1DE5F /* MainTabController.swift in Sources */,
 				3DB6DF771AC9AEDA0020497B /* SnatchLocationAPI.swift in Sources */,
+				3DF04FFA1AD318DD008B0260 /* EditProfileFormViewController.swift in Sources */,
 				3DB6DF5B1AC9AEDA0020497B /* DropitViewController.swift in Sources */,
 				3DB6DF6B1AC9AEDA0020497B /* MKUser.swift in Sources */,
 				3DB6DF811AC9AEF40020497B /* ZLSwipeableView.m in Sources */,
@@ -617,6 +682,7 @@
 				3DB6DF741AC9AEDA0020497B /* SnatchedViewController.swift in Sources */,
 				3DB6DF5C1AC9AEDA0020497B /* facebookLogIn.swift in Sources */,
 				3DB6DF6C1AC9AEDA0020497B /* ModelController.swift in Sources */,
+				3DC463E11AD2A4A70034C34F /* UIViewController+MMDrawerController.m in Sources */,
 				3DB6DF571AC9AEDA0020497B /* CardView.swift in Sources */,
 				3DB6DF671AC9AEDA0020497B /* MainTableViewController.swift in Sources */,
 				3DB6DF5A1AC9AEDA0020497B /* DropitBehavior.swift in Sources */,
@@ -628,9 +694,12 @@
 				3D8482C71ACC2D7D00D663DF /* YLProgressBar.m in Sources */,
 				3DB6DF541AC9AEDA0020497B /* BezierPathsView.swift in Sources */,
 				3DB6DF6D1AC9AEDA0020497B /* MyProfileViewController.swift in Sources */,
+				3DF04FF81AD318C6008B0260 /* EditProfileForm.swift in Sources */,
 				3DB6DF691AC9AEDA0020497B /* MainViewController.swift in Sources */,
+				3DC463DE1AD2A4A70034C34F /* MMDrawerBarButtonItem.m in Sources */,
 				3DB6DF5D1AC9AEDA0020497B /* FightsTableViewCell.swift in Sources */,
 				3DB6DEE81AC993620020497B /* ViewController.swift in Sources */,
+				3DC463E51AD2A65B0034C34F /* MenuViewController.swift in Sources */,
 				3DB6DF791AC9AEDA0020497B /* SwipeViewController.swift in Sources */,
 				3DB6DF731AC9AEDA0020497B /* SinglePostViewController.swift in Sources */,
 				3DB6DF551AC9AEDA0020497B /* BouncerBehavior.swift in Sources */,
@@ -648,18 +717,23 @@
 				3DB6DF6A1AC9AEDA0020497B /* MapViewController.swift in Sources */,
 				3DB6DF531AC9AEDA0020497B /* AnnotationView.swift in Sources */,
 				3DB6DF6E1AC9AEDA0020497B /* PostViewController.swift in Sources */,
+				3DC463DF1AD2A4A70034C34F /* MMDrawerController.m in Sources */,
 				3D8482BF1ACB74F300D663DF /* FXBlurView.m in Sources */,
 				3D56CAE11ACE0B21004759ED /* RegistrationForm.swift in Sources */,
 				3DB6DF721AC9AEDA0020497B /* SettingsViewController.swift in Sources */,
+				3DF04FEE1AD2BA87008B0260 /* FightCellOrigin.swift in Sources */,
 				3DB6DEE61AC993620020497B /* AppDelegate.swift in Sources */,
 				3DB6DF651AC9AEDA0020497B /* MainNavigationController.swift in Sources */,
 				3D56CAE21ACE0B21004759ED /* RegistrationFormViewController.swift in Sources */,
 				3DB6DF801AC9AEF40020497B /* ZLPanGestureRecognizer.m in Sources */,
+				3DF04FF31AD2C927008B0260 /* FightOpenViewController.swift in Sources */,
 				3DB6DF621AC9AEDA0020497B /* GenericProfileViewController.swift in Sources */,
 				3DB6DF7A1AC9AEDA0020497B /* TabBarController.swift in Sources */,
 				3D56CAE61ACE0CE0004759ED /* RegisterForm.swift in Sources */,
 				3DB6DF761AC9AEDA0020497B /* SnatchesTableViewController.swift in Sources */,
+				3DF04FF01AD2BAA8008B0260 /* FightCellRecipient.swift in Sources */,
 				3DB6DF581AC9AEDA0020497B /* Constants.swift in Sources */,
+				3DF04FEA1AD2AF65008B0260 /* MenuCell.swift in Sources */,
 				3D8482C01ACB74F300D663DF /* VersusViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

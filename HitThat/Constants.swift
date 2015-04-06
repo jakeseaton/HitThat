@@ -41,4 +41,9 @@ struct Constants{
     static let NoUserSegue = "No User"
     static let NewUserSegue = "New User"
     static let RegisterFormSegue = "Register Form Segue"
+    static let CenterViewControllerIdentifier = "Versus View Controller"
+    static let RightViewControllerIdentifier = "Fights View Controller"
+    static let LeftViewControllerIdentifier = "Menu View Controller"
+    static let MenuCellRestorationIdentifier = "MenuCell"
+    static let OpenFightSegue = "Open Fight"
 }

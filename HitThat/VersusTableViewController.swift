@@ -33,19 +33,19 @@ class VersusTableViewController: UITableViewController {
     }
     
     private func updateUI(){
-        // change this to bio...you just forgot to save it.
+        println(userToDisplay)
         self.bioLabel.text = "Bio: " + (userToDisplay!.objectForKey("bio") as AnyObject as? String)!
         let winsInt = userToDisplay?.objectForKey("wins") as Int
         let jailTimeInt = userToDisplay?.objectForKey("jailtime") as Int
-        let interests = userToDisplay?.objectForKey("interests") as? [String]
-        self.interestsLabel.text = "Interests: " + " ".join(interests!)
+        let interests = userToDisplay?.objectForKey("bestMove") as String
+        self.interestsLabel.text = "Best Move: " + interests
         self.winsLabel.text = "Wins: \(winsInt)"
         self.jailTimeLabel.text = "Jail Time: \(jailTimeInt) year(s)"
         self.weightLabel.text = "Weight: " + (userToDisplay?.objectForKey("weight") as String)
         self.heightLabel.text = "Height: " + (userToDisplay?.objectForKey("height") as String)
         self.hitsWithLabel.text = "Hits With: " + (userToDisplay?.objectForKey("hitsWith") as String)
-        let date = userToDisplay?.objectForKey("fightingSince") as NSDate
-        self.fightingSinceLabel.text = "Fighting Since: " + date.description
+//        let date = userToDisplay?.objectForKey("fightingSince") as NSDate
+//        self.fightingSinceLabel.text = "Fighting Since: " + date.description
         self.bodyTypeLabel.text = "Body Type: " + (userToDisplay?.objectForKey("bodyType") as String)
         self.reachLabel.text = "Reach: 3ft"
     }

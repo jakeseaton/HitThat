@@ -252,6 +252,8 @@ struct SnatchParseAPI {
         if let originUser = PFUser.currentUser(){
             let object = PFObject(className: "Fights")
             object["origin"] = originUser
+            object["originStamina"] = CGFloat(1)
+            object["recipientStamina"] = CGFloat(1)
             object["recipient"] = recipient
             object.saveInBackground()
         }
@@ -265,6 +267,10 @@ struct SnatchParseAPI {
         let pushMessage = "\(alias) wants to fight you."
         push.setMessage(pushMessage)
         push.sendPushInBackground()
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        // REFRESH THE TABLE
+        let x = appDelegate.centerContainer?.rightDrawerViewController as FightsViewController
+        x.refresh()
     }
     func getAUsersProfilePicture(user:PFUser) -> UIImage {
         let img = user["profilePicture"] as AnyObject as? PFFile

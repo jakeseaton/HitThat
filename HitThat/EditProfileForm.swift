@@ -1,33 +1,29 @@
 //
-//  RegisterForm.swift
+//  EditProfileForm.swift
 //  HitThat
 //
-//  Created by Jake Seaton on 4/2/15.
+//  Created by Jake Seaton on 4/6/15.
 //  Copyright (c) 2015 Jake Seaton. All rights reserved.
 //
 
 import UIKit
 
-class RegisterForm: NSObject, FXForm {
-    // get rid of interests
-    // add age
-    // add more to
+class EditProfileForm: NSObject, FXForm {
+    
     var alias: String?
     var height:String?
     var weight:String?
     var name: String?
     var age: UInt = 0
     var profilePhoto: UIImage?
-    var interests: NSArray? //NOTE: [String] or [AnyObject] won't work
+    var interests: NSArray?
     var bio: String?
-//     var fightingSince:NSDate?
     var bestMove:String?
     var hitsWith:String?
     var bodyType = 0
     var jailTime = 0
     var reach:String?
-    
-    func fields() -> [AnyObject]! {        
+    func fields() -> [AnyObject]! {
         // get user profile picture
         // get user gender
         
@@ -40,7 +36,7 @@ class RegisterForm: NSObject, FXForm {
             [FXFormFieldKey: "weight", "textField.autocapitalizationType": UITextAutocapitalizationType.Words.rawValue],
             [FXFormFieldKey: "reach", "textField.autocapitalizationType":UITextAutocapitalizationType.Words.rawValue],
             
-//            [FXFormFieldKey: "bestMove", FXFormFieldHeader:"Fighter Details", FXFormFieldType: FXFormFieldTypeLongText],
+            //            [FXFormFieldKey: "bestMove", FXFormFieldHeader:"Fighter Details", FXFormFieldType: FXFormFieldTypeLongText],
             [FXFormFieldKey: "bestMove",
                 FXFormFieldOptions: ["Punch", "Jab", "Upper Cut", "Roundhouse", "Chop", "Body Slam", "Play Dead","Use the Force"],
                 FXFormFieldHeader:"Fighter Details",
@@ -57,7 +53,7 @@ class RegisterForm: NSObject, FXForm {
             
             [FXFormFieldKey: "jailTime", FXFormFieldCell: FXFormStepperCell.self],
             
-        
+            
             //this is an options field that uses a FXFormOptionPickerCell to display the available
             //options in a UIPickerView
             
@@ -69,21 +65,17 @@ class RegisterForm: NSObject, FXForm {
             //this is a multi-select options field - FXForms knows this because the
             //class of the field property is a collection (in this case, NSArray)
             
-            [FXFormFieldKey: "interests", FXFormFieldPlaceholder: "None",
-                FXFormFieldOptions: ["Videogames", "Animals", "Cooking"]],
-            
-            
             [FXFormFieldHeader: "Body Type",
                 FXFormFieldKey: "bodyType",
                 FXFormFieldTitle: "",
                 FXFormFieldPlaceholder: "Slim",
                 FXFormFieldOptions: ["Normal", "Butch", "Swole"],
                 FXFormFieldCell: FXFormOptionSegmentsCell.self],
-         
             
-            [FXFormFieldTitle: "Start Hitting People", FXFormFieldHeader: "", FXFormFieldAction: "submitRegistrationForm:"],
+            [FXFormFieldTitle:"Cancel", FXFormFieldHeader:"", FXFormFieldAction:"cancelSubmission"],
+            [FXFormFieldTitle: "Update Profile", FXFormFieldAction: "submitRegistrationForm:"],
+            
         ]
     }
-
-
+   
 }

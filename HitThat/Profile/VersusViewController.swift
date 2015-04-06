@@ -7,7 +7,7 @@ let offset_B_LabelHeader:CGFloat = 95.0 // At this offset the Black label reache
 let distance_W_LabelHeader:CGFloat = 35.0 // The distance between the bottom of the Header and the top of the White Label
 
 class VersusViewController: UIViewController, UIScrollViewDelegate, UITableViewDelegate {
-
+    var userSawLoginScreen = false
     @IBAction func versusTapped(sender: AnyObject) {
         self.next()
     }
@@ -20,7 +20,12 @@ class VersusViewController: UIViewController, UIScrollViewDelegate, UITableViewD
     @IBOutlet var headerBlurImageView:UIImageView!
     var blurredHeaderImageView:UIImageView?
     @IBOutlet weak var containerView: UIView!
-    @IBAction func keepPlaying(segue:UIStoryboardSegue){}
+    @IBAction func keepPlaying(segue:UIStoryboardSegue){
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        appDelegate.centerContainer!.centerViewController = self
+        // figure out some way to check what state it is in. 
+        // appDelegate.centerContainer!.toggleDrawerSide(.Right, animated: true, completion: nil)
+    }
     // To Set
     @IBOutlet weak var displayName: UILabel!
     var userToDisplay:PFUser?{
@@ -54,6 +59,9 @@ class VersusViewController: UIViewController, UIScrollViewDelegate, UITableViewD
             }
         }
     }
+    override func canBecomeFirstResponder() -> Bool {
+        return true
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,6 +77,8 @@ class VersusViewController: UIViewController, UIScrollViewDelegate, UITableViewD
     }
     override func viewWillAppear(animated: Bool) {
         println("view will appear")
+        self.becomeFirstResponder()
+        AppDelegate.Motion.Manager.startAccelerometerUpdates()
         backgroundView.backgroundColor = UIColor.clearColor()
         headerImageView = UIImageView(frame: header.bounds)
 //        if let img = userToDisplay?["profilePhoto"] as? PFFile{
@@ -124,13 +134,25 @@ class VersusViewController: UIViewController, UIScrollViewDelegate, UITableViewD
     }
     override func viewDidAppear(animated: Bool) {
         println("view did appear")
+        if let currUserName = PFUser.currentUser(){
+            super.viewDidAppear(true)
+        }
+        else{
+            super.viewDidAppear(true)
+            if !self.userSawLoginScreen{
+                performSegueWithIdentifier(Constants.NoUserSegue, sender: self)
+                self.userSawLoginScreen = true
+            }
+        }
         self.becomeFirstResponder()
+        
         
         // Header - Image
 
     }
+
     override func viewWillDisappear(animated: Bool) {
-//        AppDelegate.Motion.Manager.stopAccelerometerUpdates()
+        AppDelegate.Motion.Manager.stopAccelerometerUpdates()
     }
     override func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent) {
         if (motion == UIEventSubtype.MotionShake){
