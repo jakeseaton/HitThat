@@ -233,6 +233,9 @@ class VersusViewController: UIViewController, UIScrollViewDelegate, UITableViewD
             let query = PFUser.query()
             // specify what user we want.
             println("starting query")
+            if let currUser = PFUser.currentUser(){
+                query.whereKey("objectId", notEqualTo:currUser.objectId)
+            }
             query.getFirstObjectInBackgroundWithBlock(){
                 (object, error) in
                 if error == nil{

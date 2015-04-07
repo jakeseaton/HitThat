@@ -77,7 +77,6 @@
 		3DB6DF741AC9AEDA0020497B /* SnatchedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6DF4C1AC9AED90020497B /* SnatchedViewController.swift */; };
 		3DB6DF751AC9AEDA0020497B /* SnatchesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6DF4D1AC9AED90020497B /* SnatchesTableViewCell.swift */; };
 		3DB6DF761AC9AEDA0020497B /* SnatchesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6DF4E1AC9AED90020497B /* SnatchesTableViewController.swift */; };
-		3DB6DF771AC9AEDA0020497B /* SnatchLocationAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6DF4F1AC9AED90020497B /* SnatchLocationAPI.swift */; };
 		3DB6DF781AC9AEDA0020497B /* SnatchParseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6DF501AC9AED90020497B /* SnatchParseAPI.swift */; };
 		3DB6DF791AC9AEDA0020497B /* SwipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6DF511AC9AED90020497B /* SwipeViewController.swift */; };
 		3DB6DF7A1AC9AEDA0020497B /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6DF521AC9AED90020497B /* TabBarController.swift */; };
@@ -192,7 +191,6 @@
 		3DB6DF4C1AC9AED90020497B /* SnatchedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnatchedViewController.swift; sourceTree = "<group>"; };
 		3DB6DF4D1AC9AED90020497B /* SnatchesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnatchesTableViewCell.swift; sourceTree = "<group>"; };
 		3DB6DF4E1AC9AED90020497B /* SnatchesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnatchesTableViewController.swift; sourceTree = "<group>"; };
-		3DB6DF4F1AC9AED90020497B /* SnatchLocationAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnatchLocationAPI.swift; sourceTree = "<group>"; };
 		3DB6DF501AC9AED90020497B /* SnatchParseAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnatchParseAPI.swift; sourceTree = "<group>"; };
 		3DB6DF511AC9AED90020497B /* SwipeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeViewController.swift; sourceTree = "<group>"; };
 		3DB6DF521AC9AED90020497B /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -443,7 +441,6 @@
 			children = (
 				3D8482AB1ACB2FAB00D663DF /* Colors.swift */,
 				3DB6DF301AC9AED90020497B /* Constants.swift */,
-				3DB6DF4F1AC9AED90020497B /* SnatchLocationAPI.swift */,
 				3DB6DF501AC9AED90020497B /* SnatchParseAPI.swift */,
 			);
 			name = API;
@@ -672,7 +669,6 @@
 				3DB6DF661AC9AEDA0020497B /* MainTableViewCell.swift in Sources */,
 				3DC463E31AD2A60F0034C34F /* FightsViewController.swift in Sources */,
 				3DED5BE31AD0773A00F1DE5F /* MainTabController.swift in Sources */,
-				3DB6DF771AC9AEDA0020497B /* SnatchLocationAPI.swift in Sources */,
 				3DF04FFA1AD318DD008B0260 /* EditProfileFormViewController.swift in Sources */,
 				3DB6DF5B1AC9AEDA0020497B /* DropitViewController.swift in Sources */,
 				3DB6DF6B1AC9AEDA0020497B /* MKUser.swift in Sources */,

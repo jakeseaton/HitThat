@@ -17,11 +17,14 @@ class FightOpenViewController: UIViewController {
     var userStamina:CGFloat?{
         didSet{
         self.userStaminaBar?.setProgress(self.userStamina!, animated: true)
+        self.userStaminaLabel.text = self.userStamina!.description
         }
     }
     var opponentStamina:CGFloat?{
         didSet{
+            println(self.opponentStamina)
             self.opponentStaminaBar?.setProgress(self.opponentStamina!, animated:true)
+            self.opponentStaminaLabel.text = self.opponentStamina!.description
             
         }
     }
@@ -44,17 +47,20 @@ class FightOpenViewController: UIViewController {
         }
     }
     
-    @IBOutlet weak var originImage: UIImageView!
-    @IBOutlet weak var recipientImage: UIImageView!
-    @IBOutlet weak var originStaminaLabel: UILabel!
-    @IBOutlet weak var recipientStaminaLabel: UILabel!
+
+    @IBOutlet weak var userStaminaLabel:UILabel!
+    @IBOutlet weak var opponentStaminaLabel:UILabel!
     @IBOutlet weak var turnLabel: UILabel!
+    @IBOutlet weak var userImage: UIImageView!
+    @IBOutlet weak var opponentImage: UIImageView!
     func updateUI(){
         // doing this synchronously for now
         if let origin = self.originUser{
             if let recipient = self.recipientUser{
-                self.originImage.image = SnatchParseAPI().getAUsersProfilePicture(origin)
-                self.recipientImage.image = SnatchParseAPI().getAUsersProfilePicture(recipient)
+                let originImage = SnatchParseAPI().getAUsersProfilePicture(origin)
+                let recipientImage = SnatchParseAPI().getAUsersProfilePicture(recipient)
+                self.userImage.image = self.userIsOrigin! ? originImage : recipientImage
+                self.opponentImage.image  = self.userIsOrigin! ? recipientImage : originImage
             }
         }
         
@@ -70,11 +76,11 @@ class FightOpenViewController: UIViewController {
         self.userStaminaBar?.indicatorTextDisplayMode = YLProgressBarIndicatorTextDisplayMode.Progress
         self.opponentStaminaBar?.indicatorTextDisplayMode = YLProgressBarIndicatorTextDisplayMode.Progress
         let originStamina = fight["originStamina"] as AnyObject as CGFloat
-        let recipientStamina = fight["recipientStamina"] as CGFloat
+        let recipientStamina = fight["recipientStamina"] as AnyObject as CGFloat
         self.userStamina = userIsOrigin! ? originStamina : recipientStamina
         self.opponentStamina = userIsOrigin! ? recipientStamina : originStamina
-        self.originStaminaLabel.text = userStamina?.description
-        self.recipientStaminaLabel.text = opponentStamina?.description
+        self.userStaminaLabel.text = userStamina?.description
+        self.opponentStaminaLabel.text = opponentStamina?.description
     }
     
     override func viewDidLoad() {
@@ -108,11 +114,13 @@ class FightOpenViewController: UIViewController {
     override func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent) {
         if (motion == UIEventSubtype.MotionShake){
             var newPercentage = CGFloat(Float(arc4random()) / Float(UINT32_MAX))
-            let curr = self.opponentStaminaBar?.progress
+            let curr = self.opponentStamina!
             println(curr)
             println(newPercentage)
-            self.opponentStaminaBar?.setProgress(newPercentage, animated: true)
-            println("user shook device")
+            let dif = curr - newPercentage
+            println(dif)
+            self.opponentStamina = dif
+            self.userIsOrigin! ? SnatchParseAPI().notifyPunchedUser(self.recipientUser!) : SnatchParseAPI().notifyPunchedUser(self.originUser!)
         }
     }
     override func didReceiveMemoryWarning() {

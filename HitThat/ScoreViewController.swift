@@ -9,11 +9,17 @@
 import UIKit
 
 class ScoreViewController: UIViewController {
-
+    var userToDisplay:PFUser?{
+        didSet{
+            updateUI()
+        }
+    }
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var userSnatches: UILabel!
     @IBOutlet weak var userBeats: UILabel!
     @IBOutlet weak var profilePicture: UIImageView!
+    @IBOutlet weak var userFights:UILabel!
+    @IBOutlet weak var userWins:UILabel!
 
     @IBAction func cancelPressed(sender: AnyObject) {
             self.dismissViewControllerAnimated(true, completion: nil)
@@ -22,52 +28,31 @@ class ScoreViewController: UIViewController {
     
     
     func updateUI(){
-        var snatches = 0
-        var fights = 0
-        if let curr = PFUser.currentUser(){
-            if let img = curr["profilePicture"] as AnyObject as? PFFile {
-                img.getDataInBackgroundWithBlock {
-                    (imageData, error) -> Void in
-                    if error != nil {
-                        println("ERROR RETRIEVING IMAGE")
-                    }
-                    else{
-                        self.profilePicture.image = UIImage(data:imageData)
-                    }
+            let img = userToDisplay!["profilePicture"] as PFFile
+            img.getDataInBackgroundWithBlock(){
+                (data, error) in
+                if (error == nil){
+                self.profilePicture.image = UIImage(data:data)
                 }
             }
-            if let currentUserName = curr.username{
-                let snatchesQuery = PFQuery(className:"Snatches")
-                println("\(currentUserName)")
-                snatchesQuery.whereKey("recipient", equalTo:currentUserName)
-                snatchesQuery.findObjectsInBackgroundWithBlock(){
-                    (objects, error) in
-                    if let results:[AnyObject] = objects{
-                        println("\(results)")
-                        snatches = results.count
-                        self.userSnatches.text = "\(snatches) want to hit that!"
-                    }
-                }
-                let fightsQuery = PFQuery(className:"Fights")
-                fightsQuery.whereKey("recipient", equalTo:currentUserName)
-                fightsQuery.findObjectsInBackgroundWithBlock(){
-                    (objects, error) in
-                    if let results:[AnyObject] = objects{
-                        println("\(results)")
-                        fights = results.count
-                        self.userBeats.text = "\(fights) want to hit you."
-                    }
-                }
+            let fightsQuery = PFQuery(className: "fights")
+            fightsQuery.whereKey("origin", equalTo:userToDisplay!)
+            fightsQuery.whereKey("recipient", equalTo:userToDisplay!)
+            fightsQuery.countObjectsInBackgroundWithBlock(){
+                count in
+                self.userFights.text = "\(count) fights."
             }
-            if let currFullName = curr.objectForKey("fullName") as AnyObject as? String{
-                userName.text = currFullName
-            }
-        }
+            self.userName.text = userToDisplay!["fullName"] as? String
     }
     
+
     override func viewDidLoad() {
      super.viewDidLoad()
-    Colors().gradient(self)
-        updateUI()
+        if let curr = PFUser.currentUser(){
+            self.userToDisplay = curr
+        }
+        self.profilePicture.layer.cornerRadius = self.profilePicture.frame.size.width / 2;
+        self.profilePicture.clipsToBounds = true;
+        Colors().gradient(self)
     }
 }

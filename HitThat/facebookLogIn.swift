@@ -23,6 +23,7 @@ class facebookLogIn: UIViewController  {
 
         PFFacebookUtils.logInWithPermissions(permissions) {
             (user: PFUser!, error: NSError!) -> Void in
+            println(error)
             if user == nil {
                 NSLog("The user cancelled the Facebook login.")
             }

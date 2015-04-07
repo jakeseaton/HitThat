@@ -10,9 +10,12 @@ import Foundation
 struct Colors{
     static let navBarTintColor = UIColor.redColor()
 //    static let navBarTintColor = UIColor(red:255/255, green:136/255, blue:74/255, alpha:1.0)
-    static let color1 = UIColor(red:255/255, green:136/255, blue:74/255, alpha:1.0)
-    static let color2 = UIColor(red: 255/255, green: 47/255, blue: 0/255, alpha: 1.0)
+//    static let color1 = UIColor(red:255/255, green:136/255, blue:74/255, alpha:1.0)
+//    static let color2 = UIColor(red: 255/255, green: 47/255, blue: 0/255, alpha: 1.0)
 
+    static let color1 = UIColor(red:255/255, green:138/255, blue:119/255, alpha:1.0)
+    static let color2 = UIColor(red: 210/255, green: 22/255, blue: 30/255, alpha: 1.0)
+    
     static let TurquoiseColor = UIColor(red: 0.10196078431372549, green: 0.7372549019607844, blue: 0.611764705882353, alpha: 1.0)
     static let GreenSeaColor = UIColor(red:0.08627450980392157, green: 0.6274509803921569, blue: 0.5215686274509804, alpha: 1.0)
     static let EmeraldColor = UIColor(red:0.1803921568627451, green: 0.8, blue:0.44313725490196076, alpha: 1.0)

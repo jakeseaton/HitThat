@@ -141,20 +141,14 @@ struct SnatchParseAPI {
 //        }
 //    }
 
-    func updateUserLocation(location: CLLocation){
-        var query = PFQuery(className:"Locations")
-        query.whereKey("username", equalTo:SnatchParseAPI.currentUserName!)
-        query.getFirstObjectInBackgroundWithBlock{
-            (object, error) in
-            if error != nil{
-                // did not find any locaiton for the current user
-                println("ERROR")
-                let object = PFObject(className: "Locations")
-                object["username"] = SnatchParseAPI.currentUserName!
-                object["location"] = location
-                object.saveInBackground()
-            } else{
-                object.setObject(location, forKey: "location")
+    func updateUserLocation(){
+        if let user = PFUser.currentUser(){
+            PFGeoPoint.geoPointForCurrentLocationInBackground(){
+                (geopoint, error) in
+                if (error == nil){
+                    PFUser.currentUser()["location"] = geopoint
+                    PFUser.currentUser().saveEventually()
+                }
             }
         }
     }
@@ -272,6 +266,20 @@ struct SnatchParseAPI {
         let x = appDelegate.centerContainer?.rightDrawerViewController as FightsViewController
         x.refresh()
     }
+    func notifyPunchedUser(recipientOfPunch:PFUser){
+        let pushQuery = PFInstallation.query()
+        pushQuery.whereKey("user", equalTo:recipientOfPunch)
+        let push = PFPush()
+        push.setQuery(pushQuery)
+        let alias = PFUser.currentUser().objectForKey("alias") as AnyObject as String
+        let pushMessage = "\(alias) punched you!"
+        push.setMessage(pushMessage)
+        push.sendPushInBackground()
+        
+        // Update the user that just punched location.
+       SnatchParseAPI().updateUserLocation()
+    }
+    // this runs synchronously... :(
     func getAUsersProfilePicture(user:PFUser) -> UIImage {
         let img = user["profilePicture"] as AnyObject as? PFFile
         let data = img?.getData()

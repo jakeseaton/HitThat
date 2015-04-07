@@ -12,6 +12,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     @IBOutlet weak var userImage: UIImageView!
     var menuItems = ["Versus", "My Profile", "My Fights", "Settings", "About"]
+    var menuIcons = ["fist", "userMale", "myFightsIcon", "settingsIcon", "aboutIcon"]
     override func viewDidLoad() {
         super.viewDidLoad()
         Colors().gradient(self)
@@ -65,16 +66,21 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(Constants.MenuCellRestorationIdentifier, forIndexPath: indexPath) as MenuCell
         cell.menuLabel.text = menuItems[indexPath.row]
+        cell.menuIcon.image = UIImage(named: menuIcons[indexPath.row])
         return cell
 
     }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        tableView.scrollEnabled = false
         return menuItems.count
     }
     func switchCenterContainer(newCenterController:UIViewController){
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         appDelegate.centerContainer!.centerViewController = newCenterController
         appDelegate.centerContainer!.toggleDrawerSide(.Left, animated: true, completion: nil)
+    }
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
     }
 
 }
