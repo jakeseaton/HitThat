@@ -46,4 +46,5 @@ struct Constants{
     static let LeftViewControllerIdentifier = "Menu View Controller"
     static let MenuCellRestorationIdentifier = "MenuCell"
     static let OpenFightSegue = "Open Fight"
+    static let PunchSoundFilenName = "punch"
 }

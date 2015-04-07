@@ -32,7 +32,7 @@ class facebookLogIn: UIViewController  {
                 self.updateLocation()
                 self.associateInstallationWithUser()
                 var emptyArray:[PFObject] = []
-                PFUser.currentUser().setObject(emptyArray, forKey:"seenPosts")
+                PFUser.currentUser().setObject(emptyArray, forKey:"seen")
                 FBRequestConnection.startForMeWithCompletionHandler(){
                     (connection, result, error) in
                     if error == nil {

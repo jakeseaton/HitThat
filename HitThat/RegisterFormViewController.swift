@@ -41,7 +41,7 @@ class RegisterFormViewController: FXFormViewController {
                                             PFUser.currentUser()["bio"] = bio
                                             PFUser.currentUser()["interests"] = interests
                                             PFUser.currentUser()["wins"] = 0
-                                            PFUser.currentUser()["jailtime"] = form.jailTime
+                                            PFUser.currentUser()["jailTime"] = form.jailTime
                                             PFUser.currentUser()["hitsWith"] = hitsWith
                                             PFUser.currentUser()["alias"] = newAlias
                                             PFUser.currentUser()["height"] = userHeight

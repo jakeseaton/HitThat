@@ -62,6 +62,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         default:
             println("\(menuItems[indexPath.row]) is selected")
         }
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(Constants.MenuCellRestorationIdentifier, forIndexPath: indexPath) as MenuCell

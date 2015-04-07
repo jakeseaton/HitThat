@@ -6,9 +6,15 @@ let offset_HeaderStop:CGFloat = 40.0 // At this offset the Header stops its tran
 let offset_B_LabelHeader:CGFloat = 95.0 // At this offset the Black label reaches the Header
 let distance_W_LabelHeader:CGFloat = 35.0 // The distance between the bottom of the Header and the top of the White Label
 
-class VersusViewController: UIViewController, UIScrollViewDelegate, UITableViewDelegate {
+class VersusViewController: UIViewController, UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource {
     var userSawLoginScreen = false
+    var soundArray:[AVAudioPlayer]?
+    @IBOutlet weak var distanceLabel:UILabel!
+    @IBAction func nextTapped(sender: AnyObject) {
+        self.next()
+    }
     @IBAction func versusTapped(sender: AnyObject) {
+        // play some sount
         self.next()
     }
     @IBOutlet weak var backgroundView: UIView!
@@ -19,7 +25,6 @@ class VersusViewController: UIViewController, UIScrollViewDelegate, UITableViewD
     @IBOutlet var headerImageView:UIImageView!
     @IBOutlet var headerBlurImageView:UIImageView!
     var blurredHeaderImageView:UIImageView?
-    @IBOutlet weak var containerView: UIView!
     @IBAction func keepPlaying(segue:UIStoryboardSegue){
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         appDelegate.centerContainer!.centerViewController = self
@@ -27,15 +32,20 @@ class VersusViewController: UIViewController, UIScrollViewDelegate, UITableViewD
         // appDelegate.centerContainer!.toggleDrawerSide(.Right, animated: true, completion: nil)
     }
     // To Set
+    @IBOutlet weak var tv: UITableView!
+    @IBOutlet weak var bioLabel:UILabel!
     @IBOutlet weak var displayName: UILabel!
     var userToDisplay:PFUser?{
         didSet{
             updateUI()
+            tv.reloadData()
+
         }
     }
     private func updateUI(){
          // userToDisplay!.objectForKey("fullName") as AnyObject as? String
         self.displayName.text = userToDisplay!.objectForKey("alias") as AnyObject as? String
+        self.bioLabel.text = userToDisplay?.objectForKey("bio") as? String
         if let img = userToDisplay!.objectForKey("profilePhoto") as AnyObject as? PFFile{
             img.getDataInBackgroundWithBlock(){
                 data, error in
@@ -43,8 +53,11 @@ class VersusViewController: UIViewController, UIScrollViewDelegate, UITableViewD
                 self.headerBlurImageView?.image = self.headerImageView?.image?.blurredImageWithRadius(10, iterations: 20, tintColor: UIColor.clearColor())
             }
         }
-        if let table = self.childViewControllers.last as? VersusTableViewController{
-            table.userToDisplay = self.userToDisplay!
+        if let location = PFUser.currentUser()?.objectForKey("location") as? PFGeoPoint{
+            if let opponentLocation = userToDisplay?.objectForKey("location") as? PFGeoPoint{
+                let distance = location.distanceInMilesTo(opponentLocation)
+                self.distanceLabel.text = "Distance : " + distance.description + "mi"
+            }
         }
     }
     
@@ -65,11 +78,14 @@ class VersusViewController: UIViewController, UIScrollViewDelegate, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tv.allowsSelection = false
+        self.tv.backgroundColor = UIColor.clearColor()
+        self.soundArray = SoundAPI().getArrayOfSoundsPlayers()
+        AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryAmbient, error: nil)
         self.next()
         self.indicator.hidden = true
         self.headerLabel.text = "PUNCH TO FIGHT!"
-        self.headerLabel.textColor = UIColor.redColor() //Colors.color2
-        println("view did load")
+        self.headerLabel.textColor = Colors.color2
         scrollView.delegate = self
     }
     
@@ -157,6 +173,7 @@ class VersusViewController: UIViewController, UIScrollViewDelegate, UITableViewD
     override func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent) {
         if (motion == UIEventSubtype.MotionShake){
             SnatchParseAPI().storeAFightFromVersusScreen(userToDisplay!)
+            self.soundArray?.randomItem().play()
             self.performSegueWithIdentifier(Constants.GenericProfileSegue, sender: self)
         }
     }
@@ -227,24 +244,76 @@ class VersusViewController: UIViewController, UIScrollViewDelegate, UITableViewD
     }
     @IBOutlet weak var indicator: UIActivityIndicatorView!
     func next(){
+        self.scrollView.setContentOffset(CGPointZero, animated: true)
         if !indicator.isAnimating(){
             indicator.hidden = false
             indicator.startAnimating()
-            let query = PFUser.query()
             // specify what user we want.
             println("starting query")
+            let query = PFUser.query()
+            // allows it to continue every time. Delete this to never see the same user again.
+            PFUser.currentUser()["seen"] = []
+            PFUser.currentUser().save()
             if let currUser = PFUser.currentUser(){
                 query.whereKey("objectId", notEqualTo:currUser.objectId)
+                if let display = userToDisplay{
+                    PFUser.currentUser().addObject(display.objectId, forKey: "seen")
+                    PFUser.currentUser().saveInBackground()
+                    query.whereKey("objectId", notEqualTo: display.objectId)
+                }
+                var seen = currUser["seen"] as [PFUser]
+                query.whereKey("objectId", notContainedIn: seen)
             }
             query.getFirstObjectInBackgroundWithBlock(){
                 (object, error) in
                 if error == nil{
-                    self.userToDisplay = object as? PFUser
-                    self.indicator.stopAnimating()
-                    self.indicator.hidden = true
-                    println("refreshed--new user")
+                    if object != nil {
+                        self.userToDisplay = object as? PFUser
+                        self.indicator.stopAnimating()
+                        self.indicator.hidden = true
+                        println("refreshed--new user")
+                    }
+                    else{
+                        println("no more users")
+                    }
                 }
             }
         }
+    }
+    var categories = ["gender", "height", "weight", "reach", "wins", "jailTime", "bestMove", "bodyType", "GPA", "lookingFor"]
+    // TableView Data Source/Delegate Stuff
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("VersusCell") as VersusCell
+        cell.backgroundColor = UIColor.clearColor()
+        let category = categories[indexPath.row]
+        let userCategory: AnyObject? = PFUser.currentUser()?.objectForKey(category)
+        let opponentCategory: AnyObject? = userToDisplay?.objectForKey(category)
+        switch category{
+            case "bodyType":
+                cell.categoryLabel?.text = "B.T"
+                break
+            case "bestMove":
+                cell.categoryLabel?.text = "|"
+                break
+            case "jailTime":
+                cell.categoryLabel?.text = "J.T."
+                break
+            case "lookingFor":
+                cell.categoryLabel?.text = "For"
+                break
+        default:
+            cell.categoryLabel?.text = category.uppercaseString
+            break
+            
+        }
+        cell.userLabel.text =  userCategory?.description
+        cell.opponentLabel.text = opponentCategory?.description
+        return cell
+    }
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return categories.count
+    }
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
     }
 }

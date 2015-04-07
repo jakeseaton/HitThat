@@ -20,6 +20,12 @@
 		3D8482C11ACB74F300D663DF /* TWTButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8482BD1ACB74F300D663DF /* TWTButton.swift */; };
 		3D8482C31ACB790D00D663DF /* LocateButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8482C21ACB790D00D663DF /* LocateButton.swift */; };
 		3D8482C71ACC2D7D00D663DF /* YLProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8482C61ACC2D7D00D663DF /* YLProgressBar.m */; };
+		3DAE5B081AD46559004892CC /* punch.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3DAE5B071AD46559004892CC /* punch.wav */; };
+		3DAE5B0A1AD4661B004892CC /* SoundAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAE5B091AD4661B004892CC /* SoundAPI.swift */; };
+		3DAE5B0F1AD468A4004892CC /* meatSlap.aif in Resources */ = {isa = PBXBuildFile; fileRef = 3DAE5B0C1AD468A4004892CC /* meatSlap.aif */; };
+		3DAE5B101AD468A4004892CC /* Slap.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3DAE5B0D1AD468A4004892CC /* Slap.mp3 */; };
+		3DAE5B111AD468A4004892CC /* slapFight.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3DAE5B0E1AD468A4004892CC /* slapFight.wav */; };
+		3DAE5B131AD46A97004892CC /* RandomArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAE5B121AD46A97004892CC /* RandomArray.swift */; };
 		3DB6907A1AD1B297007EFCEF /* MSDynamicsDrawerStyler.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB690761AD1B297007EFCEF /* MSDynamicsDrawerStyler.m */; };
 		3DB6907B1AD1B297007EFCEF /* MSDynamicsDrawerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB690791AD1B297007EFCEF /* MSDynamicsDrawerViewController.m */; };
 		3DB6DEE61AC993620020497B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6DEE51AC993620020497B /* AppDelegate.swift */; };
@@ -82,13 +88,63 @@
 		3DB6DF7A1AC9AEDA0020497B /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6DF521AC9AED90020497B /* TabBarController.swift */; };
 		3DB6DF801AC9AEF40020497B /* ZLPanGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6DF7D1AC9AEF40020497B /* ZLPanGestureRecognizer.m */; };
 		3DB6DF811AC9AEF40020497B /* ZLSwipeableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6DF7F1AC9AEF40020497B /* ZLSwipeableView.m */; };
+		3DBA111D1AD4379500A4EF75 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DBA111C1AD4379500A4EF75 /* AVFoundation.framework */; };
+		3DBA11521AD4393700A4EF75 /* beep-attention.aif in Resources */ = {isa = PBXBuildFile; fileRef = 3DBA11201AD4393700A4EF75 /* beep-attention.aif */; };
+		3DBA11531AD4393700A4EF75 /* beep-bop.aif in Resources */ = {isa = PBXBuildFile; fileRef = 3DBA11211AD4393700A4EF75 /* beep-bop.aif */; };
+		3DBA11541AD4393700A4EF75 /* beep-brightpop.aif in Resources */ = {isa = PBXBuildFile; fileRef = 3DBA11221AD4393700A4EF75 /* beep-brightpop.aif */; };
+		3DBA11551AD4393700A4EF75 /* beep-glitchy.aif in Resources */ = {isa = PBXBuildFile; fileRef = 3DBA11231AD4393700A4EF75 /* beep-glitchy.aif */; };
+		3DBA11561AD4393700A4EF75 /* beep-hightone.aif in Resources */ = {isa = PBXBuildFile; fileRef = 3DBA11241AD4393700A4EF75 /* beep-hightone.aif */; };
+		3DBA11571AD4393700A4EF75 /* beep-holdtone.aif in Resources */ = {isa = PBXBuildFile; fileRef = 3DBA11251AD4393700A4EF75 /* beep-holdtone.aif */; };
+		3DBA11581AD4393700A4EF75 /* beep-horn.aif in Resources */ = {isa = PBXBuildFile; fileRef = 3DBA11261AD4393700A4EF75 /* beep-horn.aif */; };
+		3DBA11591AD4393700A4EF75 /* beep-metallic.aif in Resources */ = {isa = PBXBuildFile; fileRef = 3DBA11271AD4393700A4EF75 /* beep-metallic.aif */; };
+		3DBA115A1AD4393700A4EF75 /* beep-organ.aif in Resources */ = {isa = PBXBuildFile; fileRef = 3DBA11281AD4393700A4EF75 /* beep-organ.aif */; };
+		3DBA115B1AD4393700A4EF75 /* beep-piano.aif in Resources */ = {isa = PBXBuildFile; fileRef = 3DBA11291AD4393700A4EF75 /* beep-piano.aif */; };
+		3DBA115C1AD4393700A4EF75 /* beep-plucked.aif in Resources */ = {isa = PBXBuildFile; fileRef = 3DBA112A1AD4393700A4EF75 /* beep-plucked.aif */; };
+		3DBA115D1AD4393700A4EF75 /* beep-reedy.aif in Resources */ = {isa = PBXBuildFile; fileRef = 3DBA112B1AD4393700A4EF75 /* beep-reedy.aif */; };
+		3DBA115E1AD4393700A4EF75 /* beep-rejected.aif in Resources */ = {isa = PBXBuildFile; fileRef = 3DBA112C1AD4393700A4EF75 /* beep-rejected.aif */; };
+		3DBA115F1AD4393700A4EF75 /* beep-roadblock.aif in Resources */ = {isa = PBXBuildFile; fileRef = 3DBA112D1AD4393700A4EF75 /* beep-roadblock.aif */; };
+		3DBA11601AD4393700A4EF75 /* beep-scrapy.aif in Resources */ = {isa = PBXBuildFile; fileRef = 3DBA112E1AD4393700A4EF75 /* beep-scrapy.aif */; };
+		3DBA11611AD4393700A4EF75 /* beep-scratchy.aif in Resources */ = {isa = PBXBuildFile; fileRef = 3DBA112F1AD4393700A4EF75 /* beep-scratchy.aif */; };
+		3DBA11621AD4393700A4EF75 /* beep-sharpstring.aif in Resources */ = {isa = PBXBuildFile; fileRef = 3DBA11301AD4393700A4EF75 /* beep-sharpstring.aif */; };
+		3DBA11631AD4393700A4EF75 /* beep-shinymetal.aif in Resources */ = {isa = PBXBuildFile; fileRef = 3DBA11311AD4393700A4EF75 /* beep-shinymetal.aif */; };
+		3DBA11641AD4393700A4EF75 /* beep-tapped.aif in Resources */ = {isa = PBXBuildFile; fileRef = 3DBA11321AD4393700A4EF75 /* beep-tapped.aif */; };
+		3DBA11651AD4393700A4EF75 /* beep-timber.aif in Resources */ = {isa = PBXBuildFile; fileRef = 3DBA11331AD4393700A4EF75 /* beep-timber.aif */; };
+		3DBA11661AD4393700A4EF75 /* beep-warmguitar.aif in Resources */ = {isa = PBXBuildFile; fileRef = 3DBA11341AD4393700A4EF75 /* beep-warmguitar.aif */; };
+		3DBA11671AD4393700A4EF75 /* beep-xylo.aif in Resources */ = {isa = PBXBuildFile; fileRef = 3DBA11351AD4393700A4EF75 /* beep-xylo.aif */; };
+		3DBA11681AD4393700A4EF75 /* slide-magic.aif in Resources */ = {isa = PBXBuildFile; fileRef = 3DBA11371AD4393700A4EF75 /* slide-magic.aif */; };
+		3DBA11691AD4393700A4EF75 /* slide-metal.aif in Resources */ = {isa = PBXBuildFile; fileRef = 3DBA11381AD4393700A4EF75 /* slide-metal.aif */; };
+		3DBA116A1AD4393700A4EF75 /* slide-network.aif in Resources */ = {isa = PBXBuildFile; fileRef = 3DBA11391AD4393700A4EF75 /* slide-network.aif */; };
+		3DBA116B1AD4393700A4EF75 /* slide-paper.aif in Resources */ = {isa = PBXBuildFile; fileRef = 3DBA113A1AD4393700A4EF75 /* slide-paper.aif */; };
+		3DBA116C1AD4393700A4EF75 /* slide-rock.aif in Resources */ = {isa = PBXBuildFile; fileRef = 3DBA113B1AD4393700A4EF75 /* slide-rock.aif */; };
+		3DBA116D1AD4393700A4EF75 /* slide-scissors.aif in Resources */ = {isa = PBXBuildFile; fileRef = 3DBA113C1AD4393700A4EF75 /* slide-scissors.aif */; };
+		3DBA116E1AD4393700A4EF75 /* tap-crisp.aif in Resources */ = {isa = PBXBuildFile; fileRef = 3DBA113E1AD4393700A4EF75 /* tap-crisp.aif */; };
+		3DBA116F1AD4393700A4EF75 /* tap-double.aif in Resources */ = {isa = PBXBuildFile; fileRef = 3DBA113F1AD4393700A4EF75 /* tap-double.aif */; };
+		3DBA11701AD4393700A4EF75 /* tap-fuzzy.aif in Resources */ = {isa = PBXBuildFile; fileRef = 3DBA11401AD4393700A4EF75 /* tap-fuzzy.aif */; };
+		3DBA11711AD4393700A4EF75 /* tap-hollow.aif in Resources */ = {isa = PBXBuildFile; fileRef = 3DBA11411AD4393700A4EF75 /* tap-hollow.aif */; };
+		3DBA11721AD4393700A4EF75 /* tap-kissy.aif in Resources */ = {isa = PBXBuildFile; fileRef = 3DBA11421AD4393700A4EF75 /* tap-kissy.aif */; };
+		3DBA11731AD4393700A4EF75 /* tap-mellow.aif in Resources */ = {isa = PBXBuildFile; fileRef = 3DBA11431AD4393700A4EF75 /* tap-mellow.aif */; };
+		3DBA11741AD4393700A4EF75 /* tap-metallic.aif in Resources */ = {isa = PBXBuildFile; fileRef = 3DBA11441AD4393700A4EF75 /* tap-metallic.aif */; };
+		3DBA11751AD4393700A4EF75 /* tap-muted.aif in Resources */ = {isa = PBXBuildFile; fileRef = 3DBA11451AD4393700A4EF75 /* tap-muted.aif */; };
+		3DBA11761AD4393700A4EF75 /* tap-percussive.aif in Resources */ = {isa = PBXBuildFile; fileRef = 3DBA11461AD4393700A4EF75 /* tap-percussive.aif */; };
+		3DBA11771AD4393700A4EF75 /* tap-professional.aif in Resources */ = {isa = PBXBuildFile; fileRef = 3DBA11471AD4393700A4EF75 /* tap-professional.aif */; };
+		3DBA11781AD4393700A4EF75 /* tap-resonant.aif in Resources */ = {isa = PBXBuildFile; fileRef = 3DBA11481AD4393700A4EF75 /* tap-resonant.aif */; };
+		3DBA11791AD4393700A4EF75 /* tap-scratchy.aif in Resources */ = {isa = PBXBuildFile; fileRef = 3DBA11491AD4393700A4EF75 /* tap-scratchy.aif */; };
+		3DBA117A1AD4393700A4EF75 /* tap-simple.aif in Resources */ = {isa = PBXBuildFile; fileRef = 3DBA114A1AD4393700A4EF75 /* tap-simple.aif */; };
+		3DBA117B1AD4393700A4EF75 /* tap-sizzle.aif in Resources */ = {isa = PBXBuildFile; fileRef = 3DBA114B1AD4393700A4EF75 /* tap-sizzle.aif */; };
+		3DBA117C1AD4393700A4EF75 /* tap-smallest.aif in Resources */ = {isa = PBXBuildFile; fileRef = 3DBA114C1AD4393700A4EF75 /* tap-smallest.aif */; };
+		3DBA117D1AD4393700A4EF75 /* tap-toothy.aif in Resources */ = {isa = PBXBuildFile; fileRef = 3DBA114D1AD4393700A4EF75 /* tap-toothy.aif */; };
+		3DBA117E1AD4393700A4EF75 /* tap-vocal.aif in Resources */ = {isa = PBXBuildFile; fileRef = 3DBA114E1AD4393700A4EF75 /* tap-vocal.aif */; };
+		3DBA117F1AD4393700A4EF75 /* tap-warm.aif in Resources */ = {isa = PBXBuildFile; fileRef = 3DBA114F1AD4393700A4EF75 /* tap-warm.aif */; };
+		3DBA11801AD4393700A4EF75 /* tap-wooden.aif in Resources */ = {isa = PBXBuildFile; fileRef = 3DBA11501AD4393700A4EF75 /* tap-wooden.aif */; };
+		3DBA11811AD4393700A4EF75 /* tap-zipper.aif in Resources */ = {isa = PBXBuildFile; fileRef = 3DBA11511AD4393700A4EF75 /* tap-zipper.aif */; };
+		3DBA11851AD4399600A4EF75 /* UIControl+Sound.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA11841AD4399600A4EF75 /* UIControl+Sound.m */; };
+		3DBA11871AD4445100A4EF75 /* VersusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA11861AD4445100A4EF75 /* VersusCell.swift */; };
 		3DC463DE1AD2A4A70034C34F /* MMDrawerBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC463D61AD2A4A70034C34F /* MMDrawerBarButtonItem.m */; };
 		3DC463DF1AD2A4A70034C34F /* MMDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC463D91AD2A4A70034C34F /* MMDrawerController.m */; };
 		3DC463E01AD2A4A70034C34F /* MMDrawerVisualState.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC463DB1AD2A4A70034C34F /* MMDrawerVisualState.m */; };
 		3DC463E11AD2A4A70034C34F /* UIViewController+MMDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC463DD1AD2A4A70034C34F /* UIViewController+MMDrawerController.m */; };
 		3DC463E31AD2A60F0034C34F /* FightsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC463E21AD2A60F0034C34F /* FightsViewController.swift */; };
 		3DC463E51AD2A65B0034C34F /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC463E41AD2A65B0034C34F /* MenuViewController.swift */; };
-		3DED5BE11AD04AD000F1DE5F /* VersusTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DED5BE01AD04AD000F1DE5F /* VersusTableViewController.swift */; };
 		3DED5BE31AD0773A00F1DE5F /* MainTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DED5BE21AD0773A00F1DE5F /* MainTabController.swift */; };
 		3DED5BE51AD077BA00F1DE5F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DED5BE41AD077BA00F1DE5F /* Main.storyboard */; };
 		3DF04FEA1AD2AF65008B0260 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF04FE91AD2AF65008B0260 /* MenuCell.swift */; };
@@ -126,6 +182,12 @@
 		3D8482C21ACB790D00D663DF /* LocateButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocateButton.swift; sourceTree = "<group>"; };
 		3D8482C51ACC2D7D00D663DF /* YLProgressBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLProgressBar.h; sourceTree = "<group>"; };
 		3D8482C61ACC2D7D00D663DF /* YLProgressBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLProgressBar.m; sourceTree = "<group>"; };
+		3DAE5B071AD46559004892CC /* punch.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = punch.wav; sourceTree = "<group>"; };
+		3DAE5B091AD4661B004892CC /* SoundAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundAPI.swift; sourceTree = "<group>"; };
+		3DAE5B0C1AD468A4004892CC /* meatSlap.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = meatSlap.aif; sourceTree = "<group>"; };
+		3DAE5B0D1AD468A4004892CC /* Slap.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Slap.mp3; sourceTree = "<group>"; };
+		3DAE5B0E1AD468A4004892CC /* slapFight.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = slapFight.wav; sourceTree = "<group>"; };
+		3DAE5B121AD46A97004892CC /* RandomArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomArray.swift; sourceTree = "<group>"; };
 		3DB690751AD1B297007EFCEF /* MSDynamicsDrawerStyler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSDynamicsDrawerStyler.h; sourceTree = "<group>"; };
 		3DB690761AD1B297007EFCEF /* MSDynamicsDrawerStyler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSDynamicsDrawerStyler.m; sourceTree = "<group>"; };
 		3DB690771AD1B297007EFCEF /* MSDynamicsDrawerViewController-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MSDynamicsDrawerViewController-Prefix.pch"; sourceTree = "<group>"; };
@@ -198,6 +260,58 @@
 		3DB6DF7D1AC9AEF40020497B /* ZLPanGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPanGestureRecognizer.m; sourceTree = "<group>"; };
 		3DB6DF7E1AC9AEF40020497B /* ZLSwipeableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLSwipeableView.h; sourceTree = "<group>"; };
 		3DB6DF7F1AC9AEF40020497B /* ZLSwipeableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLSwipeableView.m; sourceTree = "<group>"; };
+		3DBA111C1AD4379500A4EF75 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		3DBA11201AD4393700A4EF75 /* beep-attention.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "beep-attention.aif"; sourceTree = "<group>"; };
+		3DBA11211AD4393700A4EF75 /* beep-bop.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "beep-bop.aif"; sourceTree = "<group>"; };
+		3DBA11221AD4393700A4EF75 /* beep-brightpop.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "beep-brightpop.aif"; sourceTree = "<group>"; };
+		3DBA11231AD4393700A4EF75 /* beep-glitchy.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "beep-glitchy.aif"; sourceTree = "<group>"; };
+		3DBA11241AD4393700A4EF75 /* beep-hightone.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "beep-hightone.aif"; sourceTree = "<group>"; };
+		3DBA11251AD4393700A4EF75 /* beep-holdtone.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "beep-holdtone.aif"; sourceTree = "<group>"; };
+		3DBA11261AD4393700A4EF75 /* beep-horn.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "beep-horn.aif"; sourceTree = "<group>"; };
+		3DBA11271AD4393700A4EF75 /* beep-metallic.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "beep-metallic.aif"; sourceTree = "<group>"; };
+		3DBA11281AD4393700A4EF75 /* beep-organ.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "beep-organ.aif"; sourceTree = "<group>"; };
+		3DBA11291AD4393700A4EF75 /* beep-piano.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "beep-piano.aif"; sourceTree = "<group>"; };
+		3DBA112A1AD4393700A4EF75 /* beep-plucked.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "beep-plucked.aif"; sourceTree = "<group>"; };
+		3DBA112B1AD4393700A4EF75 /* beep-reedy.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "beep-reedy.aif"; sourceTree = "<group>"; };
+		3DBA112C1AD4393700A4EF75 /* beep-rejected.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "beep-rejected.aif"; sourceTree = "<group>"; };
+		3DBA112D1AD4393700A4EF75 /* beep-roadblock.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "beep-roadblock.aif"; sourceTree = "<group>"; };
+		3DBA112E1AD4393700A4EF75 /* beep-scrapy.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "beep-scrapy.aif"; sourceTree = "<group>"; };
+		3DBA112F1AD4393700A4EF75 /* beep-scratchy.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "beep-scratchy.aif"; sourceTree = "<group>"; };
+		3DBA11301AD4393700A4EF75 /* beep-sharpstring.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "beep-sharpstring.aif"; sourceTree = "<group>"; };
+		3DBA11311AD4393700A4EF75 /* beep-shinymetal.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "beep-shinymetal.aif"; sourceTree = "<group>"; };
+		3DBA11321AD4393700A4EF75 /* beep-tapped.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "beep-tapped.aif"; sourceTree = "<group>"; };
+		3DBA11331AD4393700A4EF75 /* beep-timber.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "beep-timber.aif"; sourceTree = "<group>"; };
+		3DBA11341AD4393700A4EF75 /* beep-warmguitar.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "beep-warmguitar.aif"; sourceTree = "<group>"; };
+		3DBA11351AD4393700A4EF75 /* beep-xylo.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "beep-xylo.aif"; sourceTree = "<group>"; };
+		3DBA11371AD4393700A4EF75 /* slide-magic.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "slide-magic.aif"; sourceTree = "<group>"; };
+		3DBA11381AD4393700A4EF75 /* slide-metal.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "slide-metal.aif"; sourceTree = "<group>"; };
+		3DBA11391AD4393700A4EF75 /* slide-network.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "slide-network.aif"; sourceTree = "<group>"; };
+		3DBA113A1AD4393700A4EF75 /* slide-paper.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "slide-paper.aif"; sourceTree = "<group>"; };
+		3DBA113B1AD4393700A4EF75 /* slide-rock.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "slide-rock.aif"; sourceTree = "<group>"; };
+		3DBA113C1AD4393700A4EF75 /* slide-scissors.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "slide-scissors.aif"; sourceTree = "<group>"; };
+		3DBA113E1AD4393700A4EF75 /* tap-crisp.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "tap-crisp.aif"; sourceTree = "<group>"; };
+		3DBA113F1AD4393700A4EF75 /* tap-double.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "tap-double.aif"; sourceTree = "<group>"; };
+		3DBA11401AD4393700A4EF75 /* tap-fuzzy.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "tap-fuzzy.aif"; sourceTree = "<group>"; };
+		3DBA11411AD4393700A4EF75 /* tap-hollow.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "tap-hollow.aif"; sourceTree = "<group>"; };
+		3DBA11421AD4393700A4EF75 /* tap-kissy.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "tap-kissy.aif"; sourceTree = "<group>"; };
+		3DBA11431AD4393700A4EF75 /* tap-mellow.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "tap-mellow.aif"; sourceTree = "<group>"; };
+		3DBA11441AD4393700A4EF75 /* tap-metallic.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "tap-metallic.aif"; sourceTree = "<group>"; };
+		3DBA11451AD4393700A4EF75 /* tap-muted.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "tap-muted.aif"; sourceTree = "<group>"; };
+		3DBA11461AD4393700A4EF75 /* tap-percussive.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "tap-percussive.aif"; sourceTree = "<group>"; };
+		3DBA11471AD4393700A4EF75 /* tap-professional.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "tap-professional.aif"; sourceTree = "<group>"; };
+		3DBA11481AD4393700A4EF75 /* tap-resonant.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "tap-resonant.aif"; sourceTree = "<group>"; };
+		3DBA11491AD4393700A4EF75 /* tap-scratchy.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "tap-scratchy.aif"; sourceTree = "<group>"; };
+		3DBA114A1AD4393700A4EF75 /* tap-simple.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "tap-simple.aif"; sourceTree = "<group>"; };
+		3DBA114B1AD4393700A4EF75 /* tap-sizzle.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "tap-sizzle.aif"; sourceTree = "<group>"; };
+		3DBA114C1AD4393700A4EF75 /* tap-smallest.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "tap-smallest.aif"; sourceTree = "<group>"; };
+		3DBA114D1AD4393700A4EF75 /* tap-toothy.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "tap-toothy.aif"; sourceTree = "<group>"; };
+		3DBA114E1AD4393700A4EF75 /* tap-vocal.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "tap-vocal.aif"; sourceTree = "<group>"; };
+		3DBA114F1AD4393700A4EF75 /* tap-warm.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "tap-warm.aif"; sourceTree = "<group>"; };
+		3DBA11501AD4393700A4EF75 /* tap-wooden.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "tap-wooden.aif"; sourceTree = "<group>"; };
+		3DBA11511AD4393700A4EF75 /* tap-zipper.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "tap-zipper.aif"; sourceTree = "<group>"; };
+		3DBA11831AD4399600A4EF75 /* UIControl+Sound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIControl+Sound.h"; sourceTree = "<group>"; };
+		3DBA11841AD4399600A4EF75 /* UIControl+Sound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIControl+Sound.m"; sourceTree = "<group>"; };
+		3DBA11861AD4445100A4EF75 /* VersusCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VersusCell.swift; sourceTree = "<group>"; };
 		3DC463D51AD2A4A70034C34F /* MMDrawerBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMDrawerBarButtonItem.h; sourceTree = "<group>"; };
 		3DC463D61AD2A4A70034C34F /* MMDrawerBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMDrawerBarButtonItem.m; sourceTree = "<group>"; };
 		3DC463D71AD2A4A70034C34F /* MMDrawerController+Subclass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MMDrawerController+Subclass.h"; sourceTree = "<group>"; };
@@ -209,7 +323,6 @@
 		3DC463DD1AD2A4A70034C34F /* UIViewController+MMDrawerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+MMDrawerController.m"; sourceTree = "<group>"; };
 		3DC463E21AD2A60F0034C34F /* FightsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FightsViewController.swift; sourceTree = "<group>"; };
 		3DC463E41AD2A65B0034C34F /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
-		3DED5BE01AD04AD000F1DE5F /* VersusTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VersusTableViewController.swift; sourceTree = "<group>"; };
 		3DED5BE21AD0773A00F1DE5F /* MainTabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabController.swift; sourceTree = "<group>"; };
 		3DED5BE41AD077BA00F1DE5F /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		3DF04FE91AD2AF65008B0260 /* MenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
@@ -225,6 +338,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3DBA111D1AD4379500A4EF75 /* AVFoundation.framework in Frameworks */,
 				3DB6DF271AC9956A0020497B /* AudioToolbox.framework in Frameworks */,
 				3DB6DF251AC995610020497B /* CFNetwork.framework in Frameworks */,
 				3DB6DF231AC995550020497B /* CoreGraphics.framework in Frameworks */,
@@ -301,6 +415,17 @@
 			name = "Things I Didnt Write";
 			sourceTree = "<group>";
 		};
+		3DAE5B0B1AD46874004892CC /* FreeSounds */ = {
+			isa = PBXGroup;
+			children = (
+				3DAE5B0C1AD468A4004892CC /* meatSlap.aif */,
+				3DAE5B0D1AD468A4004892CC /* Slap.mp3 */,
+				3DAE5B0E1AD468A4004892CC /* slapFight.wav */,
+				3DAE5B071AD46559004892CC /* punch.wav */,
+			);
+			name = FreeSounds;
+			sourceTree = "<group>";
+		};
 		3DB690741AD1B297007EFCEF /* MSDynamicsDrawerViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -334,19 +459,15 @@
 		3DB6DEE21AC993620020497B /* HitThat */ = {
 			isa = PBXGroup;
 			children = (
-				3DB6DF111AC994930020497B /* Frameworks */,
 				3DB6DEE91AC993620020497B /* Old.storyboard */,
 				3DED5BE41AD077BA00F1DE5F /* Main.storyboard */,
-				3D8482C21ACB790D00D663DF /* LocateButton.swift */,
 				3DB6DEE51AC993620020497B /* AppDelegate.swift */,
-				3DF04FF11AD2BABB008B0260 /* Fights Table */,
 				3DB6DF891AC9B0200020497B /* Main */,
+				3DF04FF11AD2BABB008B0260 /* Fights Table */,
 				3DB6DF841AC9AF690020497B /* Profiles */,
 				3DB6DF871AC9AFBF0020497B /* Accounts */,
-				3DB6DF8B1AC9B0B60020497B /* Tables */,
 				3DB6DF861AC9AF840020497B /* Swipe */,
 				3DB6DF881AC9AFCE0020497B /* Map */,
-				3DB6DF8A1AC9B0A50020497B /* Post */,
 				3DB6DF831AC9AF2B0020497B /* API */,
 				3DB6DEE31AC993620020497B /* Supporting Files */,
 				3DB6DF821AC9AF1F0020497B /* Unused */,
@@ -358,6 +479,9 @@
 		3DB6DEE31AC993620020497B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3DBA111E1AD4393700A4EF75 /* Octave-Sounds */,
+				3DB6DF111AC994930020497B /* Frameworks */,
+				3DAE5B0B1AD46874004892CC /* FreeSounds */,
 				3DB6DEE71AC993620020497B /* ViewController.swift */,
 				3DB6DEEE1AC993620020497B /* LaunchScreen.xib */,
 				3DB6DEEC1AC993620020497B /* Images.xcassets */,
@@ -387,6 +511,7 @@
 		3DB6DF111AC994930020497B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3DBA111C1AD4379500A4EF75 /* AVFoundation.framework */,
 				3DB6DF261AC9956A0020497B /* AudioToolbox.framework */,
 				3DB6DF241AC995610020497B /* CFNetwork.framework */,
 				3DB6DF221AC995550020497B /* CoreGraphics.framework */,
@@ -422,6 +547,8 @@
 		3DB6DF821AC9AF1F0020497B /* Unused */ = {
 			isa = PBXGroup;
 			children = (
+				3DB6DF8A1AC9B0A50020497B /* Post */,
+				3DB6DF8B1AC9B0B60020497B /* Tables */,
 				3DB6DF851AC9AF7E0020497B /* GangBang */,
 				3DB6DF411AC9AED90020497B /* MainViewController.swift */,
 				3DB6DF3F1AC9AED90020497B /* MainTableViewController.swift */,
@@ -440,6 +567,8 @@
 			isa = PBXGroup;
 			children = (
 				3D8482AB1ACB2FAB00D663DF /* Colors.swift */,
+				3DAE5B091AD4661B004892CC /* SoundAPI.swift */,
+				3DAE5B121AD46A97004892CC /* RandomArray.swift */,
 				3DB6DF301AC9AED90020497B /* Constants.swift */,
 				3DB6DF501AC9AED90020497B /* SnatchParseAPI.swift */,
 			);
@@ -449,6 +578,7 @@
 		3DB6DF841AC9AF690020497B /* Profiles */ = {
 			isa = PBXGroup;
 			children = (
+				3D8482C21ACB790D00D663DF /* LocateButton.swift */,
 				3DB6DF3A1AC9AED90020497B /* GenericProfileViewController.swift */,
 				3DF04FF91AD318DD008B0260 /* EditProfileFormViewController.swift */,
 				3DF04FF71AD318C6008B0260 /* EditProfileForm.swift */,
@@ -505,8 +635,8 @@
 		3DB6DF891AC9B0200020497B /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				3DBA11861AD4445100A4EF75 /* VersusCell.swift */,
 				3D8482BB1ACB74F300D663DF /* VersusViewController.swift */,
-				3DED5BE01AD04AD000F1DE5F /* VersusTableViewController.swift */,
 				3DC463E41AD2A65B0034C34F /* MenuViewController.swift */,
 				3DF04FE91AD2AF65008B0260 /* MenuCell.swift */,
 				3DED5BE21AD0773A00F1DE5F /* MainTabController.swift */,
@@ -533,6 +663,95 @@
 				3DB6DF4E1AC9AED90020497B /* SnatchesTableViewController.swift */,
 			);
 			name = Tables;
+			sourceTree = "<group>";
+		};
+		3DBA111E1AD4393700A4EF75 /* Octave-Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				3DBA11821AD4399600A4EF75 /* UIControl+Sound */,
+				3DBA111F1AD4393700A4EF75 /* beeps */,
+				3DBA11361AD4393700A4EF75 /* slides */,
+				3DBA113D1AD4393700A4EF75 /* taps */,
+			);
+			path = "Octave-Sounds";
+			sourceTree = "<group>";
+		};
+		3DBA111F1AD4393700A4EF75 /* beeps */ = {
+			isa = PBXGroup;
+			children = (
+				3DBA11201AD4393700A4EF75 /* beep-attention.aif */,
+				3DBA11211AD4393700A4EF75 /* beep-bop.aif */,
+				3DBA11221AD4393700A4EF75 /* beep-brightpop.aif */,
+				3DBA11231AD4393700A4EF75 /* beep-glitchy.aif */,
+				3DBA11241AD4393700A4EF75 /* beep-hightone.aif */,
+				3DBA11251AD4393700A4EF75 /* beep-holdtone.aif */,
+				3DBA11261AD4393700A4EF75 /* beep-horn.aif */,
+				3DBA11271AD4393700A4EF75 /* beep-metallic.aif */,
+				3DBA11281AD4393700A4EF75 /* beep-organ.aif */,
+				3DBA11291AD4393700A4EF75 /* beep-piano.aif */,
+				3DBA112A1AD4393700A4EF75 /* beep-plucked.aif */,
+				3DBA112B1AD4393700A4EF75 /* beep-reedy.aif */,
+				3DBA112C1AD4393700A4EF75 /* beep-rejected.aif */,
+				3DBA112D1AD4393700A4EF75 /* beep-roadblock.aif */,
+				3DBA112E1AD4393700A4EF75 /* beep-scrapy.aif */,
+				3DBA112F1AD4393700A4EF75 /* beep-scratchy.aif */,
+				3DBA11301AD4393700A4EF75 /* beep-sharpstring.aif */,
+				3DBA11311AD4393700A4EF75 /* beep-shinymetal.aif */,
+				3DBA11321AD4393700A4EF75 /* beep-tapped.aif */,
+				3DBA11331AD4393700A4EF75 /* beep-timber.aif */,
+				3DBA11341AD4393700A4EF75 /* beep-warmguitar.aif */,
+				3DBA11351AD4393700A4EF75 /* beep-xylo.aif */,
+			);
+			path = beeps;
+			sourceTree = "<group>";
+		};
+		3DBA11361AD4393700A4EF75 /* slides */ = {
+			isa = PBXGroup;
+			children = (
+				3DBA11371AD4393700A4EF75 /* slide-magic.aif */,
+				3DBA11381AD4393700A4EF75 /* slide-metal.aif */,
+				3DBA11391AD4393700A4EF75 /* slide-network.aif */,
+				3DBA113A1AD4393700A4EF75 /* slide-paper.aif */,
+				3DBA113B1AD4393700A4EF75 /* slide-rock.aif */,
+				3DBA113C1AD4393700A4EF75 /* slide-scissors.aif */,
+			);
+			path = slides;
+			sourceTree = "<group>";
+		};
+		3DBA113D1AD4393700A4EF75 /* taps */ = {
+			isa = PBXGroup;
+			children = (
+				3DBA113E1AD4393700A4EF75 /* tap-crisp.aif */,
+				3DBA113F1AD4393700A4EF75 /* tap-double.aif */,
+				3DBA11401AD4393700A4EF75 /* tap-fuzzy.aif */,
+				3DBA11411AD4393700A4EF75 /* tap-hollow.aif */,
+				3DBA11421AD4393700A4EF75 /* tap-kissy.aif */,
+				3DBA11431AD4393700A4EF75 /* tap-mellow.aif */,
+				3DBA11441AD4393700A4EF75 /* tap-metallic.aif */,
+				3DBA11451AD4393700A4EF75 /* tap-muted.aif */,
+				3DBA11461AD4393700A4EF75 /* tap-percussive.aif */,
+				3DBA11471AD4393700A4EF75 /* tap-professional.aif */,
+				3DBA11481AD4393700A4EF75 /* tap-resonant.aif */,
+				3DBA11491AD4393700A4EF75 /* tap-scratchy.aif */,
+				3DBA114A1AD4393700A4EF75 /* tap-simple.aif */,
+				3DBA114B1AD4393700A4EF75 /* tap-sizzle.aif */,
+				3DBA114C1AD4393700A4EF75 /* tap-smallest.aif */,
+				3DBA114D1AD4393700A4EF75 /* tap-toothy.aif */,
+				3DBA114E1AD4393700A4EF75 /* tap-vocal.aif */,
+				3DBA114F1AD4393700A4EF75 /* tap-warm.aif */,
+				3DBA11501AD4393700A4EF75 /* tap-wooden.aif */,
+				3DBA11511AD4393700A4EF75 /* tap-zipper.aif */,
+			);
+			path = taps;
+			sourceTree = "<group>";
+		};
+		3DBA11821AD4399600A4EF75 /* UIControl+Sound */ = {
+			isa = PBXGroup;
+			children = (
+				3DBA11831AD4399600A4EF75 /* UIControl+Sound.h */,
+				3DBA11841AD4399600A4EF75 /* UIControl+Sound.m */,
+			);
+			path = "UIControl+Sound";
 			sourceTree = "<group>";
 		};
 		3DC463D41AD2A4A70034C34F /* MMDrawerController */ = {
@@ -642,10 +861,62 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3DBA115F1AD4393700A4EF75 /* beep-roadblock.aif in Resources */,
+				3DBA11611AD4393700A4EF75 /* beep-scratchy.aif in Resources */,
 				3DB6DEEB1AC993620020497B /* Old.storyboard in Resources */,
+				3DBA11681AD4393700A4EF75 /* slide-magic.aif in Resources */,
+				3DBA11811AD4393700A4EF75 /* tap-zipper.aif in Resources */,
+				3DBA11621AD4393700A4EF75 /* beep-sharpstring.aif in Resources */,
+				3DBA117D1AD4393700A4EF75 /* tap-toothy.aif in Resources */,
+				3DBA11671AD4393700A4EF75 /* beep-xylo.aif in Resources */,
+				3DBA11631AD4393700A4EF75 /* beep-shinymetal.aif in Resources */,
+				3DBA116D1AD4393700A4EF75 /* slide-scissors.aif in Resources */,
+				3DBA117E1AD4393700A4EF75 /* tap-vocal.aif in Resources */,
+				3DAE5B0F1AD468A4004892CC /* meatSlap.aif in Resources */,
+				3DBA11521AD4393700A4EF75 /* beep-attention.aif in Resources */,
+				3DBA117A1AD4393700A4EF75 /* tap-simple.aif in Resources */,
+				3DBA11661AD4393700A4EF75 /* beep-warmguitar.aif in Resources */,
+				3DBA117B1AD4393700A4EF75 /* tap-sizzle.aif in Resources */,
+				3DBA11731AD4393700A4EF75 /* tap-mellow.aif in Resources */,
+				3DBA115B1AD4393700A4EF75 /* beep-piano.aif in Resources */,
+				3DBA11691AD4393700A4EF75 /* slide-metal.aif in Resources */,
+				3DBA116E1AD4393700A4EF75 /* tap-crisp.aif in Resources */,
+				3DBA115A1AD4393700A4EF75 /* beep-organ.aif in Resources */,
+				3DBA11541AD4393700A4EF75 /* beep-brightpop.aif in Resources */,
+				3DBA11651AD4393700A4EF75 /* beep-timber.aif in Resources */,
+				3DBA11791AD4393700A4EF75 /* tap-scratchy.aif in Resources */,
+				3DBA11601AD4393700A4EF75 /* beep-scrapy.aif in Resources */,
+				3DBA11551AD4393700A4EF75 /* beep-glitchy.aif in Resources */,
+				3DBA11561AD4393700A4EF75 /* beep-hightone.aif in Resources */,
+				3DBA11751AD4393700A4EF75 /* tap-muted.aif in Resources */,
+				3DBA116F1AD4393700A4EF75 /* tap-double.aif in Resources */,
 				3DED5BE51AD077BA00F1DE5F /* Main.storyboard in Resources */,
+				3DBA115C1AD4393700A4EF75 /* beep-plucked.aif in Resources */,
+				3DBA11781AD4393700A4EF75 /* tap-resonant.aif in Resources */,
+				3DBA115E1AD4393700A4EF75 /* beep-rejected.aif in Resources */,
+				3DBA117F1AD4393700A4EF75 /* tap-warm.aif in Resources */,
+				3DBA11711AD4393700A4EF75 /* tap-hollow.aif in Resources */,
+				3DAE5B081AD46559004892CC /* punch.wav in Resources */,
+				3DBA11721AD4393700A4EF75 /* tap-kissy.aif in Resources */,
+				3DBA116C1AD4393700A4EF75 /* slide-rock.aif in Resources */,
 				3DB6DEF01AC993620020497B /* LaunchScreen.xib in Resources */,
+				3DBA11581AD4393700A4EF75 /* beep-horn.aif in Resources */,
+				3DBA11741AD4393700A4EF75 /* tap-metallic.aif in Resources */,
+				3DBA11771AD4393700A4EF75 /* tap-professional.aif in Resources */,
+				3DAE5B101AD468A4004892CC /* Slap.mp3 in Resources */,
+				3DBA11571AD4393700A4EF75 /* beep-holdtone.aif in Resources */,
+				3DBA11531AD4393700A4EF75 /* beep-bop.aif in Resources */,
+				3DBA11761AD4393700A4EF75 /* tap-percussive.aif in Resources */,
+				3DBA11641AD4393700A4EF75 /* beep-tapped.aif in Resources */,
+				3DBA11701AD4393700A4EF75 /* tap-fuzzy.aif in Resources */,
+				3DBA116B1AD4393700A4EF75 /* slide-paper.aif in Resources */,
 				3DB6DEED1AC993620020497B /* Images.xcassets in Resources */,
+				3DBA115D1AD4393700A4EF75 /* beep-reedy.aif in Resources */,
+				3DAE5B111AD468A4004892CC /* slapFight.wav in Resources */,
+				3DBA11801AD4393700A4EF75 /* tap-wooden.aif in Resources */,
+				3DBA116A1AD4393700A4EF75 /* slide-network.aif in Resources */,
+				3DBA11591AD4393700A4EF75 /* beep-metallic.aif in Resources */,
+				3DBA117C1AD4393700A4EF75 /* tap-smallest.aif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -664,7 +935,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3DC463E01AD2A4A70034C34F /* MMDrawerVisualState.m in Sources */,
-				3DED5BE11AD04AD000F1DE5F /* VersusTableViewController.swift in Sources */,
 				3DB6907B1AD1B297007EFCEF /* MSDynamicsDrawerViewController.m in Sources */,
 				3DB6DF661AC9AEDA0020497B /* MainTableViewCell.swift in Sources */,
 				3DC463E31AD2A60F0034C34F /* FightsViewController.swift in Sources */,
@@ -672,7 +942,9 @@
 				3DF04FFA1AD318DD008B0260 /* EditProfileFormViewController.swift in Sources */,
 				3DB6DF5B1AC9AEDA0020497B /* DropitViewController.swift in Sources */,
 				3DB6DF6B1AC9AEDA0020497B /* MKUser.swift in Sources */,
+				3DBA11851AD4399600A4EF75 /* UIControl+Sound.m in Sources */,
 				3DB6DF811AC9AEF40020497B /* ZLSwipeableView.m in Sources */,
+				3DBA11871AD4445100A4EF75 /* VersusCell.swift in Sources */,
 				3D8482C31ACB790D00D663DF /* LocateButton.swift in Sources */,
 				3D56CAE01ACE0B21004759ED /* ISO3166CountryValueTransformer.swift in Sources */,
 				3DB6DF741AC9AEDA0020497B /* SnatchedViewController.swift in Sources */,
@@ -685,6 +957,7 @@
 				3DB6DF5E1AC9AEDA0020497B /* FightsTableViewController.swift in Sources */,
 				3DB6DF601AC9AEDA0020497B /* GangBangBehavior.swift in Sources */,
 				3DB6DF591AC9AEDA0020497B /* DataViewController.swift in Sources */,
+				3DAE5B131AD46A97004892CC /* RandomArray.swift in Sources */,
 				3DB6DF751AC9AEDA0020497B /* SnatchesTableViewCell.swift in Sources */,
 				3DB6DF611AC9AEDA0020497B /* GangBangViewController.swift in Sources */,
 				3D8482C71ACC2D7D00D663DF /* YLProgressBar.m in Sources */,
@@ -726,6 +999,7 @@
 				3DB6DF621AC9AEDA0020497B /* GenericProfileViewController.swift in Sources */,
 				3DB6DF7A1AC9AEDA0020497B /* TabBarController.swift in Sources */,
 				3D56CAE61ACE0CE0004759ED /* RegisterForm.swift in Sources */,
+				3DAE5B0A1AD4661B004892CC /* SoundAPI.swift in Sources */,
 				3DB6DF761AC9AEDA0020497B /* SnatchesTableViewController.swift in Sources */,
 				3DF04FF01AD2BAA8008B0260 /* FightCellRecipient.swift in Sources */,
 				3DB6DF581AC9AEDA0020497B /* Constants.swift in Sources */,

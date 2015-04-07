@@ -107,7 +107,7 @@ class FightsViewController: UIViewController, UITableViewDataSource, UITableView
         }
 //        let fightObject = arr[indexPath.row]
 //        self.performSegueWithIdentifier(Constants.OpenFightSegue, sender: fightObject)
-        
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         println("Prepared for segue with arguments \(sender)")

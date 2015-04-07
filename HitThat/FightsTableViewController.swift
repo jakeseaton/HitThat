@@ -109,7 +109,7 @@ class FightsTableViewController: PFQueryTableViewController {
         //        postText = (tableView.cellForRowAtIndexPath(indexPath) as? PFTableViewCell)?.textLabel?.text!
         //        println("Post Text:\(postText)")
         if let object:PFObject =  self.objectAtIndexPath(indexPath){
-            let recipientUser = object["recipient"] as AnyObject
+            let recipientUser: AnyObject = object["recipient"] as AnyObject
 //            let recipientUserName = object.objectForKey("recipient") as AnyObject as String
             let target = PFUser.query().getObjectWithId(recipientUser.objectId)
             self.performSegueWithIdentifier(Constants.ShowFightDetailsSegue, sender: target)
