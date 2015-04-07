@@ -9,28 +9,29 @@
 import UIKit
 
 class FightOpenViewController: UIViewController {
+    
     var userIsOrigin:Bool?
     
     @IBAction func goBackPressed(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
+    
     var userStamina:CGFloat?{
         didSet{
         self.userStaminaBar?.setProgress(self.userStamina!, animated: true)
-        self.userStaminaLabel.text = self.userStamina!.description
+        self.userStaminaLabel?.text = self.userStamina!.description
         }
     }
     var opponentStamina:CGFloat?{
         didSet{
-            println(self.opponentStamina)
             self.opponentStaminaBar?.setProgress(self.opponentStamina!, animated:true)
-            self.opponentStaminaLabel.text = self.opponentStamina!.description
-            
+            self.opponentStaminaLabel?.text = self.opponentStamina!.description
         }
     }
     @IBOutlet weak var userStaminaBar: YLProgressBar!
     @IBOutlet weak var opponentStaminaBar: YLProgressBar!
     // @IBOutlet weak var recipientStamina: YLProgressBar!
+    
     var originUser:PFUser?{
         didSet{
             updateUI()
@@ -53,53 +54,57 @@ class FightOpenViewController: UIViewController {
     @IBOutlet weak var turnLabel: UILabel!
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var opponentImage: UIImageView!
-    func updateUI(){
-        // doing this synchronously for now
-        if let origin = self.originUser{
-            if let recipient = self.recipientUser{
-                let originImage = SnatchParseAPI().getAUsersProfilePicture(origin)
-                let recipientImage = SnatchParseAPI().getAUsersProfilePicture(recipient)
-                self.userImage.image = self.userIsOrigin! ? originImage : recipientImage
-                self.opponentImage.image  = self.userIsOrigin! ? recipientImage : originImage
-            }
-        }
-        
-    }
+    
+    func updateUI(){}
     private func setStaminaBars(fight:PFObject){
+        let originStamina = fight["originStamina"] as AnyObject as CGFloat
+        let recipientStamina = fight["recipientStamina"] as AnyObject as CGFloat
+        self.userStamina = userIsOrigin! ? originStamina : recipientStamina
+        self.opponentStamina = userIsOrigin! ? recipientStamina : originStamina
+        self.userStaminaLabel?.text = userStamina?.description
+        self.opponentStaminaLabel?.text = opponentStamina?.description
+    }
+    
+    override func viewDidLoad() {
         self.userStaminaBar?.hideStripes = true
         self.opponentStaminaBar?.hideStripes = true
-
         self.userStaminaBar?.indicatorTextLabel.font = UIFont(name: "Arial-BoldMT", size: 20)
         self.opponentStaminaBar?.indicatorTextLabel.font = UIFont(name: "Arial-BoldMT", size: 20)
         self.userStaminaBar?.progressTintColors = [Colors.color1, Colors.color2]//self.colors
         self.opponentStaminaBar?.progressTintColors = [Colors.color1, Colors.color2]//self.colors
         self.userStaminaBar?.indicatorTextDisplayMode = YLProgressBarIndicatorTextDisplayMode.Progress
         self.opponentStaminaBar?.indicatorTextDisplayMode = YLProgressBarIndicatorTextDisplayMode.Progress
-        let originStamina = fight["originStamina"] as AnyObject as CGFloat
-        let recipientStamina = fight["recipientStamina"] as AnyObject as CGFloat
-        self.userStamina = userIsOrigin! ? originStamina : recipientStamina
-        self.opponentStamina = userIsOrigin! ? recipientStamina : originStamina
-        self.userStaminaLabel.text = userStamina?.description
-        self.opponentStaminaLabel.text = opponentStamina?.description
-    }
-    
-    override func viewDidLoad() {
-        println("viewDidLoad")
-        super.viewDidLoad()
-        if let fight = fightToDisplay{
-            PFUser.query().getObjectInBackgroundWithId(fight["recipient"].objectId, block:{
-                    (result, error) in
-                    self.recipientUser = result as? PFUser
-                // this is ugly--think of a way to get it out of here
-                    self.setStaminaBars(fight)
-                })
-            PFUser.query().getObjectInBackgroundWithId(fight["origin"].objectId){
-                    (result, error) in
-                    self.originUser = result as? PFUser
-                }
-            self.setStaminaBars(fight)
+        
+        let user = PFUser.currentUser()
+        let fight = self.fightToDisplay!
+        let origin = fight["origin"] as PFUser
+        let recipient = fight["recipient"] as PFUser
+        
+        if (origin.objectId == user.objectId){
+            self.userIsOrigin = true
+            self.originUser = user
+            self.recipientUser = PFUser.query().getObjectWithId(recipient.objectId) as? PFUser
         }
-            updateUI()
+            
+        else{
+            self.userIsOrigin = false
+            self.recipientUser = user
+            self.originUser = PFUser.query().getObjectWithId(fight["origin"].objectId) as? PFUser
+        }
+        setStaminaBars(self.fightToDisplay!)
+
+        let originImage = SnatchParseAPI().getAUsersProfilePicture(self.originUser!)
+        let recipientImage = SnatchParseAPI().getAUsersProfilePicture(self.recipientUser!)
+        if self.userIsOrigin!{
+            self.userImage.image = originImage
+            self.opponentImage.image = recipientImage
+        }
+        else{
+            self.userImage.image = recipientImage
+            self.opponentImage.image = originImage
+        }
+
+
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(animated: Bool) {
@@ -120,7 +125,14 @@ class FightOpenViewController: UIViewController {
             let dif = curr - newPercentage
             println(dif)
             self.opponentStamina = dif
-            self.userIsOrigin! ? SnatchParseAPI().notifyPunchedUser(self.recipientUser!) : SnatchParseAPI().notifyPunchedUser(self.originUser!)
+            println(recipientUser)
+            println(originUser)
+            if userIsOrigin!{
+                SnatchParseAPI().notifyPunchedUser(self.recipientUser!)
+            }
+            else{
+               SnatchParseAPI().notifyPunchedUser(self.originUser!)
+            }
         }
     }
     override func didReceiveMemoryWarning() {

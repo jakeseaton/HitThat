@@ -28,7 +28,7 @@ class EditProfileFormViewController: FXFormViewController {
         self.navigationController?.popViewControllerAnimated(true)
     }
     func submitRegistrationForm(cell: FXFormFieldCellProtocol){
-        let form = cell.field.form as RegisterForm
+        let form = cell.field.form as EditProfileForm
         if let newAlias = form.alias{
             if let profilePhoto = form.profilePhoto{
                 let photoFile = PFFile(data: UIImagePNGRepresentation(profilePhoto))

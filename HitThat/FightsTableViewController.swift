@@ -9,7 +9,6 @@
 import UIKit
 
 class FightsTableViewController: PFQueryTableViewController {
-
         override init(style:UITableViewStyle, className aClassName:String!){
             super.init(style: style, className: aClassName)
             self.parseClassName = "Fights"

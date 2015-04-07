@@ -11,8 +11,8 @@ import UIKit
 class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var userImage: UIImageView!
-    var menuItems = ["Versus", "My Profile", "My Fights", "Settings", "About"]
-    var menuIcons = ["fist", "userMale", "myFightsIcon", "settingsIcon", "aboutIcon"]
+    var menuItems = ["Home", "My Profile", "My Fights", "Settings", "About"]
+    var menuIcons = ["homeFilled", "userMale", "myFightsIcon", "settingsIcon", "aboutIcon"]
     override func viewDidLoad() {
         super.viewDidLoad()
         Colors().gradient(self)

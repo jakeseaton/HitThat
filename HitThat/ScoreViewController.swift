@@ -35,12 +35,14 @@ class ScoreViewController: UIViewController {
                 self.profilePicture.image = UIImage(data:data)
                 }
             }
-            let fightsQuery = PFQuery(className: "fights")
+            let fightsQuery = PFQuery(className: "Fights")
             fightsQuery.whereKey("origin", equalTo:userToDisplay!)
             fightsQuery.whereKey("recipient", equalTo:userToDisplay!)
             fightsQuery.countObjectsInBackgroundWithBlock(){
-                count in
-                self.userFights.text = "\(count) fights."
+                (count, error) in
+                if (error == nil){
+                 self.userFights.text = "\(count) fights."
+                }
             }
             self.userName.text = userToDisplay!["fullName"] as? String
     }

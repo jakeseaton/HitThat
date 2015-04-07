@@ -17,13 +17,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oPc-lK-doz">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oPc-lK-doz">
                                 <rect key="frame" x="16" y="343" width="46" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Good" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BkZ-d0-wIU">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Good" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BkZ-d0-wIU">
                                 <rect key="frame" x="16" y="372" width="568" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="eh9-Wz-lvr"/>
@@ -32,7 +32,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Bad" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xQ7-al-RLq">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bad" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xQ7-al-RLq">
                                 <rect key="frame" x="16" y="401" width="568" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="xQl-n9-1C4"/>
@@ -49,8 +49,12 @@
                                     <constraint firstAttribute="height" constant="200" id="eou-zd-BW4"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Fights" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YIe-4u-4K4">
-                                <rect key="frame" x="20" y="430" width="48" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fights" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YIe-4u-4K4">
+                                <rect key="frame" x="16" y="430" width="111" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="Ll2-q1-cXg"/>
+                                    <constraint firstAttribute="width" constant="111" id="uMo-vF-Mem"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -58,10 +62,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="YIe-4u-4K4" firstAttribute="top" secondItem="xQ7-al-RLq" secondAttribute="bottom" constant="8" symbolic="YES" id="1cQ-W6-sjA"/>
                             <constraint firstItem="xQ7-al-RLq" firstAttribute="leading" secondItem="oPc-lK-doz" secondAttribute="leading" id="3Wm-PP-Sch"/>
                             <constraint firstItem="BkZ-d0-wIU" firstAttribute="top" secondItem="oPc-lK-doz" secondAttribute="bottom" constant="8" symbolic="YES" id="4ga-VL-amU"/>
+                            <constraint firstItem="YIe-4u-4K4" firstAttribute="leading" secondItem="xQ7-al-RLq" secondAttribute="leading" id="JCa-si-TZ0"/>
                             <constraint firstItem="csa-BX-at0" firstAttribute="centerX" secondItem="rt3-jI-z5z" secondAttribute="centerX" id="QpK-uv-zWW"/>
                             <constraint firstItem="BkZ-d0-wIU" firstAttribute="trailing" secondItem="xQ7-al-RLq" secondAttribute="trailing" id="YD2-V6-2pi"/>
+                            <constraint firstItem="602-E1-yqG" firstAttribute="top" secondItem="YIe-4u-4K4" secondAttribute="bottom" constant="105" id="ZK7-mZ-LIh"/>
                             <constraint firstItem="BkZ-d0-wIU" firstAttribute="leading" secondItem="oPc-lK-doz" secondAttribute="leading" id="ana-aX-9rE"/>
                             <constraint firstItem="xQ7-al-RLq" firstAttribute="leading" secondItem="rt3-jI-z5z" secondAttribute="leadingMargin" id="deK-2X-s32"/>
                             <constraint firstItem="csa-BX-at0" firstAttribute="centerX" secondItem="BkZ-d0-wIU" secondAttribute="centerX" id="eJ3-cg-nzG"/>
@@ -572,7 +579,7 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RPA-ih-V6p" userLabel="Scrollview">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="751"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c6D-f4-Zhe" userLabel="Sizer">
+                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c6D-f4-Zhe" userLabel="Sizer">
                                         <rect key="frame" x="0.0" y="418" width="600" height="13"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ary-7V-HqB">
@@ -1015,7 +1022,6 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="nameLabel" destination="4Bi-dm-5N3" id="mRM-VB-4vh"/>
-                                            <segue destination="FEu-E8-JYC" kind="presentation" identifier="Open Fight" modalTransitionStyle="coverVertical" id="aQV-do-80q"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1030,11 +1036,12 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="tv" destination="uDx-DW-fwA" id="Ys7-qy-bEy"/>
+                        <segue destination="FEu-E8-JYC" kind="presentation" identifier="Open Fight" id="Vs3-Cq-vh3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hQn-ad-7o6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1485" y="1564"/>
+            <point key="canvasLocation" x="757" y="2524"/>
         </scene>
         <!--Fight Open View Controller-->
         <scene sceneID="ay3-Ze-kum">

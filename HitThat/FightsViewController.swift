@@ -91,18 +91,32 @@ class FightsViewController: UIViewController, UITableViewDataSource, UITableView
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 2
     }
+    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        println("didSelectRowAtIndexPath \(indexPath.row) \(indexPath.section)")
         let arr = (indexPath.section == 0) ? self.originFights : self.recipientFights
-        let fightObject = arr[indexPath.row]
-        self.performSegueWithIdentifier(Constants.OpenFightSegue, sender: fightObject)
-        println(fightObject)
+        println(arr)
+        if (indexPath.section == 0){
+            let fightObject = self.originFights[indexPath.row]
+            self.performSegueWithIdentifier(Constants.OpenFightSegue, sender: fightObject)
+        }
+        else{
+            let fightObject = self.recipientFights[indexPath.row]
+            self.performSegueWithIdentifier(Constants.OpenFightSegue, sender: fightObject)
+            
+        }
+//        let fightObject = arr[indexPath.row]
+//        self.performSegueWithIdentifier(Constants.OpenFightSegue, sender: fightObject)
         
     }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        println("Prepared for segue with arguments \(sender)")
         if segue.identifier == Constants.OpenFightSegue{
             if let fovc = segue.destinationViewController as? FightOpenViewController{
-                fovc.fightToDisplay = sender as? PFObject
-                fovc.userIsOrigin = (sender!["origin"] as PFUser == PFUser.currentUser())
+                if let fight = sender as? PFObject{
+                    println("fight: \(fight)")
+                    fovc.fightToDisplay = fight
+                }
             }
         }
     }
