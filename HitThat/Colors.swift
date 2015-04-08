@@ -12,6 +12,13 @@ struct Colors{
 //    static let navBarTintColor = UIColor(red:255/255, green:136/255, blue:74/255, alpha:1.0)
 //    static let color1 = UIColor(red:255/255, green:136/255, blue:74/255, alpha:1.0)
 //    static let color2 = UIColor(red: 255/255, green: 47/255, blue: 0/255, alpha: 1.0)
+    //    static let navbarTintColor = UIColor(red: 255.0/255, green: 168.0/255, blue: 69.0/255, alpha: 0.5)
+    //    static let tabbarBarTintColor = UIColor(red: 255.0/255, green: 168.0/255, blue: 69.0/255, alpha: 0.5)
+    //    static let navbarTintColor = UIColor(red: 35/255, green: 194/255, blue: 255/255, alpha: 1)
+    static let navbarTintColor = UIColor.yellowColor()
+    static let tabbarBarTintColor = UIColor(red: 35/255, green: 194/255, blue: 255/255, alpha: 1)
+    //    static let tabbarTintColor = UIColor.whiteColor()
+    static let tabbarTintColor = UIColor(red: 254/255, green:220/255, blue: 64/255, alpha: 1)
 
     static let color1 = UIColor(red:255/255, green:138/255, blue:119/255, alpha:1.0)
     static let color2 = UIColor(red: 210/255, green: 22/255, blue: 30/255, alpha: 1.0)
@@ -37,6 +44,7 @@ struct Colors{
     static let ConcreteColor = UIColor(red: 0.5843137254901961, green:0.6470588235294118, blue: 0.6509803921568628, alpha: 1.0)
     static let AsbestosColor = UIColor(red: 0.4980392156862745, green: 0.5490196078431373, blue: 0.5529411764705883, alpha: 1.0)
     static let ColorsArray = [Colors.TurquoiseColor, Colors.GreenSeaColor, Colors.EmeraldColor, Colors.NephritisColor, Colors.PeterRiverColor, Colors.BelizeHoleColor, Colors.AmethystColor, Colors.WisteriaColor, Colors.WetAsphaltColor, Colors.MidnightBlueColor, Colors.SunFlowerColor, Colors.OrangeColor, Colors.CarrotColor, Colors.PumpkinColor, Colors.AlizarinColor, Colors.PomegranateColor, Colors.CloudsColor, Colors.SilverColor, Colors.ConcreteColor, Colors.AsbestosColor]
+    
     func gradient(vc: UIViewController){
         let gradient: CAGradientLayer = CAGradientLayer()
         gradient.colors = [Colors.color1.CGColor, Colors.color2.CGColor]
@@ -44,8 +52,15 @@ struct Colors{
         gradient.frame = CGRect(x: 0.0, y: 0.0, width: vc.view.frame.size.width, height: vc.view.frame.size.height)
         vc.view.layer.insertSublayer(gradient, atIndex: 0)
     }
-
-
+    func configureStaminaBar(bar:YLProgressBar){
+        bar.hideStripes = true
+        bar.indicatorTextLabel.font = UIFont(name: "Arial-BoldMT", size: 20)
+        bar.progressTintColors = [Colors.color1, Colors.color2]
+        bar.indicatorTextDisplayMode = YLProgressBarIndicatorTextDisplayMode.Progress
+    }
+    func favoriteBackGroundColor(vc:UIViewController){
+        vc.view.backgroundColor = Colors.SilverColor
+    }
 }
 //blue
 //AGEColorImplement(flatTurquoiseColor, red: 0.10196078431372549, green: 0.7372549019607844, blue: 0.611764705882353)

@@ -68,7 +68,7 @@ class PostViewController: UIViewController, UITextViewDelegate {
                     let object = PFObject(className:"Posts")
                     PFUser.currentUser().setObject(geoPoint, forKey: "location")
                     PFUser.currentUser().saveInBackground()
-                    object["origin"] = SnatchParseAPI.currentUserName
+                    object["origin"] = ParseAPI().stringOfCurrentUserProperty("username")
                     object["text"] = self.postView.text
                     object["beatUps"] = 0
                     object["snatchUps"] = 0
@@ -119,7 +119,7 @@ class PostViewController: UIViewController, UITextViewDelegate {
 ////            spa.updateUserLocation(location)
 //            // update the location in the parse database
 //            currLocation = location.coordinate
-////            if let currentUserName = SnatchParseAPI.currentUserName{
+////            if let currentUserName = ParseAPI.currentUserName{
 ////                var object = PFObject(className: "Locations")
 ////                object["username"] = currentUserName
 ////                object["location"] = PFGeoPoint(latitude: currLocation!.latitude, longitude: currLocation!.longitude)

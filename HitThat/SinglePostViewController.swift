@@ -14,7 +14,7 @@ class SinglePostViewController: UIViewController {
         if let currentObject = objectToDisplay{
             if let origin = currentObject.objectForKey("origin") as AnyObject as? String{
                 let object = PFObject(className: "Snatches")
-                object["origin"] = SnatchParseAPI.currentUserName
+                object["origin"] = ParseAPI().stringOfCurrentUserProperty("username")
                 object["recipient"] = origin
                 object["post"] = objectToDisplay
                 let query = PFQuery(className: "_User")
@@ -47,7 +47,7 @@ class SinglePostViewController: UIViewController {
         if let currentObject = objectToDisplay{
             if let origin = currentObject.objectForKey("origin") as AnyObject as? String{
                 let object = PFObject(className: "Fights")
-                object["origin"] = SnatchParseAPI.currentUserName
+                object["origin"] = ParseAPI().stringOfCurrentUserProperty("username")
                 object["recipient"] = origin
                 object["post"] = objectToDisplay
                 let query = PFQuery(className: "_User")

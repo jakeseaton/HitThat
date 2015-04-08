@@ -23,7 +23,7 @@ class FightsTableViewController: PFQueryTableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier(Constants.CellReuseIdentifier, forIndexPath: indexPath) as FightsTableViewCell
         let fight:AnyObject = object.objectForKey("recipient") as AnyObject
         let userToFight = PFUser.query().getObjectWithId(fight.objectId) as PFUser
-//        cell.userImage.image = SnatchParseAPI().getAUsersProfilePicture(userToFight)
+//        cell.userImage.image = ParseAPI().getAUsersProfilePicture(userToFight)
         cell.postText.text = userToFight["fullName"] as AnyObject as? String
 //        let post:AnyObject = object.objectForKey("post") as AnyObject
 //        let query = PFQuery(className: "Posts")
@@ -40,7 +40,7 @@ class FightsTableViewController: PFQueryTableViewController {
             self.tableView.estimatedRowHeight = 60
             self.tableView.rowHeight = UITableViewAutomaticDimension
             
-//            if let currentUserName = SnatchParseAPI.currentUserName{
+//            if let currentUserName = ParseAPI.currentUserName{
 //                let query = PFQuery(className: "Fights")
 //                println("current user name:\(currentUserName)")
 //                query.whereKey("origin", equalTo: currentUserName)
@@ -88,7 +88,7 @@ class FightsTableViewController: PFQueryTableViewController {
             if let user = PFUser.currentUser(){
                 query.whereKey("origin", equalTo: user)
             }
-//            if let currentUserName = SnatchParseAPI.currentUserName{
+//            if let currentUserName = ParseAPI.currentUserName{
 //                query.whereKey("origin", equalTo: currentUserName)
 //                query.limit = 200;
 //                query.orderByDescending("createdAt")

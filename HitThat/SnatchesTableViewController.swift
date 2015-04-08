@@ -36,7 +36,7 @@ class SnatchesTableViewController: PFQueryTableViewController {
             self.tableView.estimatedRowHeight = 60
             self.tableView.rowHeight = UITableViewAutomaticDimension
 //            let query = PFQuery(className: "Snatches")
-//            if let currentUserName = SnatchParseAPI.currentUserName{
+//            if let currentUserName = ParseAPI.currentUserName{
 ////                println("current user name:\(currentUserName)")
 //                query.whereKey("origin", equalTo: currentUserName)
 //                query.findObjectsInBackgroundWithBlock(){
@@ -84,7 +84,7 @@ class SnatchesTableViewController: PFQueryTableViewController {
             if let user = PFUser.currentUser(){
                 query.whereKey("recipient", equalTo: user)
             }
-//                       if let currentUserName = SnatchParseAPI.currentUserName{
+//                       if let currentUserName = ParseAPI.currentUserName{
 //                query.whereKey("origin", equalTo: currentUserName)
             query.limit = 200;
             query.orderByDescending("createdAt")
@@ -109,7 +109,7 @@ class SnatchesTableViewController: PFQueryTableViewController {
         // better way to do this
         let fight:AnyObject = object.objectForKey("origin") as AnyObject
         let userToFight = PFUser.query().getObjectWithId(fight.objectId) as PFUser
-        //        cell.userImage.image = SnatchParseAPI().getAUsersProfilePicture(userToFight)
+        //        cell.userImage.image = ParseAPI().getAUsersProfilePicture(userToFight)
         cell.postText.text = userToFight["fullName"] as AnyObject as? String
 //        let query = PFQuery(className: "Posts")
 //        let post:AnyObject = object.objectForKey("post")

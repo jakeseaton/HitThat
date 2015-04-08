@@ -33,19 +33,20 @@ class facebookLogIn: UIViewController  {
                 self.associateInstallationWithUser()
                 var emptyArray:[PFObject] = []
                 PFUser.currentUser().setObject(emptyArray, forKey:"seen")
+                PFUser.currentUser().setObject(0, forKey: "wins")
+                PFUser.currentUser().setObject(0, forKey: "losses")
+                PFUser.currentUser().saveEventually()
                 FBRequestConnection.startForMeWithCompletionHandler(){
                     (connection, result, error) in
                     if error == nil {
                         if let facebookId:String = result.objectForKey("id") as? String{
                             PFUser.currentUser().setObject(facebookId, forKey: "fbId")
                             PFUser.currentUser().saveInBackground()
-                            println("successfully stored their fbId")
                         }
                     }
                 }
                 NSLog("User signed up and logged in through Facebook!")
                 self.loadData()
-//                self.dismissViewControllerAnimated(true, completion: nil)
                 self.performSegueWithIdentifier(Constants.NewUserSegue, sender: self)
             }
             else {

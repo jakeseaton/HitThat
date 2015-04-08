@@ -17,7 +17,7 @@ class MyProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        fullName.text = SnatchParseAPI.currentUserFullName
+        fullName.text = "derp fix this"
         if let curr = PFUser.currentUser(){
             println("got the current user")
             ratioLabel.text = "Ratio:0:0"
@@ -45,7 +45,7 @@ class MyProfileViewController: UIViewController {
 //                println("THERE WAS AN ERROR")
 //            }else{
 //                self.fullName.text = result.name
-//                if let derp:String = SnatchParseAPI.currentUserFullName{
+//                if let derp:String = ParseAPI.currentUserFullName{
 //                      println("\(derp)")
 //                }
 //            }
@@ -57,8 +57,8 @@ class MyProfileViewController: UIViewController {
 //        [NSURLConnection connectionWithRequest:profilePictureURLRequest delegate:self];
     }
     
-//    let userSnatches = SnatchParseAPI.currentUserSnatches
-//    let userFights = SnatchParseAPI.currentUserFights
+//    let userSnatches = ParseAPI.currentUserSnatches
+//    let userFights = ParseAPI.currentUserFights
     
 // CODE FOR PARALLAX IMAGE THING at http://www.thoughtfaqtory.com/scale-background-image-while-scrolling-uiscrollview/
     

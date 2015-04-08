@@ -36,29 +36,35 @@ class RegisterFormViewController: FXFormViewController {
                                 if let interests = form.interests{
                                     if let reach = form.reach{
                                         if let bio = form.bio{
-                                            formComplete = true
-                                            PFUser.currentUser()["reach"] = reach
-                                            PFUser.currentUser()["bio"] = bio
-                                            PFUser.currentUser()["interests"] = interests
-                                            PFUser.currentUser()["wins"] = 0
-                                            PFUser.currentUser()["jailTime"] = form.jailTime
-                                            PFUser.currentUser()["hitsWith"] = hitsWith
-                                            PFUser.currentUser()["alias"] = newAlias
-                                            PFUser.currentUser()["height"] = userHeight
-                                            PFUser.currentUser()["weight"] = userWeight
-                                            PFUser.currentUser()["bestMove"] = bestMove
-                                            switch form.bodyType{
-                                            case 0:
-                                                PFUser.currentUser()["bodyType"] = "Normal"
-                                            case 1:
-                                                PFUser.currentUser()["bodyType"] = "Butch"
-                                            case 2:
-                                                PFUser.currentUser()["bodyType"] = "Swole"
-                                            default:
-                                                PFUser.currentUser()["bodyType"] = "Slim"
+                                            if let lookingFor = form.lookingFor{
+                                                formComplete = true
+                                                PFUser.currentUser()["reach"] = reach
+                                                PFUser.currentUser()["bio"] = bio
+                                                PFUser.currentUser()["lookingFor"] = lookingFor
+                                                PFUser.currentUser()["interests"] = interests
+                                                PFUser.currentUser()["tatoos"] = form.tatoos
+                                                PFUser.currentUser()["gpa"] = form.gpa
+                                                PFUser.currentUser()["jailTime"] = form.jailTime
+                                                PFUser.currentUser()["hitsWith"] = hitsWith
+                                                PFUser.currentUser()["alias"] = newAlias
+                                                PFUser.currentUser()["height"] = userHeight
+                                                PFUser.currentUser()["weight"] = userWeight
+                                                PFUser.currentUser()["bestMove"] = bestMove
+                                                switch form.bodyType{
+                                                case 0:
+                                                    PFUser.currentUser()["bodyType"] = "Normal"
+                                                case 1:
+                                                    PFUser.currentUser()["bodyType"] = "Butch"
+                                                case 2:
+                                                    PFUser.currentUser()["bodyType"] = "Swole"
+                                                default:
+                                                    PFUser.currentUser()["bodyType"] = "Slim"
+                                                }
+                                                PFUser.currentUser().saveInBackground()
+                                                self.performSegueWithIdentifier("goHome", sender: self)
+                                                
                                             }
-                                            PFUser.currentUser().saveInBackground()
-                                            self.performSegueWithIdentifier("goHome", sender: self)
+                                            
                                         }
                                     }
                                     

@@ -24,22 +24,23 @@ class FightsViewController: UIViewController, UITableViewDataSource, UITableView
     
     func refresh(){
         if (PFUser.currentUser() != nil){
-            let queryOrigin = PFQuery(className: "Fights")
-            queryOrigin.whereKey("origin", equalTo: PFUser.currentUser())
-            queryOrigin.orderByDescending("updatedAt")
-            queryOrigin.findObjectsInBackgroundWithBlock(){
-                (objects, error) in
-                self.originFights = objects as [PFObject]
-            }
-            let queryRecipient = PFQuery(className: "Fights")
-            queryRecipient.whereKey("recipient", equalTo: PFUser.currentUser())
-            queryRecipient.orderByDescending("updatedAt")
-            queryRecipient.findObjectsInBackgroundWithBlock(){
-                (objects, error) in
-                self.recipientFights = objects as [PFObject]
+                let queryOrigin = ParseAPI().fightsQuery()
+                queryOrigin.orderByDescending("updatedAt")
+                queryOrigin.whereKey("origin", equalTo:PFUser.currentUser())
+                queryOrigin.findObjectsInBackgroundWithBlock(){
+                    (objects, error) in
+                    self.originFights = objects as [PFObject]
+                }
+                let queryRecipient = ParseAPI().fightsQuery()
+                queryRecipient.orderByDescending("updatedAt")
+                queryRecipient.whereKey("recipient", equalTo: PFUser.currentUser())
+                queryRecipient.findObjectsInBackgroundWithBlock(){
+                    (objects, error) in
+                    self.recipientFights = objects as [PFObject]
+                }
             }
         }
-    }
+
     
     func updateUI(){
         
@@ -47,6 +48,7 @@ class FightsViewController: UIViewController, UITableViewDataSource, UITableView
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        Colors().gradient(self)
         self.refresh()
         // Do any additional setup after loading the view.
     }
@@ -93,7 +95,6 @@ class FightsViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        println("didSelectRowAtIndexPath \(indexPath.row) \(indexPath.section)")
         let arr = (indexPath.section == 0) ? self.originFights : self.recipientFights
         println(arr)
         if (indexPath.section == 0){

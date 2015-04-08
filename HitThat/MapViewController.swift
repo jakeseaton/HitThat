@@ -33,8 +33,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 //            clearAnnotations()
             if let curr = userToLocate{
 //                handleAnnotations([curr])
-                let API = SnatchParseAPI()
-                API.notifyTrackedUser(curr)
+                ParseAPI().notifyTrackedUser(curr)
             }
         }
     }
@@ -54,11 +53,12 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        Colors().gradient(self)
         if let curr = userToLocate{
             handleAnnotations([curr])
         }
-//        let currentUserWantsToFight = SnatchParseAPI.currentUserWantsToFight
-//        let currentUserWantsToSnatch = SnatchParseAPI.currentUserWantsToSnatch
+//        let currentUserWantsToFight = ParseAPI.currentUserWantsToFight
+//        let currentUserWantsToSnatch = ParseAPI.currentUserWantsToSnatch
 //        println("\(SnatchLocationAPI.currLocation)")
     }
     

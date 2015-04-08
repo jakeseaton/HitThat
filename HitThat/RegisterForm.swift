@@ -25,6 +25,9 @@ class RegisterForm: NSObject, FXForm {
     var hitsWith:String?
     var bodyType = 0
     var jailTime = 0
+    var tatoos = 0
+    var gpa = 0
+    var lookingFor:String?
     var reach:String?
     
     func fields() -> [AnyObject]! {        
@@ -56,12 +59,18 @@ class RegisterForm: NSObject, FXForm {
             //we want to use a stepper control for this value, so let's specify that
             
             [FXFormFieldKey: "jailTime", FXFormFieldCell: FXFormStepperCell.self],
+            [FXFormFieldKey: "tatoos", FXFormFieldCell: FXFormStepperCell.self],
+            [FXFormFieldKey: "gpa", FXFormFieldCell: FXFormStepperCell.self],
             
         
             //this is an options field that uses a FXFormOptionPickerCell to display the available
             //options in a UIPickerView
             
             [FXFormFieldKey: "hitsWith",
+                FXFormFieldOptions: ["Right Hand", "Left Hand", "Head", "Foot", "Bat", "Purse","Hatchet","Car", "Motorcycle", "Taxes", "Cat", "Mid Life Crisis", "Good Touch", "Bad Touch", "Anchor", "Hard Rock", "Soft Jazz"],
+                FXFormFieldPlaceholder: "N/A",
+                FXFormFieldCell: FXFormOptionPickerCell.self],
+            [FXFormFieldKey: "lookingFor",
                 FXFormFieldOptions: ["Right Hand", "Left Hand", "Head", "Foot", "Bat", "Purse","Hatchet","Car", "Motorcycle", "Taxes", "Cat", "Mid Life Crisis", "Good Touch", "Bad Touch", "Anchor", "Hard Rock", "Soft Jazz"],
                 FXFormFieldPlaceholder: "N/A",
                 FXFormFieldCell: FXFormOptionPickerCell.self],

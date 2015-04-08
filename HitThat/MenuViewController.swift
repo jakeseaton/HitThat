@@ -11,22 +11,14 @@ import UIKit
 class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var userImage: UIImageView!
-    var menuItems = ["Home", "My Profile", "My Fights", "Settings", "About"]
-    var menuIcons = ["homeFilled", "userMale", "myFightsIcon", "settingsIcon", "aboutIcon"]
     override func viewDidLoad() {
         super.viewDidLoad()
-        Colors().gradient(self)
         if let currentUser = PFUser.currentUser(){
-            // this is synchronous for now
-            let image = SnatchParseAPI().getAUsersProfilePicture(currentUser)
-            self.userImage?.image = image
+            ParseAPI().installAUsersProfilePicture(currentUser, target: self.userImage!)
         }
-        // Do any additional setup after loading the view.
-    }
+        Colors().gradient(self)
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        // Do any additional setup after loading the view.
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -52,28 +44,34 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
             break
         case 3:
-            println(menuItems[3])
+            println(Constants.menuItems[3])
 //            var centerViewController = self.storyboard?.instantiateViewControllerWithIdentifier("SettingsFormViewController") as SettingsFormViewController
 //            self.switchCenterContainer(centerViewController)
             break
         case 4:
-            println(menuItems[4])
+            println(Constants.menuItems[4])
+            break
+        case 5:
+            ParseAPI().resetSeen()
+            break
+        case 6:
+            ParseAPI().clearAllFights()
             break
         default:
-            println("\(menuItems[indexPath.row]) is selected")
+            println("\(Constants.menuItems[indexPath.row]) is selected")
         }
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(Constants.MenuCellRestorationIdentifier, forIndexPath: indexPath) as MenuCell
-        cell.menuLabel.text = menuItems[indexPath.row]
-        cell.menuIcon.image = UIImage(named: menuIcons[indexPath.row])
+        cell.menuLabel.text = Constants.menuItems[indexPath.row]
+        cell.menuIcon.image = UIImage(named: Constants.menuIcons[indexPath.row])
         return cell
 
     }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         tableView.scrollEnabled = false
-        return menuItems.count
+        return Constants.menuItems.count
     }
     func switchCenterContainer(newCenterController:UIViewController){
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate

@@ -25,12 +25,5 @@ class TabBarController: UITabBarController {
     
     
     override func viewDidAppear(animated: Bool) {
-        if let currUserName = SnatchParseAPI.currentUserName{
-            super.viewDidAppear(true)
-        }
-        else{
-            super.viewDidAppear(true)
-            performSegueWithIdentifier(Constants.LogInSegue, sender: self.view)
-        }
     }
 }

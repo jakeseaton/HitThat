@@ -19,6 +19,7 @@ struct SoundAPI {
             player.prepareToPlay()
             result.append(player)
         }
+        AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryAmbient, error: nil)
         return result
         
     }

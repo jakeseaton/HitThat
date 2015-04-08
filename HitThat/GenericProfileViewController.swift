@@ -11,10 +11,11 @@ import UIKit
 class GenericProfileViewController: UIViewController {
     var userToDisplay:PFUser?
     @IBOutlet weak var profilePicture: UIImageView!
+    @IBOutlet weak var userProfilePicture: UIImageView!
     @IBOutlet weak var fullName: UILabel!
+    @IBOutlet weak var userFullName: UILabel!
     // need outlets for the table of posts, the picture, etc
     @IBAction func keepPlayingPressed(sender: AnyObject) {
-        println("derp")
         self.performSegueWithIdentifier(Constants.KeepPlayingSegue, sender: self)
     }
 
@@ -22,20 +23,17 @@ class GenericProfileViewController: UIViewController {
         super.viewDidLoad()
         println("didLoad")
         Colors().gradient(self)
+        Shapes().circularImage(self.profilePicture)
+        Shapes().circularImage(self.userProfilePicture)
         if let userObject = userToDisplay{
-            println("\(userObject)")
-            fullName.text = userObject.objectForKey("fullName") as AnyObject as? String
-            if let img = userObject["profilePicture"] as AnyObject as? PFFile {
-                img.getDataInBackgroundWithBlock {
-                    (imageData, error) -> Void in
-                    if error != nil {
-                        println("ERROR RETRIEVING IMAGE")
-                    }
-                    else{
-                        self.profilePicture.image = UIImage(data:imageData)
-                    }
-                }
-            }
+            fullName.text = ParseAPI().stringOfUnwrappedUserProperty("fullName", user: userObject)
+            ParseAPI().installAUsersProfilePicture(userObject, target: self.profilePicture)
+            
+
+        }
+        if let currentUser = PFUser.currentUser(){
+           ParseAPI().installAUsersProfilePicture(currentUser, target: self.userProfilePicture)
+            userFullName.text = ParseAPI().stringOfCurrentUserProperty("fullName")
         }
         // Do any additional setup after loading the view.
     }
@@ -43,6 +41,9 @@ class GenericProfileViewController: UIViewController {
     @IBAction func locatePressed(sender: AnyObject) {
         println("locating: \(userToDisplay)")
         performSegueWithIdentifier(Constants.LocateSegueIndentifier, sender: userToDisplay)
+    }
+    @IBAction func startFightPressed(sender: AnyObject) {
+        println("start fight pressed")
     }
     @IBAction func gangBangPressed(sender: AnyObject) {
         println("gangbanging: \(userToDisplay)")

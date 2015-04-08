@@ -1,4 +1,5 @@
-// This is a customized pod. I wrote the functionality, but some of the animation stuff is not mine.
+// I didn't write the contents of scrollViewDidScroll. the rest is all me.
+// sorry its super disorganized. working on it.
 
 import UIKit
 
@@ -9,13 +10,15 @@ let distance_W_LabelHeader:CGFloat = 35.0 // The distance between the bottom of 
 class VersusViewController: UIViewController, UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource {
     var userSawLoginScreen = false
     var soundArray:[AVAudioPlayer]?
+    
     @IBOutlet weak var distanceLabel:UILabel!
     @IBAction func nextTapped(sender: AnyObject) {
         self.next()
     }
     @IBAction func versusTapped(sender: AnyObject) {
-        // play some sount
-        self.next()
+        ParseAPI().storeAFightFromVersusScreen(userToDisplay!)
+        self.soundArray?.randomItem().play()
+        self.performSegueWithIdentifier(Constants.GenericProfileSegue, sender: self)
     }
     @IBOutlet weak var backgroundView: UIView!
     @IBOutlet var scrollView:UIScrollView!
@@ -25,15 +28,16 @@ class VersusViewController: UIViewController, UIScrollViewDelegate, UITableViewD
     @IBOutlet var headerImageView:UIImageView!
     @IBOutlet var headerBlurImageView:UIImageView!
     var blurredHeaderImageView:UIImageView?
+    
     @IBAction func keepPlaying(segue:UIStoryboardSegue){
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         appDelegate.centerContainer!.centerViewController = self
-        // figure out some way to check what state it is in. 
-        // appDelegate.centerContainer!.toggleDrawerSide(.Right, animated: true, completion: nil)
+        self.next()
     }
     // To Set
     @IBOutlet weak var tv: UITableView!
     @IBOutlet weak var bioLabel:UILabel!
+    @IBOutlet weak var userDisplayName: UILabel!
     @IBOutlet weak var displayName: UILabel!
     var userToDisplay:PFUser?{
         didSet{
@@ -43,21 +47,12 @@ class VersusViewController: UIViewController, UIScrollViewDelegate, UITableViewD
         }
     }
     private func updateUI(){
-         // userToDisplay!.objectForKey("fullName") as AnyObject as? String
-        self.displayName.text = userToDisplay!.objectForKey("alias") as AnyObject as? String
-        self.bioLabel.text = userToDisplay?.objectForKey("bio") as? String
-        if let img = userToDisplay!.objectForKey("profilePhoto") as AnyObject as? PFFile{
-            img.getDataInBackgroundWithBlock(){
-                data, error in
-                self.headerImageView.image = UIImage(data: data)
-                self.headerBlurImageView?.image = self.headerImageView?.image?.blurredImageWithRadius(10, iterations: 20, tintColor: UIColor.clearColor())
-            }
-        }
-        if let location = PFUser.currentUser()?.objectForKey("location") as? PFGeoPoint{
-            if let opponentLocation = userToDisplay?.objectForKey("location") as? PFGeoPoint{
-                let distance = location.distanceInMilesTo(opponentLocation)
-                self.distanceLabel.text = "Distance : " + distance.description + "mi"
-            }
+        self.displayName.text = ParseAPI().stringOfUnwrappedUserProperty("alias", user: userToDisplay!)
+        self.bioLabel.text = "Bio: " + ParseAPI().stringOfUnwrappedUserProperty("bio", user: userToDisplay!)
+        ParseAPI().installAUsersProfilePhoto(userToDisplay!, target: self.headerImageView, optionalBlurTarget: self.headerBlurImageView)
+        self.distanceLabel.text = "Distance: " + ParseAPI().distanceToUser(userToDisplay!).description + "mi"
+        if let currUser = PFUser.currentUser(){
+            self.userDisplayName.text = ParseAPI().stringOfCurrentUserProperty("alias")
         }
     }
     
@@ -78,15 +73,37 @@ class VersusViewController: UIViewController, UIScrollViewDelegate, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tv.allowsSelection = false
-        self.tv.backgroundColor = UIColor.clearColor()
-        self.soundArray = SoundAPI().getArrayOfSoundsPlayers()
-        AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryAmbient, error: nil)
+        
+        // Get first user
         self.next()
         self.indicator.hidden = true
+        
+        // TableView
+        self.tv.allowsSelection = false
+        self.tv.backgroundColor = UIColor.clearColor()
+        scrollView.delegate = self
+        
+        // Sound
+        self.soundArray = SoundAPI().getArrayOfSoundsPlayers()
+        
+        // UI
         self.headerLabel.text = "PUNCH TO FIGHT!"
         self.headerLabel.textColor = Colors.color2
-        scrollView.delegate = self
+        backgroundView.backgroundColor = UIColor.clearColor()
+        Colors().gradient(self)
+        
+        // Header - Image
+        headerImageView = UIImageView(frame: header.bounds)
+        headerImageView?.contentMode = UIViewContentMode.ScaleAspectFill
+        header.insertSubview(headerImageView, belowSubview: headerLabel)
+        
+        // Header - Blurred Image
+        headerBlurImageView = UIImageView(frame: header.bounds)
+        headerBlurImageView?.contentMode = UIViewContentMode.ScaleAspectFill
+        headerBlurImageView?.alpha = 0.0
+        header.insertSubview(headerBlurImageView, belowSubview: headerLabel)
+        header.clipsToBounds = true
+
     }
     
     @IBAction func locatePressed(sender: AnyObject) {
@@ -95,62 +112,10 @@ class VersusViewController: UIViewController, UIScrollViewDelegate, UITableViewD
         println("view will appear")
         self.becomeFirstResponder()
         AppDelegate.Motion.Manager.startAccelerometerUpdates()
-        backgroundView.backgroundColor = UIColor.clearColor()
-        headerImageView = UIImageView(frame: header.bounds)
-//        if let img = userToDisplay?["profilePhoto"] as? PFFile{
-//            img.getDataInBackgroundWithBlock {
-//                (imageData, error) -> Void in
-//                if error != nil {
-//                    println("ERROR RETRIEVING IMAGE")
-//                }
-//                else{
-//                    self.headerImageView?.image = UIImage(data:imageData)
-//                    //                        self.avatarImage.image = UIImage(data:imageData)
-//                }
-//            }
-//        }
-//        else{
-//            self.headerImageView?.image = UIImage(named: "backgroundGradient")
-//        }
-        // this gets the current user's profile photo
-//        if let userObject = PFUser.currentUser(){
-//            //            println("\(userObject)")
-//            
-//            if let img = userObject["profilePhoto"] as AnyObject as? PFFile {
-//                img.getDataInBackgroundWithBlock {
-//                    (imageData, error) -> Void in
-//                    if error != nil {
-//                        println("ERROR RETRIEVING IMAGE")
-//                    }
-//                    else{
-//                        self.headerImageView?.image = UIImage(data:imageData)
-//                        //                        self.avatarImage.image = UIImage(data:imageData)
-//                    }
-//                }
-//            }
-//        }
-        headerImageView?.contentMode = UIViewContentMode.ScaleAspectFill
-        header.insertSubview(headerImageView, belowSubview: headerLabel)
-        
-        // Header - Blurred Image
-        
-        headerBlurImageView = UIImageView(frame: header.bounds)
-        headerBlurImageView?.image = self.headerImageView?.image?.blurredImageWithRadius(10, iterations: 20, tintColor: UIColor.clearColor())
-        headerBlurImageView?.contentMode = UIViewContentMode.ScaleAspectFill
-        headerBlurImageView?.alpha = 0.0
-        header.insertSubview(headerBlurImageView, belowSubview: headerLabel)
-        
-        header.clipsToBounds = true
-        Colors().gradient(self)
-//        if let user = PFUser.currentUser(){
-//            userToDisplay = user
-//        }
-        // get a random user here!
-        
     }
     override func viewDidAppear(animated: Bool) {
         println("view did appear")
-        if let currUserName = PFUser.currentUser(){
+        if let currUser = PFUser.currentUser(){
             super.viewDidAppear(true)
         }
         else{
@@ -172,7 +137,7 @@ class VersusViewController: UIViewController, UIScrollViewDelegate, UITableViewD
     }
     override func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent) {
         if (motion == UIEventSubtype.MotionShake){
-            SnatchParseAPI().storeAFightFromVersusScreen(userToDisplay!)
+            ParseAPI().storeAFightFromVersusScreen(userToDisplay!)
             self.soundArray?.randomItem().play()
             self.performSegueWithIdentifier(Constants.GenericProfileSegue, sender: self)
         }
@@ -251,9 +216,9 @@ class VersusViewController: UIViewController, UIScrollViewDelegate, UITableViewD
             // specify what user we want.
             println("starting query")
             let query = PFUser.query()
-            // allows it to continue every time. Delete this to never see the same user again.
-            PFUser.currentUser()["seen"] = []
-            PFUser.currentUser().save()
+            // allows it to continue every time. Delete this to never see the same user again. Raises an exception when you log in for the first time.
+            PFUser.currentUser()?["seen"] = []
+            PFUser.currentUser()?.saveInBackground()
             if let currUser = PFUser.currentUser(){
                 query.whereKey("objectId", notEqualTo:currUser.objectId)
                 if let display = userToDisplay{
@@ -274,18 +239,17 @@ class VersusViewController: UIViewController, UIScrollViewDelegate, UITableViewD
                         println("refreshed--new user")
                     }
                     else{
-                        println("no more users")
+                        println("no more users to view")
                     }
                 }
             }
         }
     }
-    var categories = ["gender", "height", "weight", "reach", "wins", "jailTime", "bestMove", "bodyType", "GPA", "lookingFor"]
     // TableView Data Source/Delegate Stuff
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("VersusCell") as VersusCell
         cell.backgroundColor = UIColor.clearColor()
-        let category = categories[indexPath.row]
+        let category = Constants.categories[indexPath.row]
         let userCategory: AnyObject? = PFUser.currentUser()?.objectForKey(category)
         let opponentCategory: AnyObject? = userToDisplay?.objectForKey(category)
         switch category{
@@ -296,6 +260,7 @@ class VersusViewController: UIViewController, UIScrollViewDelegate, UITableViewD
                 cell.categoryLabel?.text = "|"
                 break
             case "jailTime":
+                println(userCategory?)
                 cell.categoryLabel?.text = "J.T."
                 break
             case "lookingFor":
@@ -311,7 +276,7 @@ class VersusViewController: UIViewController, UIScrollViewDelegate, UITableViewD
         return cell
     }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return categories.count
+        return Constants.categories.count
     }
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1

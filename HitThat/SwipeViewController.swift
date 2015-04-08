@@ -11,7 +11,7 @@ import UIKit
 class SwipeViewController: UIViewController, ZLSwipeableViewDataSource, ZLSwipeableViewDelegate {
     var currLocation : PFGeoPoint?
     let colors = Colors.ColorsArray
-//    var ParseAPI = SnatchParseAPI()
+//    var ParseAPI = ParseAPI()
     @IBAction func goHome(segue:UIStoryboardSegue){}
 
     @IBOutlet weak var progressBar: YLProgressBar!
@@ -72,8 +72,7 @@ class SwipeViewController: UIViewController, ZLSwipeableViewDataSource, ZLSwipea
         if let cardView = view as? CardView{
             // store that object in the snatches database
             if let post = cardView.object{
-                let API = SnatchParseAPI()
-                API.storeASnatchOrFight(post, fight: false)
+                ParseAPI().storeASnatchOrFight(post, fight: false)
             }
         }
     }
@@ -81,8 +80,7 @@ class SwipeViewController: UIViewController, ZLSwipeableViewDataSource, ZLSwipea
         // store that object in the fights database
         if let cardView = view as? CardView{
             if let post = cardView.object{
-                let API = SnatchParseAPI()
-                API.storeASnatchOrFight(post, fight: true)
+                ParseAPI().storeASnatchOrFight(post, fight: true)
             }
         }
         println("swiped left")
@@ -149,7 +147,7 @@ class SwipeViewController: UIViewController, ZLSwipeableViewDataSource, ZLSwipea
         }
         return view
     }
-    // MARL:- HELPERS
+    // MARK:- HELPERS
 //    func colorForName(index:String){
 //        let sanitizedName = index.stringByReplacingOccurrencesOfString(" ", withString: "")
 //        // deal with all the stupid colors
@@ -169,7 +167,7 @@ class SwipeViewController: UIViewController, ZLSwipeableViewDataSource, ZLSwipea
         self.presentViewController(alert, animated: true, completion: nil)
     }
     
-    //MARK:-Core Motion
+    //MARK:- Core Motion
     override func viewDidAppear(animated: Bool) {
         // if motion manager is avaliable else alert
 //        let motionManager = AppDelegate.Motion.Manager

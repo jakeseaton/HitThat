@@ -53,8 +53,7 @@ class ScoreViewController: UIViewController {
         if let curr = PFUser.currentUser(){
             self.userToDisplay = curr
         }
-        self.profilePicture.layer.cornerRadius = self.profilePicture.frame.size.width / 2;
-        self.profilePicture.clipsToBounds = true;
+        Shapes().circularImage(self.profilePicture)
         Colors().gradient(self)
     }
 }

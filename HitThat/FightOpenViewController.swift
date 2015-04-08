@@ -10,28 +10,16 @@ import UIKit
 
 class FightOpenViewController: UIViewController {
     
-    var userIsOrigin:Bool?
-    
     @IBAction func goBackPressed(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    var userStamina:CGFloat?{
+    // Public API
+    var fightToDisplay:PFObject?{
         didSet{
-        self.userStaminaBar?.setProgress(self.userStamina!, animated: true)
-        self.userStaminaLabel?.text = self.userStamina!.description
+            updateUI()
         }
     }
-    var opponentStamina:CGFloat?{
-        didSet{
-            self.opponentStaminaBar?.setProgress(self.opponentStamina!, animated:true)
-            self.opponentStaminaLabel?.text = self.opponentStamina!.description
-        }
-    }
-    @IBOutlet weak var userStaminaBar: YLProgressBar!
-    @IBOutlet weak var opponentStaminaBar: YLProgressBar!
-    // @IBOutlet weak var recipientStamina: YLProgressBar!
-    
     var originUser:PFUser?{
         didSet{
             updateUI()
@@ -42,38 +30,47 @@ class FightOpenViewController: UIViewController {
             updateUI()
         }
     }
-    var fightToDisplay:PFObject?{
+    var userIsOrigin:Bool?
+    
+
+    // Stamina Properties and Outlets
+    var userStamina:CGFloat?{
         didSet{
-            updateUI()
+        self.userStaminaBar?.setProgress(self.userStamina!, animated: true)
+        }
+    }
+    var opponentStamina:CGFloat?{
+        didSet{
+            self.opponentStaminaBar?.setProgress(self.opponentStamina!, animated:true)
         }
     }
     
-
-    @IBOutlet weak var userStaminaLabel:UILabel!
-    @IBOutlet weak var opponentStaminaLabel:UILabel!
+    @IBOutlet weak var userStaminaBar: YLProgressBar!
+    @IBOutlet weak var opponentStaminaBar: YLProgressBar!
     @IBOutlet weak var turnLabel: UILabel!
-    @IBOutlet weak var userImage: UIImageView!
-    @IBOutlet weak var opponentImage: UIImageView!
     
-    func updateUI(){}
     private func setStaminaBars(fight:PFObject){
         let originStamina = fight["originStamina"] as AnyObject as CGFloat
         let recipientStamina = fight["recipientStamina"] as AnyObject as CGFloat
         self.userStamina = userIsOrigin! ? originStamina : recipientStamina
         self.opponentStamina = userIsOrigin! ? recipientStamina : originStamina
-        self.userStaminaLabel?.text = userStamina?.description
-        self.opponentStaminaLabel?.text = opponentStamina?.description
     }
     
+    // Image
+    @IBOutlet weak var userImage: UIImageView!
+    @IBOutlet weak var opponentImage: UIImageView!
+    
+    // Sounds
+    var soundArray:[AVAudioPlayer]?
+
+    func updateUI(){}
+    
     override func viewDidLoad() {
-        self.userStaminaBar?.hideStripes = true
-        self.opponentStaminaBar?.hideStripes = true
-        self.userStaminaBar?.indicatorTextLabel.font = UIFont(name: "Arial-BoldMT", size: 20)
-        self.opponentStaminaBar?.indicatorTextLabel.font = UIFont(name: "Arial-BoldMT", size: 20)
-        self.userStaminaBar?.progressTintColors = [Colors.color1, Colors.color2]//self.colors
-        self.opponentStaminaBar?.progressTintColors = [Colors.color1, Colors.color2]//self.colors
-        self.userStaminaBar?.indicatorTextDisplayMode = YLProgressBarIndicatorTextDisplayMode.Progress
-        self.opponentStaminaBar?.indicatorTextDisplayMode = YLProgressBarIndicatorTextDisplayMode.Progress
+        
+        self.soundArray = SoundAPI().getArrayOfSoundsPlayers()
+        Colors().favoriteBackGroundColor(self)
+        Colors().configureStaminaBar(userStaminaBar!)
+        Colors().configureStaminaBar(opponentStaminaBar!)
         
         let user = PFUser.currentUser()
         let fight = self.fightToDisplay!
@@ -83,29 +80,26 @@ class FightOpenViewController: UIViewController {
         if (origin.objectId == user.objectId){
             self.userIsOrigin = true
             self.originUser = user
-            self.recipientUser = PFUser.query().getObjectWithId(recipient.objectId) as? PFUser
+            self.recipientUser = ParseAPI().userQuery().getObjectWithId(recipient.objectId) as? PFUser
         }
-            
         else{
             self.userIsOrigin = false
             self.recipientUser = user
-            self.originUser = PFUser.query().getObjectWithId(fight["origin"].objectId) as? PFUser
+            // synchronous queries for user info,b ec
+            self.originUser = ParseAPI().userQuery().getObjectWithId(origin.objectId) as? PFUser
         }
+        
         setStaminaBars(self.fightToDisplay!)
 
-        let originImage = SnatchParseAPI().getAUsersProfilePicture(self.originUser!)
-        let recipientImage = SnatchParseAPI().getAUsersProfilePicture(self.recipientUser!)
         if self.userIsOrigin!{
-            self.userImage.image = originImage
-            self.opponentImage.image = recipientImage
+            ParseAPI().installAUsersProfilePicture(self.originUser!, target: self.userImage)
+            ParseAPI().installAUsersProfilePicture(self.recipientUser!, target: self.opponentImage)
+
         }
         else{
-            self.userImage.image = recipientImage
-            self.opponentImage.image = originImage
+            ParseAPI().installAUsersProfilePicture(self.recipientUser!, target: self.userImage)
+            ParseAPI().installAUsersProfilePicture(self.originUser!, target: self.opponentImage)
         }
-
-
-        // Do any additional setup after loading the view.
     }
     override func viewWillAppear(animated: Bool) {
         AppDelegate.Motion.Manager.startAccelerometerUpdates()
@@ -118,37 +112,16 @@ class FightOpenViewController: UIViewController {
     }
     override func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent) {
         if (motion == UIEventSubtype.MotionShake){
+            self.soundArray?.randomItem().play()
             var newPercentage = CGFloat(Float(arc4random()) / Float(UINT32_MAX))
             let curr = self.opponentStamina!
-            println(curr)
-            println(newPercentage)
             let dif = curr - newPercentage
-            println(dif)
             self.opponentStamina = dif
-            println(recipientUser)
-            println(originUser)
-            if userIsOrigin!{
-                SnatchParseAPI().notifyPunchedUser(self.recipientUser!)
-            }
-            else{
-               SnatchParseAPI().notifyPunchedUser(self.originUser!)
-            }
+            if userIsOrigin!{ParseAPI().notifyPunchedUser(self.recipientUser!)}
+            else{ParseAPI().notifyPunchedUser(self.originUser!)}
         }
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

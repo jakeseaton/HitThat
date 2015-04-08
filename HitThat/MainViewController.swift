@@ -9,7 +9,7 @@
 import UIKit
 
 class MainViewController: UIViewController {
-//    var parse = SnatchParseAPI()
+//    var parse = ParseAPI()
     var currentPost:PFObject?{
         willSet(newValue) {
             postText.text = newValue?.objectForKey("text") as? String
@@ -19,16 +19,14 @@ class MainViewController: UIViewController {
     
     @IBAction func snatchPressed(sender: AnyObject) {
         if let snatchToStore = currentPost{
-            SnatchParseAPI().storeASnatch(snatchToStore)
+//            ParseAPI().storeASnatch(snatchToStore)
         }
     }
     
     @IBAction func fightPressed(sender: AnyObject) {
     }
     override func viewDidLoad() {
-        if let currentUserName = SnatchParseAPI.currentUserName{
-            displayAPostTheUserHasntVotedOn(currentUserName)
-        }
+        super.viewDidLoad()
     }
     
     
