@@ -44,7 +44,11 @@ struct Colors{
     static let ConcreteColor = UIColor(red: 0.5843137254901961, green:0.6470588235294118, blue: 0.6509803921568628, alpha: 1.0)
     static let AsbestosColor = UIColor(red: 0.4980392156862745, green: 0.5490196078431373, blue: 0.5529411764705883, alpha: 1.0)
     static let ColorsArray = [Colors.TurquoiseColor, Colors.GreenSeaColor, Colors.EmeraldColor, Colors.NephritisColor, Colors.PeterRiverColor, Colors.BelizeHoleColor, Colors.AmethystColor, Colors.WisteriaColor, Colors.WetAsphaltColor, Colors.MidnightBlueColor, Colors.SunFlowerColor, Colors.OrangeColor, Colors.CarrotColor, Colors.PumpkinColor, Colors.AlizarinColor, Colors.PomegranateColor, Colors.CloudsColor, Colors.SilverColor, Colors.ConcreteColor, Colors.AsbestosColor]
-    
+    var versusLabelTextColor:UIColor{
+        get{
+            return Colors.ColorsArray.randomItem()
+        }
+    }
     func gradient(vc: UIViewController){
         let gradient: CAGradientLayer = CAGradientLayer()
         gradient.colors = [Colors.color1.CGColor, Colors.color2.CGColor]

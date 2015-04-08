@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D154F301AD5BCCD00C2AD82 /* VersusLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D154F2F1AD5BCCD00C2AD82 /* VersusLabel.swift */; };
 		3D56CADF1ACE0B21004759ED /* FXForms.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D56CADB1ACE0B21004759ED /* FXForms.m */; };
 		3D56CAE01ACE0B21004759ED /* ISO3166CountryValueTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D56CADC1ACE0B21004759ED /* ISO3166CountryValueTransformer.swift */; };
 		3D56CAE11ACE0B21004759ED /* RegistrationForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D56CADD1ACE0B21004759ED /* RegistrationForm.swift */; };
@@ -167,6 +168,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3D154F2F1AD5BCCD00C2AD82 /* VersusLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VersusLabel.swift; sourceTree = "<group>"; };
 		3D56CADA1ACE0B21004759ED /* FXForms.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXForms.h; sourceTree = "<group>"; };
 		3D56CADB1ACE0B21004759ED /* FXForms.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXForms.m; sourceTree = "<group>"; };
 		3D56CADC1ACE0B21004759ED /* ISO3166CountryValueTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ISO3166CountryValueTransformer.swift; sourceTree = "<group>"; };
@@ -641,6 +643,7 @@
 			isa = PBXGroup;
 			children = (
 				3DBA11861AD4445100A4EF75 /* VersusCell.swift */,
+				3D154F2F1AD5BCCD00C2AD82 /* VersusLabel.swift */,
 				3D8482BB1ACB74F300D663DF /* VersusViewController.swift */,
 				3DC463E41AD2A65B0034C34F /* MenuViewController.swift */,
 				3DF04FE91AD2AF65008B0260 /* MenuCell.swift */,
@@ -1006,6 +1009,7 @@
 				3DAE5B0A1AD4661B004892CC /* SoundAPI.swift in Sources */,
 				3DB6DF761AC9AEDA0020497B /* SnatchesTableViewController.swift in Sources */,
 				3DF04FF01AD2BAA8008B0260 /* FightCellRecipient.swift in Sources */,
+				3D154F301AD5BCCD00C2AD82 /* VersusLabel.swift in Sources */,
 				3DB6DF581AC9AEDA0020497B /* Constants.swift in Sources */,
 				3DF04FEA1AD2AF65008B0260 /* MenuCell.swift in Sources */,
 				3D8482C01ACB74F300D663DF /* VersusViewController.swift in Sources */,

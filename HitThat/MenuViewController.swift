@@ -14,7 +14,8 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
         if let currentUser = PFUser.currentUser(){
-            ParseAPI().installAUsersProfilePicture(currentUser, target: self.userImage!)
+            // ParseAPI().installAUsersProfilePicture(currentUser, target: self.userImage!)
+            ParseAPI().installAUsersProfilePhoto(currentUser, target: self.userImage, optionalBlurTarget: nil)
         }
         Colors().gradient(self)
 
