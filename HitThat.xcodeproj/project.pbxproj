@@ -311,7 +311,7 @@
 			path = YLProgressBar;
 			sourceTree = "<group>";
 		};
-		3D8482C81ACDD9E400D663DF /* Pods/Things I Didnt Write */ = {
+		3D8482C81ACDD9E400D663DF /* Things I Used But Didn't Write */ = {
 			isa = PBXGroup;
 			children = (
 				3DB110191AD710D100DBA80F /* MotionKit.swift */,
@@ -322,7 +322,7 @@
 				3D8482C41ACC2D7D00D663DF /* YLProgressBar */,
 				3DB6DF7B1AC9AEF40020497B /* ZLSwipeableView */,
 			);
-			name = "Pods/Things I Didnt Write";
+			name = "Things I Used But Didn't Write";
 			sourceTree = "<group>";
 		};
 		3DAE5B0B1AD46874004892CC /* FreeSounds */ = {
@@ -375,13 +375,13 @@
 				3DB6DF891AC9B0200020497B /* Main */,
 				3DF04FF11AD2BABB008B0260 /* Fights */,
 				3DB6DF841AC9AF690020497B /* Profiles */,
+				3DB6DF881AC9AFCE0020497B /* Map */,
 				3DB6DF871AC9AFBF0020497B /* Accounts */,
 				3DB6DF861AC9AF840020497B /* Swipe */,
-				3DB6DF881AC9AFCE0020497B /* Map */,
 				3DB6DF831AC9AF2B0020497B /* API */,
 				3DB6DEE31AC993620020497B /* Supporting Files */,
-				3D8482C81ACDD9E400D663DF /* Pods/Things I Didnt Write */,
-				3DB6DF821AC9AF1F0020497B /* Unused */,
+				3D8482C81ACDD9E400D663DF /* Things I Used But Didn't Write */,
+				3DB6DF821AC9AF1F0020497B /* Things I Wrote But Didn't Use */,
 			);
 			path = HitThat;
 			sourceTree = "<group>";
@@ -389,6 +389,8 @@
 		3DB6DEE31AC993620020497B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3DAE5B121AD46A97004892CC /* RandomArray.swift */,
+				3D8482C21ACB790D00D663DF /* LocateButton.swift */,
 				3DB6DF111AC994930020497B /* Frameworks */,
 				3DAE5B0B1AD46874004892CC /* FreeSounds */,
 				3DB6DEEE1AC993620020497B /* LaunchScreen.xib */,
@@ -452,7 +454,7 @@
 			path = ZLSwipeableView;
 			sourceTree = "<group>";
 		};
-		3DB6DF821AC9AF1F0020497B /* Unused */ = {
+		3DB6DF821AC9AF1F0020497B /* Things I Wrote But Didn't Use */ = {
 			isa = PBXGroup;
 			children = (
 				3DB6DF8A1AC9B0A50020497B /* Post */,
@@ -471,20 +473,18 @@
 				3DB6DF4C1AC9AED90020497B /* SnatchedViewController.swift */,
 				3DB6DF521AC9AED90020497B /* TabBarController.swift */,
 			);
-			name = Unused;
+			name = "Things I Wrote But Didn't Use";
 			sourceTree = "<group>";
 		};
 		3DB6DF831AC9AF2B0020497B /* API */ = {
 			isa = PBXGroup;
 			children = (
-				3D8482C21ACB790D00D663DF /* LocateButton.swift */,
+				3DB6DF501AC9AED90020497B /* ParseAPI.swift */,
+				3DAE5B091AD4661B004892CC /* SoundAPI.swift */,
 				3DAE5B141AD46C90004892CC /* Shapes.swift */,
 				3D8482AB1ACB2FAB00D663DF /* Colors.swift */,
-				3DAE5B091AD4661B004892CC /* SoundAPI.swift */,
-				3DAE5B121AD46A97004892CC /* RandomArray.swift */,
 				3DB6DF301AC9AED90020497B /* Constants.swift */,
 				3D413ED81AD74BDF00E00A76 /* MotionAPI.swift */,
-				3DB6DF501AC9AED90020497B /* ParseAPI.swift */,
 			);
 			name = API;
 			sourceTree = "<group>";

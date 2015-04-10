@@ -129,31 +129,39 @@ struct ParseAPI {
         push.sendPushInBackground()
     }
     
-    func storeAFightFromVersusScreen(recipient:PFUser){
+    func storeAFightFromVersusScreen(recipient:PFUser) -> PFObject? {
         if let originUser = PFUser.currentUser(){
-            let object = PFObject(className: "Fights")
-            object["origin"] = originUser
-            object["originStamina"] = CGFloat(1)
-            object["originAlias"] = stringOfUnwrappedUserProperty("alias", user: originUser)
-            object["recipientStamina"] = CGFloat(1)
-            object["recipient"] = recipient
-            object["recipientAlias"] = stringOfUnwrappedUserProperty("alias", user: recipient)
+            let data = [
+                "origin": originUser,
+                "originStamina":CGFloat(1),
+                "originAlias" : stringOfUnwrappedUserProperty("alias", user: originUser),
+                "recipient": recipient,
+                "recipientStamina": CGFloat(1),
+                "recipientAlias": stringOfUnwrappedUserProperty("alias", user: recipient)
+            ]
+            let object = PFObject(className: "Fights", dictionary:data)
             object.saveInBackground()
+            
+            // Find devices associated with that user
+            let pushQuery = installationQuery()
+            pushQuery.whereKey("user", equalTo: recipient)
+            println(recipient)
+            // Send push notification to query
+            let push = PFPush()
+            push.setQuery(pushQuery) // Set our Installation query
+            let alias = stringOfUnwrappedUserProperty("alias", user: originUser)
+            let pushMessage = "\(alias) wants to fight you."
+            push.setMessage(pushMessage)
+            push.sendPushInBackground()
+            
+            // Tell the App Delegate to REFRESH THE TABLE
+            let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+            appDelegate.refreshTable()
+            
+            return object
         }
-        // Find devices associated with that user
-        let pushQuery = installationQuery()
-        pushQuery.whereKey("user", equalTo: recipient)
-        // Send push notification to query
-        let push = PFPush()
-        push.setQuery(pushQuery) // Set our Installation query
-        let alias = stringOfCurrentUserProperty("alias")
-        let pushMessage = "\(alias) wants to fight you."
-        push.setMessage(pushMessage)
-        push.sendPushInBackground()
-        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
-        // REFRESH THE TABLE
-        let fightsTable = appDelegate.centerContainer?.rightDrawerViewController as FightsViewController
-        fightsTable.refresh()
+        else{return nil}
+        
     }
     func notifyPunchedUser(recipientOfPunch:PFUser, fightObject:PFObject, sound: String){
         let alias = stringOfCurrentUserProperty("alias")

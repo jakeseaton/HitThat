@@ -112,11 +112,9 @@ class FightsViewController: UIViewController, UITableViewDataSource, UITableView
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        println("Prepared for segue with arguments \(sender)")
         if segue.identifier == Constants.OpenFightSegue{
             if let fovc = segue.destinationViewController as? FightOpenViewController{
                 if let fight = sender as? PFObject{
-                    println("fight: \(fight)")
                     fovc.fightToDisplay = fight
                 }
             }

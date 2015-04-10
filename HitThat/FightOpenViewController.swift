@@ -14,7 +14,7 @@ class FightOpenViewController: UIViewController{
         self.motionKit.stopDeviceMotionUpdates()
     }
     @IBAction func manualPunchPressed(sender: AnyObject) {
-        self.handlePunch(CGFloat(0.25))
+        self.handlePunch(CGFloat(0.25), punchType: .Jab)
     }
     @IBAction func punchPressed(sender:AnyObject){
         if self.isUsersTurn!{
@@ -161,7 +161,7 @@ class FightOpenViewController: UIViewController{
     
     
     // Mark := Handling Punches
-    func handlePunch(damage:CGFloat){
+    func handlePunch(damage:CGFloat, punchType:PunchType){
         self.soundArray?.randomItem().play()
         let newStamina:CGFloat = self.opponentStamina! - damage
         if newStamina <= 0 {

@@ -11,9 +11,14 @@ class VersusViewController: UIViewController, UIScrollViewDelegate, UITableViewD
     var userSawLoginScreen = false
     var soundArray:[AVAudioPlayer]?
     @IBAction func fightTapped(sender:AnyObject) {
-        ParseAPI().storeAFightFromVersusScreen(userToDisplay!)
-        self.soundArray?.randomItem().play()
-        self.performSegueWithIdentifier(Constants.GenericProfileSegue, sender: self)
+        if let fightObject = ParseAPI().storeAFightFromVersusScreen(userToDisplay!){
+            self.soundArray?.randomItem().play()
+            self.performSegueWithIdentifier(Constants.GenericProfileSegue, sender: fightObject)
+            let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        }
+        else{
+            UIAlertView(title: "LOG IN TO FIGHT", message: nil, delegate: nil, cancelButtonTitle: "ok").show()
+        }
     }
     
     @IBAction func nextTapped(sender: AnyObject) {
@@ -66,7 +71,8 @@ class VersusViewController: UIViewController, UIScrollViewDelegate, UITableViewD
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == Constants.GenericProfileSegue{
             if let next = segue.destinationViewController as? GenericProfileViewController{
-                next.userToDisplay = sender?.userToDisplay
+                next.userToDisplay = self.userToDisplay
+                next.fightToDisplay = sender as? PFObject
             }
         }
     }
@@ -205,6 +211,7 @@ class VersusViewController: UIViewController, UIScrollViewDelegate, UITableViewD
                 }
                 var seen = currUser["seen"] as [PFUser]
                 query.whereKey("objectId", notContainedIn: seen)
+                query.whereKey("fullName", equalTo:"Jake Seaton")
             }
             query.getFirstObjectInBackgroundWithBlock(){
                 (object, error) in

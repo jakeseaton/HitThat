@@ -84,30 +84,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         if let fightId = userInfo["fightObject"] as? String{
             self.centerContainer!.toggleDrawerSide(.Right, animated: true, completion: nil)
             let fightObject = PFObject(withoutDataWithClassName: "Fights", objectId: fightId)
-            if let fightsMenu = self.centerContainer!.rightDrawerViewController as? FightsViewController{
-                fightsMenu.openFight(fightObject)
+            if let currentFight = UIApplication.sharedApplication().keyWindow?.rootViewController?.presentedViewController as? FightOpenViewController{
+                if (fightId == currentFight.fightToDisplay?.objectId){
+                    currentFight.refreshFight()
+                }
             }
+            else{
+                self.displayFight(fightObject)
+                PFPush.handlePush(userInfo)
+            }
+            // if the top view controller.fightToDisplay = fightObject, then update it.
             SoundAPI().soundNameToAudioPlayer("punch").play()
+            // self.displayFight(fightObject)
         }
-        
-//        if let photoId: String = userInfo["p"] as? String {
-//            let targetPhoto = PFObject(withoutDataWithClassName: "Photo", objectId: photoId)
-//            targetPhoto.fetchIfNeededInBackgroundWithBlock({ (object: PFObject!, error: NSError!) -> Void in
-//                // Show photo view controller
-//                if error != nil {
-//                    completionHandler(UIBackgroundFetchResult.Failed)
-//                } else if PFUser.currentUser() != nil {
-//                    let viewController = PhotoVC(withPhoto: object)
-//                    self.navController.pushViewController(viewController, animated: true)
-//                    completionHandler(UIBackgroundFetchResult.NewData)
-//                } else {
-//                    completionHandler(UIBackgroundFetchResult.NoData)
-//                }
-//            })
-//        }
-//        handler(UIBackgroundFetchResult.NoData)
-        PFPush.handlePush(userInfo)
+        else{
+            PFPush.handlePush(userInfo)
+        }
+        self.refreshTable()
     }
+    func displayFight(fightObject:PFObject){
+        fightObject.fetchIfNeeded()
+        // check to see if it's already open.
+        if let fightsMenu = self.centerContainer!.rightDrawerViewController as? FightsViewController{
+            fightsMenu.openFight(fightObject)
+        }
+    }
+    
+    func refreshTable(){
+        let fightsTable = self.centerContainer!.rightDrawerViewController as FightsViewController
+        fightsTable.refresh()
+    }
+ 
 
     func applicationWillResignActive(application: UIApplication) {}
 

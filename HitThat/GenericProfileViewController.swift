@@ -10,6 +10,7 @@ import UIKit
 
 class GenericProfileViewController: UIViewController {
     var userToDisplay:PFUser?
+    var fightToDisplay:PFObject?
     @IBOutlet weak var profilePicture: UIImageView!
     @IBOutlet weak var userProfilePicture: UIImageView!
     @IBOutlet weak var fullName: UILabel!
@@ -47,6 +48,9 @@ class GenericProfileViewController: UIViewController {
         performSegueWithIdentifier(Constants.LocateSegueIndentifier, sender: userToDisplay)
     }
     @IBAction func startFightPressed(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        appDelegate.displayFight(fightToDisplay!)
         println("start fight pressed")
     }
     @IBAction func gangBangPressed(sender: AnyObject) {
