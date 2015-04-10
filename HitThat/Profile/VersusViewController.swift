@@ -10,8 +10,12 @@ let distance_W_LabelHeader:CGFloat = 35.0 // The distance between the bottom of 
 class VersusViewController: UIViewController, UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource {
     var userSawLoginScreen = false
     var soundArray:[AVAudioPlayer]?
+    @IBAction func fightTapped(sender:AnyObject) {
+        ParseAPI().storeAFightFromVersusScreen(userToDisplay!)
+        self.soundArray?.randomItem().play()
+        self.performSegueWithIdentifier(Constants.GenericProfileSegue, sender: self)
+    }
     
-    @IBOutlet weak var distanceLabel:UILabel!
     @IBAction func nextTapped(sender: AnyObject) {
         self.next()
     }
@@ -36,7 +40,6 @@ class VersusViewController: UIViewController, UIScrollViewDelegate, UITableViewD
     }
     // To Set
     @IBOutlet weak var tv: UITableView!
-    @IBOutlet weak var bioLabel:UILabel!
     @IBOutlet weak var userDisplayName: UILabel!
     @IBOutlet weak var displayName: UILabel!
     var userToDisplay:PFUser?{
@@ -48,9 +51,9 @@ class VersusViewController: UIViewController, UIScrollViewDelegate, UITableViewD
     }
     private func updateUI(){
         self.displayName.text = ParseAPI().stringOfUnwrappedUserProperty("alias", user: userToDisplay!)
-        self.bioLabel.text = "Bio: " + ParseAPI().stringOfUnwrappedUserProperty("bio", user: userToDisplay!)
         ParseAPI().installAUsersProfilePhoto(userToDisplay!, target: self.headerImageView, optionalBlurTarget: self.headerBlurImageView)
-        self.distanceLabel.text = "Distance: " + ParseAPI().distanceToUser(userToDisplay!).description + "mi"
+        self.headerLabel.text = ParseAPI().stringOfUnwrappedUserProperty("alias", user: userToDisplay!)
+
         if let currUser = PFUser.currentUser(){
             self.userDisplayName.text = ParseAPI().stringOfCurrentUserProperty("alias")
         }
@@ -87,7 +90,6 @@ class VersusViewController: UIViewController, UIScrollViewDelegate, UITableViewD
         self.soundArray = SoundAPI().getArrayOfSoundsPlayers()
         
         // UI
-        self.headerLabel.text = "PUNCH TO FIGHT!"
         self.headerLabel.textColor = Colors.color2
         backgroundView.backgroundColor = UIColor.clearColor()
         Colors().gradient(self)
@@ -105,16 +107,8 @@ class VersusViewController: UIViewController, UIScrollViewDelegate, UITableViewD
         header.clipsToBounds = true
 
     }
-    
-    @IBAction func locatePressed(sender: AnyObject) {
-    }
-    override func viewWillAppear(animated: Bool) {
-        println("view will appear")
-        self.becomeFirstResponder()
-        AppDelegate.Motion.Manager.startAccelerometerUpdates()
-    }
+    override func viewWillAppear(animated: Bool) {}
     override func viewDidAppear(animated: Bool) {
-        println("view did appear")
         if let currUser = PFUser.currentUser(){
             super.viewDidAppear(true)
         }
@@ -125,27 +119,9 @@ class VersusViewController: UIViewController, UIScrollViewDelegate, UITableViewD
                 self.userSawLoginScreen = true
             }
         }
-        self.becomeFirstResponder()
-        
-        
-        // Header - Image
-
     }
 
-    override func viewWillDisappear(animated: Bool) {
-        AppDelegate.Motion.Manager.stopAccelerometerUpdates()
-    }
-    override func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent) {
-        if (motion == UIEventSubtype.MotionShake){
-            ParseAPI().storeAFightFromVersusScreen(userToDisplay!)
-            self.soundArray?.randomItem().play()
-            self.performSegueWithIdentifier(Constants.GenericProfileSegue, sender: self)
-        }
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
+    override func viewWillDisappear(animated: Bool) {}
 
     func scrollViewDidScroll(scrollView: UIScrollView) {
         
@@ -207,6 +183,7 @@ class VersusViewController: UIViewController, UIScrollViewDelegate, UITableViewD
         header.layer.transform = headerTransform
         avatarImage.layer.transform = avatarTransform
     }
+    
     @IBOutlet weak var indicator: UIActivityIndicatorView!
     func next(){
         self.scrollView.setContentOffset(CGPointZero, animated: true)

@@ -11,6 +11,10 @@ import UIKit
 class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var userImage: UIImageView!
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        Colors().favoriteBackGroundColor(self)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         if let currentUser = PFUser.currentUser(){

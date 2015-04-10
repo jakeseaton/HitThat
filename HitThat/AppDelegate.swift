@@ -15,9 +15,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 
     var window: UIWindow?
     var centerContainer:MMDrawerController?
-    struct Motion{
-        static let Manager = CMMotionManager()
-    }
+//    struct Motion{
+//        static let Manager = CMMotionManager()
+//    }
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         Parse.setApplicationId("ToYMaUSeinWiDsnA5GDW8UhqwGkSwSV7ztvbDRje", clientKey:"s5Wp5niEL9OosYrTwLCk5Ixhg5li7QReiiCoV2kS")
         
@@ -43,9 +43,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         centerContainer!.openDrawerGestureModeMask = MMOpenDrawerGestureMode.PanningCenterView
         centerContainer!.closeDrawerGestureModeMask = MMCloseDrawerGestureMode.PanningCenterView
         
-        
         window!.rootViewController = centerContainer
         window!.makeKeyAndVisible()
+        
+        if let notificationPayload: AnyObject = launchOptions?[UIApplicationLaunchOptionsRemoteNotificationKey]{
+            // go directly to that screen
+            let fightId = notificationPayload.objectForKey("fightObject") as String
+            self.centerContainer!.toggleDrawerSide(.Right, animated: true, completion: nil)
+            let fightObject = PFObject(withoutDataWithClassName: "Fights", objectId: fightId)
+            if let fightsMenu = self.centerContainer!.rightDrawerViewController as? FightsViewController{
+                fightsMenu.openFight(fightObject)
+            }
+            SoundAPI().soundNameToAudioPlayer("punch").play()
+        }
+        
+        
 
         
         return true
@@ -66,7 +78,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 //        currentInstallation.channels = [""]
 //        currentInstallation.saveInBackground()
     }
+
+
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        if let fightId = userInfo["fightObject"] as? String{
+            self.centerContainer!.toggleDrawerSide(.Right, animated: true, completion: nil)
+            let fightObject = PFObject(withoutDataWithClassName: "Fights", objectId: fightId)
+            if let fightsMenu = self.centerContainer!.rightDrawerViewController as? FightsViewController{
+                fightsMenu.openFight(fightObject)
+            }
+            SoundAPI().soundNameToAudioPlayer("punch").play()
+        }
+        
+//        if let photoId: String = userInfo["p"] as? String {
+//            let targetPhoto = PFObject(withoutDataWithClassName: "Photo", objectId: photoId)
+//            targetPhoto.fetchIfNeededInBackgroundWithBlock({ (object: PFObject!, error: NSError!) -> Void in
+//                // Show photo view controller
+//                if error != nil {
+//                    completionHandler(UIBackgroundFetchResult.Failed)
+//                } else if PFUser.currentUser() != nil {
+//                    let viewController = PhotoVC(withPhoto: object)
+//                    self.navController.pushViewController(viewController, animated: true)
+//                    completionHandler(UIBackgroundFetchResult.NewData)
+//                } else {
+//                    completionHandler(UIBackgroundFetchResult.NoData)
+//                }
+//            })
+//        }
+//        handler(UIBackgroundFetchResult.NoData)
         PFPush.handlePush(userInfo)
     }
 

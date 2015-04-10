@@ -8,16 +8,47 @@
 
 import UIKit
 
-class FightOpenViewController: UIViewController {
-    
+class FightOpenViewController: UIViewController{
+    let motionKit = MotionKit()
+    @IBAction func stopUpdatesPressed(sender: AnyObject) {
+        self.motionKit.stopDeviceMotionUpdates()
+    }
+    @IBAction func manualPunchPressed(sender: AnyObject) {
+        self.handlePunch(CGFloat(0.25))
+    }
+    @IBAction func punchPressed(sender:AnyObject){
+        if self.isUsersTurn!{
+            motionKit.getDeviceMotionObject(interval: 0.2) {
+                (deviceMotion) in
+                MotionAPI().analyzeMotion(deviceMotion, sender:self)
+            }
+            
+        }
+        else{
+            UIAlertView(title: "Wait your turn", message: nil, delegate: nil, cancelButtonTitle: "ok").show()
+            self.isUsersTurn = true
+        }
+        
+    }
     @IBAction func goBackPressed(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
-    
     // Public API
+
+    var isUsersTurn:Bool?{
+        willSet{
+            self.turnLabel.text = newValue! ? "YOU TURN" : "THEIR TURN"
+        }
+    }
+    var userIsOrigin:Bool?
     var fightToDisplay:PFObject?{
         didSet{
             updateUI()
+        }
+        willSet{
+            if let hack = userIsOrigin{
+                setStaminaBars(newValue!)
+            }
         }
     }
     var originUser:PFUser?{
@@ -30,18 +61,28 @@ class FightOpenViewController: UIViewController {
             updateUI()
         }
     }
-    var userIsOrigin:Bool?
+    func refreshFight(){
+        if let curr = fightToDisplay{
+            let query = ParseAPI().fightsQuery()
+            query.getObjectInBackgroundWithId(curr.objectId){
+                (object, error) in
+                if (error == nil){
+                    self.fightToDisplay = object
+                }
+            }
+        }
+    }
     
 
     // Stamina Properties and Outlets
     var userStamina:CGFloat?{
-        didSet{
-        self.userStaminaBar?.setProgress(self.userStamina!, animated: true)
+        willSet{
+        self.userStaminaBar?.setProgress(newValue!, animated: true)
         }
     }
     var opponentStamina:CGFloat?{
-        didSet{
-            self.opponentStaminaBar?.setProgress(self.opponentStamina!, animated:true)
+        willSet{
+            self.opponentStaminaBar?.setProgress(newValue!, animated:true)
         }
     }
     
@@ -62,12 +103,17 @@ class FightOpenViewController: UIViewController {
     
     // Sounds
     var soundArray:[AVAudioPlayer]?
+    var victorySound:AVAudioPlayer?
+    var lossSound:AVAudioPlayer?
 
     func updateUI(){}
     
     override func viewDidLoad() {
-        
+
+        self.isUsersTurn = true
         self.soundArray = SoundAPI().getArrayOfSoundsPlayers()
+        self.victorySound = SoundAPI().getVictorySound()
+        self.lossSound = SoundAPI().getLossSound()
         Colors().favoriteBackGroundColor(self)
         Colors().configureStaminaBar(userStaminaBar!)
         Colors().configureStaminaBar(opponentStaminaBar!)
@@ -102,26 +148,45 @@ class FightOpenViewController: UIViewController {
         }
     }
     override func viewWillAppear(animated: Bool) {
-        AppDelegate.Motion.Manager.startAccelerometerUpdates()
+        // AppDelegate.Motion.Manager.startAccelerometerUpdates()
     }
     override func viewDidAppear(animated: Bool) {
-        self.becomeFirstResponder()
+        //self.becomeFirstResponder()
     }
     override func viewWillDisappear(animated: Bool) {
-        AppDelegate.Motion.Manager.stopAccelerometerUpdates()
+        self.motionKit.stopDeviceMotionUpdates()
+        //AppDelegate.Motion.Manager.stopAccelerometerUpdates()
     }
-    override func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent) {
-        if (motion == UIEventSubtype.MotionShake){
-            self.soundArray?.randomItem().play()
-            var newPercentage = CGFloat(Float(arc4random()) / Float(UINT32_MAX))
-            let curr = self.opponentStamina!
-            let dif = curr - newPercentage
-            self.opponentStamina = dif
-            if userIsOrigin!{ParseAPI().notifyPunchedUser(self.recipientUser!)}
-            else{ParseAPI().notifyPunchedUser(self.originUser!)}
+    // Mark := Analyzing Motion
+    
+    
+    // Mark := Handling Punches
+    func handlePunch(damage:CGFloat){
+        self.soundArray?.randomItem().play()
+        let newStamina:CGFloat = self.opponentStamina! - damage
+        if newStamina <= 0 {
+            self.victorySound?.play()
+            UIAlertView(title: "YOU WIN!", message: nil, delegate: nil, cancelButtonTitle: "ok").show()
+            if userIsOrigin!{
+                ParseAPI().fightWasCompleted(fightToDisplay!, winner:PFUser.currentUser(), loser: fightToDisplay!["recipient"] as PFUser)
+            }else{
+                ParseAPI().fightWasCompleted(fightToDisplay!, winner:fightToDisplay!["recipient"] as PFUser, loser:fightToDisplay!["origin"] as PFUser)
+            }
+            self.dismissViewControllerAnimated(true, completion: nil)
         }
-    }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+        self.opponentStamina = newStamina
+        if userIsOrigin!{
+            // update the stamina on the database
+            self.fightToDisplay?.setObject(opponentStamina, forKey: "recipientStamina")
+            fightToDisplay?.saveInBackground()
+            ParseAPI().notifyPunchedUser(self.recipientUser!, fightObject:fightToDisplay!, sound:SoundAPI.notificationSound)
+        }
+        else{
+            self.fightToDisplay?.setObject(opponentStamina, forKey: "originStamina")
+            fightToDisplay?.saveInBackground()
+            ParseAPI().notifyPunchedUser(self.originUser!, fightObject:fightToDisplay!, sound:SoundAPI.notificationSound)
+            
+        }
+        self.isUsersTurn = false
     }
 }

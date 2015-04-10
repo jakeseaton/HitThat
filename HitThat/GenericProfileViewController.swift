@@ -18,6 +18,10 @@ class GenericProfileViewController: UIViewController {
     @IBAction func keepPlayingPressed(sender: AnyObject) {
         self.performSegueWithIdentifier(Constants.KeepPlayingSegue, sender: self)
     }
+    
+//    self.bioLabel.text = "Bio: " + ParseAPI().stringOfUnwrappedUserProperty("bio", user: userToDisplay!)
+//    ParseAPI().installAUsersProfilePhoto(userToDisplay!, target: self.headerImageView, optionalBlurTarget: self.headerBlurImageView)
+//    self.distanceLabel.text = "Distance: " + ParseAPI().distanceToUser(userToDisplay!).description + "mi"
 
     override func viewDidLoad() {
         super.viewDidLoad()

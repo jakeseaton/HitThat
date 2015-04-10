@@ -88,7 +88,7 @@ class RegisterViewController: UIViewController, ZLSwipeableViewDataSource, ZLSwi
         }
     }
     override func viewWillDisappear(animated: Bool) {
-        AppDelegate.Motion.Manager.stopAccelerometerUpdates()
+        //AppDelegate.Motion.Manager.stopAccelerometerUpdates()
         //        self.resignFirstResponder()
     }
 

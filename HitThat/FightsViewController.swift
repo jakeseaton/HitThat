@@ -11,6 +11,7 @@ import UIKit
 class FightsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     var sectionTitles = ["Origin", "Recpient"]
     @IBOutlet weak var tv: UITableView!
+    
     var originFights:[PFObject] = []{
         didSet{
             tv.reloadData()
@@ -21,7 +22,10 @@ class FightsViewController: UIViewController, UITableViewDataSource, UITableView
             tv.reloadData()
         }
     }
-    
+    func openFight(fightObject:PFObject){
+        fightObject.fetchIfNeeded()
+        self.performSegueWithIdentifier(Constants.OpenFightSegue, sender: fightObject)
+    }
     func refresh(){
         if (PFUser.currentUser() != nil){
                 let queryOrigin = ParseAPI().fightsQuery()
@@ -42,9 +46,7 @@ class FightsViewController: UIViewController, UITableViewDataSource, UITableView
         }
 
     
-    func updateUI(){
-        
-    }
+    func updateUI(){}
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,13 +75,13 @@ class FightsViewController: UIViewController, UITableViewDataSource, UITableView
         if indexPath.section == 0{
             let cell = tableView.dequeueReusableCellWithIdentifier("FightCellOrigin", forIndexPath: indexPath) as FightCellOrigin
             let fightObject = self.originFights[indexPath.row]
-            cell.nameLabel.text = fightObject.objectId
+            cell.nameLabel.text = fightObject["recipientAlias"] as? String
             return cell
         }
         else{
             let cell = tableView.dequeueReusableCellWithIdentifier("FightCellRecipient", forIndexPath: indexPath) as FightCellRecipient
             let fightObject = self.recipientFights[indexPath.row]
-            cell.nameLabel.text = fightObject.objectId
+            cell.nameLabel.text = fightObject["recipientAlias"] as? String
             return cell
         }
     }
@@ -96,15 +98,14 @@ class FightsViewController: UIViewController, UITableViewDataSource, UITableView
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let arr = (indexPath.section == 0) ? self.originFights : self.recipientFights
-        println(arr)
+        // println(arr)
         if (indexPath.section == 0){
             let fightObject = self.originFights[indexPath.row]
-            self.performSegueWithIdentifier(Constants.OpenFightSegue, sender: fightObject)
+            self.openFight(fightObject)
         }
         else{
             let fightObject = self.recipientFights[indexPath.row]
-            self.performSegueWithIdentifier(Constants.OpenFightSegue, sender: fightObject)
-            
+            self.openFight(fightObject)
         }
 //        let fightObject = arr[indexPath.row]
 //        self.performSegueWithIdentifier(Constants.OpenFightSegue, sender: fightObject)

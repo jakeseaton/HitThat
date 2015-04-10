@@ -38,21 +38,21 @@ class BouncerViewController: UIViewController {
             redBlock?.backgroundColor = UIColor.redColor()
             bouncer.addBlock(redBlock!)
         }
-        let motionManager = AppDelegate.Motion.Manager
-        if motionManager.accelerometerAvailable{
-            // arguments, error
-            // ALWAYS STOP THIS CODE. Obvious place is viewWillDisappear
-            motionManager.startAccelerometerUpdatesToQueue(NSOperationQueue.mainQueue()) {(data, error) -> Void in
-                // set animator to acceleration of the
-                self.bouncer.gravity.gravityDirection = CGVector(dx: data.acceleration.x, dy: -data.acceleration.y)
-            }
-        }
+//        let motionManager = AppDelegate.Motion.Manager
+//        if motionManager.accelerometerAvailable{
+//            // arguments, error
+//            // ALWAYS STOP THIS CODE. Obvious place is viewWillDisappear
+//            motionManager.startAccelerometerUpdatesToQueue(NSOperationQueue.mainQueue()) {(data, error) -> Void in
+//                // set animator to acceleration of the
+//                self.bouncer.gravity.gravityDirection = CGVector(dx: data.acceleration.x, dy: -data.acceleration.y)
+//            }
+//        }
         
     }
     // STOP THE UPDATES TO AVOID KILLING THE BATTERY
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        AppDelegate.Motion.Manager.stopAccelerometerUpdates()
+        //AppDelegate.Motion.Manager.stopAccelerometerUpdates()
     }
 }
 

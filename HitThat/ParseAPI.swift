@@ -69,7 +69,6 @@ struct ParseAPI {
                     println(error)
                 }
                 else{
-                    println(objects)
                     if let originUser = objects[0] as? PFUser{
                         objectToStore["recipientName"] = originUser["fullName"] as String
                         objectToStore.saveInBackground()
@@ -135,8 +134,10 @@ struct ParseAPI {
             let object = PFObject(className: "Fights")
             object["origin"] = originUser
             object["originStamina"] = CGFloat(1)
+            object["originAlias"] = stringOfUnwrappedUserProperty("alias", user: originUser)
             object["recipientStamina"] = CGFloat(1)
             object["recipient"] = recipient
+            object["recipientAlias"] = stringOfUnwrappedUserProperty("alias", user: recipient)
             object.saveInBackground()
         }
         // Find devices associated with that user
@@ -154,21 +155,26 @@ struct ParseAPI {
         let fightsTable = appDelegate.centerContainer?.rightDrawerViewController as FightsViewController
         fightsTable.refresh()
     }
-    func notifyPunchedUser(recipientOfPunch:PFUser){
+    func notifyPunchedUser(recipientOfPunch:PFUser, fightObject:PFObject, sound: String){
+        let alias = stringOfCurrentUserProperty("alias")
+        let data = [
+            "alert" : "\(alias) punched you!",
+            "badge" : "Increment",
+            "sounds" : sound,
+            "fightObject" : fightObject.objectId
+        ]
         let pushQuery = installationQuery()
         pushQuery.whereKey("user", equalTo:recipientOfPunch)
         let push = PFPush()
         push.setQuery(pushQuery)
-        let alias = stringOfCurrentUserProperty("alias")
-        let pushMessage = "\(alias) punched you!"
-        push.setMessage(pushMessage)
+        push.setData(data)
         push.sendPushInBackground()
         
         // Update the user that just punched location.
        updateUserLocation()
     }
     
-    // these run synchronously... :(
+    // these run synchronously...
     func getAUsersProfilePicture(user:PFUser) -> UIImage {
         let img = user["profilePicture"] as AnyObject as? PFFile
         let data = img?.getData()
@@ -179,6 +185,8 @@ struct ParseAPI {
         let data = img?.getData()
         return UIImage(data:data!)!
     }
+    
+    // these don't
     func installAUsersProfilePicture(user:PFUser, target:UIImageView){
         let img = user["profilePicture"] as AnyObject as? PFFile
         img?.getDataInBackgroundWithBlock(){
@@ -201,6 +209,7 @@ struct ParseAPI {
             }
         }
     }
+    
     func stringOfCurrentUserProperty(key:String) -> String{
         let answer = PFUser.currentUser().objectForKey(key) as AnyObject as String
         return answer
@@ -257,5 +266,10 @@ struct ParseAPI {
                 }
             }
         }
+    }
+    func fightWasCompleted(fight: PFObject, winner:PFUser, loser:PFUser){
+        let data = ["fight":fight, "winner": winner, "loser":loser]
+        let object = PFObject(className: "Wins", dictionary: data)
+        object.saveInBackground()
     }
 }

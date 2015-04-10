@@ -9,18 +9,37 @@
 import Foundation
 
 struct SoundAPI {
+    static let notificationSound = "punch.wav"
+    static let victorySound = "punch"
+    static let lossSound = "meatSlap"
     static let allFightSounds:[String:String] = ["meatSlap":"aif", "Slap":"mp3", "slapFight": "wav", "punch":"wav"]
+    func soundNameToAudioPlayer(soundName:String) -> AVAudioPlayer {
+        let soundPath = NSBundle.mainBundle().pathForResource(soundName, ofType: SoundAPI.allFightSounds[soundName])
+        let soundURL = NSURL(fileURLWithPath: soundPath!)!
+        let player = AVAudioPlayer(contentsOfURL: soundURL, error: nil)
+        player.prepareToPlay()
+        config()
+        return player
+    }
     func getArrayOfSoundsPlayers() -> [AVAudioPlayer]{
         var result:[AVAudioPlayer] = []
         for (name, type) in SoundAPI.allFightSounds{
-            let soundPath = NSBundle.mainBundle().pathForResource(name, ofType: type)
-            let soundURL:NSURL = NSURL(fileURLWithPath: soundPath!)!
-            let player = AVAudioPlayer(contentsOfURL: soundURL, error: nil)
-            player.prepareToPlay()
-            result.append(player)
+            result.append(soundNameToAudioPlayer(name))
         }
-        AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryAmbient, error: nil)
+        config()
         return result
-        
+    }
+    func playVictorySound(){
+        config()
+        SoundAPI().soundNameToAudioPlayer(SoundAPI.victorySound).play()
+    }
+    func config(){
+        AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryAmbient, error: nil)
+    }
+    func getVictorySound() -> AVAudioPlayer{
+        return soundNameToAudioPlayer(SoundAPI.victorySound)
+    }
+    func getLossSound()-> AVAudioPlayer{
+        return soundNameToAudioPlayer(SoundAPI.lossSound)        
     }
 }
