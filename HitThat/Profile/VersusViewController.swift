@@ -70,7 +70,7 @@ class VersusViewController: UIViewController, UIScrollViewDelegate, UITableViewD
     }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == Constants.GenericProfileSegue{
-            if let next = segue.destinationViewController as? GenericProfileViewController{
+            if let next = segue.destinationViewController as? MatchViewController{
                 next.userToDisplay = self.userToDisplay
                 next.fightToDisplay = sender as? PFObject
             }
@@ -211,7 +211,7 @@ class VersusViewController: UIViewController, UIScrollViewDelegate, UITableViewD
                 }
                 var seen = currUser["seen"] as [PFUser]
                 query.whereKey("objectId", notContainedIn: seen)
-                query.whereKey("fullName", equalTo:"Jake Seaton")
+                //query.whereKey("fullName", equalTo:"Jake Seaton")
             }
             query.getFirstObjectInBackgroundWithBlock(){
                 (object, error) in

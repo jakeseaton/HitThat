@@ -57,7 +57,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             SoundAPI().soundNameToAudioPlayer("punch").play()
         }
         
-        
+        let navbar = UINavigationBar.appearance()
+        navbar.barTintColor = Colors.color1
 
         
         return true

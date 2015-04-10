@@ -12,6 +12,7 @@ class VersusLabel: UILabel {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.textColor = Colors().versusLabelTextColor
+//        self.backgroundColor
     }
 
 }

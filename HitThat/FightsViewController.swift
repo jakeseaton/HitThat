@@ -9,15 +9,20 @@
 import UIKit
 
 class FightsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    var sectionTitles = ["Origin", "Recpient"]
+    var sectionTitles = ["Fights", "Wins", "Losses"]
     @IBOutlet weak var tv: UITableView!
     
-    var originFights:[PFObject] = []{
+    var allFights:[PFObject] = []{
         didSet{
             tv.reloadData()
         }
     }
-    var recipientFights:[PFObject] = []{
+    var victories:[PFObject] = []{
+        didSet{
+            tv.reloadData()
+        }
+    }
+    var losses:[PFObject] = []{
         didSet{
             tv.reloadData()
         }
@@ -29,19 +34,25 @@ class FightsViewController: UIViewController, UITableViewDataSource, UITableView
     func refresh(){
         if (PFUser.currentUser() != nil){
                 let queryOrigin = ParseAPI().fightsQuery()
-                queryOrigin.orderByDescending("updatedAt")
-                queryOrigin.whereKey("origin", equalTo:PFUser.currentUser())
-                queryOrigin.findObjectsInBackgroundWithBlock(){
-                    (objects, error) in
-                    self.originFights = objects as [PFObject]
-                }
                 let queryRecipient = ParseAPI().fightsQuery()
-                queryRecipient.orderByDescending("updatedAt")
+                queryOrigin.whereKey("origin", equalTo: PFUser.currentUser())
                 queryRecipient.whereKey("recipient", equalTo: PFUser.currentUser())
-                queryRecipient.findObjectsInBackgroundWithBlock(){
+                let queryFights = PFQuery.orQueryWithSubqueries([queryOrigin, queryRecipient])
+                queryFights.orderByDescending("updatedAt")
+                queryFights.findObjectsInBackgroundWithBlock(){
                     (objects, error) in
-                    self.recipientFights = objects as [PFObject]
+                    self.allFights = objects as [PFObject]
                 }
+                let queryWins = ParseAPI().winsQuery(PFUser.currentUser())
+            queryWins.findObjectsInBackgroundWithBlock(){
+                (objects, error) in
+                self.victories = objects as [PFObject]
+            }
+            let queryLosses = ParseAPI().lossQuery(PFUser.currentUser())
+            queryLosses.findObjectsInBackgroundWithBlock(){
+              (objects,error) in
+                self.losses = objects as [PFObject]
+            }
             }
         }
 
@@ -71,44 +82,57 @@ class FightsViewController: UIViewController, UITableViewDataSource, UITableView
     }
     */
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
-        if indexPath.section == 0{
-            let cell = tableView.dequeueReusableCellWithIdentifier("FightCellOrigin", forIndexPath: indexPath) as FightCellOrigin
-            let fightObject = self.originFights[indexPath.row]
-            cell.nameLabel.text = fightObject["recipientAlias"] as? String
+        switch indexPath.section{
+            
+        // wins
+        case 1:
+            let cell = tableView.dequeueReusableCellWithIdentifier("FightCellWin", forIndexPath: indexPath) as FightCellWin
+            let winObject = self.victories[indexPath.row]
+            cell.nameLabel.text = winObject["loserAlias"] as AnyObject as? String
             return cell
-        }
-        else{
-            let cell = tableView.dequeueReusableCellWithIdentifier("FightCellRecipient", forIndexPath: indexPath) as FightCellRecipient
-            let fightObject = self.recipientFights[indexPath.row]
-            cell.nameLabel.text = fightObject["recipientAlias"] as? String
+            
+        // losses
+        case 2:
+            let cell = tableView.dequeueReusableCellWithIdentifier("FightCellLoss", forIndexPath:indexPath) as FightCellLoss
+            let lossObject = self.losses[indexPath.row]
+            cell.nameLabel.text = lossObject["winnerAlias"] as AnyObject as? String
+            return cell
+        // default--regular fight
+        default:
+            let cell = tableView.dequeueReusableCellWithIdentifier("FightCell", forIndexPath: indexPath) as FightCell
+            let fightObject:PFObject = self.allFights[indexPath.row]
+            // fix this
+            if (fightObject["origin"].objectId == PFUser.currentUser().objectId){
+                cell.nameLabel.text = fightObject["recipientAlias"] as? String
+            }
+            else{
+                cell.nameLabel.text = fightObject["originAlias"] as? String
+            }
             return cell
         }
     }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let answer = (section == 0) ? self.originFights.count : self.recipientFights.count
-        return answer
+        switch section{
+        case 0:
+            return self.allFights.count
+        case 1:
+            return self.victories.count
+        default:
+            return self.losses.count
+        }
     }
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return self.sectionTitles[section]
     }
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let arr = (indexPath.section == 0) ? self.originFights : self.recipientFights
-        // println(arr)
-        if (indexPath.section == 0){
-            let fightObject = self.originFights[indexPath.row]
+        if (indexPath.section == 0) {
+            let fightObject = self.allFights[indexPath.row]
             self.openFight(fightObject)
         }
-        else{
-            let fightObject = self.recipientFights[indexPath.row]
-            self.openFight(fightObject)
-        }
-//        let fightObject = arr[indexPath.row]
-//        self.performSegueWithIdentifier(Constants.OpenFightSegue, sender: fightObject)
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

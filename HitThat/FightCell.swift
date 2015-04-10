@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FightCellOrigin: UITableViewCell {
+class FightCell: UITableViewCell {
 
     @IBOutlet weak var nameLabel: UILabel!
     override func awakeFromNib() {

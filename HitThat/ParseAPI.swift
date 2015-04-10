@@ -27,6 +27,18 @@ struct ParseAPI {
         return query
         
     }
+    func winsQuery(user: PFUser) -> PFQuery{
+        let query = PFQuery(className: "Wins")
+        query.whereKey("winner", equalTo:user)
+        query.orderByDescending("createdAt")
+        return query
+    }
+    func lossQuery(user:PFUser) -> PFQuery{
+        let query = PFQuery(className: "Wins")
+        query.whereKey("loser", equalTo: user)
+        query.orderByDescending("createdAt")
+        return query
+    }
     
     func updateUserLocation(){
         if let user = PFUser.currentUser(){
@@ -276,8 +288,18 @@ struct ParseAPI {
         }
     }
     func fightWasCompleted(fight: PFObject, winner:PFUser, loser:PFUser){
-        let data = ["fight":fight, "winner": winner, "loser":loser]
-        let object = PFObject(className: "Wins", dictionary: data)
-        object.saveInBackground()
+        loser.fetchInBackgroundWithBlock(){
+            (result, error) in
+            if (error == nil){
+                let data = ["fight":fight, "winner": winner, "winnerAlias":winner["alias"] as String, "loser":loser, "loserAlias":result["alias"] as String]
+                let object = PFObject(className: "Wins", dictionary: data)
+                object.saveInBackground()
+            }
+        }
+        fight.deleteInBackgroundWithBlock(){
+            (succeeded, error) in
+            let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+            appDelegate.refreshTable()
+        }
     }
 }

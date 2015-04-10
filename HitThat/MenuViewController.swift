@@ -34,7 +34,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
             self.switchCenterContainer(centerViewController)
             break
         case 1:
-            var scoreViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ScoreViewController") as ScoreViewController
+            var scoreViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ProfileViewController") as ProfileViewController
             var scoreNavController = UINavigationController(rootViewController: scoreViewController)
             self.switchCenterContainer(scoreNavController)
 

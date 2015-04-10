@@ -1,5 +1,5 @@
 //
-//  FightCellRecipient.swift
+//  FightCellWin.swift
 //  HitThat
 //
 //  Created by Jake Seaton on 4/6/15.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FightCellRecipient: UITableViewCell {
+class FightCellWin: UITableViewCell {
 
     @IBOutlet weak var nameLabel: UILabel!
     override func awakeFromNib() {

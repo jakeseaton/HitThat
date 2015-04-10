@@ -15,6 +15,7 @@ class MenuCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.backgroundColor = Colors.color1
+        self.menuLabel.textColor = UIColor.whiteColor()
         // Initialization code
     }
 

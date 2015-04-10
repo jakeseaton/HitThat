@@ -130,7 +130,7 @@ class FightsTableViewController: PFQueryTableViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == Constants.ShowFightDetailsSegue {
-            if let profileView = segue.destinationViewController as? GenericProfileViewController{
+            if let profileView = segue.destinationViewController as? MatchViewController{
                 //                println("\(sender!)")
                 if let objectToDisplay = sender as? PFUser{
                     profileView.userToDisplay = objectToDisplay

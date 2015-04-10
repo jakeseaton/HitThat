@@ -1,5 +1,5 @@
 //
-//  GenericProfileViewController.swift
+//  MatchViewController.swift
 //  snatch
 //
 //  Created by Jake Seaton on 3/21/15.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GenericProfileViewController: UIViewController {
+class MatchViewController: UIViewController {
     var userToDisplay:PFUser?
     var fightToDisplay:PFObject?
     @IBOutlet weak var profilePicture: UIImageView!
