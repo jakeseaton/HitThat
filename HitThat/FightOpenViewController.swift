@@ -162,6 +162,18 @@ class FightOpenViewController: UIViewController{
     
     // Mark := Handling Punches
     func handlePunch(damage:CGFloat, punchType:PunchType){
+        switch punchType{
+        case .Block:
+            println("block!")
+        case .Jab:
+            println("Jab")
+        case .Uppercut:
+            println("uppercut!")
+        case .Kick:
+            println("kick!")
+        default:
+            break
+        }
         self.soundArray?.randomItem().play()
         let newStamina:CGFloat = self.opponentStamina! - damage
         if newStamina <= 0 {

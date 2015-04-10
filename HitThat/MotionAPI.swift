@@ -10,7 +10,7 @@ import Foundation
 import CoreMotion
 
 enum PunchType{
-    case Jab, Uppercut, Block
+    case Jab, Uppercut, Block, Kick
 }
 enum MotionThreshold {
     case Normal//(Float)
@@ -81,6 +81,16 @@ struct MotionAPI{
         switch result {
         case (.Normal, .Normal, .Normal):
             return nil
+        case (_,_,.Negative):
+            return .Jab
+        case (_,.Positive, _):
+            return .Uppercut
+        case (_,.Negative, _):
+            return .Kick
+        case(.Positive, _,_):
+            return .Block
+        case(.Negative, _,_):
+            return .Block
         default:
             return .Jab
         }
