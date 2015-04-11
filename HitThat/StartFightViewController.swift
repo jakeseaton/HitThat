@@ -56,7 +56,7 @@ class StartFightViewController: UIViewController {
         override func viewDidLoad() {
             self.soundArray = SoundAPI().getArrayOfFightSoundPlayers()
             Colors().favoriteBackGroundColor(self)
-            Colors().configureStaminaBar(opponentStaminaBar!)
+            Colors().configureStaminaBar(opponentStaminaBar!, user: false)
             
             let user = PFUser.currentUser()
 
@@ -89,8 +89,9 @@ class StartFightViewController: UIViewController {
             self.soundArray?.randomItem().play()
             let newStamina:CGFloat = self.opponentStamina! - damage
             self.opponentStamina = newStamina
-            self.fightToDisplay?.setObject(opponentStamina, forKey: "recipientStamina")
-            fightToDisplay?.saveInBackground()
+            self.fightToDisplay!.setObject(opponentStamina, forKey: "recipientStamina")
+            fightToDisplay!.setObject(PFUser.currentUser(), forKey: "lastTurn")
+            fightToDisplay!.saveInBackground()
             ParseAPI().notifyPunchedUser(self.recipientUser!, fightObject:fightToDisplay!, sound:SoundAPI.notificationSound)
             Constants().refreshFightsTable()
             self.performSegueWithIdentifier(Constants.UnwindFromNewFight, sender: self)

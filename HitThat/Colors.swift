@@ -11,7 +11,11 @@ struct Colors{
 
     static let color1 = UIColor(red:255/255, green:136/255, blue:74/255, alpha:1.0)
     static let color2 = UIColor(red: 255/255, green: 47/255, blue: 0/255, alpha: 1.0)
-
+    static let opponentColor2 = UIColor.redColor()
+    static let opponentColor1 = Colors.PomegranateColor
+    
+    static let userColor2 = UIColor.greenColor()
+    static let userColor1 = Colors.GreenSeaColor
     // static let color1 = UIColor(red:255/255, green:138/255, blue:119/255, alpha:1.0)
     // static let color2 = UIColor(red: 210/255, green: 22/255, blue: 30/255, alpha: 1.0)
     static let navBarTintColor = color1 //UIColor.redColor()
@@ -57,11 +61,16 @@ struct Colors{
         gradient.frame = CGRect(x: 0.0, y: 0.0, width: vc.view.frame.size.width, height: vc.view.frame.size.height)
         vc.view.layer.insertSublayer(gradient, atIndex: 0)
     }
-    func configureStaminaBar(bar:YLProgressBar){
+    func configureStaminaBar(bar:YLProgressBar, user:Bool){
         bar.hideStripes = true
-        bar.indicatorTextLabel.font = UIFont(name: "Arial-BoldMT", size: 20)
-        bar.progressTintColors = [Colors.color1, Colors.color2]
         bar.indicatorTextDisplayMode = YLProgressBarIndicatorTextDisplayMode.Progress
+        bar.indicatorTextLabel.font = UIFont(name: "Arial-BoldMT", size: 20)
+        if user{
+            bar.progressTintColors = [Colors.userColor1, Colors.userColor2]
+        }
+        else{
+            bar.progressTintColors = [Colors.opponentColor1, Colors.opponentColor2]
+        }
     }
     func favoriteBackGroundColor(vc:UIViewController){
         vc.view.backgroundColor = Colors.color1 //Colors.SilverColor

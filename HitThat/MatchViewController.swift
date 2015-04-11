@@ -10,10 +10,12 @@ import UIKit
 import MapKit
 
 class MatchViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
-    var userToDisplay:PFUser?{
-        didSet{} // This is where you would notify tracked user, etc.
-     }
+    var userToDisplay:PFUser?
     var fightToDisplay:PFObject?
+    @IBOutlet weak var distanceLabel:UILabel!
+    @IBOutlet weak var bioLabel:UILabel!
+    @IBOutlet weak var bestMoveLabel:UILabel!
+    @IBOutlet weak var lookingForLabel:UILabel!
     @IBOutlet weak var profilePicture: UIImageView!
     //@IBOutlet weak var userProfilePicture: UIImageView!
     @IBOutlet weak var fullName: UILabel!
@@ -26,7 +28,7 @@ class MatchViewController: UIViewController, MKMapViewDelegate, CLLocationManage
         didSet{
             mapView.setUserTrackingMode(.FollowWithHeading, animated: true)
             mapView.showsUserLocation = true
-            mapView.pitchEnabled = true
+            // mapView.pitchEnabled = true
             mapView.scrollEnabled = true
             mapView.zoomEnabled = true
             mapView.rotateEnabled = false
@@ -35,10 +37,6 @@ class MatchViewController: UIViewController, MKMapViewDelegate, CLLocationManage
             mapView.delegate = self
         }
     }
-    
-//    self.bioLabel.text = "Bio: " + ParseAPI().stringOfUnwrappedUserProperty("bio", user: userToDisplay!)
-//    ParseAPI().installAUsersProfilePhoto(userToDisplay!, target: self.headerImageView, optionalBlurTarget: self.headerBlurImageView)
-//    self.distanceLabel.text = "Distance: " + ParseAPI().distanceToUser(userToDisplay!).description + "mi"
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,7 +47,12 @@ class MatchViewController: UIViewController, MKMapViewDelegate, CLLocationManage
         if let userObject = userToDisplay{
             fullName.text = ParseAPI().stringOfUnwrappedUserProperty("fullName", user: userObject)
             ParseAPI().installAUsersProfilePicture(userObject, target: self.profilePicture)
-            //handleAnnotations([userObject])
+            self.bioLabel.text = "Bio: " + ParseAPI().stringOfUnwrappedUserProperty("bio", user: userObject)
+            self.distanceLabel.text = "Distance: " + ParseAPI().distanceToUser(userToDisplay!).description + "mi"
+            self.bestMoveLabel.text = "Best Move: " + ParseAPI().stringOfUnwrappedUserProperty("bestMove", user: userObject)
+            self.navigationItem.title = ParseAPI().stringOfUnwrappedUserProperty("alias" , user:userObject)
+            
+//            self.lookingForLabel.text = "Looking For: " + ParseAPI().stringOfUnwrappedUserProperty("lookingFor", user: userObject)
         }
 //        if let currentUser = PFUser.currentUser(){
 //           ParseAPI().installAUsersProfilePicture(currentUser, target: self.userProfilePicture)

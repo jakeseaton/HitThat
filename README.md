@@ -75,4 +75,6 @@ PFQuery does not support ordering on .orQueryWithsSubQuery queries, which is the
 Haven't been doing capture lists -> some strong reference cycles
 Not the prettiest app in the world.
 
+Apple decided to release an update to swift and xcode that is incompatible with the previous version. This will not run in XCode 6.3 or with swift 1.2
+It won't play custom sounds on incoming notifications.
 

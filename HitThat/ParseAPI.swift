@@ -287,14 +287,21 @@ struct ParseAPI {
         }
     }
     func fightWasCompleted(fight: PFObject, winner:PFUser, loser:PFUser){
-        loser.fetchInBackgroundWithBlock(){
-            (result, error) in
-            if (error == nil){
-                let data = ["fight":fight, "winner": winner, "winnerAlias":winner["alias"] as String, "loser":loser, "loserAlias":result["alias"] as String]
-                let object = PFObject(className: "Wins", dictionary: data)
-                object.saveInBackground()
-            }
-        }
+        println(loser)
+        // BOTH ARE POINTERS RN, so this is happening on the main que
+
+        loser.fetchIfNeeded()
+        winner.fetchIfNeeded()
+        let data = [
+            "fight":fight,
+            "winner": winner,
+            "winnerAlias":winner["alias"] as String,
+            "loser":loser,
+            "loserAlias": loser["alias"] as String
+        ]
+        let object = PFObject(className: "Wins", dictionary: data)
+        object.saveInBackground()
+        
         fight.deleteInBackgroundWithBlock(){
             (succeeded, error) in
             let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate

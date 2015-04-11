@@ -8,6 +8,21 @@
 
 /* Begin PBXBuildFile section */
 		3D154F301AD5BCCD00C2AD82 /* VersusLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D154F2F1AD5BCCD00C2AD82 /* VersusLabel.swift */; };
+		3D23E21E1AD969FE00469749 /* die1.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 3D23E2121AD969FE00469749 /* die1.aiff */; };
+		3D23E21F1AD969FE00469749 /* drumroll.aif in Resources */ = {isa = PBXBuildFile; fileRef = 3D23E2131AD969FE00469749 /* drumroll.aif */; };
+		3D23E2201AD969FE00469749 /* dunDunDun1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3D23E2141AD969FE00469749 /* dunDunDun1.wav */; };
+		3D23E2211AD969FE00469749 /* dunDunDun2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3D23E2151AD969FE00469749 /* dunDunDun2.wav */; };
+		3D23E2221AD969FE00469749 /* Explosion.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3D23E2161AD969FE00469749 /* Explosion.wav */; };
+		3D23E2231AD969FE00469749 /* femaleGrunt1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3D23E2171AD969FE00469749 /* femaleGrunt1.wav */; };
+		3D23E2241AD969FE00469749 /* femaleGrunt2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3D23E2181AD969FE00469749 /* femaleGrunt2.wav */; };
+		3D23E2251AD969FE00469749 /* grunt1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3D23E2191AD969FE00469749 /* grunt1.wav */; };
+		3D23E2261AD969FE00469749 /* grunt2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3D23E21A1AD969FE00469749 /* grunt2.wav */; };
+		3D23E2271AD969FE00469749 /* grunt3.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3D23E21B1AD969FE00469749 /* grunt3.wav */; };
+		3D23E2281AD969FE00469749 /* shoud2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3D23E21C1AD969FE00469749 /* shoud2.wav */; };
+		3D23E2291AD969FE00469749 /* shout1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3D23E21D1AD969FE00469749 /* shout1.wav */; };
+		3D23E22B1AD96E3600469749 /* applause.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3D23E22A1AD96E3600469749 /* applause.wav */; };
+		3D23E22E1AD9768500469749 /* ThreePunch.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3D23E22D1AD9768500469749 /* ThreePunch.wav */; };
+		3D23E2311AD986DA00469749 /* FormValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D23E2301AD986DA00469749 /* FormValidator.swift */; };
 		3D413ED91AD74BDF00E00A76 /* MotionAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D413ED81AD74BDF00E00A76 /* MotionAPI.swift */; };
 		3D413EDD1AD8619300E00A76 /* FightCellLoss.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D413EDC1AD8619300E00A76 /* FightCellLoss.swift */; };
 		3D413EDF1AD87E5000E00A76 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D413EDE1AD87E5000E00A76 /* Main.storyboard */; };
@@ -129,6 +144,23 @@
 
 /* Begin PBXFileReference section */
 		3D154F2F1AD5BCCD00C2AD82 /* VersusLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VersusLabel.swift; sourceTree = "<group>"; };
+		3D23E2121AD969FE00469749 /* die1.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = die1.aiff; sourceTree = "<group>"; };
+		3D23E2131AD969FE00469749 /* drumroll.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = drumroll.aif; sourceTree = "<group>"; };
+		3D23E2141AD969FE00469749 /* dunDunDun1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = dunDunDun1.wav; sourceTree = "<group>"; };
+		3D23E2151AD969FE00469749 /* dunDunDun2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = dunDunDun2.wav; sourceTree = "<group>"; };
+		3D23E2161AD969FE00469749 /* Explosion.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Explosion.wav; sourceTree = "<group>"; };
+		3D23E2171AD969FE00469749 /* femaleGrunt1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = femaleGrunt1.wav; sourceTree = "<group>"; };
+		3D23E2181AD969FE00469749 /* femaleGrunt2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = femaleGrunt2.wav; sourceTree = "<group>"; };
+		3D23E2191AD969FE00469749 /* grunt1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = grunt1.wav; sourceTree = "<group>"; };
+		3D23E21A1AD969FE00469749 /* grunt2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = grunt2.wav; sourceTree = "<group>"; };
+		3D23E21B1AD969FE00469749 /* grunt3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = grunt3.wav; sourceTree = "<group>"; };
+		3D23E21C1AD969FE00469749 /* shoud2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = shoud2.wav; sourceTree = "<group>"; };
+		3D23E21D1AD969FE00469749 /* shout1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = shout1.wav; sourceTree = "<group>"; };
+		3D23E22A1AD96E3600469749 /* applause.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = applause.wav; sourceTree = "<group>"; };
+		3D23E22C1AD9767A00469749 /* 321Fight.flac */ = {isa = PBXFileReference; lastKnownFileType = file; path = 321Fight.flac; sourceTree = "<group>"; };
+		3D23E22D1AD9768500469749 /* ThreePunch.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ThreePunch.wav; sourceTree = "<group>"; };
+		3D23E22F1AD97A7C00469749 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = MyPlayground.playground; path = ../../../../Desktop/MyPlayground.playground; sourceTree = "<group>"; };
+		3D23E2301AD986DA00469749 /* FormValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormValidator.swift; sourceTree = "<group>"; };
 		3D413ED81AD74BDF00E00A76 /* MotionAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotionAPI.swift; sourceTree = "<group>"; };
 		3D413EDC1AD8619300E00A76 /* FightCellLoss.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FightCellLoss.swift; path = ../FightCellLoss.swift; sourceTree = "<group>"; };
 		3D413EDE1AD87E5000E00A76 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -358,6 +390,21 @@
 		3DAE5B0B1AD46874004892CC /* FreeSounds */ = {
 			isa = PBXGroup;
 			children = (
+				3D23E22A1AD96E3600469749 /* applause.wav */,
+				3D23E2121AD969FE00469749 /* die1.aiff */,
+				3D23E2131AD969FE00469749 /* drumroll.aif */,
+				3D23E22C1AD9767A00469749 /* 321Fight.flac */,
+				3D23E22D1AD9768500469749 /* ThreePunch.wav */,
+				3D23E2141AD969FE00469749 /* dunDunDun1.wav */,
+				3D23E2151AD969FE00469749 /* dunDunDun2.wav */,
+				3D23E2161AD969FE00469749 /* Explosion.wav */,
+				3D23E2171AD969FE00469749 /* femaleGrunt1.wav */,
+				3D23E2181AD969FE00469749 /* femaleGrunt2.wav */,
+				3D23E2191AD969FE00469749 /* grunt1.wav */,
+				3D23E21A1AD969FE00469749 /* grunt2.wav */,
+				3D23E21B1AD969FE00469749 /* grunt3.wav */,
+				3D23E21C1AD969FE00469749 /* shoud2.wav */,
+				3D23E21D1AD969FE00469749 /* shout1.wav */,
 				3DAE5B0C1AD468A4004892CC /* meatSlap.aif */,
 				3DAE5B0D1AD468A4004892CC /* Slap.mp3 */,
 				3DAE5B0E1AD468A4004892CC /* slapFight.wav */,
@@ -419,6 +466,7 @@
 		3DB6DEE31AC993620020497B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3D23E22F1AD97A7C00469749 /* MyPlayground.playground */,
 				3DAE5B121AD46A97004892CC /* RandomArray.swift */,
 				3D8482C21ACB790D00D663DF /* LocateButton.swift */,
 				3DB6DF111AC994930020497B /* Frameworks */,
@@ -511,6 +559,7 @@
 		3DB6DF831AC9AF2B0020497B /* API */ = {
 			isa = PBXGroup;
 			children = (
+				3D23E2301AD986DA00469749 /* FormValidator.swift */,
 				3DB6DF501AC9AED90020497B /* ParseAPI.swift */,
 				3DAE5B091AD4661B004892CC /* SoundAPI.swift */,
 				3DAE5B141AD46C90004892CC /* Shapes.swift */,
@@ -713,12 +762,26 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D23E2291AD969FE00469749 /* shout1.wav in Resources */,
+				3D23E22B1AD96E3600469749 /* applause.wav in Resources */,
+				3D23E2261AD969FE00469749 /* grunt2.wav in Resources */,
+				3D23E2251AD969FE00469749 /* grunt1.wav in Resources */,
+				3D23E2201AD969FE00469749 /* dunDunDun1.wav in Resources */,
 				3DB6DEEB1AC993620020497B /* Old.storyboard in Resources */,
+				3D23E2211AD969FE00469749 /* dunDunDun2.wav in Resources */,
+				3D23E2271AD969FE00469749 /* grunt3.wav in Resources */,
 				3DAE5B0F1AD468A4004892CC /* meatSlap.aif in Resources */,
 				3DED5BE51AD077BA00F1DE5F /* Old2.storyboard in Resources */,
 				3DAE5B081AD46559004892CC /* punch.wav in Resources */,
+				3D23E21E1AD969FE00469749 /* die1.aiff in Resources */,
 				3DB6DEF01AC993620020497B /* LaunchScreen.xib in Resources */,
+				3D23E2241AD969FE00469749 /* femaleGrunt2.wav in Resources */,
 				3DAE5B101AD468A4004892CC /* Slap.mp3 in Resources */,
+				3D23E22E1AD9768500469749 /* ThreePunch.wav in Resources */,
+				3D23E2231AD969FE00469749 /* femaleGrunt1.wav in Resources */,
+				3D23E21F1AD969FE00469749 /* drumroll.aif in Resources */,
+				3D23E2281AD969FE00469749 /* shoud2.wav in Resources */,
+				3D23E2221AD969FE00469749 /* Explosion.wav in Resources */,
 				3DB6DEED1AC993620020497B /* Images.xcassets in Resources */,
 				3D413EDF1AD87E5000E00A76 /* Main.storyboard in Resources */,
 				3DAE5B111AD468A4004892CC /* slapFight.wav in Resources */,
@@ -782,6 +845,7 @@
 				3DB6DF551AC9AEDA0020497B /* BouncerBehavior.swift in Sources */,
 				3D8482AC1ACB2FAB00D663DF /* Colors.swift in Sources */,
 				3D413EE11AD87E8800E00A76 /* UserCell.swift in Sources */,
+				3D23E2311AD986DA00469749 /* FormValidator.swift in Sources */,
 				3DB6DF6F1AC9AEDA0020497B /* RegisterViewController.swift in Sources */,
 				3D56CAE41ACE0CB3004759ED /* RegisterFormViewController.swift in Sources */,
 				3DB6DF701AC9AEDA0020497B /* RootViewController.swift in Sources */,

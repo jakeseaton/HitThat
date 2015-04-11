@@ -1,4 +1,4 @@
-//
+    //
 //  AppDelegate.swift
 //  HitThat
 //
@@ -86,7 +86,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             self.centerContainer!.toggleDrawerSide(.Right, animated: true, completion: nil)
             let fightObject = PFObject(withoutDataWithClassName: "Fights", objectId: fightId)
             if let currentFight = UIApplication.sharedApplication().keyWindow?.rootViewController?.presentedViewController as? FightOpenViewController{
+                // switch fightObject etc
                 if (fightId == currentFight.fightToDisplay?.objectId){
+                    SoundAPI().playNotificationSound()
                     currentFight.refreshFight()
                 }
             }

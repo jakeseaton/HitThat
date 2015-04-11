@@ -37,7 +37,7 @@ class FightOpenViewController: UIViewController{
 
     var isUsersTurn:Bool?{
         willSet{
-            self.turnLabel.text = newValue! ? "YOU TURN" : "THEIR TURN"
+            self.turnLabel?.text = newValue! ? "YOU TURN" : "THEIR TURN"
         }
     }
     var userIsOrigin:Bool?
@@ -106,7 +106,19 @@ class FightOpenViewController: UIViewController{
     var victorySound:AVAudioPlayer?
     var lossSound:AVAudioPlayer?
 
-    func updateUI(){}
+    func updateUI(){
+        if let currentFight = fightToDisplay{
+            if let lastTurn = currentFight["lastTurn"] as? PFUser{
+                if PFUser.currentUser().objectId == lastTurn.objectId{
+                    self.isUsersTurn = false
+                }
+            }
+            
+            else{
+                self.isUsersTurn = true
+            }
+        }
+    }
     
     override func viewDidLoad() {
 
@@ -114,9 +126,9 @@ class FightOpenViewController: UIViewController{
         self.soundArray = SoundAPI().getArrayOfFightSoundPlayers()
         self.victorySound = SoundAPI().getVictorySound()
         self.lossSound = SoundAPI().getLossSound()
-        Colors().favoriteBackGroundColor(self)
-        Colors().configureStaminaBar(userStaminaBar!)
-        Colors().configureStaminaBar(opponentStaminaBar!)
+        // Colors().favoriteBackGroundColor(self)
+        Colors().configureStaminaBar(userStaminaBar!, user:true)
+        Colors().configureStaminaBar(opponentStaminaBar!, user:false)
         
         let user = PFUser.currentUser()
         let fight = self.fightToDisplay!
@@ -190,6 +202,7 @@ class FightOpenViewController: UIViewController{
         else{
             
             self.opponentStamina = newStamina
+            fightToDisplay?.setObject(PFUser.currentUser(), forKey: "lastTurn")
             if userIsOrigin!{
                 // update the stamina on the database
                 self.fightToDisplay?.setObject(opponentStamina, forKey: "recipientStamina")

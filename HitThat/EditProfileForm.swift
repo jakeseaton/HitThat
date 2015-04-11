@@ -10,20 +10,19 @@ import UIKit
 
 class EditProfileForm: NSObject, FXForm {
     
+    var age: String?
     var alias: String?
     var height:String?
     var weight:String?
     var name: String?
-    var age: UInt = 0
     var profilePhoto: UIImage?
-    var interests: NSArray?
     var bio: String?
     var bestMove:String?
     var hitsWith:String?
-    var bodyType = 0
+    var bodyType:String?
     var jailTime = 0
     var tatoos = 0
-    var gpa = 0
+    var gpa:String?
     var reach:String?
     var lookingFor:String?
     func fields() -> [AnyObject]! {

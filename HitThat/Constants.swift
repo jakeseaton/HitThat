@@ -13,13 +13,15 @@ struct Constants{
     static let BlockSize = CGSize(width: 40, height: 40)
 
     // Segues
+    static let LogInSegue = "Log In Segue"
+    static let ShowProfileSegue = "Show Profile Segue"
+    static let RegistrationCompleteSegue = "Registration Complete"
     
     // Identifiers
     
     // Images
-    static let LogInSegue = "Log In Segue"
-    static let ShowProfileSegue = "Show Profile Segue"
-    static let CreatedAt = "createdAt"
+   
+    //static let CreatedAt = "createdAt"
     static let SelectedCell = "Selected Cell"
     static let FullPostSegue = "Full Post Segue"
     static let HomeSelectedImage = "homeFilled"
@@ -34,7 +36,6 @@ struct Constants{
     static let LocateSegueIndentifier = "Locate Segue"
     static let AnnotationViewReuseIdentifier = "Annotation View Reuse Identifier"
     static let ShowFightDetailsSegue = "Show Fight Details"
-    static let DoneRegisteringSegue = "Done Registering"
     static let ReigsterUserSegue = "Register New User"
     static let GenericProfileSegue = "Generic Profile Segue"
     static let KeepPlayingSegue = "Keep Playing Segue"
@@ -51,23 +52,69 @@ struct Constants{
     static let UnwindFromNewFight = "Unwind From New Fight"
     
     // Versus Screen
-    // removed "bestMove" and "lookingFor",
-    static let categories = ["alias", "gender", "bodyType", "height", "weight", "reach", "fights", "wins", "jailTime", "GPA", "tatoos"]
-    static let comparables = ["height", "weight", "reach", "wins", "fights", "jailTime", "GPA", "tatoos"]
+    // removed fights
+    // removed alias
+    static let categories = ["gender", "bodyType", "height", "weight", "reach", "wins", "jailTime", "gpa", "tatoos"]
+    static let comparables = ["height", "weight", "reach", "wins", "jailTime", "gpa", "tatoos"]
     
     // Menu
     static let menuItems = ["Home", "My Profile", "My Fights", "Settings", "About", "resetSeen", "clearAllFights"]
     static let menuIcons = ["homeFilled", "userMaleFilled", "myFightsIcon", "settingsIcon", "aboutIcon", "fist", "fist"]
     
-    // Form Options
-    static let hitsWithOptions = ["Right Hand", "Left Hand", "Head", "Foot", "Bat", "Purse","Hatchet","Car", "Motorcycle", "Taxes", "Cat", "Mid Life Crisis", "Good Touch", "Bad Touch", "Anchor", "Hard Rock", "Soft Jazz"]
-    static let lookingForOptions = ["Love", "Fights", "Love and Fights"]
-    static let bestMoveOptions = ["Punch", "Jab", "Upper Cut", "Roundhouse", "Chop", "Body Slam", "Play Dead","Use the Force"]
-    
     func refreshFightsTable(){
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         appDelegate.refreshTable()
     }
+    
+    // Form Options
+    static let hitsWithOptions = ["Right Hand", "Left Hand", "Head", "Foot", "Bat", "Purse","Hatchet","Car", "Motorcycle", "Taxes", "Cat", "Mid Life Crisis", "Good Touch", "Bad Touch", "Anchor", "Hard Rock", "Soft Jazz"]
+    static let lookingForOptions = ["Love", "Fights", "Love and Fights"]
+    static let bestMoveOptions = ["Punch", "Jab", "Upper Cut", "Roundhouse", "Chop", "Body Slam", "Play Dead","Use the Force"]
+    static let bodyTypeOptions = ["Slim", "Normal", "Butch", "Swole"]
+    var GPAOptions:[String]{
+        var results:[String] = []
+        for i in 0...3{
+            for j in 0...9{
+                let str = "\(i).\(j)"
+                results.append(str)
+            }
+        }
+        results.append("4.0")
+        return results
+    }
+    var heightOptions:[String] {
+        var results:[String] = []
+        for i in 4...6{
+            for j in 0...11{
+               results.append("\(i)' \(j)")
+            }
+        }
+        return results
+    }
+    var weightOptions:[String]{
+        var results:[String] = []
+        for i in 100...300{
+            results.append("\(i)")
+        }
+        return results
+    }
+    var reachOptions:[String]{
+        var results:[String] = []
+        for i in 0...4{
+            for j in 0...11{
+                results.append("\(i)' \(j)")
+            }
+        }
+        return results
+    }
+    var ageOptions:[String] {
+        var results:[String] = []
+        for i in 18...110{
+            results.append("\(i)")
+        }
+        return results
+    }
+    
 
     func formFields(registering:Bool) -> [AnyObject]!{
         
@@ -75,10 +122,27 @@ struct Constants{
             [FXFormFieldKey: "alias", FXFormFieldHeader: "Fighter Alias",
                 "textField.autocapitalizationType": UITextAutocapitalizationType.Words.rawValue],
             "profilePhoto",
+            
             [FXFormFieldKey: "bio", FXFormFieldType: FXFormFieldTypeLongText],
-            [FXFormFieldKey: "height", "textField.autocapitalizationType": UITextAutocapitalizationType.Words.rawValue],
-            [FXFormFieldKey: "weight", "textField.autocapitalizationType": UITextAutocapitalizationType.Words.rawValue],
-            [FXFormFieldKey: "reach", "textField.autocapitalizationType":UITextAutocapitalizationType.Words.rawValue],
+            [FXFormFieldKey: "age",
+                FXFormFieldOptions: ageOptions,
+                FXFormFieldPlaceholder: "N/A",
+                FXFormFieldCell: FXFormOptionPickerCell.self],
+            [FXFormFieldKey: "height",
+                FXFormFieldOptions: heightOptions,
+                FXFormFieldPlaceholder: "N/A",
+                FXFormFieldCell: FXFormOptionPickerCell.self],
+            //[FXFormFieldKey: "height", "textField.autocapitalizationType": UITextAutocapitalizationType.Words.rawValue],
+            [FXFormFieldKey: "weight",
+                FXFormFieldOptions: weightOptions,
+                FXFormFieldPlaceholder: "N/A",
+                FXFormFieldCell: FXFormOptionPickerCell.self],
+            //[FXFormFieldKey: "weight", "textField.autocapitalizationType": UITextAutocapitalizationType.Words.rawValue],
+            [FXFormFieldKey: "reach",
+                FXFormFieldOptions: reachOptions,
+                FXFormFieldPlaceholder: "N/A",
+                FXFormFieldCell: FXFormOptionPickerCell.self],
+            //[FXFormFieldKey: "reach", "textField.autocapitalizationType":UITextAutocapitalizationType.Words.rawValue],
             
             //            [FXFormFieldKey: "bestMove", FXFormFieldHeader:"Fighter Details", FXFormFieldType: FXFormFieldTypeLongText],
             [FXFormFieldKey: "bestMove",
@@ -97,7 +161,11 @@ struct Constants{
             
             [FXFormFieldKey: "jailTime", FXFormFieldCell: FXFormStepperCell.self],
             [FXFormFieldKey: "tatoos", FXFormFieldCell: FXFormStepperCell.self],
-            [FXFormFieldKey: "gpa", FXFormFieldCell: FXFormStepperCell.self],
+
+            [FXFormFieldKey: "gpa",
+                FXFormFieldOptions: GPAOptions,
+                FXFormFieldPlaceholder: "N/A",
+                FXFormFieldCell: FXFormOptionPickerCell.self],
             
             
             //this is an options field that uses a FXFormOptionPickerCell to display the available
@@ -111,16 +179,10 @@ struct Constants{
                 FXFormFieldOptions: Constants.lookingForOptions,
                 FXFormFieldPlaceholder: "N/A",
                 FXFormFieldCell: FXFormOptionPickerCell.self],
-            
-            //this is a multi-select options field - FXForms knows this because the
-            //class of the field property is a collection (in this case, NSArray)
-            
-            [FXFormFieldHeader: "Body Type",
-                FXFormFieldKey: "bodyType",
-                FXFormFieldTitle: "",
-                FXFormFieldPlaceholder: "Slim",
-                FXFormFieldOptions: ["Normal", "Butch", "Swole"],
-                FXFormFieldCell: FXFormOptionSegmentsCell.self],
+            [FXFormFieldKey: "bodyType",
+                FXFormFieldOptions: Constants.bodyTypeOptions,
+                FXFormFieldPlaceholder: "N/A",
+                FXFormFieldCell: FXFormOptionPickerCell.self],
             
             [FXFormFieldTitle: "Update Profile", FXFormFieldAction: "submitRegistrationForm:"],
             

@@ -28,12 +28,10 @@ struct MotionAPI{
         let attitideYaw = deviceMotion.attitude.yaw
         //println(accelerationX, accelerationY, accelerationZ)
         if let punchType = determinePunchType(accelerationX, accelerationY, accelerationZ){
+            let damage:Double = calculateDamage(accelerationX, y: accelerationY, z: accelerationZ)
+            let scaledDamage = damage / Double(100)
             if let fightOpenViewController = sender as? FightOpenViewController{
                 fightOpenViewController.motionKit.stopDeviceMotionUpdates()
-                let damage:Double = calculateDamage(accelerationX, y: accelerationY, z: accelerationZ)
-                let scaledDamage = damage / Double(10)
-                //println(punchType)
-                //println(damage)
                 dispatch_async(dispatch_get_main_queue()){
                     fightOpenViewController.handlePunch(CGFloat(scaledDamage), punchType: punchType)
                 }
@@ -41,9 +39,6 @@ struct MotionAPI{
             if let startFightViewController = sender as? StartFightViewController{
                 startFightViewController.motionKit.stopDeviceMotionUpdates()
                 let damage:Double = calculateDamage(accelerationX, y: accelerationY, z: accelerationZ)
-                let scaledDamage = damage / Double(10)
-                //println(punchType)
-                //println(damage)
                 dispatch_async(dispatch_get_main_queue()){
                     startFightViewController.handlePunch(CGFloat(scaledDamage), punchType: punchType)
                 }

@@ -9,17 +9,35 @@
 import Foundation
 
 struct SoundAPI {
-    static let notificationSound = "punch.wav"
-    static let victorySound = "punch"
-    static let lossSound = "meatSlap"
-    static let allFightSounds:[String:String] = ["meatSlap":"aif", "Slap":"mp3", "slapFight": "wav", "punch":"wav"]
-    static let allMatchSounds:[String:String] = ["meatSlap":"aif", "Slap":"mp3", "slapFight": "wav", "punch":"wav"]
-    //static let femaleGruntSounds:[String:String] = []
-    //static let maleGruntSounds:[String:String] = []
+    static let allSounds = [
+        "meatSlap":"aif",
+        "Slap":"mp3",
+        "slapFight": "wav",
+        "punch":"wav",
+        "dunDunDun1":"wav",
+        "dunDunDun2":"wav",
+        "Explosion": "wav",
+        "drumroll":"aif",
+        "grunt1":"wav",
+        "grunt2":"wav",
+        "grunt3":"wav",
+        "femaleGrunt1":"wav",
+        "femaleGrunt2":"wav",
+        "applause":"wav",
+        "ThreePunch":"wav"
+    ]
+    static let notificationSound = "punch"
+    static let startFightSound = "ThreePunch"
+    static let victorySound = "applause"
+    static let lossSound = "ThreePunch"
+    static let allFightSounds:[String] = ["meatSlap", "Slap", "slapFight", "punch"]
+    static let allMatchSounds:[String] = ["dunDunDun1", "dunDunDun2", "Explosion", "drumroll"]
+    static let femaleGruntSounds:[String] = ["femaleGrunt1","femaleGrunt2"]
+    static let maleGruntSounds:[String] = ["grunt1", "grunt2", "grunt3"]
     //static let blockSounds:[String:String] = []
     
     func soundNameToAudioPlayer(soundName:String) -> AVAudioPlayer {
-        let soundPath = NSBundle.mainBundle().pathForResource(soundName, ofType: SoundAPI.allFightSounds[soundName])
+        let soundPath = NSBundle.mainBundle().pathForResource(soundName, ofType: SoundAPI.allSounds[soundName])
         let soundURL = NSURL(fileURLWithPath: soundPath!)!
         let player = AVAudioPlayer(contentsOfURL: soundURL, error: nil)
         player.prepareToPlay()
@@ -27,9 +45,9 @@ struct SoundAPI {
         return player
     }
     
-    func getArrayOfMatchSoundsPlayers() -> [AVAudioPlayer]{
+    func getArrayOfMatchSoundPlayers() -> [AVAudioPlayer]{
         var result:[AVAudioPlayer] = []
-        for (name, type) in SoundAPI.allMatchSounds{
+        for name in SoundAPI.allMatchSounds{
             result.append(soundNameToAudioPlayer(name))
         }
         config()
@@ -37,7 +55,7 @@ struct SoundAPI {
     }
     func getArrayOfFightSoundPlayers() -> [AVAudioPlayer]{
         var result:[AVAudioPlayer] = []
-        for (name, type) in SoundAPI.allFightSounds{
+        for name in SoundAPI.allFightSounds{
             result.append(soundNameToAudioPlayer(name))
         }
         config()
@@ -46,7 +64,16 @@ struct SoundAPI {
     
     func playVictorySound(){
         config()
-        SoundAPI().soundNameToAudioPlayer(SoundAPI.victorySound).play()
+        soundNameToAudioPlayer(SoundAPI.victorySound).play()
+    }
+    func playLossSound(){
+            config()
+            soundNameToAudioPlayer(SoundAPI.lossSound).play()
+    }
+    
+    func playNotificationSound(){
+        config()
+        soundNameToAudioPlayer(SoundAPI.notificationSound).play()
     }
     func config(){
         AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryAmbient, error: nil)

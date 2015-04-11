@@ -61,6 +61,9 @@ class VersusViewController: UIViewController, UIScrollViewDelegate, UITableViewD
     @IBAction func keepPlaying(segue:UIStoryboardSegue){
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         appDelegate.centerContainer!.centerViewController = self
+        if segue.identifier == Constants.RegistrationCompleteSegue{
+            self.updateUI()
+        }
         self.next()
     }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -88,7 +91,7 @@ class VersusViewController: UIViewController, UIScrollViewDelegate, UITableViewD
         scrollView.delegate = self
         
         // Sound
-        self.soundArray = SoundAPI().getArrayOfMatchSoundsPlayers()
+        self.soundArray = SoundAPI().getArrayOfMatchSoundPlayers()
         
         // UI
         self.headerLabel.textColor = UIColor.whiteColor()//COlors.color2()
@@ -113,6 +116,14 @@ class VersusViewController: UIViewController, UIScrollViewDelegate, UITableViewD
     override func viewDidAppear(animated: Bool) {
         if let currUser = PFUser.currentUser(){
             super.viewDidAppear(true)
+            // make sure they've registered
+//            if !self.userSawLoginScreen{
+//                if let alias = currUser["alias"] as? String{}
+//                else{
+//                    performSegueWithIdentifier(Constants.NoUserSegue, sender: self)
+//                }
+//            }
+
         }
         else{
             super.viewDidAppear(true)
@@ -131,6 +142,8 @@ class VersusViewController: UIViewController, UIScrollViewDelegate, UITableViewD
         if let currUser = PFUser.currentUser(){
             self.userDisplayName.text = ParseAPI().stringOfCurrentUserProperty("alias")
         }
+        userTableView.reloadData()
+        
     }
     // I DIDN'T WRITE THIS
     func scrollViewDidScroll(scrollView: UIScrollView) {

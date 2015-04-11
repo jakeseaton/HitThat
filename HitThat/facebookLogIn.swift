@@ -192,16 +192,7 @@ class facebookLogIn: UIViewController  {
         // Dispose of any resources that can be recreated.
     }
    override func awakeFromNib() {
-    self.view.backgroundColor = UIColor.clearColor()
-    let gradient: CAGradientLayer = CAGradientLayer()
-    //            gradient.colors = [Colors.PomegranateColor.CGColor, Colors.AlizarinColor.CGColor]
-    gradient.colors = [Colors.color1.CGColor, Colors.color2.CGColor]
-    gradient.locations = [0.0 , 1.0]
-    //            gradient.startPoint = CGPoint(x: 0.0, y: 1.0)
-    //            gradient.endPoint = CGPoint(x: 1.0, y: 1.0)
-    gradient.frame = CGRect(x: 0.0, y: 0.0, width: self.view.frame.size.width, height: self.view.frame.size.height)
-    
-    self.view.layer.insertSublayer(gradient, atIndex: 0)
+    Colors().favoriteBackGroundColor(self)
     }
 }
 
