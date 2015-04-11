@@ -9,6 +9,7 @@
 import Foundation
 
 struct SoundAPI {
+
     static let allSounds = [
         "meatSlap":"aif",
         "Slap":"mp3",
@@ -24,12 +25,19 @@ struct SoundAPI {
         "femaleGrunt1":"wav",
         "femaleGrunt2":"wav",
         "applause":"wav",
-        "ThreePunch":"wav"
+        "ThreePunch":"wav",
+        "targetLocked":"wav"
     ]
+    static let jabSound = "punch"
+    static let kickSound = "grunt1"
+    static let blockSound = "Slap"
+    static let upperCutSound = "meatSlap"
+
     static let notificationSound = "punch"
     static let startFightSound = "ThreePunch"
     static let victorySound = "applause"
     static let lossSound = "ThreePunch"
+    static let targetLockedSound = "targetLocked"
     static let allFightSounds:[String] = ["meatSlap", "Slap", "slapFight", "punch"]
     static let allMatchSounds:[String] = ["dunDunDun1", "dunDunDun2", "Explosion", "drumroll"]
     static let femaleGruntSounds:[String] = ["femaleGrunt1","femaleGrunt2"]
@@ -83,5 +91,12 @@ struct SoundAPI {
     }
     func getLossSound()-> AVAudioPlayer{
         return soundNameToAudioPlayer(SoundAPI.lossSound)        
+    }
+func playTargetLockedSound(){
+config()
+soundNameToAudioPlayer(SoundAPI.targetLockedSound)
+}
+    func getTargetLockedSound() -> AVAudioPlayer{
+        return soundNameToAudioPlayer(SoundAPI.targetLockedSound)
     }
 }

@@ -23,6 +23,7 @@
 		3D23E22B1AD96E3600469749 /* applause.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3D23E22A1AD96E3600469749 /* applause.wav */; };
 		3D23E22E1AD9768500469749 /* ThreePunch.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3D23E22D1AD9768500469749 /* ThreePunch.wav */; };
 		3D23E2311AD986DA00469749 /* FormValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D23E2301AD986DA00469749 /* FormValidator.swift */; };
+		3D39ABBE1AD9CB5200F786CB /* targetLocked.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3D39ABBD1AD9CB5200F786CB /* targetLocked.wav */; };
 		3D413ED91AD74BDF00E00A76 /* MotionAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D413ED81AD74BDF00E00A76 /* MotionAPI.swift */; };
 		3D413EDD1AD8619300E00A76 /* FightCellLoss.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D413EDC1AD8619300E00A76 /* FightCellLoss.swift */; };
 		3D413EDF1AD87E5000E00A76 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D413EDE1AD87E5000E00A76 /* Main.storyboard */; };
@@ -161,6 +162,7 @@
 		3D23E22D1AD9768500469749 /* ThreePunch.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ThreePunch.wav; sourceTree = "<group>"; };
 		3D23E22F1AD97A7C00469749 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = MyPlayground.playground; path = ../../../../Desktop/MyPlayground.playground; sourceTree = "<group>"; };
 		3D23E2301AD986DA00469749 /* FormValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormValidator.swift; sourceTree = "<group>"; };
+		3D39ABBD1AD9CB5200F786CB /* targetLocked.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = targetLocked.wav; sourceTree = "<group>"; };
 		3D413ED81AD74BDF00E00A76 /* MotionAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotionAPI.swift; sourceTree = "<group>"; };
 		3D413EDC1AD8619300E00A76 /* FightCellLoss.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FightCellLoss.swift; path = ../FightCellLoss.swift; sourceTree = "<group>"; };
 		3D413EDE1AD87E5000E00A76 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -390,6 +392,7 @@
 		3DAE5B0B1AD46874004892CC /* FreeSounds */ = {
 			isa = PBXGroup;
 			children = (
+				3D39ABBD1AD9CB5200F786CB /* targetLocked.wav */,
 				3D23E22A1AD96E3600469749 /* applause.wav */,
 				3D23E2121AD969FE00469749 /* die1.aiff */,
 				3D23E2131AD969FE00469749 /* drumroll.aif */,
@@ -772,6 +775,7 @@
 				3D23E2271AD969FE00469749 /* grunt3.wav in Resources */,
 				3DAE5B0F1AD468A4004892CC /* meatSlap.aif in Resources */,
 				3DED5BE51AD077BA00F1DE5F /* Old2.storyboard in Resources */,
+				3D39ABBE1AD9CB5200F786CB /* targetLocked.wav in Resources */,
 				3DAE5B081AD46559004892CC /* punch.wav in Resources */,
 				3D23E21E1AD969FE00469749 /* die1.aiff in Resources */,
 				3DB6DEF01AC993620020497B /* LaunchScreen.xib in Resources */,

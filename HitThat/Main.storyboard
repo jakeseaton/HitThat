@@ -1003,7 +1003,7 @@
                                     <constraint firstAttribute="height" constant="150" id="yCx-co-mns"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dax-HO-hU0">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dax-HO-hU0" customClass="LocateButton" customModule="HitThat" customModuleProvider="target">
                                 <rect key="frame" x="233" y="550" width="135" height="30"/>
                                 <state key="normal" title="Look For New Fight">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -1030,22 +1030,22 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DgR-KX-e4r">
-                                <rect key="frame" x="251" y="512" width="98" height="30"/>
-                                <state key="normal" title="Manual Punch">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="manualPunchPressed:" destination="FEu-E8-JYC" eventType="touchUpInside" id="xl8-XF-giA"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="paN-Tq-UyL">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="paN-Tq-UyL" customClass="LocateButton" customModule="HitThat" customModuleProvider="target">
                                 <rect key="frame" x="278" y="474" width="44" height="30"/>
                                 <state key="normal" title="Punch">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="punchPressed:" destination="FEu-E8-JYC" eventType="touchUpInside" id="euB-0c-2OK"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DgR-KX-e4r" customClass="LocateButton" customModule="HitThat" customModuleProvider="target">
+                                <rect key="frame" x="251" y="512" width="98" height="30"/>
+                                <state key="normal" title="Manual Punch">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="manualPunchPressed:" destination="FEu-E8-JYC" eventType="touchUpInside" id="xl8-XF-giA"/>
                                 </connections>
                             </button>
                         </subviews>

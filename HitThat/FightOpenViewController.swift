@@ -10,6 +10,7 @@ import UIKit
 
 class FightOpenViewController: UIViewController{
     let motionKit = MotionKit()
+    var soundToPlay:AVAudioPlayer?
     @IBAction func stopUpdatesPressed(sender: AnyObject) {
         self.motionKit.stopDeviceMotionUpdates()
     }
@@ -18,7 +19,7 @@ class FightOpenViewController: UIViewController{
     }
     @IBAction func punchPressed(sender:AnyObject){
         if self.isUsersTurn!{
-            motionKit.getDeviceMotionObject(interval: 0.2) {
+            motionKit.getDeviceMotionObject(interval: MotionAPI.interval) {
                 (deviceMotion) in
                 MotionAPI().analyzeMotion(deviceMotion, sender:self)
             }
@@ -129,6 +130,9 @@ class FightOpenViewController: UIViewController{
         // Colors().favoriteBackGroundColor(self)
         Colors().configureStaminaBar(userStaminaBar!, user:true)
         Colors().configureStaminaBar(opponentStaminaBar!, user:false)
+        Colors().favoriteBackGroundColor(self)
+        Shapes().circularImage(userImage)
+        Shapes().circularImage(opponentImage)
         
         let user = PFUser.currentUser()
         let fight = self.fightToDisplay!
@@ -175,6 +179,8 @@ class FightOpenViewController: UIViewController{
     
     // Mark := Handling Punches
     func handlePunch(damage:CGFloat, punchType:PunchType){
+        soundToPlay = SoundAPI().soundNameToAudioPlayer(MotionAPI.motionsToSounds[punchType]!)
+        self.soundToPlay!.play()
         switch punchType{
         case .Block:
             println("block!")
@@ -187,7 +193,7 @@ class FightOpenViewController: UIViewController{
         default:
             break
         }
-        self.soundArray?.randomItem().play()
+        //self.soundArray?.randomItem().play()
         let newStamina:CGFloat = self.opponentStamina! - damage
         if newStamina <= 0 {
             self.victorySound?.play()

@@ -13,7 +13,7 @@ class FightCellWin: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.backgroundColor = UIColor.redColor()   
+        self.backgroundColor = Colors.userColor1
         // Initialization code
     }
 

@@ -18,7 +18,7 @@ class StartFightViewController: UIViewController {
     
         @IBAction func punchPressed(sender:AnyObject){
             println("this was pressed")
-            motionKit.getDeviceMotionObject(interval: 0.2) {
+            motionKit.getDeviceMotionObject(interval: MotionAPI.interval) {
                     (deviceMotion) in
                     println("this")
                     MotionAPI().analyzeMotion(deviceMotion, sender:self)

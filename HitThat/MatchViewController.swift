@@ -12,6 +12,7 @@ import MapKit
 class MatchViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     var userToDisplay:PFUser?
     var fightToDisplay:PFObject?
+    var targetLockedSound:AVAudioPlayer?
     @IBOutlet weak var distanceLabel:UILabel!
     @IBOutlet weak var bioLabel:UILabel!
     @IBOutlet weak var bestMoveLabel:UILabel!
@@ -43,6 +44,7 @@ class MatchViewController: UIViewController, MKMapViewDelegate, CLLocationManage
         println("didLoad")
         Colors().favoriteBackGroundColor(self)
         Shapes().circularImage(self.profilePicture)
+        targetLockedSound = SoundAPI().getTargetLockedSound()
         //Shapes().circularImage(self.userProfilePicture)
         if let userObject = userToDisplay{
             fullName.text = ParseAPI().stringOfUnwrappedUserProperty("fullName", user: userObject)
@@ -51,8 +53,7 @@ class MatchViewController: UIViewController, MKMapViewDelegate, CLLocationManage
             self.distanceLabel.text = "Distance: " + ParseAPI().distanceToUser(userToDisplay!).description + "mi"
             self.bestMoveLabel.text = "Best Move: " + ParseAPI().stringOfUnwrappedUserProperty("bestMove", user: userObject)
             self.navigationItem.title = ParseAPI().stringOfUnwrappedUserProperty("alias" , user:userObject)
-            
-//            self.lookingForLabel.text = "Looking For: " + ParseAPI().stringOfUnwrappedUserProperty("lookingFor", user: userObject)
+            self.lookingForLabel.text = "Looking For: " + ParseAPI().stringOfUnwrappedUserProperty("lookingFor", user: userObject)
         }
 //        if let currentUser = PFUser.currentUser(){
 //           ParseAPI().installAUsersProfilePicture(currentUser, target: self.userProfilePicture)
@@ -63,6 +64,7 @@ class MatchViewController: UIViewController, MKMapViewDelegate, CLLocationManage
 
     @IBAction func locatePressed(sender: AnyObject) {
         handleAnnotations([userToDisplay!])
+        self.targetLockedSound?.play()
         //performSegueWithIdentifier(Constants.LocateSegueIndentifier, sender: userToDisplay)
     }
     @IBAction func startFightPressed(sender: AnyObject) {

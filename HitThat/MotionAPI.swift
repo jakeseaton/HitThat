@@ -6,6 +6,8 @@
 //  Copyright (c) 2015 Jake Seaton. All rights reserved.
 //
 
+// Some things I learned about physics
+// You would think that when you punch, the greatest acceleration points in the direction that you punch, but it actually turns out that the greatest instantaneous acceleration occurs when your arm stops moving, accelerating the phone to a stop. With this in mind, we can listen for instantaneous acceleration in the opposote direction of where we think someone is punching. Then, when this is across a certain threshold, we know that the user has thrust the phone in the opposite of that direction, and its absolute value will tell us how hard.
 import Foundation
 import CoreMotion
 
@@ -18,7 +20,14 @@ enum MotionThreshold {
     case Negative//(Float)
 }
 struct MotionAPI{
+    static let motionsToSounds:[PunchType:String] = [
+        .Jab : SoundAPI.jabSound,
+        .Uppercut : SoundAPI.upperCutSound,
+        .Block : SoundAPI.blockSound,
+        .Kick : SoundAPI.kickSound
+    ]
     static let threshold = 2.0
+    static let interval = 0.01
     
     func analyzeMotion(deviceMotion:CMDeviceMotion, sender:AnyObject){
         let accelerationX = deviceMotion.userAcceleration.x
@@ -83,22 +92,38 @@ struct MotionAPI{
         default:
             break
         }
+    
         
         switch result {
+        // no motion
         case (.Normal, .Normal, .Normal):
             return nil
-        case (_,_,.Negative):
-            return .Jab
+        // Phone thrust down
         case (_,.Positive, _):
-            return .Uppercut
-        case (_,.Negative, _):
+            println("down!")
             return .Kick
-        case(.Positive, _,_):
-            return .Block
-        case(.Negative, _,_):
-            return .Block
-        default:
+        // Phone thrust up
+        case (_, .Negative, _):
+            println("up!")
+            return .Uppercut
+        // Phone thrust left
+        case (.Positive, _, _ ):
+            println("Punched with left!")
             return .Jab
+        // Phone thrust right
+        case (.Negative, _, _):
+            println("Punched with right!")
+            return .Jab
+        // Phone thrust forward
+        case (_,_,.Positive):
+            println("forward")
+            return .Block
+        // Phone pulled in
+        case (_,_, .Negative):
+            println("backward!")
+            return nil
+        default:
+            return nil
         }
 
     }

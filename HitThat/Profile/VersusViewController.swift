@@ -260,7 +260,10 @@ class VersusViewController: UIViewController, UIScrollViewDelegate, UITableViewD
             let category = Constants.categories[indexPath.row]
             let userCategory: AnyObject? = PFUser.currentUser()?.objectForKey(category)
             cell.userLabel?.text = userCategory?.description
-            cell.userLabel?.textColor = UIColor.greenColor()
+            if let advantage = userIsGreater(category){
+                cell.userLabel?.textColor = advantage ? Colors.userColor2 : Colors.userColor1
+            }
+            // cell.userLabel?.textColor = Colors.userColor2
 
             return cell
         }
@@ -270,7 +273,9 @@ class VersusViewController: UIViewController, UIScrollViewDelegate, UITableViewD
             let category = Constants.categories[indexPath.row]
             let opponentCategory: AnyObject? = userToDisplay?.objectForKey(category)
             cell.opponentLabel?.text = opponentCategory?.description
-            cell.opponentLabel?.textColor = UIColor.redColor()
+            if let disadvantage = userIsGreater(category){
+                cell.opponentLabel?.textColor = disadvantage ? Colors.opponentColor2 : Colors.opponentColor1
+            }
             return cell
             
         }
@@ -307,5 +312,27 @@ class VersusViewController: UIViewController, UIScrollViewDelegate, UITableViewD
     }
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
+    }
+    func userIsGreater(category:String)-> Bool?{
+        if let user = PFUser.currentUser(){
+            if let opponent = userToDisplay{
+                if contains(Constants.comparables, category){
+                    let opponentStat:AnyObject = opponent.objectForKey(category)
+                    let userStat:AnyObject = opponent.objectForKey(category)
+                    switch category{
+                    case "height", "reach":
+                        return true
+                    case "weight","wins","jailTime","tatoos":
+                        return (Int(userStat as NSNumber) > Int(opponentStat as NSNumber))
+                    case "gpa":
+                        return (Double(userStat as NSNumber) > Double(opponentStat as NSNumber))
+                    default:
+                        return false
+                    }
+                }
+                
+            }
+        }
+        return nil
     }
 }
