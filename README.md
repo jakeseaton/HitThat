@@ -72,6 +72,7 @@ May be some memory gremlins that would be solved by a few “unowned self” pre
 Due to my reuse of the registration for for editing the profile, you must rebuild all fields of the profile to save changes. Easily solved by creating a new form with default values set to the user’s current state.
 
 PFQuery does not support ordering on .orQueryWithsSubQuery queries, which is the way that I am getting all fights a user is involved in.
-
+Haven't been doing capture lists -> some strong reference cycles
+Not the prettiest app in the world.
 
 

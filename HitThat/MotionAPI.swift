@@ -38,8 +38,19 @@ struct MotionAPI{
                     fightOpenViewController.handlePunch(CGFloat(scaledDamage), punchType: punchType)
                 }
             }
-            
+            if let startFightViewController = sender as? StartFightViewController{
+                startFightViewController.motionKit.stopDeviceMotionUpdates()
+                let damage:Double = calculateDamage(accelerationX, y: accelerationY, z: accelerationZ)
+                let scaledDamage = damage / Double(10)
+                //println(punchType)
+                //println(damage)
+                dispatch_async(dispatch_get_main_queue()){
+                    startFightViewController.handlePunch(CGFloat(scaledDamage), punchType: punchType)
+                }
+                
+            }
         }
+        
     }
     
     // calculate the damage as the eucliean length of the acceleration vector

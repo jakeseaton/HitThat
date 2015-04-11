@@ -89,12 +89,14 @@ class FightsViewController: UIViewController, UITableViewDataSource, UITableView
             let cell = tableView.dequeueReusableCellWithIdentifier("FightCellWin", forIndexPath: indexPath) as FightCellWin
             let winObject = self.victories[indexPath.row]
             cell.nameLabel.text = winObject["loserAlias"] as AnyObject as? String
+            cell.selectionStyle = .None
             return cell
             
         // losses
         case 2:
             let cell = tableView.dequeueReusableCellWithIdentifier("FightCellLoss", forIndexPath:indexPath) as FightCellLoss
             let lossObject = self.losses[indexPath.row]
+            cell.selectionStyle = .None
             cell.nameLabel.text = lossObject["winnerAlias"] as AnyObject as? String
             return cell
         // default--regular fight
@@ -104,6 +106,8 @@ class FightsViewController: UIViewController, UITableViewDataSource, UITableView
             // fix this
             if (fightObject["origin"].objectId == PFUser.currentUser().objectId){
                 cell.nameLabel.text = fightObject["recipientAlias"] as? String
+                // this will create that bug
+                
             }
             else{
                 cell.nameLabel.text = fightObject["originAlias"] as? String

@@ -14,6 +14,20 @@ class ProfileViewController: UIViewController {
             updateUI()
         }
     }
+    
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
+    @IBAction func indexChanged(sender: UISegmentedControl) {
+        switch segmentedControl.selectedSegmentIndex{
+        case 0:
+            userName.text = ParseAPI().stringOfUnwrappedUserProperty("fullName", user: userToDisplay!)
+            ParseAPI().installAUsersProfilePicture(userToDisplay!, target: profilePicture)
+        case 1:
+            userName.text = ParseAPI().stringOfUnwrappedUserProperty("alias", user: userToDisplay!)
+            ParseAPI().installAUsersProfilePhoto(userToDisplay!, target: profilePicture, optionalBlurTarget: nil)
+        default:
+            break
+        }
+    }
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var profilePicture: UIImageView!
     @IBOutlet weak var userFights:UILabel!
@@ -61,8 +75,11 @@ class ProfileViewController: UIViewController {
      super.viewDidLoad()
         if let curr = PFUser.currentUser(){
             self.userToDisplay = curr
+            self.title = ParseAPI().stringOfCurrentUserProperty("fullName")
+            
         }
+
         Shapes().circularImage(self.profilePicture)
-        Colors().gradient(self)
+        //Colors().gradient(self)
     }
 }

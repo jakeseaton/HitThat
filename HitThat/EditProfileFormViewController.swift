@@ -49,6 +49,9 @@ class EditProfileFormViewController: FXFormViewController {
                                     if let bio = form.bio{
                                         if let lookingFor = form.lookingFor{
                                             formComplete = true
+//                                            let data:[String:AnyObject] = [
+//                                                "lookingFor":
+//                                            ]
                                             PFUser.currentUser()["lookingFor"] = lookingFor
                                             PFUser.currentUser()["reach"] = reach
                                             PFUser.currentUser()["bio"] = bio

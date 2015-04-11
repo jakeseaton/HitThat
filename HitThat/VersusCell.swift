@@ -9,11 +9,10 @@
 import UIKit
 
 class VersusCell: UITableViewCell {
-    @IBOutlet weak var userLabel:UILabel!
-    @IBOutlet weak var opponentLabel:UILabel!
     @IBOutlet weak var categoryLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.backgroundColor = UIColor.clearColor()
         // Initialization code
     }
 

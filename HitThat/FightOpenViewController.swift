@@ -111,7 +111,7 @@ class FightOpenViewController: UIViewController{
     override func viewDidLoad() {
 
         self.isUsersTurn = true
-        self.soundArray = SoundAPI().getArrayOfSoundsPlayers()
+        self.soundArray = SoundAPI().getArrayOfFightSoundPlayers()
         self.victorySound = SoundAPI().getVictorySound()
         self.lossSound = SoundAPI().getLossSound()
         Colors().favoriteBackGroundColor(self)
@@ -126,6 +126,7 @@ class FightOpenViewController: UIViewController{
         if (origin.objectId == user.objectId){
             self.userIsOrigin = true
             self.originUser = user
+            // This can be done with fetch data, because rn it's just a pointer
             self.recipientUser = ParseAPI().userQuery().getObjectWithId(recipient.objectId) as? PFUser
         }
         else{
@@ -186,19 +187,23 @@ class FightOpenViewController: UIViewController{
             }
             self.dismissViewControllerAnimated(true, completion: nil)
         }
-        self.opponentStamina = newStamina
-        if userIsOrigin!{
-            // update the stamina on the database
-            self.fightToDisplay?.setObject(opponentStamina, forKey: "recipientStamina")
-            fightToDisplay?.saveInBackground()
-            ParseAPI().notifyPunchedUser(self.recipientUser!, fightObject:fightToDisplay!, sound:SoundAPI.notificationSound)
-        }
         else{
-            self.fightToDisplay?.setObject(opponentStamina, forKey: "originStamina")
-            fightToDisplay?.saveInBackground()
-            ParseAPI().notifyPunchedUser(self.originUser!, fightObject:fightToDisplay!, sound:SoundAPI.notificationSound)
             
+            self.opponentStamina = newStamina
+            if userIsOrigin!{
+                // update the stamina on the database
+                self.fightToDisplay?.setObject(opponentStamina, forKey: "recipientStamina")
+                fightToDisplay?.saveInBackground()
+                ParseAPI().notifyPunchedUser(self.recipientUser!, fightObject:fightToDisplay!, sound:SoundAPI.notificationSound)
+            }
+            else{
+                self.fightToDisplay?.setObject(opponentStamina, forKey: "originStamina")
+                fightToDisplay?.saveInBackground()
+                ParseAPI().notifyPunchedUser(self.originUser!, fightObject:fightToDisplay!, sound:SoundAPI.notificationSound)
+                
+            }
+            self.isUsersTurn = false
         }
-        self.isUsersTurn = false
+        
     }
 }

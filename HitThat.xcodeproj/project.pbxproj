@@ -10,6 +10,12 @@
 		3D154F301AD5BCCD00C2AD82 /* VersusLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D154F2F1AD5BCCD00C2AD82 /* VersusLabel.swift */; };
 		3D413ED91AD74BDF00E00A76 /* MotionAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D413ED81AD74BDF00E00A76 /* MotionAPI.swift */; };
 		3D413EDD1AD8619300E00A76 /* FightCellLoss.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D413EDC1AD8619300E00A76 /* FightCellLoss.swift */; };
+		3D413EDF1AD87E5000E00A76 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D413EDE1AD87E5000E00A76 /* Main.storyboard */; };
+		3D413EE11AD87E8800E00A76 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D413EE01AD87E8800E00A76 /* UserCell.swift */; };
+		3D413EE31AD87E9400E00A76 /* OpponentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D413EE21AD87E9400E00A76 /* OpponentCell.swift */; };
+		3D413EE51AD880E400E00A76 /* UserTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D413EE41AD880E400E00A76 /* UserTable.swift */; };
+		3D413EE71AD880F000E00A76 /* VersusTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D413EE61AD880F000E00A76 /* VersusTable.swift */; };
+		3D413EE91AD880FA00E00A76 /* OpponentTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D413EE81AD880FA00E00A76 /* OpponentTable.swift */; };
 		3D56CADF1ACE0B21004759ED /* FXForms.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D56CADB1ACE0B21004759ED /* FXForms.m */; };
 		3D56CAE01ACE0B21004759ED /* ISO3166CountryValueTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D56CADC1ACE0B21004759ED /* ISO3166CountryValueTransformer.swift */; };
 		3D56CAE11ACE0B21004759ED /* RegistrationForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D56CADD1ACE0B21004759ED /* RegistrationForm.swift */; };
@@ -100,8 +106,9 @@
 		3DC463E11AD2A4A70034C34F /* UIViewController+MMDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC463DD1AD2A4A70034C34F /* UIViewController+MMDrawerController.m */; };
 		3DC463E31AD2A60F0034C34F /* FightsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC463E21AD2A60F0034C34F /* FightsViewController.swift */; };
 		3DC463E51AD2A65B0034C34F /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC463E41AD2A65B0034C34F /* MenuViewController.swift */; };
+		3DE52C981AD8A3C6008A5DEB /* StartFightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE52C971AD8A3C6008A5DEB /* StartFightViewController.swift */; };
 		3DED5BE31AD0773A00F1DE5F /* MainTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DED5BE21AD0773A00F1DE5F /* MainTabController.swift */; };
-		3DED5BE51AD077BA00F1DE5F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DED5BE41AD077BA00F1DE5F /* Main.storyboard */; };
+		3DED5BE51AD077BA00F1DE5F /* Old2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DED5BE41AD077BA00F1DE5F /* Old2.storyboard */; };
 		3DF04FEA1AD2AF65008B0260 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF04FE91AD2AF65008B0260 /* MenuCell.swift */; };
 		3DF04FEE1AD2BA87008B0260 /* FightCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF04FED1AD2BA87008B0260 /* FightCell.swift */; };
 		3DF04FF01AD2BAA8008B0260 /* FightCellWin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF04FEF1AD2BAA8008B0260 /* FightCellWin.swift */; };
@@ -124,6 +131,12 @@
 		3D154F2F1AD5BCCD00C2AD82 /* VersusLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VersusLabel.swift; sourceTree = "<group>"; };
 		3D413ED81AD74BDF00E00A76 /* MotionAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotionAPI.swift; sourceTree = "<group>"; };
 		3D413EDC1AD8619300E00A76 /* FightCellLoss.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FightCellLoss.swift; path = ../FightCellLoss.swift; sourceTree = "<group>"; };
+		3D413EDE1AD87E5000E00A76 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		3D413EE01AD87E8800E00A76 /* UserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
+		3D413EE21AD87E9400E00A76 /* OpponentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpponentCell.swift; sourceTree = "<group>"; };
+		3D413EE41AD880E400E00A76 /* UserTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTable.swift; sourceTree = "<group>"; };
+		3D413EE61AD880F000E00A76 /* VersusTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VersusTable.swift; sourceTree = "<group>"; };
+		3D413EE81AD880FA00E00A76 /* OpponentTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpponentTable.swift; sourceTree = "<group>"; };
 		3D56CADA1ACE0B21004759ED /* FXForms.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXForms.h; sourceTree = "<group>"; };
 		3D56CADB1ACE0B21004759ED /* FXForms.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXForms.m; sourceTree = "<group>"; };
 		3D56CADC1ACE0B21004759ED /* ISO3166CountryValueTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ISO3166CountryValueTransformer.swift; sourceTree = "<group>"; };
@@ -232,8 +245,9 @@
 		3DC463DD1AD2A4A70034C34F /* UIViewController+MMDrawerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+MMDrawerController.m"; sourceTree = "<group>"; };
 		3DC463E21AD2A60F0034C34F /* FightsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FightsViewController.swift; sourceTree = "<group>"; };
 		3DC463E41AD2A65B0034C34F /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		3DE52C971AD8A3C6008A5DEB /* StartFightViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartFightViewController.swift; sourceTree = "<group>"; };
 		3DED5BE21AD0773A00F1DE5F /* MainTabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabController.swift; sourceTree = "<group>"; };
-		3DED5BE41AD077BA00F1DE5F /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		3DED5BE41AD077BA00F1DE5F /* Old2.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Old2.storyboard; sourceTree = "<group>"; };
 		3DF04FE91AD2AF65008B0260 /* MenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
 		3DF04FED1AD2BA87008B0260 /* FightCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FightCell.swift; sourceTree = "<group>"; };
 		3DF04FEF1AD2BAA8008B0260 /* FightCellWin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FightCellWin.swift; sourceTree = "<group>"; };
@@ -278,6 +292,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3D413EEA1AD8811F00E00A76 /* Versus */ = {
+			isa = PBXGroup;
+			children = (
+				3D8482BB1ACB74F300D663DF /* VersusViewController.swift */,
+				3D413EE41AD880E400E00A76 /* UserTable.swift */,
+				3D413EE01AD87E8800E00A76 /* UserCell.swift */,
+				3DBA11861AD4445100A4EF75 /* VersusCell.swift */,
+				3D413EE61AD880F000E00A76 /* VersusTable.swift */,
+				3D413EE21AD87E9400E00A76 /* OpponentCell.swift */,
+				3D413EE81AD880FA00E00A76 /* OpponentTable.swift */,
+				3DB6DF3A1AC9AED90020497B /* MatchViewController.swift */,
+				3D154F2F1AD5BCCD00C2AD82 /* VersusLabel.swift */,
+			);
+			name = Versus;
+			sourceTree = "<group>";
+		};
 		3D56CAD91ACE0B21004759ED /* FXForms */ = {
 			isa = PBXGroup;
 			children = (
@@ -369,10 +399,10 @@
 		3DB6DEE21AC993620020497B /* HitThat */ = {
 			isa = PBXGroup;
 			children = (
-				3DB6DEE91AC993620020497B /* Old.storyboard */,
-				3DED5BE41AD077BA00F1DE5F /* Main.storyboard */,
+				3D413EDE1AD87E5000E00A76 /* Main.storyboard */,
 				3DB6DEE51AC993620020497B /* AppDelegate.swift */,
-				3DB6DF891AC9B0200020497B /* Main */,
+				3D413EEA1AD8811F00E00A76 /* Versus */,
+				3DB6DF891AC9B0200020497B /* Menu */,
 				3DF04FF11AD2BABB008B0260 /* Fights */,
 				3DB6DF841AC9AF690020497B /* Profiles */,
 				3DB6DF881AC9AFCE0020497B /* Map */,
@@ -462,6 +492,8 @@
 				3DB6DF851AC9AF7E0020497B /* GangBang */,
 				3DB6DF411AC9AED90020497B /* MainViewController.swift */,
 				3DB6DEE71AC993620020497B /* ViewController.swift */,
+				3DED5BE41AD077BA00F1DE5F /* Old2.storyboard */,
+				3DB6DEE91AC993620020497B /* Old.storyboard */,
 				3DB6DF3D1AC9AED90020497B /* MainNavigationController.swift */,
 				3DB6DF3F1AC9AED90020497B /* MainTableViewController.swift */,
 				3DED5BE21AD0773A00F1DE5F /* MainTabController.swift */,
@@ -543,17 +575,13 @@
 			name = Map;
 			sourceTree = "<group>";
 		};
-		3DB6DF891AC9B0200020497B /* Main */ = {
+		3DB6DF891AC9B0200020497B /* Menu */ = {
 			isa = PBXGroup;
 			children = (
-				3DBA11861AD4445100A4EF75 /* VersusCell.swift */,
-				3D154F2F1AD5BCCD00C2AD82 /* VersusLabel.swift */,
-				3D8482BB1ACB74F300D663DF /* VersusViewController.swift */,
-				3DB6DF3A1AC9AED90020497B /* MatchViewController.swift */,
 				3DC463E41AD2A65B0034C34F /* MenuViewController.swift */,
 				3DF04FE91AD2AF65008B0260 /* MenuCell.swift */,
 			);
-			name = Main;
+			name = Menu;
 			sourceTree = "<group>";
 		};
 		3DB6DF8A1AC9B0A50020497B /* Post */ = {
@@ -600,6 +628,7 @@
 				3DF04FED1AD2BA87008B0260 /* FightCell.swift */,
 				3DF04FEF1AD2BAA8008B0260 /* FightCellWin.swift */,
 				3D413EDC1AD8619300E00A76 /* FightCellLoss.swift */,
+				3DE52C971AD8A3C6008A5DEB /* StartFightViewController.swift */,
 			);
 			name = Fights;
 			sourceTree = "<group>";
@@ -686,11 +715,12 @@
 			files = (
 				3DB6DEEB1AC993620020497B /* Old.storyboard in Resources */,
 				3DAE5B0F1AD468A4004892CC /* meatSlap.aif in Resources */,
-				3DED5BE51AD077BA00F1DE5F /* Main.storyboard in Resources */,
+				3DED5BE51AD077BA00F1DE5F /* Old2.storyboard in Resources */,
 				3DAE5B081AD46559004892CC /* punch.wav in Resources */,
 				3DB6DEF01AC993620020497B /* LaunchScreen.xib in Resources */,
 				3DAE5B101AD468A4004892CC /* Slap.mp3 in Resources */,
 				3DB6DEED1AC993620020497B /* Images.xcassets in Resources */,
+				3D413EDF1AD87E5000E00A76 /* Main.storyboard in Resources */,
 				3DAE5B111AD468A4004892CC /* slapFight.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -709,12 +739,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D413EE71AD880F000E00A76 /* VersusTable.swift in Sources */,
 				3DC463E01AD2A4A70034C34F /* MMDrawerVisualState.m in Sources */,
 				3DB6907B1AD1B297007EFCEF /* MSDynamicsDrawerViewController.m in Sources */,
 				3DB6DF661AC9AEDA0020497B /* MainTableViewCell.swift in Sources */,
+				3D413EE91AD880FA00E00A76 /* OpponentTable.swift in Sources */,
 				3DC463E31AD2A60F0034C34F /* FightsViewController.swift in Sources */,
 				3DED5BE31AD0773A00F1DE5F /* MainTabController.swift in Sources */,
 				3DF04FFA1AD318DD008B0260 /* EditProfileFormViewController.swift in Sources */,
+				3DE52C981AD8A3C6008A5DEB /* StartFightViewController.swift in Sources */,
 				3DB6DF5B1AC9AEDA0020497B /* DropitViewController.swift in Sources */,
 				3DB6DF6B1AC9AEDA0020497B /* MKUser.swift in Sources */,
 				3DB6DF811AC9AEF40020497B /* ZLSwipeableView.m in Sources */,
@@ -723,6 +756,7 @@
 				3D8482C31ACB790D00D663DF /* LocateButton.swift in Sources */,
 				3D56CAE01ACE0B21004759ED /* ISO3166CountryValueTransformer.swift in Sources */,
 				3DB6DF741AC9AEDA0020497B /* SnatchedViewController.swift in Sources */,
+				3D413EE51AD880E400E00A76 /* UserTable.swift in Sources */,
 				3DB6DF5C1AC9AEDA0020497B /* facebookLogIn.swift in Sources */,
 				3DB6DF6C1AC9AEDA0020497B /* ModelController.swift in Sources */,
 				3DC463E11AD2A4A70034C34F /* UIViewController+MMDrawerController.m in Sources */,
@@ -747,11 +781,13 @@
 				3DB6DF731AC9AEDA0020497B /* SinglePostViewController.swift in Sources */,
 				3DB6DF551AC9AEDA0020497B /* BouncerBehavior.swift in Sources */,
 				3D8482AC1ACB2FAB00D663DF /* Colors.swift in Sources */,
+				3D413EE11AD87E8800E00A76 /* UserCell.swift in Sources */,
 				3DB6DF6F1AC9AEDA0020497B /* RegisterViewController.swift in Sources */,
 				3D56CAE41ACE0CB3004759ED /* RegisterFormViewController.swift in Sources */,
 				3DB6DF701AC9AEDA0020497B /* RootViewController.swift in Sources */,
 				3D8482C11ACB74F300D663DF /* TWTButton.swift in Sources */,
 				3D8482BE1ACB74F300D663DF /* AvatarImageView.swift in Sources */,
+				3D413EE31AD87E9400E00A76 /* OpponentCell.swift in Sources */,
 				3DB6907A1AD1B297007EFCEF /* MSDynamicsDrawerStyler.m in Sources */,
 				3D56CADF1ACE0B21004759ED /* FXForms.m in Sources */,
 				3DB6DF711AC9AEDA0020497B /* ProfileViewController.swift in Sources */,

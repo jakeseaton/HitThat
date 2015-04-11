@@ -47,9 +47,13 @@ struct Constants{
     static let MenuCellRestorationIdentifier = "MenuCell"
     static let OpenFightSegue = "Open Fight"
     static let PunchSoundFilenName = "punch"
+    static let StartFightSegue = "Start Fight Segue"
+    static let UnwindFromNewFight = "Unwind From New Fight"
     
     // Versus Screen
-    static let categories = ["gender", "height", "weight", "reach", "wins", "fights", "jailTime", "bestMove", "bodyType", "GPA", "lookingFor", "tatoos"]
+    // removed "bestMove" and "lookingFor",
+    static let categories = ["alias", "gender", "bodyType", "height", "weight", "reach", "fights", "wins", "jailTime", "GPA", "tatoos"]
+    static let comparables = ["height", "weight", "reach", "wins", "fights", "jailTime", "GPA", "tatoos"]
     
     // Menu
     static let menuItems = ["Home", "My Profile", "My Fights", "Settings", "About", "resetSeen", "clearAllFights"]
@@ -60,6 +64,11 @@ struct Constants{
     static let lookingForOptions = ["Love", "Fights", "Love and Fights"]
     static let bestMoveOptions = ["Punch", "Jab", "Upper Cut", "Roundhouse", "Chop", "Body Slam", "Play Dead","Use the Force"]
     
+    func refreshFightsTable(){
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        appDelegate.refreshTable()
+    }
+
     func formFields(registering:Bool) -> [AnyObject]!{
         
         var results:[AnyObject]! =  [

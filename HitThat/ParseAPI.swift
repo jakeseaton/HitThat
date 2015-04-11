@@ -157,7 +157,6 @@ struct ParseAPI {
             // Find devices associated with that user
             let pushQuery = installationQuery()
             pushQuery.whereKey("user", equalTo: recipient)
-            println(recipient)
             // Send push notification to query
             let push = PFPush()
             push.setQuery(pushQuery) // Set our Installation query
@@ -301,5 +300,9 @@ struct ParseAPI {
             let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
             appDelegate.refreshTable()
         }
+    }
+    func userIsMale(user:PFUser) -> Bool{
+        user.fetchIfNeeded()
+        return(stringOfUnwrappedUserProperty("gender", user: user) == "male")
     }
 }
