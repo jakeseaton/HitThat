@@ -28,6 +28,7 @@ struct MotionAPI{
     ]
     static let threshold = 2.0
     static let interval = 0.01
+    static let RegisterInterval = 0.1
     
     func analyzeMotion(deviceMotion:CMDeviceMotion, sender:AnyObject){
         let accelerationX = deviceMotion.userAcceleration.x
@@ -47,11 +48,16 @@ struct MotionAPI{
             }
             if let startFightViewController = sender as? StartFightViewController{
                 startFightViewController.motionKit.stopDeviceMotionUpdates()
-                let damage:Double = calculateDamage(accelerationX, y: accelerationY, z: accelerationZ)
                 dispatch_async(dispatch_get_main_queue()){
                     startFightViewController.handlePunch(CGFloat(scaledDamage), punchType: punchType)
                 }
                 
+            }
+            if let registerViewController = sender as? RegisterViewController{
+                registerViewController.motionKit.stopDeviceMotionUpdates()
+                dispatch_async(dispatch_get_main_queue()){
+                    registerViewController.handlePunch(CGFloat(scaledDamage), punchType:punchType)
+                }
             }
         }
         

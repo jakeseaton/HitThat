@@ -28,7 +28,7 @@ Interface Components
 **Main:**
 The main interface uses an MMDrawerController, giving the user the ability to swipe left to see a menu drawer, and right to see a fights drawer. The menu drawer displays their alias photo at the top, and allows them to navigate between the versus screen, profiles, and other supplementary features. The fights drawer displays their activity; users they're currently fighting, and those they've defeated or been defeated by. By selecting an active fight, they are taken to a page displaying both user's current stamina, where, on their turn, they can make their move. By selecting fights that they've won or lost, they can view those users' basic profiles.
 
-When the app is opened from a notification, it takes you directly to the fight in question. When the app is open and someone punches you, the app will take you directly to that fight. When the app is open to that particular fight, the fight will update automatically. So if someone sitting next to you punches you in the app, and you're viewing that fight, you will see your stamina decrease in real time, though they could have just punched you instead.
+When the app is opened from a notification, it takes you directly to the fight in question. When the app is open and someone punches you, the app will take you directly to that fight. When the app is open to that particular fight, the fight will update automatically. So if someone sitting next to you punches you in the app, and you're viewing that fight, you will see your stamina decrease and hear yourself grunt in real time, though they could have just punched you instead.
 
 **Versus:**
 This is the main interface for finding potential matches. The fighters' alias' are displayed opposite the versus icon, and the user is presented with a portion of an image, and the information from the other user's fighter profile. The table compares the users stats to their opponents, using simple visual indicators to help the user make an informed decision. For example, if the user has spent more time in jail than their opponent, their opponent's jail time will be displayed in green.
@@ -39,7 +39,7 @@ If the user decides not to fight, they can press the "No Way" button to progress
 View the number of fights you've won and lost, and your number of current fights. Edit your profile to change what potential opponents see when they decide whether or not they want to fight you. You can view the profiles of users that you've fought by finding them among your wins or losses.
 
 **Fights:**
-On the open fight screen, you'll see your stamina and your opponents. If it's your turn, press the punch button to tell the app that you're going to punch. Thrust forward to Jab. Make sure to get a good rotation. Thrust upward to uppercut. Thrust your entire arm forward to block. The harder you thrust, the more damage you do!
+On the open fight screen, you'll see your stamina and your opponents. If it's your turn, press the punch button to tell the app that you're going to punch. Thrust forward to Jab. Make sure to get a good rotation. Thrust upward to uppercut. Thrust your entire arm forward to block. The harder you thrust, the more damage you do! When you punch someone.
 
 
 (Under the hood, this is based on negative acceleration thresholds. When you thrust the phone in a particular direction, the greatest acceleration occurs in the opposite direction, when the motion ends abruptly and your hand applied force to the phone to get it to stop moving. So, if we get a highly positive Z acceleration, we know that the user has thrust the forward along the Z axis, as occurs when thrusting the arm when blocking a punch. Then, by setting an acceleration threshold, as soon as one of the directions crosses it we know the completed an action in that direction. 
@@ -55,15 +55,16 @@ The natural punching motion seen here rotates the phone so that it travels in th
 
 Similarly, the uppercut motion causes the phone to travel in positive y direction, so a high negative y acceleration corresponds to an uppercut.
 
+![alt tag](http://games.yasinka.com/resimorj/boxing-bonanza.jpg)
+
 Once the user has completed an action, the euclidean magnitude of the instantaneous acceleration vector tells us how hard they swung, which is then weighed against the opponent's statistcs to calculate damage.
 
-![alt tag](http://games.yasinka.com/resimorj/boxing-bonanza.jpg)
 
 To Use
 ---
 1) Download and unzip
 
-2) Open HitThat.xcodeproj.
+2) Open HitThat.xcodeproj. (It's in there somewhere)
 
 3) Set the build destination to your ios device, or the simulator's iphone 5s.
 
@@ -78,31 +79,34 @@ To Use
 
 Additional Features
 ---
--Geographic priority for potential matches presented on the versus screen
+- Geographic priority for potential matches presented on the versus screen
+
+- Inability to see the same opponent twice
+
+- Only one fight at a time against a given user
+
+- Turn enfocement. You'll be reminded to wait your turn, but then it becomes your turn automatically, instead of waiting for the other user.
 
 
--Inability to see the same opponent twice
-
-
-**Notes:** These features hinder testing the app and experiencing it on a small scale, so for the sake of this proces they have been commented out.
+**Notes:** These features hinder testing the app and experiencing it on a small scale, so for the sake of this process they have been commented out.
 
 
 
 Pods
 ---
-Parse (Back End)
+- Parse (Back End)
 
-MMDrawerController (Main Drawer)
+- MMDrawerController (Main Drawer)
 
-MotionKit (CoreMotion Wrapper)
+- MotionKit (CoreMotion Wrapper)
 
-FXBlurView (Used in Versus Screen to create scroll animation)
+- FXBlurView (Used in Versus Screen to create scroll animation)
 
-YLProgressBar (Stamina Bars)
+- YLProgressBar (Stamina Bars)
 
-FXForms (Used in registration and profile updates)
+- FXForms (Used in registration and profile updates)
 
-ZLSwipeableView (Registration cards)
+- ZLSwipeableView (Registration cards)
 
 **Notes:** Pods were installed manually, so you won't have to run pod install or use a workspace file. Sue me.
 
@@ -129,14 +133,19 @@ Due to the way the push notification system works, it is important to only sign 
 
 Known Issues
 --- 
-On April 8th Apple released updates to Swift and Xcode that are not backward compatible. This will not run in XCode 6.3 or with Swift 1.2
+- On April 8th Apple released updates to Swift and Xcode that are not backward compatible. This will not run in XCode 6.3 or with Swift 1.2
 
-PFQuery does not support ordering on .orQueryWithsSubQuery, which is the only way to get all fights a user is involved in. As such, the fights table cannot be ordered by most recently updated, but will remain in the order they are created.
+- PFQuery does not support ordering on .orQueryWithsSubQuery, which is the only way to get all fights a user is involved in. As such, the fights table cannot be ordered by most recently updated, but will remain in the order they are created.
 
-To update your profile you must rebuild it entirely, as I simply reused the registration form. This would be solved by creating a new form with default values set to the user’s current state.
+- To update your profile you must rebuild it entirely, as I simply reused the registration form. This would be solved by creating a new form with default values set to the user’s current state.
 
-There may be some memory gremlins due to swift's whole "your memory is managed for you except it's not" thing. Would be solved by capture lists on closures, and a single Model/API struct.
+- There may be some memory gremlins due to swift's whole "your memory is managed for you except it's not" thing. Would be solved by capture lists on closures, and a single Model/API struct.
 
+- Due to the frequence of accelerometer updates, one punch can dismiss multiple cards on the register screen.
+
+- The registration process is really long. Working on it.
+
+- Couple of things on the main queue that shouldn't be.
 
 
 

@@ -63,6 +63,7 @@ class VersusViewController: UIViewController, UIScrollViewDelegate, UITableViewD
         appDelegate.centerContainer!.centerViewController = self
         if segue.identifier == Constants.RegistrationCompleteSegue{
             self.updateUI()
+            Constants().updateMenu()
         }
         self.next()
     }
@@ -135,10 +136,12 @@ class VersusViewController: UIViewController, UIScrollViewDelegate, UITableViewD
     }
 
     private func updateUI(){
-        self.displayName.text = ParseAPI().stringOfUnwrappedUserProperty("alias", user: userToDisplay!)
-        ParseAPI().installAUsersProfilePhoto(userToDisplay!, target: self.headerImageView, optionalBlurTarget: self.headerBlurImageView)
-        self.headerLabel.text = ParseAPI().stringOfUnwrappedUserProperty("alias", user: userToDisplay!)
-        
+        if let toDisplay = userToDisplay{
+            //toDisplay.fetchIfNeeded()
+            self.displayName?.text = ParseAPI().stringOfUnwrappedUserProperty("alias", user: toDisplay)
+            ParseAPI().installAUsersProfilePhoto(toDisplay, target: self.headerImageView, optionalBlurTarget: self.headerBlurImageView)
+            self.headerLabel.text = ParseAPI().stringOfUnwrappedUserProperty("alias", user: toDisplay)
+        }
         if let currUser = PFUser.currentUser(){
             self.userDisplayName.text = ParseAPI().stringOfCurrentUserProperty("alias")
         }

@@ -17,7 +17,9 @@ class RegisterFormViewController: FXFormViewController {
     
     func submitRegistrationForm(cell: FXFormFieldCellProtocol){
         if let form = cell.field.form as? RegisterForm{
+            // this is a mess
             if let formData = FormValidator().validateRegisterForm(form){
+                PFUser.currentUser().setValuesForKeysWithDictionary(formData)
                 if let profilePhoto = form.profilePhoto{
                     let photoFile = PFFile(data: UIImagePNGRepresentation(profilePhoto))
                     PFUser.currentUser().setObject(photoFile, forKey: "profilePhoto")
@@ -25,8 +27,7 @@ class RegisterFormViewController: FXFormViewController {
                 else{
                     PFUser.currentUser()["profilePhoto"] = PFUser.currentUser()["profilePicture"]
                 }
-                PFUser.currentUser().setValuesForKeysWithDictionary(formData)
-                PFUser.currentUser().saveInBackground()
+                PFUser.currentUser().save()
                 self.performSegueWithIdentifier(Constants.RegistrationCompleteSegue, sender: nil)
             }
             else{

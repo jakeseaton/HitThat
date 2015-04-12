@@ -9,37 +9,63 @@
 import UIKit
 
 class RegisterViewController: UIViewController, ZLSwipeableViewDataSource, ZLSwipeableViewDelegate {
-    var questionIndex = 0
-    var colorIndex = 0
-    var colors = Colors.ColorsArray
+    var questionIndex:Int = 0 {
+        didSet{
+                motionKit.getDeviceMotionObject(interval: MotionAPI.interval) {
+                    (deviceMotion) in
+                    MotionAPI().analyzeMotion(deviceMotion, sender:self)
+                }
+        }
+    }
+    
+    //var colorIndex = 0
+    //var colors = Colors.ColorsArray
+    var motionKit = MotionKit()
+    var soundToPlay:AVAudioPlayer?
+    @IBOutlet weak var staminaBar:YLProgressBar!
     @IBOutlet weak var swipeableView:ZLSwipeableView!
-    var questions = ["Welcome, please answer these questions to the best of your ability, so that we can find the best matches for you. (Swipe or punch left or right)", "Do you hit with your right or your left?", "Float like a butterfly or sting like a bee?", "Are you allergic to anything?", "What about bees?", "Do you believe in reincarnation?", "Then how do you explain butterflies?","Are you ready to start hitting people? Take a swint to answer yes!","",""]
+    @IBOutlet weak var punchLabel:UILabel!
+    var questions = ["Welcome to HitThat, the ONLY dating app that lets you find singles near you and match, track, and fight them, all with the palm of your hand! Punch with your phone to do some damage and begin the tutorial.", "First, you'll create a profile, so that potential matches can see your stats.", "Next, view other people near you to find the ones you want to fight!", "Once you've found them, you can locate and track them down.", "Too far away? No problem! You can fight within the app.","Throw the first punch to start a fight.", "On your turn, you can Jab, Uppercut, Kick, or Block. Make sure to get good rotation!","The harder you hit, the more damage you'll do.", "When the fight is over, you'll still be able to see their profile, in case you still want to hit that!", "Ready to start hitting people? Take a swing to answer yes!","",""]
     override func viewDidLoad(){
         super.viewDidLoad()
         self.swipeableView.delegate = self
+        Colors().configureStaminaBar(self.staminaBar, user: false)
+        self.staminaBar.setProgress(1, animated: true)
+        self.punchLabel.textColor = Colors.opponentColor1
     }
     override func viewDidLayoutSubviews() {
         self.swipeableView.dataSource = self
     }
     
+    // Mark := Handling Punches
+    func handlePunch(damage:CGFloat, punchType:PunchType){
+        soundToPlay = SoundAPI().soundNameToAudioPlayer(MotionAPI.motionsToSounds[punchType]!)
+        self.soundToPlay!.play()
+        switch punchType{
+        case .Jab:
+            self.punchLabel.text = "NICE JAB!"
+        case .Block:
+            self.punchLabel.text = "NICE BLOCK!"
+        case .Uppercut:
+            self.punchLabel.text = "NICE UPPERCUT!"
+        case .Kick:
+            self.punchLabel.text = "NICE KICK!"
+        default:
+            break
+        }
+        self.swipeableView.swipeTopViewToLeft()
+        let newStamina:CGFloat = self.staminaBar.progress - damage
+        self.staminaBar.setProgress(newStamina, animated: true)
+    }
+
+    
     //MARK: Swipeable View Delegate
-    func swipeableView(swipeableView: ZLSwipeableView!, swipingView view: UIView!, atLocation location: CGPoint, translation: CGPoint) {
-        println("swiping View")
-    }
-    func swipeableView(swipeableView: ZLSwipeableView!, didSwipeRight view: UIView!) {
-        // performSegueWithIdentifier("That Segue", sender: self)
-        println("swiped right!")
-    }
-    func swipeableView(swipeableView: ZLSwipeableView!, didSwipeLeft view: UIView!) {
-        // store that object in the fights database
-        println("swiped left")
-    }
-    func swipeableView(swipeableView: ZLSwipeableView!, didStartSwipingView view: UIView!, atLocation location: CGPoint) {
-        println("startedSwipingView")
-    }
-    func swipeableView(swipeableView: ZLSwipeableView!, didEndSwipingView view: UIView!, atLocation location: CGPoint) {
-        println("EndedSwipingView")
-    }
+    func swipeableView(swipeableView: ZLSwipeableView!, swipingView view: UIView!, atLocation location: CGPoint, translation: CGPoint) {}
+    func swipeableView(swipeableView: ZLSwipeableView!, didSwipeRight view: UIView!) {}
+    func swipeableView(swipeableView: ZLSwipeableView!, didSwipeLeft view: UIView!) {}
+    func swipeableView(swipeableView: ZLSwipeableView!, didStartSwipingView view: UIView!, atLocation location: CGPoint) {}
+    func swipeableView(swipeableView: ZLSwipeableView!, didEndSwipingView view: UIView!, atLocation location: CGPoint) {}
+    
     //MARK: Swipeable View DataSource
     
     func nextViewForSwipeableView(swipeableView: ZLSwipeableView!) -> UIView! {
@@ -48,48 +74,26 @@ class RegisterViewController: UIViewController, ZLSwipeableViewDataSource, ZLSwi
             var view = CardView(frame: swipeableView.bounds)
             var textView = UITextView(frame: view.bounds)
             textView.text = self.questions[questionIndex]
-            view.backgroundColor = colors[colorIndex]
-            
-            //            view.backgroundColor = self.colorForName(colors[colorIndex])
-            //            colorIndex += 1
-            // I really don't want to do this
-            //            if (loadCardFromXIB){
-            //                println("lol")
-            //
-            //            }
+            view.backgroundColor = Colors.favoriteBackgroundColor //colors[colorIndex]
             textView.backgroundColor = UIColor.clearColor()
             textView.font = UIFont.systemFontOfSize(24)
             textView.editable = false
             textView.selectable = false
             view.addSubview(textView)
             self.questionIndex += 1
-            colorIndex = (colorIndex + 1) % colors.count
+            //colorIndex = (colorIndex + 1) % colors.count
 
             return view
 
         }
         else{
-//            self.dismissViewControllerAnimated(true){}
             self.performSegueWithIdentifier(Constants.RegisterFormSegue, sender: self)
             return nil
-        }
-    }
-    //MARK:-Core Motion
-    override func viewDidAppear(animated: Bool) {
-        // if motion manager is avaliable else alert
-        //        let motionManager = AppDelegate.Motion.Manager
-        //        motionManager.startAccelerometerUpdates()
-        self.becomeFirstResponder()
-    }
-    override func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent) {
-        if (motion == UIEventSubtype.MotionShake){
-            println("user shook the device")
-            self.swipeableView.swipeTopViewToLeft()
         }
     }
     override func viewWillDisappear(animated: Bool) {
         //AppDelegate.Motion.Manager.stopAccelerometerUpdates()
         //        self.resignFirstResponder()
     }
-
+    
 }

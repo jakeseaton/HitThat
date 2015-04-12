@@ -117,6 +117,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         let fightsTable = self.centerContainer!.rightDrawerViewController as FightsViewController
         fightsTable.refresh()
     }
+    func updateMenu(){
+        let menu = self.centerContainer!.leftDrawerViewController as MenuViewController
+        menu.updateUI()
+    }
  
 
     func applicationWillResignActive(application: UIApplication) {}

@@ -11,6 +11,7 @@ struct Colors{
 
     static let color1 = UIColor(red:255/255, green:136/255, blue:74/255, alpha:1.0)
     static let color2 = UIColor(red: 255/255, green: 47/255, blue: 0/255, alpha: 1.0)
+    static let favoriteBackgroundColor = Colors.color1 //Colors.SilverColor
     static let opponentColor2 = UIColor.redColor()
     static let opponentColor1 = Colors.PomegranateColor
     
@@ -73,6 +74,6 @@ struct Colors{
         }
     }
     func favoriteBackGroundColor(vc:UIViewController){
-        vc.view.backgroundColor = Colors.color1 //Colors.SilverColor
+        vc.view.backgroundColor = Colors.favoriteBackgroundColor
     }
 }

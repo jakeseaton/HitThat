@@ -95,8 +95,27 @@ struct SoundAPI {
     func getTargetLockedSound() -> AVAudioPlayer{
         return soundNameToAudioPlayer(SoundAPI.targetLockedSound)
     }
-    func getGruntSound() -> AVAudioPlayer{
+    func getMaleGruntSound() -> AVAudioPlayer{
         let name = SoundAPI.maleGruntSounds.randomItem()
         return soundNameToAudioPlayer(name)
+    }
+    func getFemaleGruntSound() -> AVAudioPlayer{
+        let name = SoundAPI.femaleGruntSounds.randomItem()
+        return soundNameToAudioPlayer(name)
+    }
+    func getGruntSoundForUser(user:PFUser) -> AVAudioPlayer{
+        if let userGender = user.objectForKey("gender") as? String{
+            if (userGender == "male"){
+                return getMaleGruntSound()
+            }
+            else{
+                return getFemaleGruntSound()
+            }
+                
+        }
+        // hashtag invisible patriarchy
+        else{
+            return getFemaleGruntSound()
+        }
     }
 }

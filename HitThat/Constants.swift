@@ -65,6 +65,10 @@ struct Constants{
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         appDelegate.refreshTable()
     }
+    func updateMenu(){
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        appDelegate.updateMenu()
+    }
     
     // Form Options
     static let hitsWithOptions = ["Right Hand", "Left Hand", "Head", "Foot", "Bat", "Purse","Hatchet","Car", "Motorcycle", "Taxes", "Cat", "Mid Life Crisis", "Good Touch", "Bad Touch", "Anchor", "Hard Rock", "Soft Jazz"]

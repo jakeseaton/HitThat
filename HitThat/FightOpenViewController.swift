@@ -38,7 +38,7 @@ class FightOpenViewController: UIViewController{
 
     var isUsersTurn:Bool?{
         willSet{
-            self.turnLabel?.text = newValue! ? "YOU TURN" : "THEIR TURN"
+            self.turnLabel?.text = newValue! ? "YOUR TURN" : "THEIR TURN"
         }
     }
     var userIsOrigin:Bool?
@@ -79,7 +79,7 @@ class FightOpenViewController: UIViewController{
     var userStamina:CGFloat?{
         willSet{
             if newValue < userStaminaBar.progress{
-                self.soundToPlay = SoundAPI().getGruntSound()
+                self.soundToPlay = userIsOrigin! ? SoundAPI().getGruntSoundForUser(originUser!) : SoundAPI().getGruntSoundForUser(recipientUser!)
                 self.soundToPlay!.play()
             }
         self.userStaminaBar?.setProgress(newValue!, animated: true)

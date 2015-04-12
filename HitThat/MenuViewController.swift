@@ -25,6 +25,11 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
         // Do any additional setup after loading the view.
     }
+    func updateUI(){
+        if let curr = PFUser.currentUser(){
+            ParseAPI().installAUsersProfilePhoto(curr, target: userImage, optionalBlurTarget: nil)
+        }
+    }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         switch (indexPath.row){
