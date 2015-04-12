@@ -76,6 +76,16 @@ To Use
 
 - Build using XCode 6.2. XCode 6.3 is the way of the past.
 
+Additional Features
+---
+-Geographic priority for potential matches presented on the versus screen
+
+
+-Inability to see the same opponent twice
+
+
+**Notes:** These features hinder testing the app and experiencing it on a small scale, so for the sake of this proces they have been commented out.
+
 
 
 Pods
@@ -113,6 +123,8 @@ Email: david_gkxfydi_schrockwitz@tfbnw.net
 Password: test2
 
 **Notes:** These are test **Facebook** accounts. You will have to sign into them on facebook on your iOS device, or in the simulator, which can be done in the device settings.
+
+Due to the way the push notification system works, it is important to only sign in with these accounts on one device, as that device will be associated with that installation and user. However, any facebook account will work.
 
 
 Known Issues

@@ -92,11 +92,11 @@ struct SoundAPI {
     func getLossSound()-> AVAudioPlayer{
         return soundNameToAudioPlayer(SoundAPI.lossSound)        
     }
-func playTargetLockedSound(){
-config()
-soundNameToAudioPlayer(SoundAPI.targetLockedSound)
-}
     func getTargetLockedSound() -> AVAudioPlayer{
         return soundNameToAudioPlayer(SoundAPI.targetLockedSound)
+    }
+    func getGruntSound() -> AVAudioPlayer{
+        let name = SoundAPI.maleGruntSounds.randomItem()
+        return soundNameToAudioPlayer(name)
     }
 }

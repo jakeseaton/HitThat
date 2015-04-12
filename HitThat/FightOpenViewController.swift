@@ -78,12 +78,22 @@ class FightOpenViewController: UIViewController{
     // Stamina Properties and Outlets
     var userStamina:CGFloat?{
         willSet{
+            if newValue < userStaminaBar.progress{
+                self.soundToPlay = SoundAPI().getGruntSound()
+                self.soundToPlay!.play()
+            }
         self.userStaminaBar?.setProgress(newValue!, animated: true)
+        }
+        didSet{
+            self.userStaminaBar?.indicatorTextDisplayMode = .Progress
         }
     }
     var opponentStamina:CGFloat?{
         willSet{
             self.opponentStaminaBar?.setProgress(newValue!, animated:true)
+        }
+        didSet{
+            self.opponentStaminaBar?.indicatorTextDisplayMode = .Progress
         }
     }
     
@@ -181,19 +191,6 @@ class FightOpenViewController: UIViewController{
     func handlePunch(damage:CGFloat, punchType:PunchType){
         soundToPlay = SoundAPI().soundNameToAudioPlayer(MotionAPI.motionsToSounds[punchType]!)
         self.soundToPlay!.play()
-        switch punchType{
-        case .Block:
-            println("block!")
-        case .Jab:
-            println("Jab")
-        case .Uppercut:
-            println("uppercut!")
-        case .Kick:
-            println("kick!")
-        default:
-            break
-        }
-        //self.soundArray?.randomItem().play()
         let newStamina:CGFloat = self.opponentStamina! - damage
         if newStamina <= 0 {
             self.victorySound?.play()
@@ -206,7 +203,6 @@ class FightOpenViewController: UIViewController{
             self.dismissViewControllerAnimated(true, completion: nil)
         }
         else{
-            
             self.opponentStamina = newStamina
             fightToDisplay?.setObject(PFUser.currentUser(), forKey: "lastTurn")
             if userIsOrigin!{
