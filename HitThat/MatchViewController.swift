@@ -64,6 +64,7 @@ class MatchViewController: UIViewController, MKMapViewDelegate, CLLocationManage
 
     @IBAction func locatePressed(sender: AnyObject) {
         handleAnnotations([userToDisplay!])
+        ParseAPI().notifyTrackedUser(userToDisplay!)
         self.targetLockedSound?.play()
         //performSegueWithIdentifier(Constants.LocateSegueIndentifier, sender: userToDisplay)
     }
