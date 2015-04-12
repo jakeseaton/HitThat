@@ -2,11 +2,13 @@ HitThat
 =======
 
 Jake Seaton
+
 Quincy-Dewolfe 20-05
 
 Location
 ---
 Code: github.com/jakeseaton/HitThat
+
 Product: N/A
 
 
@@ -35,10 +37,14 @@ View the number of fights you've won and lost, and your number of current fights
 **Fights**
 On the open fight screen, you'll see your stamina and your opponents. If it's your turn, press the punch button to tell the app that you're going to punch. Thrust forward to Jab. Make sure to get a good rotation. Thrust upward to uppercut. Thrust your entire arm forward to block. The harder you thrust, the more damage you do!
 (Under the hood, this is based on negative acceleration thresholds. When you thrust the phone in a particular direction, the greatest acceleration occurs in the opposite direction, when the motion ends abruptly and your hand applied force to the phone to get it to stop moving. So, if we get a highly positive Z acceleration, we know that the user has thrust the forward along the Z axis, as occurs when thrusting the arm when blocking a punch. Then, by setting an acceleration threshold, as soon as one of the directions crosses it we know the completed an action in that direction. 
+
+
 ![alt tag](https://developer.apple.com/library/prerelease/ios/documentation/UIKit/Reference/UIAcceleration_Class/Art/device_axes.jpg)
 
 The natural punching motion seen here rotates the phone so that it travels in the negative x direction if the user is right handed, and positive if left. When the accelerometer reports a high x acceleration, we know that the user punched. 
-![alt tag](http://heavyfists.com/wp-content/uploads/boxing-combinations.jpgrotates) 
+
+
+![alt tag](http://heavyfists.com/wp-content/uploads/boxing-combinations.jpg) 
 
 
 Similarly, the uppercut motion causes the phone to travel in positive y direction, so a high negative y acceleration corresponds to an uppercut
