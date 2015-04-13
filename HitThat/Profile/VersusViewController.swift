@@ -69,9 +69,7 @@ class VersusViewController: UIViewController, UIScrollViewDelegate, UITableViewD
     }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        if segue.identifier == Constants.GenericProfileSegue{
-            println(segue.destinationViewController.childViewControllers)
-            
+        if segue.identifier == Constants.GenericProfileSegue{            
             if let next = segue.destinationViewController.childViewControllers[0] as? MatchViewController{
                 next.userToDisplay = self.userToDisplay
                 next.fightToDisplay = sender as? PFObject
@@ -262,10 +260,23 @@ class VersusViewController: UIViewController, UIScrollViewDelegate, UITableViewD
             cell.backgroundColor = UIColor.clearColor()
             let category = Constants.categories[indexPath.row]
             let userCategory: AnyObject? = PFUser.currentUser()?.objectForKey(category)
-            cell.userLabel?.text = userCategory?.description
-            if let advantage = userIsGreater(category){
-                cell.userLabel?.textColor = advantage ? Colors.userColor2 : Colors.userColor1
+            if category == "jailTime"{
+                if let years = userCategory?.description{
+                    cell.userLabel?.text = years + "+ yrs"
+                }
             }
+            else if category == "weight"{
+                if let weight = userCategory?.description{
+                    cell.userLabel?.text = weight + " lbs"
+                }
+            }
+            else{
+                cell.userLabel?.text = userCategory?.description
+            }
+            cell.userLabel?.textColor = UIColor.blackColor()//Colors.userColor1
+//            if let advantage = userIsGreater(category){
+//                cell.userLabel?.textColor = advantage ? Colors.userColor2 : Colors.userColor1
+//            }
             // cell.userLabel?.textColor = Colors.userColor2
 
             return cell
@@ -275,9 +286,24 @@ class VersusViewController: UIViewController, UIScrollViewDelegate, UITableViewD
             cell.backgroundColor = UIColor.clearColor()
             let category = Constants.categories[indexPath.row]
             let opponentCategory: AnyObject? = userToDisplay?.objectForKey(category)
-            cell.opponentLabel?.text = opponentCategory?.description
+            if category == "jailTime"{
+                if let years = opponentCategory?.description{
+                    cell.opponentLabel?.text = years + "+ yrs"
+                }
+            }
+                else if category == "weight"{
+                if let weight = opponentCategory?.description{
+                    cell.opponentLabel?.text = weight + " lbs"
+                }
+            }
+            else{
+                cell.opponentLabel?.text = opponentCategory?.description
+            }
             if let disadvantage = userIsGreater(category){
-                cell.opponentLabel?.textColor = disadvantage ? Colors.opponentColor2 : Colors.opponentColor1
+                cell.opponentLabel?.textColor = disadvantage ? Colors.userColor2 : Colors.opponentColor2
+            }
+            else{
+                cell.opponentLabel?.textColor = UIColor.blackColor()
             }
             return cell
             
@@ -288,6 +314,7 @@ class VersusViewController: UIViewController, UIScrollViewDelegate, UITableViewD
             cell.backgroundColor = UIColor.clearColor()
             let category = Constants.categories[indexPath.row]
             cell.categoryLabel?.text = category.uppercaseString
+            cell.categoryLabel?.textColor = UIColor.whiteColor()
 
 //            switch category{
 //            case "bodyType":

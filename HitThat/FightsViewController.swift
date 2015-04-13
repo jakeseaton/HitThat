@@ -133,9 +133,26 @@ class FightsViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if (indexPath.section == 0) {
+        switch (indexPath.section){
+        case 0:
             let fightObject = self.allFights[indexPath.row]
             self.openFight(fightObject)
+        case 1:
+            if let opponent = self.victories[indexPath.row].objectForKey("loser") as? PFUser{
+                println(opponent)
+                opponent.fetchIfNeeded()
+                println(opponent)
+                self.performSegueWithIdentifier(Constants.ViewProfileSegue, sender: opponent)
+            }
+        case 2:
+            if let opponent = self.losses[indexPath.row].objectForKey("winner") as? PFUser{
+                println(opponent)
+                opponent.fetchIfNeeded()
+                println(opponent)
+                self.performSegueWithIdentifier(Constants.ViewProfileSegue, sender: opponent)
+            }
+        default:
+            break
         }
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
@@ -144,6 +161,14 @@ class FightsViewController: UIViewController, UITableViewDataSource, UITableView
             if let fovc = segue.destinationViewController as? FightOpenViewController{
                 if let fight = sender as? PFObject{
                     fovc.fightToDisplay = fight
+                }
+            }
+        }
+        if segue.identifier == Constants.ViewProfileSegue{
+            
+            if let mvc = segue.destinationViewController.childViewControllers[0] as? MatchViewController{
+                if let opponent = sender as? PFUser{
+                   mvc.userToDisplay = opponent
                 }
             }
         }

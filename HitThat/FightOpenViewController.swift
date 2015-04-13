@@ -15,7 +15,7 @@ class FightOpenViewController: UIViewController{
         self.motionKit.stopDeviceMotionUpdates()
     }
     @IBAction func manualPunchPressed(sender: AnyObject) {
-        self.handlePunch(CGFloat(0.25), punchType: .Jab)
+        self.handlePunch(CGFloat(0.25), punchType: .Jab, punchLocation: .Gut)
     }
     @IBAction func punchPressed(sender:AnyObject){
         if self.isUsersTurn!{
@@ -32,7 +32,8 @@ class FightOpenViewController: UIViewController{
         
     }
     @IBAction func goBackPressed(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.performSegueWithIdentifier(Constants.ReturnFromFightToVersus, sender: nil)
+        //self.dismissViewControllerAnimated(true, completion: nil)
     }
     // Public API
 
@@ -79,6 +80,15 @@ class FightOpenViewController: UIViewController{
     var userStamina:CGFloat?{
         willSet{
             if newValue < userStaminaBar.progress{
+                if newValue < 0{
+                    if userIsOrigin!{
+                        ParseAPI().fightWasCompleted(fightToDisplay!, winner: recipientUser!, loser: originUser!)
+                    }
+                    else{
+                        ParseAPI().fightWasCompleted(fightToDisplay!, winner: originUser!, loser: recipientUser!)
+                    }
+                    UIAlertView(title: "YOU LOST!", message: nil, delegate: nil, cancelButtonTitle: "ok").show()
+                }
                 self.soundToPlay = userIsOrigin! ? SoundAPI().getGruntSoundForUser(originUser!) : SoundAPI().getGruntSoundForUser(recipientUser!)
                 self.soundToPlay!.play()
             }
@@ -188,21 +198,21 @@ class FightOpenViewController: UIViewController{
     
     
     // Mark := Handling Punches
-    func handlePunch(damage:CGFloat, punchType:PunchType){
+    func handlePunch(damage:CGFloat, punchType:PunchType, punchLocation:PunchLocation){
         soundToPlay = SoundAPI().soundNameToAudioPlayer(MotionAPI.motionsToSounds[punchType]!)
         self.soundToPlay!.play()
         let newStamina:CGFloat = self.opponentStamina! - damage
-        if newStamina <= 0 {
-            self.victorySound?.play()
-            UIAlertView(title: "YOU WIN!", message: nil, delegate: nil, cancelButtonTitle: "ok").show()
-            if userIsOrigin!{
-                ParseAPI().fightWasCompleted(fightToDisplay!, winner:PFUser.currentUser(), loser: fightToDisplay!["recipient"] as PFUser)
-            }else{
-                ParseAPI().fightWasCompleted(fightToDisplay!, winner:fightToDisplay!["recipient"] as PFUser, loser:fightToDisplay!["origin"] as PFUser)
-            }
-            self.dismissViewControllerAnimated(true, completion: nil)
-        }
-        else{
+//        if newStamina <= 0 {
+//            self.victorySound?.play()
+//            UIAlertView(title: "YOU WIN!", message: nil, delegate: nil, cancelButtonTitle: "ok").show()
+//            if userIsOrigin!{
+//                ParseAPI().fightWasCompleted(fightToDisplay!, winner:PFUser.currentUser(), loser: fightToDisplay!["recipient"] as PFUser)
+//            }else{
+//                ParseAPI().fightWasCompleted(fightToDisplay!, winner:fightToDisplay!["recipient"] as PFUser, loser:fightToDisplay!["origin"] as PFUser)
+//            }
+//            self.dismissViewControllerAnimated(true, completion: nil)
+////        }
+////        else{
             self.opponentStamina = newStamina
             fightToDisplay?.setObject(PFUser.currentUser(), forKey: "lastTurn")
             if userIsOrigin!{
@@ -218,7 +228,6 @@ class FightOpenViewController: UIViewController{
                 
             }
             self.isUsersTurn = false
-        }
         
     }
 }

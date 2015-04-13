@@ -19,6 +19,9 @@ enum MotionThreshold {
     case Positive//(Float)
     case Negative//(Float)
 }
+enum PunchLocation{
+    case KneeCap, Gut, Face, Arm, Gizzard, BellyButton, Ass, Crotch, Throat, Nose, Shin, Chest
+}
 struct MotionAPI{
     static let motionsToSounds:[PunchType:String] = [
         .Jab : SoundAPI.jabSound,
@@ -26,9 +29,13 @@ struct MotionAPI{
         .Block : SoundAPI.blockSound,
         .Kick : SoundAPI.kickSound
     ]
+    static let upLocations:[PunchLocation] = [.Face, .Throat, .Nose]
+    static let downLocations:[PunchLocation] = [.KneeCap, .Ass, .Shin]
+    static let punchLocations: [PunchLocation] = [.Gut, .Arm, .Gizzard, .BellyButton, .Chest]
     static let threshold = 2.0
     static let interval = 0.01
     static let RegisterInterval = 0.1
+    static let scale:Double = 40
     
     func analyzeMotion(deviceMotion:CMDeviceMotion, sender:AnyObject){
         let accelerationX = deviceMotion.userAcceleration.x
@@ -37,26 +44,26 @@ struct MotionAPI{
         let rotationX = deviceMotion.rotationRate.x
         let attitideYaw = deviceMotion.attitude.yaw
         //println(accelerationX, accelerationY, accelerationZ)
-        if let punchType = determinePunchType(accelerationX, accelerationY, accelerationZ){
+        if let (punchType, punchLocation) = determinePunchType(accelerationX, accelerationY, accelerationZ){
             let damage:Double = calculateDamage(accelerationX, y: accelerationY, z: accelerationZ)
-            let scaledDamage = damage / Double(100)
+            let scaledDamage = damage / MotionAPI.scale
             if let fightOpenViewController = sender as? FightOpenViewController{
                 fightOpenViewController.motionKit.stopDeviceMotionUpdates()
                 dispatch_async(dispatch_get_main_queue()){
-                    fightOpenViewController.handlePunch(CGFloat(scaledDamage), punchType: punchType)
+                    fightOpenViewController.handlePunch(CGFloat(scaledDamage), punchType: punchType, punchLocation: punchLocation)
                 }
             }
             if let startFightViewController = sender as? StartFightViewController{
                 startFightViewController.motionKit.stopDeviceMotionUpdates()
                 dispatch_async(dispatch_get_main_queue()){
-                    startFightViewController.handlePunch(CGFloat(scaledDamage), punchType: punchType)
+                    startFightViewController.handlePunch(CGFloat(scaledDamage), punchType: punchType, punchLocation: punchLocation)
                 }
                 
             }
             if let registerViewController = sender as? RegisterViewController{
                 registerViewController.motionKit.stopDeviceMotionUpdates()
                 dispatch_async(dispatch_get_main_queue()){
-                    registerViewController.handlePunch(CGFloat(scaledDamage), punchType:punchType)
+                    registerViewController.handlePunch(CGFloat(scaledDamage), punchType:punchType, punchLocation: punchLocation)
                 }
             }
         }
@@ -71,7 +78,7 @@ struct MotionAPI{
     }
     
     // HOLY FUCK THIS IS UGLY
-    func determinePunchType(tuple:(Double,Double,Double)) -> PunchType?{
+    func determinePunchType(tuple:(Double,Double,Double)) -> (PunchType, PunchLocation)?{
         var result:(MotionThreshold, MotionThreshold, MotionThreshold) = (.Normal, .Normal, .Normal)
         let (x,y,z) = tuple
         switch (x){
@@ -107,27 +114,28 @@ struct MotionAPI{
         // Phone thrust down
         case (_,.Positive, _):
             println("down!")
-            return .Kick
+            let location = MotionAPI.downLocations.randomItem()
+            return (.Jab, location)
         // Phone thrust up
         case (_, .Negative, _):
             println("up!")
-            return .Uppercut
+            let location = MotionAPI.upLocations.randomItem()
+            return (.Uppercut, location)
         // Phone thrust left
         case (.Positive, _, _ ):
             println("Punched with left!")
-            return .Jab
+            let location = MotionAPI.punchLocations.randomItem()
+            return (.Jab, location)
         // Phone thrust right
         case (.Negative, _, _):
             println("Punched with right!")
-            return .Jab
+            let location = MotionAPI.punchLocations.randomItem()
+            return (.Jab, location)
         // Phone thrust forward
         case (_,_,.Positive):
             println("forward")
-            return .Block
-        // Phone pulled in
-        case (_,_, .Negative):
-            println("backward!")
-            return nil
+            let location = MotionAPI.downLocations.randomItem()
+            return (.Jab, location)
         default:
             return nil
         }

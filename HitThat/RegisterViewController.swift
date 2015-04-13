@@ -38,7 +38,7 @@ class RegisterViewController: UIViewController, ZLSwipeableViewDataSource, ZLSwi
     }
     
     // Mark := Handling Punches
-    func handlePunch(damage:CGFloat, punchType:PunchType){
+    func handlePunch(damage:CGFloat, punchType:PunchType, punchLocation: PunchLocation){
         soundToPlay = SoundAPI().soundNameToAudioPlayer(MotionAPI.motionsToSounds[punchType]!)
         self.soundToPlay!.play()
         switch punchType{

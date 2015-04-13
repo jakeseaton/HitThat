@@ -16,6 +16,9 @@ struct Constants{
     static let LogInSegue = "Log In Segue"
     static let ShowProfileSegue = "Show Profile Segue"
     static let RegistrationCompleteSegue = "Registration Complete"
+    static let ReturnFromFightToVersus = "Return To Versus"
+    static let FightStartedSegue = "Fight Started Segue"
+    static let ViewProfileSegue = "View Profile Segue"
     
     // Identifiers
     
@@ -58,7 +61,7 @@ struct Constants{
     static let comparables = ["height", "weight", "reach", "wins", "jailTime", "gpa", "tatoos"]
     
     // Menu
-    static let menuItems = ["Home", "My Profile", "My Fights", "Settings", "About", "resetSeen", "clearAllFights"]
+    static let menuItems = ["Home", "My Profile", "My Fights", "Settings", "About", "Log In", "Reset"]
     static let menuIcons = ["homeFilled", "userMaleFilled", "myFightsIcon", "settingsIcon", "aboutIcon", "fist", "fist"]
     
     func refreshFightsTable(){
@@ -74,7 +77,7 @@ struct Constants{
     static let hitsWithOptions = ["Right Hand", "Left Hand", "Head", "Foot", "Bat", "Purse","Hatchet","Car", "Motorcycle", "Taxes", "Cat", "Mid Life Crisis", "Good Touch", "Bad Touch", "Anchor", "Hard Rock", "Soft Jazz"]
     static let lookingForOptions = ["Love", "Fights", "Love and Fights"]
     static let bestMoveOptions = ["Punch", "Jab", "Upper Cut", "Roundhouse", "Chop", "Body Slam", "Play Dead","Use the Force"]
-    static let bodyTypeOptions = ["Slim", "Normal", "Butch", "Swole"]
+    static let bodyTypeOptions = ["Slim", "Normal","Athletic", "Butch", "Toned", "Swole", "Stringy", "Stocky", "Skinny", "Fat"]
     var GPAOptions:[String]{
         var results:[String] = []
         for i in 0...3{

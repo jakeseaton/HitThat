@@ -13,7 +13,7 @@ class StartFightViewController: UIViewController {
     let motionKit = MotionKit()
     
         @IBAction func manualPunchPressed(sender: AnyObject) {
-            self.handlePunch(CGFloat(0.25), punchType: .Jab)
+            self.handlePunch(CGFloat(0.25), punchType: .Jab, punchLocation: .Gut)
         }
     
         @IBAction func punchPressed(sender:AnyObject){
@@ -73,7 +73,7 @@ class StartFightViewController: UIViewController {
         
         
         // Mark := Handling Punches
-        func handlePunch(damage:CGFloat, punchType:PunchType){
+    func handlePunch(damage:CGFloat, punchType:PunchType, punchLocation:PunchLocation){
             switch punchType{
             case .Block:
                 println("block!")
@@ -94,7 +94,15 @@ class StartFightViewController: UIViewController {
             fightToDisplay!.saveInBackground()
             ParseAPI().notifyPunchedUser(self.recipientUser!, fightObject:fightToDisplay!, sound:SoundAPI.notificationSound)
             Constants().refreshFightsTable()
-            self.performSegueWithIdentifier(Constants.UnwindFromNewFight, sender: self)
+            self.performSegueWithIdentifier(Constants.FightStartedSegue, sender: self.fightToDisplay!)
+            //self.performSegueWithIdentifier(Constants.UnwindFromNewFight, sender: self)
             
         }
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == Constants.FightStartedSegue{
+            if let fightOpenViewController = segue.destinationViewController as? FightOpenViewController{
+                fightOpenViewController.fightToDisplay = self.fightToDisplay
+            }
+        }
+    }
 }

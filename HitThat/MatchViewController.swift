@@ -14,6 +14,7 @@ class MatchViewController: UIViewController, MKMapViewDelegate, CLLocationManage
     var fightToDisplay:PFObject?
     var targetLockedSound:AVAudioPlayer?
     @IBOutlet weak var distanceLabel:UILabel!
+    @IBOutlet weak var lockedOnLabel: UILabel!
     @IBOutlet weak var bioLabel:UILabel!
     @IBOutlet weak var bestMoveLabel:UILabel!
     @IBOutlet weak var lookingForLabel:UILabel!
@@ -41,7 +42,7 @@ class MatchViewController: UIViewController, MKMapViewDelegate, CLLocationManage
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        println("didLoad")
+        self.lockedOnLabel?.hidden = true
         Colors().favoriteBackGroundColor(self)
         Shapes().circularImage(self.profilePicture)
         targetLockedSound = SoundAPI().getTargetLockedSound()
@@ -63,23 +64,33 @@ class MatchViewController: UIViewController, MKMapViewDelegate, CLLocationManage
     }
 
     @IBAction func locatePressed(sender: AnyObject) {
+        println(userToDisplay)
         handleAnnotations([userToDisplay!])
         ParseAPI().notifyTrackedUser(userToDisplay!)
         self.targetLockedSound?.play()
+        self.lockedOnLabel?.hidden = false
         //performSegueWithIdentifier(Constants.LocateSegueIndentifier, sender: userToDisplay)
     }
     @IBAction func startFightPressed(sender: AnyObject) {
-        
-        self.performSegueWithIdentifier(Constants.StartFightSegue, sender: fightToDisplay!)
+        if let newFight = fightToDisplay{
+            self.performSegueWithIdentifier(Constants.StartFightSegue, sender: fightToDisplay!)
+        }
+        else{
+            if let newFight = ParseAPI().storeAFightFromVersusScreen(userToDisplay!){
+                self.performSegueWithIdentifier(Constants.StartFightSegue, sender: newFight)
+            }
+                    // construct a fight object
+            //self.performSegueWithIdentifier(Constants.StartFightSegue, sender: newFight)
+        }
 
         //self.dismissViewControllerAnimated(true, completion: nil)
         //let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         //appDelegate.displayFight(fightToDisplay!)
         //println("start fight pressed")
     }
-    @IBAction func gangBangPressed(sender: AnyObject) {
-        println("gangbanging: \(userToDisplay)")
-    }
+//    @IBAction func gangBangPressed(sender: AnyObject) {
+//        println("gangbanging: \(userToDisplay)")
+//    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

@@ -128,7 +128,7 @@ Password: test2
 
 **Notes:** These are test **Facebook** accounts. You will have to sign into them on facebook on your iOS device, or in the simulator, which can be done in the device settings.
 
-Due to the way the push notification system works, it is important to only sign in with these accounts on one device, as that device will be associated with that installation and user. However, any facebook account will work.
+Due to the way the push notification system works, it is important to only sign in with these accounts on one device, as that device will be associated with that installation and user.
 
 
 Known Issues

@@ -160,7 +160,6 @@
 		3D23E22A1AD96E3600469749 /* applause.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = applause.wav; sourceTree = "<group>"; };
 		3D23E22C1AD9767A00469749 /* 321Fight.flac */ = {isa = PBXFileReference; lastKnownFileType = file; path = 321Fight.flac; sourceTree = "<group>"; };
 		3D23E22D1AD9768500469749 /* ThreePunch.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ThreePunch.wav; sourceTree = "<group>"; };
-		3D23E22F1AD97A7C00469749 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = MyPlayground.playground; path = ../../../../Desktop/MyPlayground.playground; sourceTree = "<group>"; };
 		3D23E2301AD986DA00469749 /* FormValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormValidator.swift; sourceTree = "<group>"; };
 		3D39ABBD1AD9CB5200F786CB /* targetLocked.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = targetLocked.wav; sourceTree = "<group>"; };
 		3D413ED81AD74BDF00E00A76 /* MotionAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotionAPI.swift; sourceTree = "<group>"; };
@@ -469,7 +468,6 @@
 		3DB6DEE31AC993620020497B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				3D23E22F1AD97A7C00469749 /* MyPlayground.playground */,
 				3DAE5B121AD46A97004892CC /* RandomArray.swift */,
 				3D8482C21ACB790D00D663DF /* LocateButton.swift */,
 				3DB6DF111AC994930020497B /* Frameworks */,

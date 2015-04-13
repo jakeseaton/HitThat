@@ -62,9 +62,11 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
             println(Constants.menuItems[4])
             break
         case 5:
-            ParseAPI().resetSeen()
+            // log in
+            self.logInSelected()
             break
         case 6:
+            ParseAPI().resetSeen()
             ParseAPI().clearAllFights()
             break
         default:
@@ -90,6 +92,13 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
+    }
+    func logInSelected(){
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        if let versusViewController = appDelegate.centerContainer!.centerViewController as? VersusViewController{
+            versusViewController.performSegueWithIdentifier(Constants.NoUserSegue, sender: versusViewController)
+        }
+        
     }
 
 }

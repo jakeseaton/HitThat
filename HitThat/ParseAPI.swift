@@ -287,9 +287,6 @@ struct ParseAPI {
         }
     }
     func fightWasCompleted(fight: PFObject, winner:PFUser, loser:PFUser){
-        println(loser)
-        // BOTH ARE POINTERS RN, so this is happening on the main que
-
         loser.fetchIfNeeded()
         winner.fetchIfNeeded()
         let data = [
@@ -307,9 +304,28 @@ struct ParseAPI {
             let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
             appDelegate.refreshTable()
         }
+        nofityParticipant(winner, won:true, opponent:loser)
+        nofityParticipant(loser, won:false, opponent:winner)
+        
     }
+    
     func userIsMale(user:PFUser) -> Bool{
         user.fetchIfNeeded()
         return(stringOfUnwrappedUserProperty("gender", user: user) == "male")
+    }
+    func nofityParticipant(participant: PFUser, won:Bool, opponent:PFUser){
+        let pushQuery = installationQuery()
+        pushQuery.whereKey("user", equalTo: participant)
+        let alias = opponent.objectForKey("alias") as? String
+//        let alias = stringOfCurrentUserProperty("alias")
+        let data = won ? [
+            "alert" : "YOU DEFEATED \(alias!)!"
+        ] : [
+            "alert": "\(alias!) KICKED YOUR ASS!"
+        ]
+        let push = PFPush()
+        push.setQuery(pushQuery)
+        push.setData(data)
+        push.sendPushInBackground()
     }
 }

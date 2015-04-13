@@ -14,7 +14,7 @@ extension PFUser:MKAnnotation{
         return CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
     }
     public var title:String! {
-        let name = objectForKey("fullName") as AnyObject as String
+        let name = objectForKey("alias") as AnyObject as String
         return name
     }
 //    public var subtitle:String!{

@@ -170,7 +170,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kmz-fF-IwI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2545" y="332"/>
+            <point key="canvasLocation" x="2101" y="884"/>
         </scene>
         <!--Register View Controller-->
         <scene sceneID="dSt-QH-a8m">
@@ -458,6 +458,12 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Locked On!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FES-MN-TFv">
+                                <rect key="frame" x="495" y="271" width="89" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -474,17 +480,20 @@
                             <constraint firstItem="9HT-GK-QDg" firstAttribute="leading" secondItem="AeB-2D-5CE" secondAttribute="leading" id="PoU-Mg-A1U"/>
                             <constraint firstItem="9HT-GK-QDg" firstAttribute="top" secondItem="pe0-1H-Zm8" secondAttribute="bottom" constant="8" symbolic="YES" id="Qw9-e0-fE4"/>
                             <constraint firstItem="dXT-Ui-uRQ" firstAttribute="leading" secondItem="JMR-aA-BRw" secondAttribute="leading" id="SGQ-we-6zB"/>
+                            <constraint firstItem="uQ3-Gh-ssU" firstAttribute="top" secondItem="FES-MN-TFv" secondAttribute="bottom" constant="81" id="TQO-lm-IZs"/>
                             <constraint firstItem="pe0-1H-Zm8" firstAttribute="leading" secondItem="9HT-GK-QDg" secondAttribute="leading" id="TkA-Pk-gMo"/>
                             <constraint firstItem="eDg-7S-v21" firstAttribute="top" secondItem="Uus-hH-s1T" secondAttribute="bottom" constant="8" symbolic="YES" id="UAw-Ih-W1o"/>
                             <constraint firstItem="eDg-7S-v21" firstAttribute="trailing" secondItem="BqK-FY-BQx" secondAttribute="trailing" id="Vgl-1i-VTG"/>
                             <constraint firstItem="Uus-hH-s1T" firstAttribute="top" secondItem="dXT-Ui-uRQ" secondAttribute="bottom" constant="8" symbolic="YES" id="W4A-Kt-HFP"/>
                             <constraint firstItem="dXT-Ui-uRQ" firstAttribute="top" secondItem="wlM-8d-Koa" secondAttribute="bottom" id="Zgj-YT-bKg"/>
                             <constraint firstItem="AeB-2D-5CE" firstAttribute="top" secondItem="uu1-sK-o5q" secondAttribute="top" id="ayg-3y-ypO"/>
+                            <constraint firstItem="FES-MN-TFv" firstAttribute="top" secondItem="dXT-Ui-uRQ" secondAttribute="bottom" constant="22" id="cky-DJ-vei"/>
                             <constraint firstItem="BqK-FY-BQx" firstAttribute="leading" secondItem="eDg-7S-v21" secondAttribute="leading" id="d3x-2a-KmN"/>
                             <constraint firstItem="uQ3-Gh-ssU" firstAttribute="centerX" secondItem="dXT-Ui-uRQ" secondAttribute="centerX" id="jrU-ik-mHK"/>
                             <constraint firstItem="pe0-1H-Zm8" firstAttribute="top" secondItem="uQ3-Gh-ssU" secondAttribute="bottom" constant="8" symbolic="YES" id="kZy-OH-E8L"/>
                             <constraint firstItem="pe0-1H-Zm8" firstAttribute="trailing" secondItem="BqK-FY-BQx" secondAttribute="trailing" id="nWZ-g8-IQv"/>
                             <constraint firstItem="uu1-sK-o5q" firstAttribute="baseline" secondItem="AeB-2D-5CE" secondAttribute="firstBaseline" id="tzP-FR-dOJ"/>
+                            <constraint firstItem="FES-MN-TFv" firstAttribute="trailing" secondItem="uQ3-Gh-ssU" secondAttribute="trailing" id="uGB-cL-kzY"/>
                             <constraint firstItem="Uus-hH-s1T" firstAttribute="leading" secondItem="eDg-7S-v21" secondAttribute="leading" id="vKW-m1-ZcI"/>
                             <constraint firstItem="uu1-sK-o5q" firstAttribute="trailing" secondItem="JMR-aA-BRw" secondAttribute="trailingMargin" id="wyx-nA-O7U"/>
                         </constraints>
@@ -503,6 +512,7 @@
                         <outlet property="bioLabel" destination="9HT-GK-QDg" id="JwN-QK-mPu"/>
                         <outlet property="distanceLabel" destination="BqK-FY-BQx" id="TxN-so-Cm1"/>
                         <outlet property="fullName" destination="eDg-7S-v21" id="b7w-Ab-5my"/>
+                        <outlet property="lockedOnLabel" destination="FES-MN-TFv" id="Zwd-iC-CKh"/>
                         <outlet property="lookingForLabel" destination="pe0-1H-Zm8" id="nl5-89-NTi"/>
                         <outlet property="mapView" destination="dXT-Ui-uRQ" id="uCn-jf-vFt"/>
                         <outlet property="profilePicture" destination="Uus-hH-s1T" id="7X7-ab-WlO"/>
@@ -514,7 +524,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W8M-VN-tzY" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="don-1h-jvM" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1745" y="332"/>
+            <point key="canvasLocation" x="1839" y="192"/>
         </scene>
         <!--Start Fight!-->
         <scene sceneID="SIB-6P-Hw6">
@@ -576,12 +586,13 @@
                         <outlet property="opponentImage" destination="97N-lZ-EDF" id="4XC-Mr-Mce"/>
                         <outlet property="opponentStaminaBar" destination="7nG-VY-Ok3" id="k5O-6T-7zZ"/>
                         <segue destination="Y7e-Bb-jyK" kind="unwind" identifier="Unwind From New Fight" unwindAction="keepPlaying:" id="xyr-Br-gUs"/>
+                        <segue destination="FEu-E8-JYC" kind="presentation" identifier="Fight Started Segue" id="6sR-r1-5I3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7gz-zG-B32" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Y7e-Bb-jyK" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2236" y="1084"/>
+            <point key="canvasLocation" x="2504" y="288"/>
         </scene>
         <!--Versus View Controller-->
         <scene sceneID="s1y-Yp-uno">
@@ -994,11 +1005,12 @@
                     <connections>
                         <outlet property="tv" destination="uDx-DW-fwA" id="Ys7-qy-bEy"/>
                         <segue destination="FEu-E8-JYC" kind="presentation" identifier="Open Fight" id="Vs3-Cq-vh3"/>
+                        <segue destination="qsi-7e-n30" kind="presentation" identifier="View Profile Segue" id="aAn-l8-qXp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hQn-ad-7o6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1733" y="-563"/>
+            <point key="canvasLocation" x="1706" y="-586"/>
         </scene>
         <!--Fight Open View Controller-->
         <scene sceneID="ay3-Ze-kum">
@@ -1103,9 +1115,11 @@
                         <outlet property="turnLabel" destination="WZe-tc-dYc" id="Bsc-Y8-vse"/>
                         <outlet property="userImage" destination="dNF-Cc-gtq" id="FKh-Rr-Flo"/>
                         <outlet property="userStaminaBar" destination="dVl-hY-p4K" id="t9k-4h-wXG"/>
+                        <segue destination="rdg-Bn-yd6" kind="unwind" identifier="Return To Versus" unwindAction="keepPlaying:" id="sTa-5e-SUY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rT4-4J-up3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="rdg-Bn-yd6" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2495" y="-563"/>
         </scene>
@@ -1235,4 +1249,8 @@
         <image name="fistIconWhite" width="80" height="80"/>
         <image name="versusLogo" width="288" height="288"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="x9S-Br-y9Q"/>
+        <segue reference="Vs3-Cq-vh3"/>
+    </inferredMetricsTieBreakers>
 </document>
