@@ -298,9 +298,11 @@ class VersusViewController: UIViewController, UIScrollViewDelegate, UITableViewD
                 cell.userLabel?.text = userCategory?.description
             }
             if let advantage = userIsGreater(category){
-                cell.userLabel?.textColor = advantage ?  Colors.userColor2 : Colors.opponentColor1
+                cell.backgroundColor = advantage ?  Colors.userColor1 : Colors.opponentColor1
+                cell.userLabel?.textColor = UIColor.whiteColor() //advantage ?  Colors.userColor2 : Colors.opponentColor1
             }else{
-                cell.userLabel?.textColor = Colors.opponentColor1
+                cell.backgroundColor = Colors.opponentColor1
+                cell.userLabel?.textColor = UIColor.whiteColor()//Colors.opponentColor1
             }
             //cell.userLabel?.textColor = UIColor.whiteColor()//Colors.userColor1
 //            if let advantage = userIsGreater(category){
@@ -329,10 +331,12 @@ class VersusViewController: UIViewController, UIScrollViewDelegate, UITableViewD
                 cell.opponentLabel?.text = opponentCategory?.description
             }
             if let disadvantage = userIsGreater(category){
-                cell.opponentLabel?.textColor = disadvantage ? Colors.opponentColor1 : Colors.userColor2
+                cell.backgroundColor = disadvantage ? Colors.opponentColor1 : Colors.userColor1
+                cell.opponentLabel?.textColor = UIColor.whiteColor()
             }
             else{
-                cell.opponentLabel?.textColor = Colors.opponentColor1
+                cell.backgroundColor = Colors.opponentColor1
+                cell.opponentLabel?.textColor = UIColor.whiteColor()//Colors.opponentColor1
             }
             return cell
             
