@@ -112,7 +112,7 @@ Pods
 
 **Notes:** Pods were installed manually, so you won't have to run pod install or use a workspace file. Sue me.
 
-* Source of UI bugs
+Source of UI bugs*
 
 
 Test Users
@@ -164,7 +164,7 @@ Known Issues
 
 - There may be some memory gremlins due to swift's whole "your memory is managed for you except it's not" thing. Would be solved by capture lists on closures, and a single Model/API struct.
 
-- PFQuery does not support ordering on .orQueryWithsSubQuery, which is how I'm getting all fights a user is involved in (r). As such, the fights table is not being ordered by recency.
+- PFQuery does not support ordering on .orQueryWithsSubQuery, which is how I'm getting all fights a user is involved in (origin and recipient). As such, the fights table is not being ordered by recency.
 
 - To update your profile you must rebuild it entirely, as I simply reused the registration form. This would be solved by creating a new form with default values set to the user’s current state.
 
