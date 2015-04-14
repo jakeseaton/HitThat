@@ -19,7 +19,7 @@ struct Colors{
     static let userColor1 = Colors.GreenSeaColor
     // static let color1 = UIColor(red:255/255, green:138/255, blue:119/255, alpha:1.0)
     // static let color2 = UIColor(red: 210/255, green: 22/255, blue: 30/255, alpha: 1.0)
-    static let navBarTintColor = color1 //UIColor.redColor()
+    static let navBarTintColor = UIColor.whiteColor()//color1 //UIColor.redColor()
     //    static let navBarTintColor = UIColor(red:255/255, green:136/255, blue:74/255, alpha:1.0)
         //    static let navbarTintColor = UIColor(red: 255.0/255, green: 168.0/255, blue: 69.0/255, alpha: 0.5)
     //    static let tabbarBarTintColor = UIColor(red: 255.0/255, green: 168.0/255, blue: 69.0/255, alpha: 0.5)
@@ -63,7 +63,7 @@ struct Colors{
         vc.view.layer.insertSublayer(gradient, atIndex: 0)
     }
     func configureStaminaBar(bar:YLProgressBar, user:Bool){
-        bar.hideStripes = true
+        //bar.hideStripes = true
         bar.indicatorTextDisplayMode = YLProgressBarIndicatorTextDisplayMode.Progress
         bar.indicatorTextLabel.font = UIFont(name: "Arial-BoldMT", size: 20)
         if user{
@@ -76,4 +76,7 @@ struct Colors{
     func favoriteBackGroundColor(vc:UIViewController){
         vc.view.backgroundColor = Colors.favoriteBackgroundColor
     }
+    func configureLabel(label:UILabel){
+        label.textColor = UIColor.whiteColor()
+}
 }

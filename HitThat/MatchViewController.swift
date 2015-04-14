@@ -25,6 +25,7 @@ class MatchViewController: UIViewController, MKMapViewDelegate, CLLocationManage
     // need outlets for the table of posts, the picture, etc
     @IBAction func keepPlayingPressed(sender: AnyObject) {
         self.performSegueWithIdentifier(Constants.KeepPlayingSegue, sender: self)
+    self.dismissViewControllerAnimated(true, completion: nil)
     }
     @IBOutlet weak var mapView: MKMapView!{
         didSet{

@@ -13,6 +13,7 @@ class FightCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.nameLabel.textColor = Colors.color1
         //Shapes().circularImage(profileImage)
         // Initialization code
     }

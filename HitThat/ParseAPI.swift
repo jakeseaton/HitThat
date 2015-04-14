@@ -246,8 +246,8 @@ struct ParseAPI {
     }
     func incrementCountersFromFightResult(winner:PFUser, loser:PFUser){
         winner.incrementKey("wins")
-        winner.saveEventually()
-        loser.incrementKey("losses", byAmount: -1)
+        winner.saveInBackground()
+        loser.incrementKey("losses")
         loser.saveInBackground()
     }
     func resetSeen(){
@@ -289,6 +289,7 @@ struct ParseAPI {
     func fightWasCompleted(fight: PFObject, winner:PFUser, loser:PFUser){
         loser.fetchIfNeeded()
         winner.fetchIfNeeded()
+        incrementCountersFromFightResult(winner, loser:loser)
         let data = [
             "fight":fight,
             "winner": winner,

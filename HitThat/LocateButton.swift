@@ -13,7 +13,8 @@ class LocateButton: UIButton {
         super.awakeFromNib()
         self.layer.cornerRadius = 5.0
         self.layer.borderWidth = 1.0
+        self.backgroundColor = UIColor.whiteColor()
         self.layer.borderColor = UIColor.whiteColor().CGColor//Colors.color2.CGColor
-        self.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        self.setTitleColor(Colors.color1, forState: .Normal)
     }
 }

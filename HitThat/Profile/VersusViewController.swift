@@ -16,6 +16,14 @@ class VersusViewController: UIViewController, UIScrollViewDelegate, UITableViewD
     
     // MARK: Outlets
     // UI
+    @IBAction func rightPressed(sender: AnyObject) {
+        var appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        appDelegate.centerContainer!.toggleDrawerSide(.Right, animated: true, completion:nil)
+    }
+    @IBAction func leftPressed(sender: AnyObject) {
+        var appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        appDelegate.centerContainer!.toggleDrawerSide(.Left, animated: true, completion: nil)
+    }
     @IBOutlet weak var backgroundView: UIView!
     @IBOutlet var scrollView:UIScrollView!
     @IBOutlet var avatarImage:UIImageView!
@@ -38,7 +46,7 @@ class VersusViewController: UIViewController, UIScrollViewDelegate, UITableViewD
     @IBAction func fightTapped(sender:AnyObject) {
         if let fightObject = ParseAPI().storeAFightFromVersusScreen(userToDisplay!){
             self.soundArray?.randomItem().play()
-            println(fightObject)
+            //println(fightObject)
             self.performSegueWithIdentifier(Constants.GenericProfileSegue, sender: fightObject)
             //let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         }
@@ -208,7 +216,13 @@ class VersusViewController: UIViewController, UIScrollViewDelegate, UITableViewD
     var userToDisplay:PFUser?{
         didSet{
             updateUI()
-            opponentTableView.reloadData()
+            opponentTableView.beginUpdates()
+            opponentTableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Middle)
+            opponentTableView.endUpdates()
+            userTableView.beginUpdates()
+            userTableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Middle)
+            userTableView.endUpdates()
+            //opponentTableView.reloadData()
             
         }
     }
@@ -218,14 +232,24 @@ class VersusViewController: UIViewController, UIScrollViewDelegate, UITableViewD
             indicator.hidden = false
             indicator.startAnimating()
             // specify what user we want.
-            println("starting query")
             let query = PFUser.query()
             // allows it to continue every time. Delete this to never see the same user again. Raises an exception when you log in for the first time.
+            
+            // COMMENT THIS LINE OUT TO PREVENT YOURSELF FROM SEEING THE SAME USER TWICE
             PFUser.currentUser()?["seen"] = []
             PFUser.currentUser()?.saveInBackground()
             if let currUser = PFUser.currentUser(){
-                query.whereKey("objectId", notEqualTo:currUser.objectId)
+                
+                // UNCOMMENT THIS TO ENFORCE GEOGRAPHIC RESTRICTIONS ON QUERIES
+                //if let queryLoc = currUser["location"] as PFGeoPoint{
+                //query.whereKey("location", nearGeoPoint: queryLoc, withinMiles: 10)
+                //}
+                
+                // COMMENT THIS OUT TO BE UNABLE TO SEE YOURSELF
+                query.whereKey("username", notEqualTo:currUser.username)
+                //println(currUser.objectId)
                 if let display = userToDisplay{
+                    //println(display.objectId)
                     PFUser.currentUser().addObject(display.objectId, forKey: "seen")
                     PFUser.currentUser().saveInBackground()
                     query.whereKey("objectId", notEqualTo: display.objectId)
@@ -241,7 +265,7 @@ class VersusViewController: UIViewController, UIScrollViewDelegate, UITableViewD
                         self.userToDisplay = object as? PFUser
                         self.indicator.stopAnimating()
                         self.indicator.hidden = true
-                        println("refreshed--new user")
+                        //println("refreshed--new user")
                     }
                     else{
                         println("no more users to view")
@@ -273,7 +297,12 @@ class VersusViewController: UIViewController, UIScrollViewDelegate, UITableViewD
             else{
                 cell.userLabel?.text = userCategory?.description
             }
-            cell.userLabel?.textColor = UIColor.blackColor()//Colors.userColor1
+            if let advantage = userIsGreater(category){
+                cell.userLabel?.textColor = advantage ?  Colors.userColor2 : Colors.opponentColor1
+            }else{
+                cell.userLabel?.textColor = Colors.opponentColor1
+            }
+            //cell.userLabel?.textColor = UIColor.whiteColor()//Colors.userColor1
 //            if let advantage = userIsGreater(category){
 //                cell.userLabel?.textColor = advantage ? Colors.userColor2 : Colors.userColor1
 //            }
@@ -300,10 +329,10 @@ class VersusViewController: UIViewController, UIScrollViewDelegate, UITableViewD
                 cell.opponentLabel?.text = opponentCategory?.description
             }
             if let disadvantage = userIsGreater(category){
-                cell.opponentLabel?.textColor = disadvantage ? Colors.userColor2 : Colors.opponentColor2
+                cell.opponentLabel?.textColor = disadvantage ? Colors.opponentColor1 : Colors.userColor2
             }
             else{
-                cell.opponentLabel?.textColor = UIColor.blackColor()
+                cell.opponentLabel?.textColor = Colors.opponentColor1
             }
             return cell
             
@@ -348,12 +377,21 @@ class VersusViewController: UIViewController, UIScrollViewDelegate, UITableViewD
             if let opponent = userToDisplay{
                 if contains(Constants.comparables, category){
                     let opponentStat:AnyObject = opponent.objectForKey(category)
-                    let userStat:AnyObject = opponent.objectForKey(category)
+                    let userStat:AnyObject = user.objectForKey(category)
                     switch category{
                     case "height", "reach":
-                        return true
+                        let userString = userStat as String
+                        let opponentString = opponentStat as String
+                        if userString[userString.startIndex] < opponentString[opponentString.startIndex]{
+                            return false
+                        }
+                        else{
+                            return true
+                        }
                     case "weight","wins","jailTime","tatoos":
-                        return (Int(userStat as NSNumber) > Int(opponentStat as NSNumber))
+                        let numberUserStat = userStat as NSNumber
+                        let numberOpponentStat = opponentStat as NSNumber
+                        return (Int(numberUserStat) > Int(numberOpponentStat))
                     case "gpa":
                         return (Double(userStat as NSNumber) > Double(opponentStat as NSNumber))
                     default:

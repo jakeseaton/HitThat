@@ -17,8 +17,8 @@ Description
 ---
 HitThat is the only dating app that lets you find singles near you and match, track, and fight them, all with the palm of your hand.
 
-Log in with facebook to create a fighter profile, and see other potential fights near you one at a time. You can even compare your stats to determine your odds! Once you decide to fight someone, you'll be able to see their location, and get more information about them. Too far away? No problem. You can fight them inside the app! Throw the first punch to start a fight. When it's your turn, you can jab, kick, uppercut, or block. The harder you swing, the more damage you do. 
-    After the fights, you'll still have access to their profile and basic information, in case you still want to hit that.
+Log in with facebook to create a fighter profile, and see other potential fights near you one at a time. You can even compare your stats to determine your odds! Once you decide to fight someone, you'll be able to see their location, plot a route to them , and get more information about them. Too far away? No problem. You can fight them inside the app! Throw the first punch to start a fight. When it's your turn, hold the button and swing to punch. The harder you swing, the more damage you do. Try swinging in different directions and at different angles keep them on their toes.
+    Win or lose, you'll still have access to their profile in case you still want to hit that.
 
 The app is written in Swift 1.1, using XCode 6.2. It was developed and tested on an iPhone 5s, and is meant to be run on hardware. As its back end, the app uses Parse, a cloud database service recently acquired by Facebook, allowing server interaction and Facebook integration. Information is stored in four tables here: Installations, Users, Fights, and Wins. The first associates the second with hardware, allowing push notifications to be sent to the correct devices. The second stores profile information, statics, and locations. Fights stores pointers to an origin user and a recipient user, as well as their stamina. Wins store pointers to a winner and a loser.
 
@@ -31,15 +31,15 @@ The main interface uses an MMDrawerController, giving the user the ability to sw
 When the app is opened from a notification, it takes you directly to the fight in question. When the app is open and someone punches you, the app will take you directly to that fight. When the app is open to that particular fight, the fight will update automatically. So if someone sitting next to you punches you in the app, and you're viewing that fight, you will see your stamina decrease and hear yourself grunt in real time, though they could have just punched you instead.
 
 **Versus:**
-This is the main interface for finding potential matches. The fighters' alias' are displayed opposite the versus icon, and the user is presented with a portion of an image, and the information from the other user's fighter profile. The table compares the users stats to their opponents, using simple visual indicators to help the user make an informed decision. For example, if the user has spent more time in jail than their opponent, their opponent's jail time will be displayed in green.
+This is the main interface for finding potential matches. The fighters' alias' are displayed opposite the versus icon. The user is presented with a portion of the alias photo chosen during registration and the information from the other user's fighter profile. The table updates automatically and animates like a scoreboard, indicating which fighter has the advantage in what area.
 
-If the user decides not to fight, they can press the "No Way" button to progress to the next potential fight. If they decide to fight, they press the "Fight" button, and the view animates to reveal the opponent's true identity. From this screen, the user can start the fight and throw the first punch, or track their opponent down using the map, which when prompted plots the route from the user's location to their opponent. These locations are updated every time fights are started or punches are thrown. Additionally
+If the user decides not to fight, they can press the "Back Down" button to progress to the next potential fight. If they decide to fight, they press "Hit That!," and the view animates to reveal the opponent's true identity. From this screen, the user can start the fight and throw the first punch, or track their opponent down using the map, which when prompted plots the route from the user's location to their opponent. (Some zooming out may be required to see the whole route).
 
 **Profiles:**
-View the number of fights you've won and lost, and your number of current fights. Edit your profile to change what potential opponents see when they decide whether or not they want to fight you. You can view the profiles of users that you've fought by finding them among your wins or losses.
+View your number of current fights, and who you've beaten and lost to recently. Edit your profile to change what potential opponents see when they decide whether or not they want to fight you. You'll have to resubmit the registration form.
 
 **Fights:**
-On the open fight screen, you'll see your stamina and your opponents. If it's your turn, press the punch button to tell the app that you're going to punch. Thrust forward to Jab. Make sure to get a good rotation. Thrust upward to uppercut. Thrust your entire arm forward to block. The harder you thrust, the more damage you do! When you punch someone.
+On the open fight screen, you'll see your stamina and your opponents. If it's your turn, press the punch button to tell the app that you're going to punch. Thrust forward to Jab, and upward to uppercut.   The harder you thrust, the more damage you do.
 
 
 (Under the hood, this is based on negative acceleration thresholds. When you thrust the phone in a particular direction, the greatest acceleration occurs in the opposite direction, when the motion ends abruptly and your hand applied force to the phone to get it to stop moving. So, if we get a highly positive Z acceleration, we know that the user has thrust the forward along the Z axis, as occurs when thrusting the arm when blocking a punch. Then, by setting an acceleration threshold, as soon as one of the directions crosses it we know the completed an action in that direction. 
@@ -47,7 +47,7 @@ On the open fight screen, you'll see your stamina and your opponents. If it's yo
 
 ![alt tag](https://developer.apple.com/library/prerelease/ios/documentation/UIKit/Reference/UIAcceleration_Class/Art/device_axes.jpg)
 
-The natural punching motion seen here rotates the phone so that it travels in the negative x direction if the user is right handed, and positive if left. When the accelerometer reports a high x acceleration, we know that the user punched. 
+The natural punching motion rotates the phone so that it travels in the negative x direction if the user is right handed, and positive if left. When the accelerometer reports a high x acceleration, we know that the user jabbed. 
 
 
 ![alt tag](http://heavyfists.com/wp-content/uploads/boxing-combinations.jpg) 
@@ -57,8 +57,7 @@ Similarly, the uppercut motion causes the phone to travel in positive y directio
 
 ![alt tag](http://games.yasinka.com/resimorj/boxing-bonanza.jpg)
 
-Once the user has completed an action, the euclidean magnitude of the instantaneous acceleration vector tells us how hard they swung, which is then weighed against the opponent's statistcs to calculate damage.
-
+Once the user has completed an action, the euclidean magnitude of the instantaneous acceleration vector tells us how hard they swung, which is then scaled by a constant to calculate damage.
 
 To Use
 ---
@@ -73,9 +72,10 @@ To Use
 **Notes:**
 - You'll need to build it to an ios device to experience all of the functionality. This requires an apple developer account.
 
-- The app was developed specifically for the iphone 5s running ios 8, because that's the hardward I had access to. It has only been tested on this and the simulator.
+- The app was developed specifically for the iphone 5s running ios 8. It has only been tested on this and the simulator.
 
 - Build using XCode 6.2. XCode 6.3 is the way of the past.
+
 
 Additional Features
 ---
@@ -100,19 +100,24 @@ Pods
 
 - MotionKit (CoreMotion Wrapper)
 
-- FXBlurView (Used in Versus Screen to create scroll animation)
+- FXBlurView* (Used in Versus Screen to create scroll animation)
 
-- YLProgressBar (Stamina Bars)
+- YLProgressBar* (Stamina Bars)
 
 - FXForms (Used in registration and profile updates)
 
 - ZLSwipeableView (Registration cards)
 
+- CFPressHoldButton (Wrapper for press and hold)
+
 **Notes:** Pods were installed manually, so you won't have to run pod install or use a workspace file. Sue me.
+
+* Source of UI bugs
 
 
 Test Users
 ---
+
 Name: Barbara Greenewitz
 
 Email: barbara_ozqnifh_greenewitz@tfbnw.net
@@ -126,26 +131,51 @@ Email: david_gkxfydi_schrockwitz@tfbnw.net
 
 Password: test2
 
+
+Name: Dorothy Chengstein
+
+Email: dorothy_rxwtiqf_chengstein@tfbnw.net
+
+Password: test3
+
+
+Name: Bob Qinwitz
+
+Email: bob_agvadhg_qinwitz@tfbnw.net
+
+Password: test4
+
+
+Name: Tom Occhinostein
+
+Email: tom_diotrcd_occhinostein@tfbnw.net
+
+Password: test5
+
+
 **Notes:** These are test **Facebook** accounts. You will have to sign into them on facebook on your iOS device, or in the simulator, which can be done in the device settings.
 
-Due to the way the push notification system works, it is important to only sign in with these accounts on one device, as that device will be associated with that installation and user.
+It is important to only sign in with these accounts on one device, as that device will be associated with that installation and user, producing an invalid session error if they are signed in on multiple devices.
 
 
 Known Issues
 --- 
 - On April 8th Apple released updates to Swift and Xcode that are not backward compatible. This will not run in XCode 6.3 or with Swift 1.2
 
-- PFQuery does not support ordering on .orQueryWithsSubQuery, which is the only way to get all fights a user is involved in. As such, the fights table cannot be ordered by most recently updated, but will remain in the order they are created.
+- There may be some memory gremlins due to swift's whole "your memory is managed for you except it's not" thing. Would be solved by capture lists on closures, and a single Model/API struct.
+
+- PFQuery does not support ordering on .orQueryWithsSubQuery, which is how I'm getting all fights a user is involved in (r). As such, the fights table is not being ordered by recency.
 
 - To update your profile you must rebuild it entirely, as I simply reused the registration form. This would be solved by creating a new form with default values set to the user’s current state.
 
-- There may be some memory gremlins due to swift's whole "your memory is managed for you except it's not" thing. Would be solved by capture lists on closures, and a single Model/API struct.
+- Due to the frequency of accelerometer updates, one punch can dismiss multiple cards during registration.
 
-- Due to the frequence of accelerometer updates, one punch can dismiss multiple cards on the register screen.
+- Couple of things on the main queue that shouldn't be, and a constraint error being thrown by buggy pods
 
-- The registration process is really long. Working on it.
+- Blur view on start fight screen is glitchy on the simulator.
 
-- Couple of things on the main queue that shouldn't be.
+- Needs a makeover
+
 
 
 

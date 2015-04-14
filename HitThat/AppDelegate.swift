@@ -26,8 +26,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         application.registerUserNotificationSettings(settings)
         application.registerForRemoteNotifications()
         // Override point for customization after application launch.
-//        let navbar = UINavigationBar.appearance()
-//        navbar.barTintColor = Colors.navBarTintColor
         application.statusBarStyle = UIStatusBarStyle.LightContent
         
         // implementation of drawer
@@ -58,7 +56,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         }
         
         let navbar = UINavigationBar.appearance()
-        navbar.barTintColor = Colors.color1
+        navbar.barTintColor = Colors.color1 //favoriteBackgroundColor
+        navbar.tintColor = Colors.navBarTintColor
+//        [self.navigationController.navigationBar
+//            setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+        navbar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
+//        [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary    dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,  [UIFont fontWithName:@"FontNAme" size:20], NSFontAttributeName, nil]];
+//        
+//        [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
 
         
         return true
@@ -121,6 +126,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         let menu = self.centerContainer!.leftDrawerViewController as MenuViewController
         menu.updateUI()
     }
+//    func setVersusHome(){
+//        var centerViewController = mainSt.instantiateViewControllerWithIdentifier(Constants.CenterViewControllerIdentifier) as VersusViewController
+//        //            var centerNavController = UINavigationController(rootViewController: centerViewController)
+//        self.switchCenterContainer(centerViewController)
+//        let mainStoryBoard:UIStoryboard = UIStoryboard(name:"Main", bundle:nil)
+//        let centerViewController = mainStoryBoard.instantiateViewControllerWithIdentifier(Constants.CenterViewControllerIdentifier) as VersusViewController
+//        let leftViewController = mainStoryBoard.instantiateViewControllerWithIdentifier(Constants.LeftViewControllerIdentifier) as MenuViewController
+//        let rightViewController = mainStoryBoard.instantiateViewControllerWithIdentifier(Constants.RightViewControllerIdentifier) as FightsViewController
+//        let leftNav = UINavigationController(rootViewController: leftViewController)
+//        let centerNav = UINavigationController(rootViewController: centerViewController)
+//        let rightNav = UINavigationController(rootViewController: rightViewController)
+//        centerContainer = MMDrawerController(centerViewController: centerViewController, leftDrawerViewController: leftViewController, rightDrawerViewController:rightViewController)
+//        centerContainer!.openDrawerGestureModeMask = MMOpenDrawerGestureMode.PanningCenterView
+//        centerContainer!.closeDrawerGestureModeMask = MMCloseDrawerGestureMode.PanningCenterView
+//
+//        
+//    }
  
 
     func applicationWillResignActive(application: UIApplication) {}

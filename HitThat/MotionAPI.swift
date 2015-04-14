@@ -20,7 +20,7 @@ enum MotionThreshold {
     case Negative//(Float)
 }
 enum PunchLocation{
-    case KneeCap, Gut, Face, Arm, Gizzard, BellyButton, Ass, Crotch, Throat, Nose, Shin, Chest
+    case KneeCap, Gut, Face, Arm, Gizzard, BellyButton, Ass, Crotch, Throat, Nose, Shin, Chest, Slap
 }
 struct MotionAPI{
     static let motionsToSounds:[PunchType:String] = [
@@ -31,11 +31,25 @@ struct MotionAPI{
     ]
     static let upLocations:[PunchLocation] = [.Face, .Throat, .Nose]
     static let downLocations:[PunchLocation] = [.KneeCap, .Ass, .Shin]
-    static let punchLocations: [PunchLocation] = [.Gut, .Arm, .Gizzard, .BellyButton, .Chest]
+    static let punchLocations: [PunchLocation] = [.Gut, .Arm, .Gizzard, .BellyButton, .Chest, .Slap]
+    static let MessageForPunchLocation:[PunchLocation:String] = [
+        .Gut:"Right in the Gut!",
+        .Arm:"Jab to the Arm!",
+        .Gizzard:"Right in the Gizzard!",
+        .BellyButton:"Right in the Belly Button!",
+        .Chest:"To the Chest!",
+        .Face:"Head Shot!",
+        .Throat:"Right in the Throat!",
+        .Slap:"Bitch Slap!",
+        .Nose:"Broken Nose!",
+        .KneeCap:"Shattered Knee Caps!",
+        .Ass:"Right in the Ass!",
+        .Shin:"Go for the Shins!"
+    ]
     static let threshold = 2.0
     static let interval = 0.01
     static let RegisterInterval = 0.1
-    static let scale:Double = 40
+    static let scale:Double = 25
     
     func analyzeMotion(deviceMotion:CMDeviceMotion, sender:AnyObject){
         let accelerationX = deviceMotion.userAcceleration.x

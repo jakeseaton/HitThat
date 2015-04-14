@@ -8,22 +8,15 @@
 
 import UIKit
 
-class StartFightViewController: UIViewController {
+class StartFightViewController: UIViewController, CFPressHoldButtonDelegate {
     
     let motionKit = MotionKit()
     
         @IBAction func manualPunchPressed(sender: AnyObject) {
-            self.handlePunch(CGFloat(0.25), punchType: .Jab, punchLocation: .Gut)
+            self.handlePunch(CGFloat(0.10), punchType: .Jab, punchLocation: .Gut)
         }
     
-        @IBAction func punchPressed(sender:AnyObject){
-            println("this was pressed")
-            motionKit.getDeviceMotionObject(interval: MotionAPI.interval) {
-                    (deviceMotion) in
-                    println("this")
-                    MotionAPI().analyzeMotion(deviceMotion, sender:self)
-                }
-        }
+    @IBOutlet weak var punchBlur: BlurView!
         // Public API
         var userIsOrigin = true
 
@@ -54,6 +47,8 @@ class StartFightViewController: UIViewController {
         var soundArray:[AVAudioPlayer]?
     
         override func viewDidLoad() {
+            super.viewDidLoad()
+            self.punchBlur?.pressHoldButtonDelegate = self
             self.soundArray = SoundAPI().getArrayOfFightSoundPlayers()
             Colors().favoriteBackGroundColor(self)
             Colors().configureStaminaBar(opponentStaminaBar!, user: false)
@@ -104,5 +99,20 @@ class StartFightViewController: UIViewController {
                 fightOpenViewController.fightToDisplay = self.fightToDisplay
             }
         }
+    }
+    func didStartHolding(targetView: UIView!) {
+
+        // change the style instead?
+        self.punchBlur.hidden = true
+            motionKit.getDeviceMotionObject(interval: MotionAPI.interval) {
+                (deviceMotion) in
+                MotionAPI().analyzeMotion(deviceMotion, sender:self)
+            }
+        
+    }
+    
+    func didFinishHolding(targetView: UIView!) {
+        self.punchBlur.hidden = false
+        self.motionKit.stopDeviceMotionUpdates()
     }
 }

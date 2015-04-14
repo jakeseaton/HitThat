@@ -26,14 +26,17 @@ struct SoundAPI {
         "femaleGrunt2":"wav",
         "applause":"wav",
         "ThreePunch":"wav",
-        "targetLocked":"wav"
+        "targetLocked":"wav",
+        "shout1":"wav"
     ]
+
     static let jabSound = "punch"
     static let kickSound = "grunt1"
     static let blockSound = "Slap"
     static let upperCutSound = "meatSlap"
 
     static let notificationSound = "punch"
+    static let dieSound = "shout1"
     static let startFightSound = "ThreePunch"
     static let victorySound = "applause"
     static let lossSound = "ThreePunch"
@@ -101,6 +104,10 @@ struct SoundAPI {
     }
     func getFemaleGruntSound() -> AVAudioPlayer{
         let name = SoundAPI.femaleGruntSounds.randomItem()
+        return soundNameToAudioPlayer(name)
+    }
+    func getDieSound() -> AVAudioPlayer{
+        let name = SoundAPI.dieSound
         return soundNameToAudioPlayer(name)
     }
     func getGruntSoundForUser(user:PFUser) -> AVAudioPlayer{

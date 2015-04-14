@@ -8,38 +8,39 @@
 
 import UIKit
 
-class FightOpenViewController: UIViewController{
+class FightOpenViewController: UIViewController, CFPressHoldButtonDelegate{
     let motionKit = MotionKit()
     var soundToPlay:AVAudioPlayer?
+    
+    @IBOutlet weak var fightAgainst: UILabel!
+    @IBOutlet weak var opponentHitpoints: UILabel!
+    @IBOutlet weak var opponentBlur: UIVisualEffectView!
+    @IBOutlet weak var userBlur:UIVisualEffectView!
     @IBAction func stopUpdatesPressed(sender: AnyObject) {
         self.motionKit.stopDeviceMotionUpdates()
     }
     @IBAction func manualPunchPressed(sender: AnyObject) {
-        self.handlePunch(CGFloat(0.25), punchType: .Jab, punchLocation: .Gut)
-    }
-    @IBAction func punchPressed(sender:AnyObject){
-        if self.isUsersTurn!{
-            motionKit.getDeviceMotionObject(interval: MotionAPI.interval) {
-                (deviceMotion) in
-                MotionAPI().analyzeMotion(deviceMotion, sender:self)
-            }
-            
+        self.opponentBlur?.layer.cornerRadius = self.opponentBlur.frame.size.width/2
+        if isUsersTurn!{
+            self.handlePunch(CGFloat(0.10), punchType: .Jab, punchLocation: .Gut)
         }
         else{
             UIAlertView(title: "Wait your turn", message: nil, delegate: nil, cancelButtonTitle: "ok").show()
             self.isUsersTurn = true
         }
-        
     }
     @IBAction func goBackPressed(sender: AnyObject) {
         self.performSegueWithIdentifier(Constants.ReturnFromFightToVersus, sender: nil)
         //self.dismissViewControllerAnimated(true, completion: nil)
     }
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        println(segue.destinationViewController)
+    }
     // Public API
 
     var isUsersTurn:Bool?{
         willSet{
-            self.turnLabel?.text = newValue! ? "YOUR TURN" : "THEIR TURN"
+            self.swapBlurs(newValue!)
         }
     }
     var userIsOrigin:Bool?
@@ -80,7 +81,7 @@ class FightOpenViewController: UIViewController{
     var userStamina:CGFloat?{
         willSet{
             if newValue < userStaminaBar.progress{
-                if newValue < 0{
+                if newValue <= 0{
                     if userIsOrigin!{
                         ParseAPI().fightWasCompleted(fightToDisplay!, winner: recipientUser!, loser: originUser!)
                     }
@@ -88,9 +89,14 @@ class FightOpenViewController: UIViewController{
                         ParseAPI().fightWasCompleted(fightToDisplay!, winner: originUser!, loser: recipientUser!)
                     }
                     UIAlertView(title: "YOU LOST!", message: nil, delegate: nil, cancelButtonTitle: "ok").show()
+                    self.soundToPlay = SoundAPI().getDieSound()
+                    self.soundToPlay!.play()
                 }
-                self.soundToPlay = userIsOrigin! ? SoundAPI().getGruntSoundForUser(originUser!) : SoundAPI().getGruntSoundForUser(recipientUser!)
-                self.soundToPlay!.play()
+                else{
+                    self.soundToPlay = userIsOrigin! ? SoundAPI().getGruntSoundForUser(originUser!) : SoundAPI().getGruntSoundForUser(recipientUser!)
+                    self.soundToPlay!.play()
+                    self.isUsersTurn = true
+                }
             }
         self.userStaminaBar?.setProgress(newValue!, animated: true)
         }
@@ -109,7 +115,6 @@ class FightOpenViewController: UIViewController{
     
     @IBOutlet weak var userStaminaBar: YLProgressBar!
     @IBOutlet weak var opponentStaminaBar: YLProgressBar!
-    @IBOutlet weak var turnLabel: UILabel!
     
     private func setStaminaBars(fight:PFObject){
         let originStamina = fight["originStamina"] as AnyObject as CGFloat
@@ -142,7 +147,10 @@ class FightOpenViewController: UIViewController{
     }
     
     override func viewDidLoad() {
-
+        super.viewDidLoad()
+        //self.opponentBlur.hidden = true
+        self.userBlur?.pressHoldButtonDelegate = self
+        self.opponentHitpoints?.textColor = Colors.opponentColor1
         self.isUsersTurn = true
         self.soundArray = SoundAPI().getArrayOfFightSoundPlayers()
         self.victorySound = SoundAPI().getVictorySound()
@@ -164,12 +172,16 @@ class FightOpenViewController: UIViewController{
             self.originUser = user
             // This can be done with fetch data, because rn it's just a pointer
             self.recipientUser = ParseAPI().userQuery().getObjectWithId(recipient.objectId) as? PFUser
+            let opponentAlias = self.recipientUser?.objectForKey("alias") as String
+            self.fightAgainst.text = "Fight against: \(opponentAlias)"
         }
         else{
             self.userIsOrigin = false
             self.recipientUser = user
             // synchronous queries for user info,b ec
             self.originUser = ParseAPI().userQuery().getObjectWithId(origin.objectId) as? PFUser
+            let opponentAlias = self.originUser?.objectForKey("alias") as String
+            self.fightAgainst.text = "Fight against: \(opponentAlias)"
         }
         
         setStaminaBars(self.fightToDisplay!)
@@ -183,6 +195,12 @@ class FightOpenViewController: UIViewController{
             ParseAPI().installAUsersProfilePicture(self.recipientUser!, target: self.userImage)
             ParseAPI().installAUsersProfilePicture(self.originUser!, target: self.opponentImage)
         }
+//        if fightToDisplay?["lastTurn"] as PFUser == PFUser.currentUser(){
+//            self.isUsersTurn = false
+//        }
+//        else{
+//            self.isUsersTurn = true
+//        }
     }
     override func viewWillAppear(animated: Bool) {
         // AppDelegate.Motion.Manager.startAccelerometerUpdates()
@@ -198,21 +216,15 @@ class FightOpenViewController: UIViewController{
     
     
     // Mark := Handling Punches
-    func handlePunch(damage:CGFloat, punchType:PunchType, punchLocation:PunchLocation){
+    func handlePunch(damage:CGFloat, punchType:PunchType,
+        punchLocation:PunchLocation){
         soundToPlay = SoundAPI().soundNameToAudioPlayer(MotionAPI.motionsToSounds[punchType]!)
         self.soundToPlay!.play()
+            let hitpoints = Int(damage * 100)
+            self.opponentHitpoints.text = "- \(hitpoints) HP"
+            let message = MotionAPI.MessageForPunchLocation[punchLocation]
+            self.fightAgainst.text = message
         let newStamina:CGFloat = self.opponentStamina! - damage
-//        if newStamina <= 0 {
-//            self.victorySound?.play()
-//            UIAlertView(title: "YOU WIN!", message: nil, delegate: nil, cancelButtonTitle: "ok").show()
-//            if userIsOrigin!{
-//                ParseAPI().fightWasCompleted(fightToDisplay!, winner:PFUser.currentUser(), loser: fightToDisplay!["recipient"] as PFUser)
-//            }else{
-//                ParseAPI().fightWasCompleted(fightToDisplay!, winner:fightToDisplay!["recipient"] as PFUser, loser:fightToDisplay!["origin"] as PFUser)
-//            }
-//            self.dismissViewControllerAnimated(true, completion: nil)
-////        }
-////        else{
             self.opponentStamina = newStamina
             fightToDisplay?.setObject(PFUser.currentUser(), forKey: "lastTurn")
             if userIsOrigin!{
@@ -229,5 +241,32 @@ class FightOpenViewController: UIViewController{
             }
             self.isUsersTurn = false
         
+    }
+    //Mark : Press Hold Delegation
+    func didStartHolding(targetView: UIView!) {
+        // change the style instead?
+        self.userBlur.hidden = true
+
+        if self.isUsersTurn!{
+            motionKit.getDeviceMotionObject(interval: MotionAPI.interval) {
+                (deviceMotion) in
+                MotionAPI().analyzeMotion(deviceMotion, sender:self)
+            }
+            
+        }
+        else{
+            UIAlertView(title: "Wait your turn", message: nil, delegate: nil, cancelButtonTitle: "ok").show()
+            self.isUsersTurn = true
+        }
+
+    }
+
+    func didFinishHolding(targetView: UIView!) {
+        if isUsersTurn!{self.userBlur.hidden = false}
+        self.motionKit.stopDeviceMotionUpdates()
+    }
+    func swapBlurs(userTurn:Bool){
+        self.userBlur?.hidden = userTurn ? false : true
+        self.opponentBlur?.hidden = userTurn
     }
 }

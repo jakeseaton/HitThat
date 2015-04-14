@@ -90,6 +90,7 @@ class FightsViewController: UIViewController, UITableViewDataSource, UITableView
             let winObject = self.victories[indexPath.row]
             cell.nameLabel.text = winObject["loserAlias"] as AnyObject as? String
             cell.selectionStyle = .None
+            cell.nameLabel.textColor = Colors.userColor1
             return cell
             
         // losses
@@ -98,6 +99,7 @@ class FightsViewController: UIViewController, UITableViewDataSource, UITableView
             let lossObject = self.losses[indexPath.row]
             cell.selectionStyle = .None
             cell.nameLabel.text = lossObject["winnerAlias"] as AnyObject as? String
+            cell.nameLabel.textColor = Colors.opponentColor1
             return cell
         // default--regular fight
         default:
@@ -155,6 +157,7 @@ class FightsViewController: UIViewController, UITableViewDataSource, UITableView
             break
         }
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        Constants().restoreVersusScreen()
     }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == Constants.OpenFightSegue{

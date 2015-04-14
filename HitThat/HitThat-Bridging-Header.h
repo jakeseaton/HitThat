@@ -14,4 +14,5 @@
 #import "MSDynamicsDrawerStyler.h"
 #import "MMDrawerController.h"
 #import <AVFoundation/AVfoundation.h>
+#import "UIView+CFPressHoldButton.h"
 //#import "UIControl+Sound.h"

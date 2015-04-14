@@ -12,6 +12,6 @@ class FightCellLoss: UITableViewCell {
 
     @IBOutlet weak var nameLabel: UILabel!
     override func awakeFromNib() {
-        self.backgroundColor = Colors.opponentColor1
+        //self.backgroundColor = Colors.opponentColor2
     }
 }

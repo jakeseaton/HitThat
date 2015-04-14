@@ -15,29 +15,16 @@ class ProfileViewController: UIViewController {
         }
     }
     
-    @IBOutlet weak var segmentedControl: UISegmentedControl!
-    @IBAction func indexChanged(sender: UISegmentedControl) {
-        switch segmentedControl.selectedSegmentIndex{
-        case 0:
-            userName.text = ParseAPI().stringOfUnwrappedUserProperty("fullName", user: userToDisplay!)
-            ParseAPI().installAUsersProfilePicture(userToDisplay!, target: profilePicture)
-        case 1:
-            userName.text = ParseAPI().stringOfUnwrappedUserProperty("alias", user: userToDisplay!)
-            ParseAPI().installAUsersProfilePhoto(userToDisplay!, target: profilePicture, optionalBlurTarget: nil)
-        default:
-            break
-        }
-    }
+
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var profilePicture: UIImageView!
     @IBOutlet weak var userFights:UILabel!
     @IBOutlet weak var userWins:UILabel!
     @IBOutlet weak var userLosses:UILabel!
+    @IBOutlet weak var recentDefeat:UILabel!
+    @IBOutlet weak var recentVictory:UILabel!
 
-    @IBAction func cancelPressed(sender: AnyObject) {
-            self.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
+
     func updateUI(){
             ParseAPI().installAUsersProfilePicture(userToDisplay!, target: profilePicture)
             let queryOrigin = ParseAPI().fightsQuery()
@@ -53,19 +40,48 @@ class ProfileViewController: UIViewController {
         }
         let winsQuery = ParseAPI().winsQuery(userToDisplay!)
         let lossQuery = ParseAPI().lossQuery(userToDisplay!)
-        winsQuery.countObjectsInBackgroundWithBlock(){
-            (total, error) in
-            if (error == nil) {
-                self.userWins?.text = "Wins: \(total)"
-            }
-            
-        }
-        lossQuery.countObjectsInBackgroundWithBlock(){
-            (total, error) in
+        winsQuery.getFirstObjectInBackgroundWithBlock(){
+            (object, error) in
             if (error == nil){
-                self.userLosses?.text = "Losses: \(total)"
+                if let opponentAlias = object.objectForKey("loserAlias") as? String{
+                    self.recentVictory?.text = "Most Recent Victory: \(opponentAlias)"
+                }
+                winsQuery.countObjectsInBackgroundWithBlock(){
+                    (total, error) in
+                    if (error == nil) {
+                        self.userWins?.text = "Wins: \(total)"
+                        PFUser.currentUser().setObject(Int(total), forKey: "wins")
+                        PFUser.currentUser().saveInBackground()
+                    }else{
+                        self.userWins?.text = "Wins: 0"
+                    }
+                }
             }
-            
+        }
+//        winsQuery.countObjectsInBackgroundWithBlock(){
+//            (total, error) in
+//            if (error == nil) {
+//                self.userWins?.text = "Wins: \(total)"
+//                PFUser.currentUser().setObject(Int(total), forKey: "wins")
+//                PFUser.currentUser().saveInBackground()
+//            }
+//
+//        }
+        lossQuery.getFirstObjectInBackgroundWithBlock(){
+            (object, error) in
+            if (error == nil){
+                if let opponentAlias = object.objectForKey("winnerAlias") as? String{
+                    self.recentDefeat?.text = "Most Recent Defeat: \(opponentAlias)"
+                }
+                lossQuery.countObjectsInBackgroundWithBlock(){
+                    (total, error) in
+                    if (error == nil) {
+                        self.userLosses?.text = "Losses: \(total)"
+                    }else{
+                        self.userLosses?.text = "Losses: 0"
+                    }
+                }
+            }
         }
         self.userName.text = ParseAPI().stringOfUnwrappedUserProperty("fullName", user: userToDisplay!)
     }
@@ -73,13 +89,19 @@ class ProfileViewController: UIViewController {
 
     override func viewDidLoad() {
      super.viewDidLoad()
+//        self.navigationController?.navigationBar.titleTextAttributes = 
+//        [self.navigationController.navigationBar
+//            setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
         if let curr = PFUser.currentUser(){
             self.userToDisplay = curr
             self.title = ParseAPI().stringOfCurrentUserProperty("fullName")
             
         }
-
+        
         Shapes().circularImage(self.profilePicture)
+        self.profilePicture?.layer.borderColor = Colors.favoriteBackgroundColor.CGColor
+        self.profilePicture.layer.borderWidth = 3.0
+        
         //Colors().gradient(self)
     }
 }

@@ -10,6 +10,7 @@ import UIKit
 
 class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    @IBOutlet weak var menuTableView: UITableView!
     @IBOutlet weak var userImage: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -17,11 +18,13 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.menuTableView?.backgroundColor = UIColor.clearColor()
+        
         if let currentUser = PFUser.currentUser(){
             // ParseAPI().installAUsersProfilePicture(currentUser, target: self.userImage!)
             ParseAPI().installAUsersProfilePhoto(currentUser, target: self.userImage, optionalBlurTarget: nil)
         }
-        Colors().gradient(self)
+        //Colors().gradient(self)
 
         // Do any additional setup after loading the view.
     }
@@ -34,9 +37,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         switch (indexPath.row){
         case 0:
-            var centerViewController = self.storyboard?.instantiateViewControllerWithIdentifier(Constants.CenterViewControllerIdentifier) as VersusViewController
-//            var centerNavController = UINavigationController(rootViewController: centerViewController)
-            self.switchCenterContainer(centerViewController)
+            self.switchToVersus()
             break
         case 1:
             var scoreViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ProfileViewController") as ProfileViewController
@@ -65,12 +66,13 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
             // log in
             self.logInSelected()
             break
-        case 6:
-            ParseAPI().resetSeen()
-            ParseAPI().clearAllFights()
-            break
+//        case 6:
+//            ParseAPI().resetSeen()
+//            ParseAPI().clearAllFights()
+//            break
         default:
-            println("\(Constants.menuItems[indexPath.row]) is selected")
+            break
+            //println("\(Constants.menuItems[indexPath.row]) is selected")
         }
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
@@ -84,6 +86,11 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         tableView.scrollEnabled = false
         return Constants.menuItems.count
+    }
+    func switchToVersus(){
+        var centerViewController = self.storyboard?.instantiateViewControllerWithIdentifier(Constants.CenterViewControllerIdentifier) as VersusViewController
+        //            var centerNavController = UINavigationController(rootViewController: centerViewController)
+        self.switchCenterContainer(centerViewController)
     }
     func switchCenterContainer(newCenterController:UIViewController){
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
