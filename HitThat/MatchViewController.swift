@@ -29,7 +29,7 @@ class MatchViewController: UIViewController, MKMapViewDelegate, CLLocationManage
     }
     @IBOutlet weak var mapView: MKMapView!{
         didSet{
-            mapView.setUserTrackingMode(.FollowWithHeading, animated: true)
+            mapView.setUserTrackingMode(.Follow, animated: true)
             mapView.showsUserLocation = true
             // mapView.pitchEnabled = true
             mapView.scrollEnabled = true
@@ -44,6 +44,7 @@ class MatchViewController: UIViewController, MKMapViewDelegate, CLLocationManage
     override func viewDidLoad() {
         super.viewDidLoad()
         self.lockedOnLabel?.hidden = true
+        mapView.rotateEnabled = false
         Colors().favoriteBackGroundColor(self)
         Shapes().circularImage(self.profilePicture)
         targetLockedSound = SoundAPI().getTargetLockedSound()
@@ -52,7 +53,7 @@ class MatchViewController: UIViewController, MKMapViewDelegate, CLLocationManage
             fullName.text = ParseAPI().stringOfUnwrappedUserProperty("fullName", user: userObject)
             ParseAPI().installAUsersProfilePicture(userObject, target: self.profilePicture)
             self.bioLabel.text = "Bio: " + ParseAPI().stringOfUnwrappedUserProperty("bio", user: userObject)
-            self.distanceLabel.text = "Distance: " + ParseAPI().distanceToUser(userToDisplay!).description + "mi"
+            self.distanceLabel.text = Int(ParseAPI().distanceToUser(userToDisplay!)).description + " mi away"
             self.bestMoveLabel.text = "Best Move: " + ParseAPI().stringOfUnwrappedUserProperty("bestMove", user: userObject)
             self.navigationItem.title = ParseAPI().stringOfUnwrappedUserProperty("alias" , user:userObject)
             self.lookingForLabel.text = "Looking For: " + ParseAPI().stringOfUnwrappedUserProperty("lookingFor", user: userObject)
@@ -63,12 +64,14 @@ class MatchViewController: UIViewController, MKMapViewDelegate, CLLocationManage
 //        }
         // Do any additional setup after loading the view.
     }
-
+    
+    @IBOutlet weak var locateButton: LocateButton!
     @IBAction func locatePressed(sender: AnyObject) {
         println(userToDisplay)
         handleAnnotations([userToDisplay!])
         ParseAPI().notifyTrackedUser(userToDisplay!)
         self.targetLockedSound?.play()
+        self.locateButton.hidden = true
         self.lockedOnLabel?.hidden = false
         //performSegueWithIdentifier(Constants.LocateSegueIndentifier, sender: userToDisplay)
     }

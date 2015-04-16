@@ -27,7 +27,8 @@ struct SoundAPI {
         "applause":"wav",
         "ThreePunch":"wav",
         "targetLocked":"wav",
-        "shout1":"wav"
+        "shout1":"wav",
+        "victory1":"wav"
     ]
 
     static let jabSound = "punch"
@@ -41,6 +42,7 @@ struct SoundAPI {
     static let victorySound = "applause"
     static let lossSound = "ThreePunch"
     static let targetLockedSound = "targetLocked"
+    static let allVictorySounds:[String] = ["applause", "victory1"]
     static let allFightSounds:[String] = ["meatSlap", "Slap", "slapFight", "punch"]
     static let allMatchSounds:[String] = ["dunDunDun1", "dunDunDun2", "Explosion", "drumroll"]
     static let femaleGruntSounds:[String] = ["femaleGrunt1","femaleGrunt2"]
@@ -90,7 +92,8 @@ struct SoundAPI {
         AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryAmbient, error: nil)
     }
     func getVictorySound() -> AVAudioPlayer{
-        return soundNameToAudioPlayer(SoundAPI.victorySound)
+        let name = SoundAPI.allVictorySounds.randomItem()
+        return soundNameToAudioPlayer(name)
     }
     func getLossSound()-> AVAudioPlayer{
         return soundNameToAudioPlayer(SoundAPI.lossSound)        

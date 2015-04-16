@@ -74,6 +74,7 @@ class VersusViewController: UIViewController, UIScrollViewDelegate, UITableViewD
             Constants().updateMenu()
         }
         self.next()
+        Constants().refreshFightsTable()
     }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
@@ -90,6 +91,7 @@ class VersusViewController: UIViewController, UIScrollViewDelegate, UITableViewD
     // override func canBecomeFirstResponder() -> Bool {return true}
     override func viewDidLoad() {
         super.viewDidLoad()
+        ///UIApplication.sharedApplication().statusBarStyle = .LightContent
         
         // Get first user
         self.next()
@@ -344,10 +346,10 @@ class VersusViewController: UIViewController, UIScrollViewDelegate, UITableViewD
         else {
             let table = tableView as VersusTable
             let cell = tableView.dequeueReusableCellWithIdentifier("VersusCell") as VersusCell
-            cell.backgroundColor = UIColor.clearColor()
+//            cell.backgroundColor = //UIColor.clearColor()
             let category = Constants.categories[indexPath.row]
             cell.categoryLabel?.text = category.uppercaseString
-            cell.categoryLabel?.textColor = UIColor.whiteColor()
+            cell.categoryLabel?.textColor = UIColor.whiteColor()//.blackColor()//whiteColor()
 
 //            switch category{
 //            case "bodyType":

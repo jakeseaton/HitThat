@@ -32,6 +32,7 @@
 		3D413EE51AD880E400E00A76 /* UserTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D413EE41AD880E400E00A76 /* UserTable.swift */; };
 		3D413EE71AD880F000E00A76 /* VersusTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D413EE61AD880F000E00A76 /* VersusTable.swift */; };
 		3D413EE91AD880FA00E00A76 /* OpponentTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D413EE81AD880FA00E00A76 /* OpponentTable.swift */; };
+		3D4C6CEA1ADFEDBA00065C37 /* StartFightButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4C6CE91ADFEDBA00065C37 /* StartFightButton.swift */; };
 		3D4DDA1D1ADC25A1001E8C9A /* UIView+CFPressHoldButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4DDA1C1ADC25A1001E8C9A /* UIView+CFPressHoldButton.m */; };
 		3D4DDA211ADC482C001E8C9A /* WhiteLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4DDA201ADC482C001E8C9A /* WhiteLabel.swift */; };
 		3D4DDA231ADC4AF4001E8C9A /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4DDA221ADC4AF4001E8C9A /* BlurView.swift */; };
@@ -126,6 +127,7 @@
 		3DC463E11AD2A4A70034C34F /* UIViewController+MMDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC463DD1AD2A4A70034C34F /* UIViewController+MMDrawerController.m */; };
 		3DC463E31AD2A60F0034C34F /* FightsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC463E21AD2A60F0034C34F /* FightsViewController.swift */; };
 		3DC463E51AD2A65B0034C34F /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC463E41AD2A65B0034C34F /* MenuViewController.swift */; };
+		3DDE3C0B1AE00BCF008C3FA6 /* victory1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3DDE3C0A1AE00BCF008C3FA6 /* victory1.wav */; };
 		3DE52C981AD8A3C6008A5DEB /* StartFightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE52C971AD8A3C6008A5DEB /* StartFightViewController.swift */; };
 		3DED5BE31AD0773A00F1DE5F /* MainTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DED5BE21AD0773A00F1DE5F /* MainTabController.swift */; };
 		3DED5BE51AD077BA00F1DE5F /* Old2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DED5BE41AD077BA00F1DE5F /* Old2.storyboard */; };
@@ -174,6 +176,7 @@
 		3D413EE41AD880E400E00A76 /* UserTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTable.swift; sourceTree = "<group>"; };
 		3D413EE61AD880F000E00A76 /* VersusTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VersusTable.swift; sourceTree = "<group>"; };
 		3D413EE81AD880FA00E00A76 /* OpponentTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpponentTable.swift; sourceTree = "<group>"; };
+		3D4C6CE91ADFEDBA00065C37 /* StartFightButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartFightButton.swift; sourceTree = "<group>"; };
 		3D4DDA1B1ADC25A1001E8C9A /* UIView+CFPressHoldButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+CFPressHoldButton.h"; sourceTree = "<group>"; };
 		3D4DDA1C1ADC25A1001E8C9A /* UIView+CFPressHoldButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+CFPressHoldButton.m"; sourceTree = "<group>"; };
 		3D4DDA201ADC482C001E8C9A /* WhiteLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhiteLabel.swift; sourceTree = "<group>"; };
@@ -287,6 +290,7 @@
 		3DC463DD1AD2A4A70034C34F /* UIViewController+MMDrawerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+MMDrawerController.m"; sourceTree = "<group>"; };
 		3DC463E21AD2A60F0034C34F /* FightsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FightsViewController.swift; sourceTree = "<group>"; };
 		3DC463E41AD2A65B0034C34F /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		3DDE3C0A1AE00BCF008C3FA6 /* victory1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = victory1.wav; sourceTree = "<group>"; };
 		3DE52C971AD8A3C6008A5DEB /* StartFightViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartFightViewController.swift; sourceTree = "<group>"; };
 		3DED5BE21AD0773A00F1DE5F /* MainTabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabController.swift; sourceTree = "<group>"; };
 		3DED5BE41AD077BA00F1DE5F /* Old2.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Old2.storyboard; sourceTree = "<group>"; };
@@ -411,6 +415,7 @@
 		3DAE5B0B1AD46874004892CC /* FreeSounds */ = {
 			isa = PBXGroup;
 			children = (
+				3DDE3C0A1AE00BCF008C3FA6 /* victory1.wav */,
 				3D39ABBD1AD9CB5200F786CB /* targetLocked.wav */,
 				3D23E22A1AD96E3600469749 /* applause.wav */,
 				3D23E2121AD969FE00469749 /* die1.aiff */,
@@ -492,6 +497,7 @@
 				3D4DDA221ADC4AF4001E8C9A /* BlurView.swift */,
 				3D6203D91ADC93A50098C21D /* OrangeLabel.swift */,
 				3D8482C21ACB790D00D663DF /* LocateButton.swift */,
+				3D4C6CE91ADFEDBA00065C37 /* StartFightButton.swift */,
 				3D4DDA201ADC482C001E8C9A /* WhiteLabel.swift */,
 				3DB6DF111AC994930020497B /* Frameworks */,
 				3DAE5B0B1AD46874004892CC /* FreeSounds */,
@@ -807,6 +813,7 @@
 				3D23E21F1AD969FE00469749 /* drumroll.aif in Resources */,
 				3D23E2281AD969FE00469749 /* shoud2.wav in Resources */,
 				3D23E2221AD969FE00469749 /* Explosion.wav in Resources */,
+				3DDE3C0B1AE00BCF008C3FA6 /* victory1.wav in Resources */,
 				3DB6DEED1AC993620020497B /* Images.xcassets in Resources */,
 				3D413EDF1AD87E5000E00A76 /* Main.storyboard in Resources */,
 				3DAE5B111AD468A4004892CC /* slapFight.wav in Resources */,
@@ -832,6 +839,7 @@
 				3DB6907B1AD1B297007EFCEF /* MSDynamicsDrawerViewController.m in Sources */,
 				3DB6DF661AC9AEDA0020497B /* MainTableViewCell.swift in Sources */,
 				3D413EE91AD880FA00E00A76 /* OpponentTable.swift in Sources */,
+				3D4C6CEA1ADFEDBA00065C37 /* StartFightButton.swift in Sources */,
 				3DC463E31AD2A60F0034C34F /* FightsViewController.swift in Sources */,
 				3DED5BE31AD0773A00F1DE5F /* MainTabController.swift in Sources */,
 				3DF04FFA1AD318DD008B0260 /* EditProfileFormViewController.swift in Sources */,

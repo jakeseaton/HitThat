@@ -9,6 +9,8 @@
 import Foundation
 
 struct Constants{
+    // Constants
+    static let TimeInterval = 0.4
     // Unused
     static let BlockSize = CGSize(width: 40, height: 40)
 
@@ -57,8 +59,8 @@ struct Constants{
     // Versus Screen
     // removed fights
     // removed alias
-    static let categories = ["gender", "bodyType", "height", "weight", "reach", "wins", "jailTime", "gpa", "tatoos"]
-    static let comparables = ["height", "weight", "reach", "wins", "jailTime", "gpa", "tatoos"]
+    static let categories = ["gender", "bodyType", "height", "weight", "reach", "wins","losses", "jailTime", "gpa", "tatoos"]
+    static let comparables = ["height", "weight", "reach", "wins","losses", "jailTime", "gpa", "tatoos"]
     
     // Menu
     static let menuItems = ["Versus", "My Profile", "My Fights", "Settings", "About", "Log In"]

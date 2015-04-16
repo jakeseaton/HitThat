@@ -52,19 +52,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             if let fightsMenu = self.centerContainer!.rightDrawerViewController as? FightsViewController{
                 fightsMenu.openFight(fightObject)
             }
-            SoundAPI().soundNameToAudioPlayer("punch").play()
+            //SoundAPI().soundNameToAudioPlayer("punch").play()
         }
         
         let navbar = UINavigationBar.appearance()
         navbar.barTintColor = Colors.color1 //favoriteBackgroundColor
         navbar.tintColor = Colors.navBarTintColor
-//        [self.navigationController.navigationBar
-//            setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
         navbar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
-//        [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary    dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,  [UIFont fontWithName:@"FontNAme" size:20], NSFontAttributeName, nil]];
-//        
-//        [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
-
+        UIApplication.sharedApplication().statusBarStyle = .LightContent
         
         return true
     }
@@ -88,15 +83,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
         if let fightId = userInfo["fightObject"] as? String{
-            self.centerContainer!.toggleDrawerSide(.Right, animated: true, completion: nil)
+//            self.centerContainer!.toggleDrawerSide(.Right, animated: true, completion: nil)
             let fightObject = PFObject(withoutDataWithClassName: "Fights", objectId: fightId)
+            // If that fight is currently open, manually trigger refresh
             if let currentFight = UIApplication.sharedApplication().keyWindow?.rootViewController?.presentedViewController as? FightOpenViewController{
                 // switch fightObject etc
                 if (fightId == currentFight.fightToDisplay?.objectId){
-                    SoundAPI().playNotificationSound()
                     currentFight.refreshFight()
                 }
             }
+            // If no fight is open, open that one
             else{
                 self.displayFight(fightObject)
                 PFPush.handlePush(userInfo)
@@ -105,9 +101,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             SoundAPI().soundNameToAudioPlayer("punch").play()
             // self.displayFight(fightObject)
         }
+        // Otherwise, not a fight so just handle it.
         else{
             PFPush.handlePush(userInfo)
         }
+        // update wins and losses
         self.refreshTable()
     }
     func displayFight(fightObject:PFObject){

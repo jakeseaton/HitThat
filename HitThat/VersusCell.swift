@@ -12,7 +12,7 @@ class VersusCell: UITableViewCell {
     @IBOutlet weak var categoryLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.backgroundColor = UIColor.clearColor()
+        self.backgroundColor = UIColor.grayColor() //clearColor()
         // Initialization code
     }
 

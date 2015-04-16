@@ -11,14 +11,14 @@ import UIKit
 class FightOpenViewController: UIViewController, CFPressHoldButtonDelegate{
     let motionKit = MotionKit()
     var soundToPlay:AVAudioPlayer?
-    
+    var counter = 0
+    var timer =  NSTimer()
+    var locked = false
+//    var lock = false
     @IBOutlet weak var fightAgainst: UILabel!
     @IBOutlet weak var opponentHitpoints: UILabel!
     @IBOutlet weak var opponentBlur: UIVisualEffectView!
     @IBOutlet weak var userBlur:UIVisualEffectView!
-    @IBAction func stopUpdatesPressed(sender: AnyObject) {
-        self.motionKit.stopDeviceMotionUpdates()
-    }
     @IBAction func manualPunchPressed(sender: AnyObject) {
         self.opponentBlur?.layer.cornerRadius = self.opponentBlur.frame.size.width/2
         if isUsersTurn!{
@@ -26,7 +26,7 @@ class FightOpenViewController: UIViewController, CFPressHoldButtonDelegate{
         }
         else{
             UIAlertView(title: "Wait your turn", message: nil, delegate: nil, cancelButtonTitle: "ok").show()
-            self.isUsersTurn = true
+            //self.isUsersTurn = true
         }
     }
     @IBAction func goBackPressed(sender: AnyObject) {
@@ -65,12 +65,27 @@ class FightOpenViewController: UIViewController, CFPressHoldButtonDelegate{
         }
     }
     func refreshFight(){
-        if let curr = fightToDisplay{
-            let query = ParseAPI().fightsQuery()
-            query.getObjectInBackgroundWithId(curr.objectId){
-                (object, error) in
-                if (error == nil){
-                    self.fightToDisplay = object
+        if !locked{
+            locked = true
+            counter = counter + 1
+            println("tick \(counter), timer stopped")
+            // Stopping timer
+            //self.timer.invalidate()
+            if let curr = fightToDisplay{
+                let query = ParseAPI().fightsQuery()
+                query.getObjectInBackgroundWithId(curr.objectId){
+                    (object, error) in
+                    if (error == nil){
+                        self.fightToDisplay = object
+                        self.locked = false
+                        // Restarting timer
+                    }
+                    // else that fight no longer exists
+                    else{
+                        //UIAlertView(title: "You Won!", message: nil, delegate: nil, cancelButtonTitle: "ok").show()
+                        self.performSegueWithIdentifier(Constants.ReturnFromFightToVersus, sender: nil)
+                        //                    self.dismissViewControllerAnimated(<#flag: Bool#>, completion: <#(() -> Void)?##() -> Void#>)//self.dismissViewControllerAnimated(true, completion: nil )
+                    }
                 }
             }
         }
@@ -82,19 +97,26 @@ class FightOpenViewController: UIViewController, CFPressHoldButtonDelegate{
         willSet{
             if newValue < userStaminaBar.progress{
                 if newValue <= 0{
+                    self.timer.invalidate()
                     if userIsOrigin!{
                         ParseAPI().fightWasCompleted(fightToDisplay!, winner: recipientUser!, loser: originUser!)
                     }
                     else{
                         ParseAPI().fightWasCompleted(fightToDisplay!, winner: originUser!, loser: recipientUser!)
                     }
-                    UIAlertView(title: "YOU LOST!", message: nil, delegate: nil, cancelButtonTitle: "ok").show()
+                    //UIAlertView(title: "YOU LOST!", message: nil, delegate: nil, cancelButtonTitle: "ok").show()
                     self.soundToPlay = SoundAPI().getDieSound()
                     self.soundToPlay!.play()
+                    self.dismissViewControllerAnimated(true, completion: nil)
                 }
                 else{
+//                    self.lock = true
                     self.soundToPlay = userIsOrigin! ? SoundAPI().getGruntSoundForUser(originUser!) : SoundAPI().getGruntSoundForUser(recipientUser!)
                     self.soundToPlay!.play()
+//                    self.lock = false
+//                    if !lock{
+//                        
+//                    }
                     self.isUsersTurn = true
                 }
             }
@@ -106,6 +128,18 @@ class FightOpenViewController: UIViewController, CFPressHoldButtonDelegate{
     }
     var opponentStamina:CGFloat?{
         willSet{
+            if newValue <= 0 {
+                self.timer.invalidate()
+                if userIsOrigin!{
+                    ParseAPI().fightWasCompleted(fightToDisplay!, winner: originUser!, loser: recipientUser!)
+                }
+                else{
+                    ParseAPI().fightWasCompleted(fightToDisplay!, winner: recipientUser!, loser: originUser!)
+                }
+                self.soundToPlay = SoundAPI().getVictorySound()
+                soundToPlay?.play()
+                self.dismissViewControllerAnimated(true, completion: nil)
+            }
             self.opponentStaminaBar?.setProgress(newValue!, animated:true)
         }
         didSet{
@@ -201,16 +235,20 @@ class FightOpenViewController: UIViewController, CFPressHoldButtonDelegate{
 //        else{
 //            self.isUsersTurn = true
 //        }
+
     }
     override func viewWillAppear(animated: Bool) {
         // AppDelegate.Motion.Manager.startAccelerometerUpdates()
     }
     override func viewDidAppear(animated: Bool) {
         //self.becomeFirstResponder()
+//        timer = NSTimer.scheduledTimerWithTimeInterval(Constants.TimeInterval, target: self, selector: Selector("refreshFight"), userInfo: nil, repeats: true)
+        timer = NSTimer.scheduledTimerWithTimeInterval(Constants.TimeInterval, target: self, selector: "refreshFight", userInfo: nil, repeats: true)
     }
     override func viewWillDisappear(animated: Bool) {
         self.motionKit.stopDeviceMotionUpdates()
         //AppDelegate.Motion.Manager.stopAccelerometerUpdates()
+        timer.invalidate()
     }
     // Mark := Analyzing Motion
     
@@ -256,7 +294,7 @@ class FightOpenViewController: UIViewController, CFPressHoldButtonDelegate{
         }
         else{
             UIAlertView(title: "Wait your turn", message: nil, delegate: nil, cancelButtonTitle: "ok").show()
-            self.isUsersTurn = true
+            //self.isUsersTurn = true
         }
 
     }

@@ -14,7 +14,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var userImage: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
-        Colors().favoriteBackGroundColor(self)
+        //Colors().favoriteBackGroundColor(self)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
