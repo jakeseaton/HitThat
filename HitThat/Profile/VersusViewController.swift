@@ -74,6 +74,9 @@ class VersusViewController: UIViewController, UIScrollViewDelegate, UITableViewD
             Constants().updateMenu()
         }
         self.next()
+        
+        // Delete all fights where someone died
+        let query = ParseAPI().fightsQuery()
         Constants().refreshFightsTable()
     }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

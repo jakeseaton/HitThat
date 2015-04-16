@@ -299,14 +299,14 @@ struct ParseAPI {
         ]
         let object = PFObject(className: "Wins", dictionary: data)
         object.saveInBackground()
-//        
+        
 //        fight.deleteInBackgroundWithBlock(){
 //            (succeeded, error) in
 //            let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
 //            appDelegate.refreshTable()
+//            self.nofityParticipant(winner, won:true, opponent:loser)
+//            self.nofityParticipant(loser, won:false, opponent:winner)
 //        }
-        nofityParticipant(winner, won:true, opponent:loser)
-        nofityParticipant(loser, won:false, opponent:winner)
     }
     
     func userIsMale(user:PFUser) -> Bool{

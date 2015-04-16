@@ -107,7 +107,8 @@ class FightOpenViewController: UIViewController, CFPressHoldButtonDelegate{
                     //UIAlertView(title: "YOU LOST!", message: nil, delegate: nil, cancelButtonTitle: "ok").show()
                     self.soundToPlay = SoundAPI().getDieSound()
                     self.soundToPlay!.play()
-                    self.dismissViewControllerAnimated(true, completion: nil)
+//                    self.dismissViewControllerAnimated(true, completion: nil)
+                    self.performSegueWithIdentifier(Constants.ReturnFromFightToVersus, sender: nil)
                 }
                 else{
 //                    self.lock = true
@@ -138,7 +139,7 @@ class FightOpenViewController: UIViewController, CFPressHoldButtonDelegate{
                 }
                 self.soundToPlay = SoundAPI().getVictorySound()
                 soundToPlay?.play()
-                self.dismissViewControllerAnimated(true, completion: nil)
+                self.performSegueWithIdentifier(Constants.ReturnFromFightToVersus, sender: nil)
             }
             self.opponentStaminaBar?.setProgress(newValue!, animated:true)
         }

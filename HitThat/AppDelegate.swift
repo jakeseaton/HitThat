@@ -94,8 +94,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             }
             // If no fight is open, open that one
             else{
-                self.displayFight(fightObject)
-                PFPush.handlePush(userInfo)
+                if let navigationController = UIApplication.sharedApplication().keyWindow?.rootViewController?.presentedViewController as? UINavigationController{
+                    if let fightOpenViewController = navigationController.presentedViewController as? FightOpenViewController{
+                        fightOpenViewController.refreshFight()
+                    }
+                    else{
+                        self.displayFight(fightObject)
+                        PFPush.handlePush(userInfo)
+                    }
+                }
+                else{
+                    self.displayFight(fightObject)
+                    PFPush.handlePush(userInfo)
+                }
             }
             // if the top view controller.fightToDisplay = fightObject, then update it.
             SoundAPI().soundNameToAudioPlayer("punch").play()

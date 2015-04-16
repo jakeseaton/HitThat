@@ -35,8 +35,14 @@ class FightsViewController: UIViewController, UITableViewDataSource, UITableView
         if (PFUser.currentUser() != nil){
                 let queryOrigin = ParseAPI().fightsQuery()
                 let queryRecipient = ParseAPI().fightsQuery()
+            
                 queryOrigin.whereKey("origin", equalTo: PFUser.currentUser())
+                queryOrigin.whereKey("originStamina", greaterThan: 0)
+                queryOrigin.whereKey("recipientStamina", greaterThan: 0)
+            
                 queryRecipient.whereKey("recipient", equalTo: PFUser.currentUser())
+                queryRecipient.whereKey("originStamina", greaterThan: 0)
+                queryRecipient.whereKey("recipientStamina", greaterThan: 0)
                 let queryFights = PFQuery.orQueryWithSubqueries([queryOrigin, queryRecipient])
                 queryFights.orderByDescending("updatedAt")
                 queryFights.findObjectsInBackgroundWithBlock(){
