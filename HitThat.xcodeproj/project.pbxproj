@@ -51,6 +51,7 @@
 		3D8482C31ACB790D00D663DF /* LocateButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8482C21ACB790D00D663DF /* LocateButton.swift */; };
 		3D8482C71ACC2D7D00D663DF /* YLProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8482C61ACC2D7D00D663DF /* YLProgressBar.m */; };
 		3D853DA91AE14F9C00FA00B6 /* WinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D853DA81AE14F9C00FA00B6 /* WinViewController.swift */; };
+		3D853DAB1AE17AE300FA00B6 /* OrangeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D853DAA1AE17AE300FA00B6 /* OrangeButton.swift */; };
 		3DAE5B081AD46559004892CC /* punch.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3DAE5B071AD46559004892CC /* punch.wav */; };
 		3DAE5B0A1AD4661B004892CC /* SoundAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAE5B091AD4661B004892CC /* SoundAPI.swift */; };
 		3DAE5B0F1AD468A4004892CC /* meatSlap.aif in Resources */ = {isa = PBXBuildFile; fileRef = 3DAE5B0C1AD468A4004892CC /* meatSlap.aif */; };
@@ -200,6 +201,7 @@
 		3D8482C51ACC2D7D00D663DF /* YLProgressBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLProgressBar.h; sourceTree = "<group>"; };
 		3D8482C61ACC2D7D00D663DF /* YLProgressBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLProgressBar.m; sourceTree = "<group>"; };
 		3D853DA81AE14F9C00FA00B6 /* WinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WinViewController.swift; sourceTree = "<group>"; };
+		3D853DAA1AE17AE300FA00B6 /* OrangeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrangeButton.swift; sourceTree = "<group>"; };
 		3DAE5B071AD46559004892CC /* punch.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = punch.wav; sourceTree = "<group>"; };
 		3DAE5B091AD4661B004892CC /* SoundAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundAPI.swift; sourceTree = "<group>"; };
 		3DAE5B0C1AD468A4004892CC /* meatSlap.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = meatSlap.aif; sourceTree = "<group>"; };
@@ -499,6 +501,7 @@
 				3D4DDA221ADC4AF4001E8C9A /* BlurView.swift */,
 				3D6203D91ADC93A50098C21D /* OrangeLabel.swift */,
 				3D8482C21ACB790D00D663DF /* LocateButton.swift */,
+				3D853DAA1AE17AE300FA00B6 /* OrangeButton.swift */,
 				3D4C6CE91ADFEDBA00065C37 /* StartFightButton.swift */,
 				3D4DDA201ADC482C001E8C9A /* WhiteLabel.swift */,
 				3DB6DF111AC994930020497B /* Frameworks */,
@@ -866,6 +869,7 @@
 				3DB6DF601AC9AEDA0020497B /* GangBangBehavior.swift in Sources */,
 				3D4DDA1D1ADC25A1001E8C9A /* UIView+CFPressHoldButton.m in Sources */,
 				3DB6DF591AC9AEDA0020497B /* DataViewController.swift in Sources */,
+				3D853DAB1AE17AE300FA00B6 /* OrangeButton.swift in Sources */,
 				3DAE5B131AD46A97004892CC /* RandomArray.swift in Sources */,
 				3D4DDA231ADC4AF4001E8C9A /* BlurView.swift in Sources */,
 				3DB6DF751AC9AEDA0020497B /* SnatchesTableViewCell.swift in Sources */,

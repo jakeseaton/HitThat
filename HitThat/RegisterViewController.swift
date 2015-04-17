@@ -20,18 +20,24 @@ class RegisterViewController: UIViewController, ZLSwipeableViewDataSource, ZLSwi
     
     //var colorIndex = 0
     //var colors = Colors.ColorsArray
+    @IBAction func manualNextPressed(sender: AnyObject) {
+        self.swipeableView?.swipeTopViewToRight()
+    }
     var motionKit = MotionKit()
     var soundToPlay:AVAudioPlayer?
     @IBOutlet weak var staminaBar:YLProgressBar!
     @IBOutlet weak var swipeableView:ZLSwipeableView!
     @IBOutlet weak var punchLabel:UILabel!
-    var questions = ["Welcome to HitThat, the ONLY dating app that lets you find singles near you to match, track, and fight, all with the palm of your hand! Punch with your phone to do some damage and begin the tutorial. It's better with sound!", "First, you'll create a profile, so that potential matches can see your stats.", "Next, view other people near you to find the ones you want to fight!", "Once you've found them, you can locate and track them down.", "Too far away? No problem! You can fight within the app.","Throw the first punch to start a fight.", "On your turn, you can Jab, Uppercut, Kick, or Block. Make sure to get good rotation!","The harder you hit, the more damage you'll do.", "When the fight is over, you'll still be able to see their profile, in case you still want to hit that!", "Ready to start hitting people? Take a swing to answer yes!","",""]
+    var questions = ["Welcome to HitThat, the ONLY dating app to find singles near you to match, track, and fight, all with the palm of your hand! Punch to do some damage and begin the tutorial. It's better with sound!", "First, you'll create a profile, so that potential matches can see your stats.", "Next, view other people near you to find the ones you want to fight!", "Once you've found them, you can locate and track them down.", "Too far away? No problem! You can fight within the app.","Throw the first punch to start a fight.", "On your turn, you can Jab or Uppercut. Mix it up to hit them in different spots. Make sure to get good rotation!","The harder you hit, the more damage you'll do.", "When the fight is over, you'll still be able to see their profile, in case you still want to hit that!", "Ready to start hitting people? Take a swing to answer yes!","",""]
     override func viewDidLoad(){
         super.viewDidLoad()
         self.swipeableView.delegate = self
+        self.swipeableView.userInteractionEnabled = false
+        Colors().favoriteBackGroundColor(self)
+        
         Colors().configureStaminaBar(self.staminaBar, user: false)
         self.staminaBar.setProgress(1, animated: true)
-        self.punchLabel.textColor = Colors.opponentColor1
+        self.punchLabel.textColor = UIColor.whiteColor()//Colors.opponentColor1
     }
     override func viewDidLayoutSubviews() {
         self.swipeableView.dataSource = self
@@ -53,7 +59,7 @@ class RegisterViewController: UIViewController, ZLSwipeableViewDataSource, ZLSwi
         default:
             break
         }
-        self.swipeableView.swipeTopViewToLeft()
+        self.swipeableView.swipeTopViewToRight()
         let newStamina:CGFloat = self.staminaBar.progress - damage
         self.staminaBar.setProgress(newStamina, animated: true)
     }
@@ -72,13 +78,16 @@ class RegisterViewController: UIViewController, ZLSwipeableViewDataSource, ZLSwi
         if (self.questionIndex < self.questions.count){
             // .frame?
             var view = CardView(frame: swipeableView.bounds)
+//            view.bounds = CGRectInset(view.frame, 20.0, 20.0)
             var textView = UITextView(frame: view.bounds)
+            textView.bounds = CGRectInset(textView.frame, 10.0, 10.0)
             textView.text = self.questions[questionIndex]
-            view.backgroundColor = Colors.favoriteBackgroundColor //colors[colorIndex]
+            view.backgroundColor = UIColor.whiteColor()//Colors.favoriteBackgroundColor //colors[colorIndex]
             textView.backgroundColor = UIColor.clearColor()
             textView.font = UIFont.systemFontOfSize(24)
             textView.editable = false
             textView.selectable = false
+            textView.textColor = Colors.color1
             view.addSubview(textView)
             self.questionIndex += 1
             //colorIndex = (colorIndex + 1) % colors.count

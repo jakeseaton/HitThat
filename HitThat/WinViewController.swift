@@ -34,6 +34,13 @@ class WinViewController: UIViewController {
     }
     override func viewDidLoad() {
         updateUI()
-        Shapes().circularImage(opponentImage)
+        //Shapes().circularImage(opponentImage)
+        opponentImage.frame.size.width = 200
+        opponentImage.frame.size.height = 200
+        opponentImage.layer.cornerRadius = opponentImage.frame.size.height/2
+        opponentImage.clipsToBounds = true
+        self.opponentImage?.layer.borderColor = Colors.favoriteBackgroundColor.CGColor
+        self.opponentImage?.layer.borderWidth = 3.0
+        self.navigationItem.title = "RESULTS"
     }
 }

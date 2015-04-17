@@ -32,6 +32,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         if let curr = PFUser.currentUser(){
             ParseAPI().installAUsersProfilePhoto(curr, target: userImage, optionalBlurTarget: nil)
         }
+        menuTableView?.reloadData()
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -55,15 +56,10 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
             break
         case 3:
-            println(Constants.menuItems[3])
-//            var centerViewController = self.storyboard?.instantiateViewControllerWithIdentifier("SettingsFormViewController") as SettingsFormViewController
-//            self.switchCenterContainer(centerViewController)
-            break
-        case 4:
-            println(Constants.menuItems[4])
-            break
-        case 5:
             // log in
+            var appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+            appDelegate.centerContainer!.toggleDrawerSide(.Left, animated: true, completion: nil)
+
             self.logInSelected()
             break
 //        case 6:

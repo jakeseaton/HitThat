@@ -45,7 +45,7 @@ class MatchViewController: UIViewController, MKMapViewDelegate, CLLocationManage
         super.viewDidLoad()
         self.lockedOnLabel?.hidden = true
         mapView.rotateEnabled = false
-        Colors().favoriteBackGroundColor(self)
+        //Colors().favoriteBackGroundColor(self)
         Shapes().circularImage(self.profilePicture)
         targetLockedSound = SoundAPI().getTargetLockedSound()
         //Shapes().circularImage(self.userProfilePicture)

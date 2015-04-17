@@ -13,8 +13,9 @@ class StartFightButton: LocateButton {
         super.awakeFromNib()
         self.layer.borderWidth = 2.0
 //        self.backgroundColor = Colors.opponentColor1
-        self.layer.borderColor = Colors.opponentColor1.CGColor
-        self.setTitleColor(Colors.opponentColor1, forState: .Normal)
+        self.layer.borderColor = UIColor.whiteColor().CGColor  //Colors.opponentColor1.CGColor
+        self.setTitleColor(UIColor.whiteColor(), forState: .Normal) //Colors.opponentColor1
+        self.backgroundColor = Colors.opponentColor1
 
     }
 }
