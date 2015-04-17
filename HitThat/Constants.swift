@@ -63,8 +63,10 @@ struct Constants{
     static let comparables = ["height", "weight", "reach", "wins","losses", "jailTime", "gpa", "tatoos"]
     
     // Menu
-    static let menuItems = ["Versus", "My Profile", "My Fights", "Settings", "About", "Log In"]
-    static let menuIcons = ["versusIcon", "userMaleFilled", "myFightsIcon", "settingsIcon", "aboutIcon", "loginIcon"]
+    // removed About and Settings
+    // About, aboutIcon, Settings, settingsIcon
+    static let menuItems = ["Versus", "My Profile", "My Fights", "Log In"]
+    static let menuIcons = ["versusIcon", "userMaleFilled", "myFightsIcon", "loginIcon"]
     
     func refreshFightsTable(){
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate

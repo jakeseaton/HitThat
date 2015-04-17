@@ -162,6 +162,8 @@ Known Issues
 --- 
 - On April 8th Apple released updates to Swift and Xcode that are not backward compatible. This will not run in XCode 6.3 or with Swift 1.2
 
+- Notifications do not work unless built with my provisioning profile
+
 - There may be some memory gremlins due to swift's whole "your memory is managed for you except it's not" thing. Would be solved by capture lists on closures, and a single Model/API struct.
 
 - PFQuery does not support ordering on .orQueryWithsSubQuery, which is how I'm getting all fights a user is involved in (origin and recipient). As such, the fights table is not being ordered by recency.

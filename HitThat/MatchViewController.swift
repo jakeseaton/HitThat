@@ -52,11 +52,12 @@ class MatchViewController: UIViewController, MKMapViewDelegate, CLLocationManage
         if let userObject = userToDisplay{
             fullName.text = ParseAPI().stringOfUnwrappedUserProperty("fullName", user: userObject)
             ParseAPI().installAUsersProfilePicture(userObject, target: self.profilePicture)
-            self.bioLabel.text = "Bio: " + ParseAPI().stringOfUnwrappedUserProperty("bio", user: userObject)
-            self.distanceLabel.text = Int(ParseAPI().distanceToUser(userToDisplay!)).description + " mi away"
-            self.bestMoveLabel.text = "Best Move: " + ParseAPI().stringOfUnwrappedUserProperty("bestMove", user: userObject)
+            self.bioLabel.text = "'" + ParseAPI().stringOfUnwrappedUserProperty("bio", user: userObject) + "'"
+            self.bestMoveLabel.text = ParseAPI().stringOfUnwrappedUserProperty("bestMove", user: userObject)
             self.navigationItem.title = ParseAPI().stringOfUnwrappedUserProperty("alias" , user:userObject)
-            self.lookingForLabel.text = "Looking For: " + ParseAPI().stringOfUnwrappedUserProperty("lookingFor", user: userObject)
+            self.lookingForLabel.text = ParseAPI().stringOfUnwrappedUserProperty("lookingFor", user: userObject)
+            self.distanceLabel.text = Int(ParseAPI().distanceToUser(userToDisplay!)).description + " mi away"
+
         }
 //        if let currentUser = PFUser.currentUser(){
 //           ParseAPI().installAUsersProfilePicture(currentUser, target: self.userProfilePicture)

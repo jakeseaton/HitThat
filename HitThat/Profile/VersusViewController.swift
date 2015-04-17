@@ -109,6 +109,8 @@ class VersusViewController: UIViewController, UIScrollViewDelegate, UITableViewD
         self.headerLabel.textColor = UIColor.whiteColor()//COlors.color2()
         backgroundView.backgroundColor = UIColor.clearColor()
         Colors().favoriteBackGroundColor(self)
+        self.userDisplayName?.shadowColor = Colors.userColor1
+        self.displayName?.shadowColor = Colors.opponentColor1
         //Colors().gradient(self)
         
         // Header - Image
