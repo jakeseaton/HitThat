@@ -21,6 +21,7 @@ struct Constants{
     static let ReturnFromFightToVersus = "Return To Versus"
     static let FightStartedSegue = "Fight Started Segue"
     static let ViewProfileSegue = "View Profile Segue"
+    static let FightEndedSegue = "Result Segue"
     
     // Identifiers
     
@@ -66,7 +67,7 @@ struct Constants{
     // removed About and Settings
     // About, aboutIcon, Settings, settingsIcon
     static let menuItems = ["Versus", "My Profile", "My Fights", "Log In"]
-    static let menuIcons = ["versusIcon", "userMaleFilled", "myFightsIcon", "loginIcon"]
+    static let menuIcons = ["orangeVersusIcon", "orangeUserMaleFilled", "orangeMyFightsIcon", "orangeLoginIcon"]
     
     func refreshFightsTable(){
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate

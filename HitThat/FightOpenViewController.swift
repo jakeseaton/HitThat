@@ -34,7 +34,18 @@ class FightOpenViewController: UIViewController, CFPressHoldButtonDelegate{
         //self.dismissViewControllerAnimated(true, completion: nil)
     }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        println(segue.destinationViewController)
+        if segue.identifier == Constants.FightEndedSegue{
+            if let navigationController = segue.destinationViewController as? UINavigationController{
+                if let winViewController = navigationController.viewControllers[0] as? WinViewController{
+                    if let userWon = sender as? Bool{
+                        winViewController.userWon = userWon
+                        winViewController.opponent = userIsOrigin! ? recipientUser : originUser
+                    }
+                }
+            }
+        }
+        
+//        println(segue.destinationViewController)
     }
     // Public API
 
@@ -108,7 +119,7 @@ class FightOpenViewController: UIViewController, CFPressHoldButtonDelegate{
                     self.soundToPlay = SoundAPI().getDieSound()
                     self.soundToPlay!.play()
 //                    self.dismissViewControllerAnimated(true, completion: nil)
-                    self.performSegueWithIdentifier(Constants.ReturnFromFightToVersus, sender: nil)
+                    self.performSegueWithIdentifier(Constants.FightEndedSegue, sender: false)
                 }
                 else{
 //                    self.lock = true
@@ -139,7 +150,7 @@ class FightOpenViewController: UIViewController, CFPressHoldButtonDelegate{
                 }
                 self.soundToPlay = SoundAPI().getVictorySound()
                 soundToPlay?.play()
-                self.performSegueWithIdentifier(Constants.ReturnFromFightToVersus, sender: nil)
+                self.performSegueWithIdentifier(Constants.FightEndedSegue, sender: true)
             }
             self.opponentStaminaBar?.setProgress(newValue!, animated:true)
         }

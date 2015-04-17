@@ -79,6 +79,13 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(Constants.MenuCellRestorationIdentifier, forIndexPath: indexPath) as MenuCell
         cell.menuLabel.text = Constants.menuItems[indexPath.row]
+        if (indexPath.row == 3){
+            if let user = PFUser.currentUser(){
+                let alias = ParseAPI().stringOfUnwrappedUserProperty("alias", user: user)
+                cell.menuLabel.text = "Log Out \(alias)"
+            }
+        }
+        cell.menuLabel.textColor = Colors.favoriteBackgroundColor
         cell.menuIcon.image = UIImage(named: Constants.menuIcons[indexPath.row])
         return cell
 

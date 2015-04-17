@@ -82,35 +82,41 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 
 
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        // if it's a fight
         if let fightId = userInfo["fightObject"] as? String{
 //            self.centerContainer!.toggleDrawerSide(.Right, animated: true, completion: nil)
             let fightObject = PFObject(withoutDataWithClassName: "Fights", objectId: fightId)
-            // If that fight is currently open, manually trigger refresh
-            if let currentFight = UIApplication.sharedApplication().keyWindow?.rootViewController?.presentedViewController as? FightOpenViewController{
-                // switch fightObject etc
-                if (fightId == currentFight.fightToDisplay?.objectId){
-                    currentFight.refreshFight()
+            fightObject.fetchInBackgroundWithBlock(){
+                (data, error) in
+                if error == nil{
+                    let originStamina = data.objectForKey("originStamina") as? Double
+                    let recipientStamina = data.objectForKey("recipientStamina") as? Double
+                    if originStamina! > 0{
+                        if recipientStamina! > 0{
+                            // If that fight is currently open, manually trigger refresh
+                            if let currentFight = UIApplication.sharedApplication().keyWindow?.rootViewController?.presentedViewController as? FightOpenViewController{
+                                // if it's the current fight
+                                if (data.objectId == currentFight.fightToDisplay?.objectId){
+                                    currentFight.refreshFight()
+                                }
+                                else {
+                                    PFPush.handlePush(userInfo)
+                                }
+                            }
+                            // otherwise, display the fight
+                            else{
+                                self.displayFight(fightObject)
+                                PFPush.handlePush(userInfo)
+                            }
+                        }
+                        
+                    }
+                    // else the fight is over, do nothing
                 }
             }
-            // If no fight is open, open that one
-            else{
-                if let navigationController = UIApplication.sharedApplication().keyWindow?.rootViewController?.presentedViewController as? UINavigationController{
-                    if let fightOpenViewController = navigationController.presentedViewController as? FightOpenViewController{
-                        fightOpenViewController.refreshFight()
-                    }
-                    else{
-                        self.displayFight(fightObject)
-                        PFPush.handlePush(userInfo)
-                    }
-                }
-                else{
-                    self.displayFight(fightObject)
-                    PFPush.handlePush(userInfo)
-                }
-            }
-            // if the top view controller.fightToDisplay = fightObject, then update it.
-            SoundAPI().soundNameToAudioPlayer("punch").play()
-            // self.displayFight(fightObject)
+            
+            // if the fight isn't over.
+            
         }
         // Otherwise, not a fight so just handle it.
         else{

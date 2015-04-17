@@ -59,7 +59,7 @@ class FightsViewController: UIViewController, UITableViewDataSource, UITableView
               (objects,error) in
                 self.losses = objects as [PFObject]
             }
-            }
+        }
         }
 
     
@@ -112,6 +112,16 @@ class FightsViewController: UIViewController, UITableViewDataSource, UITableView
             let cell = tableView.dequeueReusableCellWithIdentifier("FightCell", forIndexPath: indexPath) as FightCell
             let fightObject:PFObject = self.allFights[indexPath.row]
             // fix this
+            if let lastTurn = fightObject["lastTurn"] as? PFUser{
+                if lastTurn.objectId != PFUser.currentUser().objectId{
+                    cell.nameLabel.textColor = UIColor.whiteColor()
+                    cell.backgroundColor = Colors.favoriteBackgroundColor
+                }
+                else{
+                    cell.nameLabel.textColor = Colors.favoriteBackgroundColor
+                    cell.backgroundColor = UIColor.whiteColor()
+                }
+            }
             if (fightObject["origin"].objectId == PFUser.currentUser().objectId){
                 cell.nameLabel.text = fightObject["recipientAlias"] as? String
                 // this will create that bug

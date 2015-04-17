@@ -299,7 +299,6 @@ struct ParseAPI {
         ]
         let object = PFObject(className: "Wins", dictionary: data)
         object.saveInBackground()
-        
 //        fight.deleteInBackgroundWithBlock(){
 //            (succeeded, error) in
 //            let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
