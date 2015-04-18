@@ -36,6 +36,21 @@ class facebookLogIn: UIViewController  {
                 PFUser.currentUser().setObject(0, forKey: "wins")
                 PFUser.currentUser().setObject(0, forKey: "losses")
                 PFUser.currentUser().saveEventually()
+                let blankData : [String:AnyObject] = [
+                    "alias":"",
+                    "bestMove":"",
+                    "bio" :"",
+                    "bodyType":"",
+                    "height":"0' 0",
+                    "hitsWith":"",
+                    "reach" :"0' 0",
+                    "weight":0,
+                    "jailTime":0,
+                    "lookingFor":"",
+                    "tatoos":0,
+                    "gpa":0.0
+                ]
+                PFUser.currentUser().setValuesForKeysWithDictionary(blankData)
                 FBRequestConnection.startForMeWithCompletionHandler(){
                     (connection, result, error) in
                     if error == nil {
@@ -140,6 +155,7 @@ class facebookLogIn: UIViewController  {
                         if error == nil {
                             var picture = PFFile(data: data)
                             PFUser.currentUser().setObject(picture, forKey: "profilePicture")
+                            PFUser.currentUser().setObject(picture, forKey:"profilePhoto")
                             PFUser.currentUser().saveInBackground()
                         }
                         else {

@@ -97,7 +97,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                             if let currentFight = UIApplication.sharedApplication().keyWindow?.rootViewController?.presentedViewController as? FightOpenViewController{
                                 // if it's the current fight
                                 if (data.objectId == currentFight.fightToDisplay?.objectId){
-                                    currentFight.refreshFight()
+                                    //currentFight.refreshFight()
                                 }
                                 else {
                                     PFPush.handlePush(userInfo)
@@ -105,8 +105,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                             }
                             // otherwise, display the fight
                             else{
-                                self.displayFight(fightObject)
-                                PFPush.handlePush(userInfo)
+                                // if we're in a nagivation controller
+                                if let nav = UIApplication.sharedApplication().keyWindow?.rootViewController?.presentedViewController as? UINavigationController{
+                                    // if we're in the current fight
+                                    if let currentFight = nav.viewControllers[1].presentedViewController as? FightOpenViewController{
+                                        if (data.objectId == currentFight.fightToDisplay?.objectId){
+                                            //currentFight.refreshFight()
+
+                                        }
+                                        else{
+                                            PFPush.handlePush(userInfo)
+                                        }
+                                    }
+                                    else{
+                                        self.displayFight(fightObject)
+                                        PFPush.handlePush(userInfo)
+                                    }
+                                }
+                                else{
+                                    self.displayFight(fightObject)
+                                    PFPush.handlePush(userInfo)
+                                }
                             }
                         }
                         
