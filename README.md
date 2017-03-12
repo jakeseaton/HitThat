@@ -1,5 +1,5 @@
 
-UPDATE: This repository was submitted as a comp project to the Harvard Lampoon in April of 2015. The Technology Board of the Harvard Lampoon has since been dissolved, but the original text of that submission is below.
+UPDATE: This repository was submitted as a comp project to the Harvard Lampoon in April of 2015. The Technology Board of the Harvard Lampoon has since been dissolved and this repository is no longer maintained, but the original text of that submission is below.
 
 -------
 
